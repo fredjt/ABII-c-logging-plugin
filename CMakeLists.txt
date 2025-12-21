@@ -114,8 +114,8 @@ set(CPACK_SOURCE_IGNORE_FILES
 include(CPack)
 
 if (BIT32)
-	set(CMAKE_INSTALL_PLUGINDIR "share/abii/32")
+	set(CMAKE_INSTALL_PLUGINDIR "share/abii/plugins/32")
 else ()
-	set(CMAKE_INSTALL_PLUGINDIR "share/abii/64")
+	set(CMAKE_INSTALL_PLUGINDIR "share/abii/plugins/64")
 endif ()
 install(TARGETS c-logger LIBRARY DESTINATION ${CMAKE_INSTALL_PLUGINDIR})
