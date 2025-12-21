@@ -80,7 +80,7 @@ const defines_map pthread_visibility_flag = {
 
 const defines_map<pthread_cond_t> pthread_cond_initializer = {
     {
-        pthread_cond_t({{__atomic_wide_counter({}), __atomic_wide_counter({}), {0, 0}, 0, 0, {0, 0}, 0, 0}}),
+        pthread_cond_t({{__atomic_wide_counter(), __atomic_wide_counter(), {0, 0}, 0, 0, {0, 0}, 0, 0}}),
         "PTHREAD_COND_INITIALIZER"
     }
 };
