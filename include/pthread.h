@@ -52,11 +52,14 @@ const defines_map pthread_rwlock_type = {
 
 const defines_map<pthread_rwlock_t> pthread_rwlock_initializer = {
 #ifdef __x86_64__
-    {{{0, 0, 0, 0, 0, 0, 0, 0, 0, {0, 0, 0, 0, 0, 0, 0}, 0, 0}}, "PTHREAD_RWLOCK_INITIALIZER"},
-    {{{0, 0, 0, 0, 0, 0, 0, 0, 0, {0, 0, 0, 0, 0, 0, 0}, 0, 2}}, "PTHREAD_RWLOCK_WRITER_NONRECURSIVE_INITIALIZER_NP"}
+    {pthread_rwlock_t({{0, 0, 0, 0, 0, 0, 0, 0, 0, {0, 0, 0, 0, 0, 0, 0}, 0, 0}}), "PTHREAD_RWLOCK_INITIALIZER"},
+    {
+        pthread_rwlock_t({{0, 0, 0, 0, 0, 0, 0, 0, 0, {0, 0, 0, 0, 0, 0, 0}, 0, 2}}),
+        "PTHREAD_RWLOCK_WRITER_NONRECURSIVE_INITIALIZER_NP"
+    }
 #else
-    {{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}, "PTHREAD_RWLOCK_INITIALIZER"},
-    {{{0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0}}, "PTHREAD_RWLOCK_WRITER_NONRECURSIVE_INITIALIZER_NP"}
+    {pthread_rwlock_t({{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}), "PTHREAD_RWLOCK_INITIALIZER"},
+    {pthread_rwlock_t({{0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0}}), "PTHREAD_RWLOCK_WRITER_NONRECURSIVE_INITIALIZER_NP"}
 #endif
 };
 
@@ -76,7 +79,10 @@ const defines_map pthread_visibility_flag = {
 };
 
 const defines_map<pthread_cond_t> pthread_cond_initializer = {
-    {{{{}, {}, {0, 0}, 0, 0, {0, 0}, 0, 0}}, "PTHREAD_COND_INITIALIZER"}
+    {
+        pthread_cond_t({{__atomic_wide_counter({}), __atomic_wide_counter({}), {0, 0}, 0, 0, {0, 0}, 0, 0}}),
+        "PTHREAD_COND_INITIALIZER"
+    }
 };
 
 const defines_map pthread_cancellation = {
