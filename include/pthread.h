@@ -79,7 +79,15 @@ const defines_map pthread_visibility_flag = {
 };
 
 const defines_map<pthread_cond_t> pthread_cond_initializer = {
-    {PTHREAD_COND_INITIALIZER, "PTHREAD_COND_INITIALIZER"}
+    {
+        {
+            .__data = {
+                .__wseq = {}, .__g1_start = {}, .__g_size{0, 0}, .__g1_orig_size = 0, .__wrefs = 0,
+                .__g_signals = {0, 0}, .__unused_initialized_1 = 0, .__unused_initialized_2 = 0
+            }
+        },
+        "PTHREAD_COND_INITIALIZER"
+    }
 };
 
 const defines_map pthread_cancellation = {
