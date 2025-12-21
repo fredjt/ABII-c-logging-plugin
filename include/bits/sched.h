@@ -10,23 +10,20 @@
 
 namespace abii
 {
-const defines_map sched_enum1 = {
-    {SCHED_OTHER, "SCHED_OTHER"},
-    {SCHED_FIFO, "SCHED_FIFO"},
-    {SCHED_RR, "SCHED_RR"}
-#ifdef __USE_GNU
-    ,
-    {SCHED_BATCH, "SCHED_BATCH"},
-    {SCHED_ISO, "SCHED_ISO"},
-    {SCHED_IDLE, "SCHED_IDLE"},
-    {SCHED_DEADLINE, "SCHED_DEADLINE"}
-#endif
+const defines_map sched_algorithm = {
+    {0, "SCHED_OTHER"},
+    {1, "SCHED_FIFO"},
+    {2, "SCHED_RR"},
+    {3, "SCHED_BATCH"},
+    {4, "SCHED_ISO"},
+    {5, "SCHED_IDLE"},
+    {6, "SCHED_DEADLINE"}
 };
 
 template <typename T>
-std::string print_sched_enum1(const T v)
+std::string print_sched_algorithm(const T v)
 {
-    return print_enum_entry(v, sched_enum1);
+    return print_enum_entry(v, sched_algorithm);
 }
 }
 

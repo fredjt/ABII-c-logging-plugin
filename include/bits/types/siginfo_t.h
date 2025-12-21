@@ -52,7 +52,7 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
         printer2->set_enum_printer(print_siginfo_consts_enum_si_poll, obj.si_code);
         break;
     default:
-        printer2->set_enum_printer(print_siginfo_consts_enum1, obj.si_code);
+        printer2->set_enum_printer(print_siginfo_consts_code, obj.si_code);
     }
 #if __SI_ERRNO_THEN_CODE
     abii_args->push_arg(printer1);
@@ -187,7 +187,7 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj._syscall, "_syscall", &os));
 
     auto printer = new ArgPrinter(obj._arch, "_arch", &os, RECURSE);
-    printer->set_enum_printer(print_audit_enum1, obj._arch);
+    printer->set_enum_printer(print_audit_arch, obj._arch);
     abii_args->push_arg(printer);
     OVERRIDE_STREAM_SUFFIX
 }

@@ -6,30 +6,27 @@
 #define ABII_C_LOGGING_PLUGIN_TIME_H
 
 #include <abii/libabii.h>
-#include <bits/time.h>
 
 namespace abii
 {
-const defines_map time_enum1 = {
-#ifdef __USE_POSIX199309
-    {CLOCK_REALTIME, "CLOCK_REALTIME"},
-    {CLOCK_MONOTONIC, "CLOCK_MONOTONIC"},
-    {CLOCK_PROCESS_CPUTIME_ID, "CLOCK_PROCESS_CPUTIME_ID"},
-    {CLOCK_THREAD_CPUTIME_ID, "CLOCK_THREAD_CPUTIME_ID"},
-    {CLOCK_MONOTONIC_RAW, "CLOCK_MONOTONIC_RAW"},
-    {CLOCK_REALTIME_COARSE, "CLOCK_REALTIME_COARSE"},
-    {CLOCK_MONOTONIC_COARSE, "CLOCK_MONOTONIC_COARSE"},
-    {CLOCK_BOOTTIME, "CLOCK_BOOTTIME"},
-    {CLOCK_REALTIME_ALARM, "CLOCK_REALTIME_ALARM"},
-    {CLOCK_BOOTTIME_ALARM, "CLOCK_BOOTTIME_ALARM"},
-    {CLOCK_TAI, "CLOCK_TAI"}
-#endif
+const defines_map time_clock = {
+    {0, "CLOCK_REALTIME"},
+    {1, "CLOCK_MONOTONIC"},
+    {2, "CLOCK_PROCESS_CPUTIME_ID"},
+    {3, "CLOCK_THREAD_CPUTIME_ID"},
+    {4, "CLOCK_MONOTONIC_RAW"},
+    {5, "CLOCK_REALTIME_COARSE"},
+    {6, "CLOCK_MONOTONIC_COARSE"},
+    {7, "CLOCK_BOOTTIME"},
+    {8, "CLOCK_REALTIME_ALARM"},
+    {9, "CLOCK_BOOTTIME_ALARM"},
+    {11, "CLOCK_TAI"}
 };
 
 template <typename T>
-std::string print_time_enum1(const T v)
+std::string print_time_clock(const T v)
 {
-    return print_enum_entry(v, time_enum1);
+    return print_enum_entry(v, time_clock);
 }
 }
 

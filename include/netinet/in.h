@@ -10,43 +10,43 @@
 
 namespace abii
 {
-const defines_map in_enum1 = {
-    {IPPROTO_IP, "IPPROTO_IP"},
-    {IPPROTO_ICMP, "IPPROTO_ICMP"},
-    {IPPROTO_IGMP, "IPPROTO_IGMP"},
-    {IPPROTO_IPIP, "IPPROTO_IPIP"},
-    {IPPROTO_TCP, "IPPROTO_TCP"},
-    {IPPROTO_EGP, "IPPROTO_EGP"},
-    {IPPROTO_PUP, "IPPROTO_PUP"},
-    {IPPROTO_UDP, "IPPROTO_UDP"},
-    {IPPROTO_IDP, "IPPROTO_IDP"},
-    {IPPROTO_TP, "IPPROTO_TP"},
-    {IPPROTO_DCCP, "IPPROTO_DCCP"},
-    {IPPROTO_IPV6, "IPPROTO_IPV6"},
-    {IPPROTO_RSVP, "IPPROTO_RSVP"},
-    {IPPROTO_GRE, "IPPROTO_GRE"},
-    {IPPROTO_ESP, "IPPROTO_ESP"},
-    {IPPROTO_AH, "IPPROTO_AH"},
-    {IPPROTO_MTP, "IPPROTO_MTP"},
-    {IPPROTO_BEETPH, "IPPROTO_BEETPH"},
-    {IPPROTO_ENCAP, "IPPROTO_ENCAP"},
-    {IPPROTO_PIM, "IPPROTO_PIM"},
-    {IPPROTO_COMP, "IPPROTO_COMP"},
-    {IPPROTO_L2TP, "IPPROTO_L2TP"},
-    {IPPROTO_SCTP, "IPPROTO_SCTP"},
-    {IPPROTO_UDPLITE, "IPPROTO_UDPLITE"},
-    {IPPROTO_MPLS, "IPPROTO_MPLS"},
-    {IPPROTO_ETHERNET, "IPPROTO_ETHERNET"},
-    {IPPROTO_RAW, "IPPROTO_RAW"},
-    {IPPROTO_SMC, "IPPROTO_SMC"},
-    {IPPROTO_MPTCP, "IPPROTO_MPTCP"},
-    {IPPROTO_MAX, "IPPROTO_MAX"}
+const defines_map in_ipproto = {
+    {0, "IPPROTO_IP"},
+    {1, "IPPROTO_ICMP"},
+    {2, "IPPROTO_IGMP"},
+    {4, "IPPROTO_IPIP"},
+    {6, "IPPROTO_TCP"},
+    {8, "IPPROTO_EGP"},
+    {12, "IPPROTO_PUP"},
+    {17, "IPPROTO_UDP"},
+    {22, "IPPROTO_IDP"},
+    {29, "IPPROTO_TP"},
+    {33, "IPPROTO_DCCP"},
+    {41, "IPPROTO_IPV6"},
+    {46, "IPPROTO_RSVP"},
+    {47, "IPPROTO_GRE"},
+    {50, "IPPROTO_ESP"},
+    {51, "IPPROTO_AH"},
+    {92, "IPPROTO_MTP"},
+    {94, "IPPROTO_BEETPH"},
+    {98, "IPPROTO_ENCAP"},
+    {103, "IPPROTO_PIM"},
+    {108, "IPPROTO_COMP"},
+    {115, "IPPROTO_L2TP"},
+    {132, "IPPROTO_SCTP"},
+    {136, "IPPROTO_UDPLITE"},
+    {137, "IPPROTO_MPLS"},
+    {143, "IPPROTO_ETHERNET"},
+    {255, "IPPROTO_RAW"},
+    {256, "IPPROTO_SMC"},
+    {262, "IPPROTO_MPTCP"},
+    {263, "IPPROTO_MAX"}
 };
 
 template <typename T>
-std::string print_in_enum1(const T v)
+std::string print_in_ipproto(const T v)
 {
-    return print_enum_entry(v, in_enum1);
+    return print_enum_entry(v, in_ipproto);
 }
 }
 

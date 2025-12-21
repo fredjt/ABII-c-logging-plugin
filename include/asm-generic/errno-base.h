@@ -9,47 +9,47 @@
 
 namespace abii
 {
-const defines_map errno_base_defines = {
-    {EPERM, "EPERM"},
-    {ENOENT, "ENOENT"},
-    {ESRCH, "ESRCH"},
-    {EINTR, "EINTR"},
-    {EIO, "EIO"},
-    {ENXIO, "ENXIO"},
-    {E2BIG, "E2BIG"},
-    {ENOEXEC, "ENOEXEC"},
-    {EBADF, "EBADF"},
-    {ECHILD, "ECHILD"},
-    {EAGAIN, "EAGAIN"},
-    {ENOMEM, "ENOMEM"},
-    {EACCES, "EACCES"},
-    {EFAULT, "EFAULT"},
-    {ENOTBLK, "ENOTBLK"},
-    {EBUSY, "EBUSY"},
-    {EEXIST, "EEXIST"},
-    {EXDEV, "EXDEV"},
-    {ENODEV, "ENODEV"},
-    {ENOTDIR, "ENOTDIR"},
-    {EISDIR, "EISDIR"},
-    {EINVAL, "EINVAL"},
-    {ENFILE, "ENFILE"},
-    {EMFILE, "EMFILE"},
-    {ENOTTY, "ENOTTY"},
-    {ETXTBSY, "ETXTBSY"},
-    {EFBIG, "EFBIG"},
-    {ENOSPC, "ENOSPC"},
-    {ESPIPE, "ESPIPE"},
-    {EROFS, "EROFS"},
-    {EMLINK, "EMLINK"},
-    {EPIPE, "EPIPE"},
-    {EDOM, "EDOM"},
-    {ERANGE, "ERANGE"},
+const defines_map errno_base_error = {
+    {1, "EPERM"},
+    {2, "ENOENT"},
+    {3, "ESRCH"},
+    {4, "EINTR"},
+    {5, "EIO"},
+    {6, "ENXIO"},
+    {7, "E2BIG"},
+    {8, "ENOEXEC"},
+    {9, "EBADF"},
+    {10, "ECHILD"},
+    {11, "EAGAIN"},
+    {12, "ENOMEM"},
+    {13, "EACCES"},
+    {14, "EFAULT"},
+    {15, "ENOTBLK"},
+    {16, "EBUSY"},
+    {17, "EEXIST"},
+    {18, "EXDEV"},
+    {19, "ENODEV"},
+    {20, "ENOTDIR"},
+    {21, "EISDIR"},
+    {22, "EINVAL"},
+    {23, "ENFILE"},
+    {24, "EMFILE"},
+    {25, "ENOTTY"},
+    {26, "ETXTBSY"},
+    {27, "EFBIG"},
+    {28, "ENOSPC"},
+    {29, "ESPIPE"},
+    {30, "EROFS"},
+    {31, "EMLINK"},
+    {32, "EPIPE"},
+    {33, "EDOM"},
+    {34, "ERANGE"},
 };
 
 template <typename T>
-std::string print_errno_base_defines(const T v)
+std::string print_errno_base_error(const T v)
 {
-    return print_enum_entry(v, errno_base_defines);
+    return print_enum_entry(v, errno_base_error);
 }
 }
 

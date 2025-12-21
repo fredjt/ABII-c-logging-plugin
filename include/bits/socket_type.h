@@ -10,31 +10,31 @@
 
 namespace abii
 {
-const defines_map socket_type_enum1 = {
-    {SOCK_STREAM, "SOCK_STREAM"},
-    {SOCK_DGRAM, "SOCK_DGRAM"},
-    {SOCK_RAW, "SOCK_RAW"},
-    {SOCK_RDM, "SOCK_RDM"},
-    {SOCK_SEQPACKET, "SOCK_SEQPACKET"},
-    {SOCK_DCCP, "SOCK_DCCP"},
-    {SOCK_PACKET, "SOCK_PACKET"}
+const defines_map socket_type___socket_type = {
+    {1, "SOCK_STREAM"},
+    {2, "SOCK_DGRAM"},
+    {3, "SOCK_RAW"},
+    {4, "SOCK_RDM"},
+    {5, "SOCK_SEQPACKET"},
+    {6, "SOCK_DCCP"},
+    {10, "SOCK_PACKET"}
 };
 
-const defines_map socket_type_enum2 = {
-    {SOCK_CLOEXEC, "SOCK_CLOEXEC"},
-    {SOCK_NONBLOCK, "SOCK_NONBLOCK"}
+const defines_map socket_type_flag = {
+    {02000000, "SOCK_CLOEXEC"},
+    {00004000, "SOCK_NONBLOCK"}
 };
 
-template<typename T>
-std::string print_socket_type_enum1(const T v)
+template <typename T>
+std::string print_socket_type___socket_type(const T v)
 {
-    return print_enum_entry(v, socket_type_enum1);
+    return print_enum_entry(v, socket_type___socket_type);
 }
 
-template<typename T>
-std::string print_socket_type_enum2(const T v)
+template <typename T>
+std::string print_socket_type_flag(const T v)
 {
-    return print_or_enum_entries(v, socket_type_enum2);
+    return print_or_enum_entries(v, socket_type_flag);
 }
 }
 

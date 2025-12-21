@@ -9,192 +9,180 @@
 
 namespace abii
 {
-const defines_map siginfo_consts_enum1 = {
-    {SI_ASYNCNL, "SI_ASYNCNL"},
-    {SI_DETHREAD, "SI_DETHREAD"},
-    {SI_TKILL, "SI_TKILL"},
-    {SI_SIGIO, "SI_SIGIO"},
-    {SI_ASYNCIO, "SI_ASYNCIO"},
-    {SI_MESGQ, "SI_MESGQ"},
-    {SI_TIMER, "SI_TIMER"},
-    {SI_QUEUE, "SI_QUEUE"},
-    {SI_USER, "SI_USER"},
-    {SI_KERNEL, "SI_KERNEL"}
+const defines_map siginfo_consts_code = {
+    {-60, "SI_ASYNCNL"},
+    {-7, "SI_DETHREAD"},
+    {-6, "SI_TKILL"},
+    {-5, "SI_SIGIO"},
+    {-4, "SI_ASYNCIO"},
+    {-3, "SI_MESGQ"},
+    {-2, "SI_TIMER"},
+    {-1, "SI_QUEUE"},
+    {0, "SI_USER"},
+    {128, "SI_KERNEL"}
 };
 
-#if defined __USE_XOPEN_EXTENDED || defined __USE_XOPEN2K8
-const defines_map siginfo_consts_enum2 = {
-    {ILL_ILLOPC, "ILL_ILLOPC"},
-    {ILL_ILLOPN, "ILL_ILLOPN"},
-    {ILL_ILLADR, "ILL_ILLADR"},
-    {ILL_ILLTRP, "ILL_ILLTRP"},
-    {ILL_PRVOPC, "ILL_PRVOPC"},
-    {ILL_PRVREG, "ILL_PRVREG"},
-    {ILL_COPROC, "ILL_COPROC"},
-    {ILL_BADSTK, "ILL_BADSTK"},
-    {ILL_BADIADDR, "ILL_BADIADDR"}
+const defines_map siginfo_consts_ill_code = {
+    {1, "ILL_ILLOPC"},
+    {2, "ILL_ILLOPN"},
+    {3, "ILL_ILLADR"},
+    {4, "ILL_ILLTRP"},
+    {5, "ILL_PRVOPC"},
+    {6, "ILL_PRVREG"},
+    {7, "ILL_COPROC"},
+    {8, "ILL_BADSTK"},
+    {9, "ILL_BADIADDR"}
 };
 
-const defines_map siginfo_consts_enum3 = {
-    {FPE_INTDIV, "FPE_INTDIV"},
-    {FPE_INTOVF, "FPE_INTOVF"},
-    {FPE_FLTDIV, "FPE_FLTDIV"},
-    {FPE_FLTOVF, "FPE_FLTOVF"},
-    {FPE_FLTUND, "FPE_FLTUND"},
-    {FPE_FLTRES, "FPE_FLTRES"},
-    {FPE_FLTINV, "FPE_FLTINV"},
-    {FPE_FLTSUB, "FPE_FLTSUB"},
-    {FPE_FLTUNK, "FPE_FLTUNK"},
-    {FPE_CONDTRAP, "FPE_CONDTRAP"}
+const defines_map siginfo_consts_fpe_code = {
+    {1, "FPE_INTDIV"},
+    {2, "FPE_INTOVF"},
+    {3, "FPE_FLTDIV"},
+    {4, "FPE_FLTOVF"},
+    {5, "FPE_FLTUND"},
+    {6, "FPE_FLTRES"},
+    {7, "FPE_FLTINV"},
+    {8, "FPE_FLTSUB"},
+    {9, "FPE_FLTUNK"},
+    {10, "FPE_CONDTRAP"}
 };
 
-const defines_map siginfo_consts_enum4 = {
-    {SEGV_MAPERR, "SEGV_MAPERR"},
-    {SEGV_ACCERR, "SEGV_ACCERR"},
-    {SEGV_BNDERR, "SEGV_BNDERR"},
-    {SEGV_PKUERR, "SEGV_PKUERR"},
-    {SEGV_ACCADI, "SEGV_ACCADI"},
-    {SEGV_ADIDERR, "SEGV_ADIDERR"},
-    {SEGV_ADIPERR, "SEGV_ADIPERR"},
-    {SEGV_MTEAERR, "SEGV_MTEAERR"},
-    {SEGV_MTESERR, "SEGV_MTESERR"},
-    {SEGV_CPERR, "SEGV_CPERR"}
+const defines_map siginfo_consts_segv_code = {
+    {1, "SEGV_MAPERR"},
+    {2, "SEGV_ACCERR"},
+    {3, "SEGV_BNDERR"},
+    {4, "SEGV_PKUERR"},
+    {5, "SEGV_ACCADI"},
+    {6, "SEGV_ADIDERR"},
+    {7, "SEGV_ADIPERR"},
+    {8, "SEGV_MTEAERR"},
+    {9, "SEGV_MTESERR"},
+    {10, "SEGV_CPERR"}
 };
 
-const defines_map siginfo_consts_enum5 = {
-    {BUS_ADRALN, "BUS_ADRALN"},
-    {BUS_ADRERR, "BUS_ADRERR"},
-    {BUS_OBJERR, "BUS_OBJERR"},
-    {BUS_MCEERR_AR, "BUS_MCEERR_AR"},
-    {BUS_MCEERR_AO, "BUS_MCEERR_AO"}
-};
-#endif
-
-#ifdef __USE_XOPEN_EXTENDED
-const defines_map siginfo_consts_enum6 = {
-    {TRAP_BRKPT, "TRAP_BRKPT"},
-    {TRAP_TRACE, "TRAP_TRACE"},
-    {TRAP_BRANCH, "TRAP_BRANCH"},
-    {TRAP_HWBKPT, "TRAP_HWBKPT"},
-    {TRAP_UNK, "TRAP_UNK"}
-};
-#endif
-
-# if defined __USE_XOPEN_EXTENDED || defined __USE_XOPEN2K8
-const defines_map siginfo_consts_enum7 = {
-    {CLD_EXITED, "CLD_EXITED"},
-    {CLD_KILLED, "CLD_KILLED"},
-    {CLD_DUMPED, "CLD_DUMPED"},
-    {CLD_TRAPPED, "CLD_TRAPPED"},
-    {CLD_STOPPED, "CLD_STOPPED"},
-    {CLD_CONTINUED, "CLD_CONTINUED"}
+const defines_map siginfo_consts_bus_code = {
+    {1, "BUS_ADRALN"},
+    {2, "BUS_ADRERR"},
+    {3, "BUS_OBJERR"},
+    {4, "BUS_MCEERR_AR"},
+    {5, "BUS_MCEERR_AO"}
 };
 
-const defines_map siginfo_consts_enum8 = {
-    {POLL_IN, "POLL_IN"},
-    {POLL_OUT, "POLL_OUT"},
-    {POLL_MSG, "POLL_MSG"},
-    {POLL_ERR, "POLL_ERR"},
-    {POLL_PRI, "POLL_PRI"},
-    {POLL_HUP, "POLL_HUP"}
+const defines_map siginfo_consts_trap_code = {
+    {1, "TRAP_BRKPT"},
+    {2, "TRAP_TRACE"},
+    {3, "TRAP_BRANCH"},
+    {4, "TRAP_HWBKPT"},
+    {5, "TRAP_UNK"}
 };
-#endif
 
-template<typename T>
-std::string print_siginfo_consts_enum1(const T v)
+const defines_map siginfo_consts_cld_code = {
+    {1, "CLD_EXITED"},
+    {2, "CLD_KILLED"},
+    {3, "CLD_DUMPED"},
+    {4, "CLD_TRAPPED"},
+    {5, "CLD_STOPPED"},
+    {6, "CLD_CONTINUED"}
+};
+
+const defines_map siginfo_consts_poll_code = {
+    {1, "POLL_IN"},
+    {2, "POLL_OUT"},
+    {3, "POLL_MSG"},
+    {4, "POLL_ERR"},
+    {5, "POLL_PRI"},
+    {6, "POLL_HUP"}
+};
+
+template <typename T>
+std::string print_siginfo_consts_code(const T v)
 {
-    return print_enum_entry(v, siginfo_consts_enum1);
+    return print_enum_entry(v, siginfo_consts_code);
 }
 
-# if defined __USE_XOPEN_EXTENDED || defined __USE_XOPEN2K8
-template<typename T>
-std::string print_siginfo_consts_enum2(const T v)
+template <typename T>
+std::string print_siginfo_consts_ill_code(const T v)
 {
-    return print_enum_entry(v, siginfo_consts_enum2);
+    return print_enum_entry(v, siginfo_consts_ill_code);
 }
 
-template<typename T>
+template <typename T>
 std::string print_siginfo_consts_enum_si_ill(const T v)
 {
-    return print_enum_entry(v, siginfo_consts_enum1, siginfo_consts_enum2);
+    return print_enum_entry(v, siginfo_consts_code, siginfo_consts_ill_code);
 }
 
-template<typename T>
-std::string print_siginfo_consts_enum3(const T v)
+template <typename T>
+std::string print_siginfo_consts_fpe_code(const T v)
 {
-    return print_enum_entry(v, siginfo_consts_enum3);
+    return print_enum_entry(v, siginfo_consts_fpe_code);
 }
 
-template<typename T>
+template <typename T>
 std::string print_siginfo_consts_enum_si_fpe(const T v)
 {
-    return print_enum_entry(v, siginfo_consts_enum1, siginfo_consts_enum3);
+    return print_enum_entry(v, siginfo_consts_code, siginfo_consts_fpe_code);
 }
 
-template<typename T>
-std::string print_siginfo_consts_enum4(const T v)
+template <typename T>
+std::string print_siginfo_consts_segv_code(const T v)
 {
-    return print_enum_entry(v, siginfo_consts_enum4);
+    return print_enum_entry(v, siginfo_consts_segv_code);
 }
 
-template<typename T>
+template <typename T>
 std::string print_siginfo_consts_enum_si_segv(const T v)
 {
-    return print_enum_entry(v, siginfo_consts_enum1, siginfo_consts_enum4);
+    return print_enum_entry(v, siginfo_consts_code, siginfo_consts_segv_code);
 }
 
-template<typename T>
-std::string print_siginfo_consts_enum5(const T v)
+template <typename T>
+std::string print_siginfo_consts_bus_code(const T v)
 {
-    return print_enum_entry(v, siginfo_consts_enum5);
+    return print_enum_entry(v, siginfo_consts_bus_code);
 }
 
-template<typename T>
+template <typename T>
 std::string print_siginfo_consts_enum_si_bus(const T v)
 {
-    return print_enum_entry(v, siginfo_consts_enum1, siginfo_consts_enum5);
+    return print_enum_entry(v, siginfo_consts_code, siginfo_consts_bus_code);
 }
-#endif
 
-#ifdef __USE_XOPEN_EXTENDED
-template<typename T>
-std::string print_siginfo_consts_enum6(const T v)
+template <typename T>
+std::string print_siginfo_consts_trap_code(const T v)
 {
-    return print_enum_entry(v, siginfo_consts_enum6);
+    return print_enum_entry(v, siginfo_consts_trap_code);
 }
 
-template<typename T>
+template <typename T>
 std::string print_siginfo_consts_enum_si_trap(const T v)
 {
-    return print_enum_entry(v, siginfo_consts_enum1, siginfo_consts_enum6);
+    return print_enum_entry(v, siginfo_consts_code, siginfo_consts_trap_code);
 }
-#endif
 
-# if defined __USE_XOPEN_EXTENDED || defined __USE_XOPEN2K8
-template<typename T>
-std::string print_siginfo_consts_enum7(const T v)
+template <typename T>
+std::string print_siginfo_consts_cld_code(const T v)
 {
-    return print_enum_entry(v, siginfo_consts_enum7);
+    return print_enum_entry(v, siginfo_consts_cld_code);
 }
 
-template<typename T>
+template <typename T>
 std::string print_siginfo_consts_enum_si_cld(const T v)
 {
-    return print_enum_entry(v, siginfo_consts_enum1, siginfo_consts_enum7);
+    return print_enum_entry(v, siginfo_consts_code, siginfo_consts_cld_code);
 }
 
-template<typename T>
-std::string print_siginfo_consts_enum8(const T v)
+template <typename T>
+std::string print_siginfo_consts_poll_code(const T v)
 {
-    return print_enum_entry(v, siginfo_consts_enum8);
+    return print_enum_entry(v, siginfo_consts_poll_code);
 }
 
-template<typename T>
+template <typename T>
 std::string print_siginfo_consts_enum_si_poll(const T v)
 {
-    return print_enum_entry(v, siginfo_consts_enum1, siginfo_consts_enum8);
+    return print_enum_entry(v, siginfo_consts_code, siginfo_consts_poll_code);
 }
-#endif
 }
 
 #endif //ABII_C_LOGGING_PLUGIN_SIGINFO_CONSTS_H

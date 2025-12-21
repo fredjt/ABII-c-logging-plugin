@@ -17,13 +17,13 @@ namespace abii
 template <typename T>
 std::string print_error_enum_entry(const T v)
 {
-    return print_enum_entry(v, errno_defines, errno_base_defines);
+    return print_enum_entry(v, errno_error, errno_base_error);
 }
 
 template <typename T>
 std::string print_signum_enum_entry(const T v)
 {
-    return print_enum_entry(v, signum_arch_enum1, signum_generic_enum1);
+    return print_enum_entry(v, signum_arch_signal, signum_generic_signal);
 }
 }
 

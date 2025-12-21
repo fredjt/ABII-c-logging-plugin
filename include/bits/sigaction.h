@@ -11,45 +11,36 @@
 
 namespace abii
 {
-const defines_map sigaction_enum1 = {
-    {SA_NOCLDSTOP, "SA_NOCLDSTOP"},
-    {SA_NOCLDWAIT, "SA_NOCLDWAIT"},
-    {SA_SIGINFO, "SA_SIGINFO"}
-#if defined __USE_XOPEN_EXTENDED || defined __USE_MISC
-    ,
-    {SA_ONSTACK, "SA_ONSTACK"}
-#endif
-#if defined __USE_XOPEN_EXTENDED || defined __USE_XOPEN2K8
-    ,
-    {SA_RESTART, "SA_RESTART"},
-    {SA_NODEFER, "SA_NODEFER"},
-    {SA_RESETHAND, "SA_RESETHAND"}
-#endif
-#ifdef __USE_MISC
-    ,
-    {SA_INTERRUPT, "SA_INTERRUPT"},
-    {SA_NOMASK, "SA_NOMASK"},
-    {SA_ONESHOT, "SA_ONESHOT"},
-    {SA_STACK, "SA_STACK"}
-#endif
+const defines_map sigaction_flags = {
+    {1, "SA_NOCLDSTOP"},
+    {2, "SA_NOCLDWAIT"},
+    {4, "SA_SIGINFO"},
+    {0x08000000, "SA_ONSTACK"},
+    {0x10000000, "SA_RESTART"},
+    {0x40000000, "SA_NODEFER"},
+    {0x80000000, "SA_RESETHAND"},
+    {0x20000000, "SA_INTERRUPT"},
+    {0x40000000, "SA_NOMASK"},
+    {0x80000000, "SA_ONESHOT"},
+    {0x08000000, "SA_STACK"}
 };
 
-const defines_map sigaction_enum2 = {
-    {SIG_BLOCK, "SIG_BLOCK"},
-    {SIG_UNBLOCK, "SIG_UNBLOCK"},
-    {SIG_SETMASK, "SIG_SETMASK"}
+const defines_map sigaction_how = {
+    {0, "SIG_BLOCK"},
+    {1, "SIG_UNBLOCK"},
+    {2, "SIG_SETMASK"}
 };
 
 template <typename T>
-std::string print_sigaction_enum1(const T v)
+std::string print_sigaction_flags(const T v)
 {
-    return print_or_enum_entries(v, sigaction_enum1);
+    return print_or_enum_entries(v, sigaction_flags);
 }
 
 template <typename T>
-std::string print_sigaction_enum2(const T v)
+std::string print_sigaction_how(const T v)
 {
-    return print_enum_entry(v, sigaction_enum2);
+    return print_enum_entry(v, sigaction_how);
 }
 }
 
@@ -67,7 +58,7 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.sa_mask, "sa_mask", &os));
 
     auto printer = new ArgPrinter(obj.sa_flags, "sa_flags", &os);
-    printer->set_enum_printer(print_sigaction_enum1, obj.sa_flags);
+    printer->set_enum_printer(print_sigaction_flags, obj.sa_flags);
     abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.sa_restorer, "sa_restorer", &os, RECURSE));

@@ -19,7 +19,7 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.ss_sp, "ss_sp", &os));
 
     auto printer = new ArgPrinter(obj.ss_flags, "ss_flags", &os);
-    printer->set_enum_printer(print_ss_flags_enum1, obj.ss_flags);
+    printer->set_enum_printer(print_ss_flags_flag, obj.ss_flags);
     abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.ss_size, "ss_size", &os, RECURSE));

@@ -7,275 +7,233 @@
 
 namespace abii
 {
-const defines_map fcntl_linux_enum1 = {
-    {O_ACCMODE, "O_ACCMODE"},
-    {O_RDONLY, "O_RDONLY"},
-    {O_WRONLY, "O_WRONLY"},
-    {O_RDWR, "O_RDWR"},
-    {O_CREAT, "O_CREAT"},
-    {O_EXCL, "O_EXCL"},
-    {O_NOCTTY, "O_NOCTTY"},
-    {O_TRUNC, "O_TRUNC"},
-    {O_APPEND, "O_APPEND"},
-    {O_NONBLOCK, "O_NONBLOCK"},
-    {O_NDELAY, "O_NDELAY"},
-    {O_SYNC, "O_SYNC"},
-    {O_FSYNC, "O_FSYNC"},
-    {O_ASYNC, "O_ASYNC"},
-    {__O_LARGEFILE, "__O_LARGEFILE"},
-    {__O_DIRECTORY, "__O_DIRECTORY"},
-    {__O_NOFOLLOW, "__O_NOFOLLOW"},
-    {__O_CLOEXEC, "__O_CLOEXEC"},
-    {__O_DIRECT, "__O_DIRECT"},
-    {__O_NOATIME, "__O_NOATIME"},
-    {__O_PATH, "__O_PATH"},
-    {__O_DSYNC, "__O_DSYNC"},
-    {__O_TMPFILE, "__O_TMPFILE"},
-    {FAPPEND, "FAPPEND"},
-    {FFSYNC, "FFSYNC"},
-    {FASYNC, "FASYNC"},
-    {FNONBLOCK, "FNONBLOCK"},
-    {FNDELAY, "FNDELAY"}
+const defines_map fcntl_linux_oflag = {
+    {0003, "O_ACCMODE"},
+    {00, "O_RDONLY"},
+    {01, "O_WRONLY"},
+    {02, "O_RDWR"},
+    {0100, "O_CREAT"},
+    {0200, "O_EXCL"},
+    {0400, "O_NOCTTY"},
+    {01000, "O_TRUNC"},
+    {02000, "O_APPEND"},
+    {04000, "O_NONBLOCK"},
+    {04000, "O_NDELAY"},
+    {04010000, "O_SYNC"},
+    {04010000, "O_FSYNC"},
+    {020000, "O_ASYNC"},
+    {0, "__O_LARGEFILE"},
+    {0200000, "__O_DIRECTORY"},
+    {0400000, "__O_NOFOLLOW"},
+    {02000000, "__O_CLOEXEC"},
+    {040000, "__O_DIRECT"},
+    {01000000, "__O_NOATIME"},
+    {010000000, "__O_PATH"},
+    {010000, "__O_DSYNC"},
+    {(020000000 | 0200000), "__O_TMPFILE"},
+    {02000, "FAPPEND"},
+    {04010000, "FFSYNC"},
+    {020000, "FASYNC"},
+    {04000, "FNONBLOCK"},
+    {04000, "FNDELAY"}
 };
 
-const defines_map fcntl_linux_enum2 = {
-    {F_GETLK, "F_GETLK"},
-    {F_SETLK, "F_SETLK"},
-    {F_SETLKW, "F_SETLKW"},
-    {F_GETLK64, "F_GETLK64"},
-    {F_SETLK64, "F_SETLK64"},
-    {F_SETLKW64, "F_SETLKW64"},
-    {F_DUPFD, "F_DUPFD"},
-    {F_GETFD, "F_GETFD"},
-    {F_SETFD, "F_SETFD"},
-    {F_GETFL, "F_GETFL"},
-    {F_SETFL, "F_SETFL"},
-    {__F_SETOWN, "__F_SETOWN"},
-    {__F_GETOWN, "__F_GETOWN"}
-#if defined __USE_UNIX98 || defined __USE_XOPEN2K8
-    ,
-    {F_SETOWN, "F_SETOWN"},
-    {F_GETOWN, "F_GETOWN"}
-#endif
-    ,
-    {__F_SETSIG, "__F_SETSIG"},
-    {__F_GETSIG, "__F_GETSIG"},
-    {__F_SETOWN_EX, "__F_SETOWN_EX"},
-    {__F_GETOWN_EX, "__F_GETOWN_EX"}
-#ifdef __USE_GNU
-    ,
-    {F_SETSIG, "F_SETSIG"},
-    {F_GETSIG, "F_GETSIG"},
-    {F_SETOWN_EX, "F_SETOWN_EX"},
-    {F_GETOWN_EX, "F_GETOWN_EX"},
-    {F_SETLEASE, "F_SETLEASE"},
-    {F_GETLEASE, "F_GETLEASE"},
-    {F_NOTIFY, "F_NOTIFY"},
-    {F_SETPIPE_SZ, "F_SETPIPE_SZ"},
-    {F_GETPIPE_SZ, "F_GETPIPE_SZ"},
-    {F_ADD_SEALS, "F_ADD_SEALS"},
-    {F_GET_SEALS, "F_GET_SEALS"},
-    {F_GET_RW_HINT, "F_GET_RW_HINT"},
-    {F_SET_RW_HINT, "F_SET_RW_HINT"},
-    {F_GET_FILE_RW_HINT, "F_GET_FILE_RW_HINT"},
-    {F_SET_FILE_RW_HINT, "F_SET_FILE_RW_HINT"}
-#endif
-#ifdef __USE_XOPEN2K8
-    ,
-    {F_DUPFD_CLOEXEC, "F_DUPFD_CLOEXEC"}
-#endif
+const defines_map fcntl_linux_cmd = {
+    {5, "F_GETLK"},
+    {6, "F_SETLK"},
+    {7, "F_SETLKW"},
+    {5, "F_GETLK64"},
+    {6, "F_SETLK64"},
+    {7, "F_SETLKW64"},
+    {0, "F_DUPFD"},
+    {1, "F_GETFD"},
+    {2, "F_SETFD"},
+    {3, "F_GETFL"},
+    {4, "F_SETFL"},
+    {8, "__F_SETOWN"},
+    {9, "__F_GETOWN"},
+    {8, "F_SETOWN"},
+    {9, "F_GETOWN"},
+    {10, "__F_SETSIG"},
+    {11, "__F_GETSIG"},
+    {15, "__F_SETOWN_EX"},
+    {16, "__F_GETOWN_EX"},
+    {10, "F_SETSIG"},
+    {11, "F_GETSIG"},
+    {15, "F_SETOWN_EX"},
+    {16, "F_GETOWN_EX"},
+    {1024, "F_SETLEASE"},
+    {1025, "F_GETLEASE"},
+    {1026, "F_NOTIFY"},
+    {1031, "F_SETPIPE_SZ"},
+    {1032, "F_GETPIPE_SZ"},
+    {1033, "F_ADD_SEALS"},
+    {1034, "F_GET_SEALS"},
+    {1035, "F_GET_RW_HINT"},
+    {1036, "F_SET_RW_HINT"},
+    {1037, "F_GET_FILE_RW_HINT"},
+    {1038, "F_SET_FILE_RW_HINT"},
+    {1030, "F_DUPFD_CLOEXEC"}
 };
 
-const defines_map fcntl_linux_enum3 = {
-#ifdef __USE_GNU
-    {F_OFD_GETLK, "F_OFD_GETLK"},
-    {F_OFD_SETLK, "F_OFD_SETLK"},
-    {F_OFD_SETLKW, "F_OFD_SETLKW"}
-#endif
+const defines_map fcntl_linux_ofd_lock = {
+    {36, "F_OFD_GETLK"},
+    {37, "F_OFD_SETLK"},
+    {38, "F_OFD_SETLKW"}
 };
 
-const defines_map fcntl_linux_enum4 = {
-    {}
-#ifdef __USE_LARGEFILE64
-    ,
-    {O_LARGEFILE, "O_LARGEFILE"}
-#endif
-#ifdef __USE_XOPEN2K8
-    ,
-    {O_DIRECTORY, "O_DIRECTORY"},
-    {O_NOFOLLOW, "O_NOFOLLOW"},
-    {O_CLOEXEC, "O_CLOEXEC"}
-#endif
-#ifdef __USE_GNU
-    ,
-    {O_DIRECT, "O_DIRECT"},
-    {O_NOATIME, "O_NOATIME"},
-    {O_PATH, "O_PATH"},
-    {O_TMPFILE, "O_TMPFILE"}
-#endif
-#if defined __USE_POSIX199309 || defined __USE_UNIX98
-    ,
-    {O_DSYNC, "O_DSYNC"},
-    {O_RSYNC, "O_RSYNC"}
-#endif
+const defines_map fcntl_linux_otype = {
+    {0, "O_LARGEFILE"},
+    {0200000, "O_DIRECTORY"},
+    {0400000, "O_NOFOLLOW"},
+    {02000000, "O_CLOEXEC"},
+    {040000, "O_DIRECT"},
+    {01000000, "O_NOATIME"},
+    {010000000, "O_PATH"},
+    {(020000000 | 0200000), "O_TMPFILE"},
+    {010000, "O_DSYNC"},
+    {04010000, "O_RSYNC"}
 };
 
-const defines_map fcntl_linux_enum5 = {
-    {FD_CLOEXEC, "FD_CLOEXEC"}
+const defines_map fcntl_linux_fd_cloexec = {
+    {1, "FD_CLOEXEC"}
 };
 
-const defines_map fcntl_linux_enum6 = {
-    {F_RDLCK, "F_RDLCK"},
-    {F_WRLCK, "F_WRLCK"},
-    {F_UNLCK, "F_UNLCK"},
-    {F_EXLCK, "F_EXLCK"},
-    {F_SHLCK, "F_SHLCK"}
+const defines_map fcntl_linux_l_type = {
+    {0, "F_RDLCK"},
+    {1, "F_WRLCK"},
+    {2, "F_UNLCK"},
+    {4, "F_EXLCK"},
+    {8, "F_SHLCK"}
 };
 
-const defines_map fcntl_linux_enum7 = {
-    {}
-#ifdef __USE_MISC
-    ,
-    {LOCK_SH, "LOCK_SH"},
-    {LOCK_EX, "LOCK_EX"},
-    {LOCK_NB, "LOCK_NB"},
-    {LOCK_UN, "LOCK_UN"}
-#endif
-#ifdef __USE_GNU
-    ,
-    {LOCK_MAND, "LOCK_MAND"},
-    {LOCK_READ, "LOCK_READ"},
-    {LOCK_WRITE, "LOCK_WRITE"},
-    {LOCK_RW, "LOCK_RW"}
-#endif
+const defines_map fcntl_linux_bsd_l_type = {
+    {1, "LOCK_SH"},
+    {2, "LOCK_EX"},
+    {4, "LOCK_NB"},
+    {8, "LOCK_UN"},
+    {32, "LOCK_MAND"},
+    {64, "LOCK_READ"},
+    {128, "LOCK_WRITE"},
+    {192, "LOCK_RW"}
 };
 
-const defines_map fcntl_linux_enum8 = {
-#ifdef __USE_GNU
-    {DN_ACCESS, "DN_ACCESS"},
-    {DN_MODIFY, "DN_MODIFY"},
-    {DN_CREATE, "DN_CREATE"},
-    {DN_DELETE, "DN_DELETE"},
-    {DN_RENAME, "DN_RENAME"},
-    {DN_ATTRIB, "DN_ATTRIB"},
-    {DN_MULTISHOT, "DN_MULTISHOT"}
-#endif
+const defines_map fcntl_linux_dir_notification = {
+    {0x00000001, "DN_ACCESS"},
+    {0x00000002, "DN_MODIFY"},
+    {0x00000004, "DN_CREATE"},
+    {0x00000008, "DN_DELETE"},
+    {0x00000010, "DN_RENAME"},
+    {0x00000020, "DN_ATTRIB"},
+    {0x80000000, "DN_MULTISHOT"}
 };
 
-const defines_map fcntl_linux_enum9 = {
-#ifdef __USE_GNU
-    {F_OWNER_TID, "F_OWNER_TID"},
-    {F_OWNER_PID, "F_OWNER_PID"},
-    {F_OWNER_PGRP, "F_OWNER_PGRP"},
-    {F_OWNER_GID, "F_OWNER_GID"}
-#endif
+const defines_map fcntl_linux___pid_type = {
+    {0, "F_OWNER_TID"},
+    {1, "F_OWNER_PID"},
+    {2, "F_OWNER_PGRP"},
+    {2, "F_OWNER_GID"}
 };
 
-const defines_map fcntl_linux_enum10 = {
-#ifdef __USE_GNU
-    {F_SEAL_SEAL, "F_SEAL_SEAL"},
-    {F_SEAL_SHRINK, "F_SEAL_SHRINK"},
-    {F_SEAL_GROW, "F_SEAL_GROW"},
-    {F_SEAL_WRITE, "F_SEAL_WRITE"},
-    {F_SEAL_FUTURE_WRITE, "F_SEAL_FUTURE_WRITE"}
-#endif
+const defines_map fcntl_linux_seal = {
+    {0x0001, "F_SEAL_SEAL"},
+    {0x0002, "F_SEAL_SHRINK"},
+    {0x0004, "F_SEAL_GROW"},
+    {0x0008, "F_SEAL_WRITE"},
+    {0x0010, "F_SEAL_FUTURE_WRITE"}
 };
 
-const defines_map fcntl_linux_enum11 = {
-#ifdef __USE_GNU
-    {RWH_WRITE_LIFE_NOT_SET, "RWH_WRITE_LIFE_NOT_SET"},
-    {RWF_WRITE_LIFE_NOT_SET, "RWF_WRITE_LIFE_NOT_SET"},
-    {RWH_WRITE_LIFE_NONE, "RWH_WRITE_LIFE_NONE"},
-    {RWH_WRITE_LIFE_SHORT, "RWH_WRITE_LIFE_SHORT"},
-    {RWH_WRITE_LIFE_MEDIUM, "RWH_WRITE_LIFE_MEDIUM"},
-    {RWH_WRITE_LIFE_LONG, "RWH_WRITE_LIFE_LONG"},
-    {RWH_WRITE_LIFE_EXTREME, "RWH_WRITE_LIFE_EXTREME"}
-#endif
+const defines_map fcntl_linux_rw_hint = {
+    {0, "RWH_WRITE_LIFE_NOT_SET"},
+    {0, "RWF_WRITE_LIFE_NOT_SET"},
+    {1, "RWH_WRITE_LIFE_NONE"},
+    {2, "RWH_WRITE_LIFE_SHORT"},
+    {3, "RWH_WRITE_LIFE_MEDIUM"},
+    {4, "RWH_WRITE_LIFE_LONG"},
+    {5, "RWH_WRITE_LIFE_EXTREME"}
 };
 
-const defines_map fcntl_linux_enum12 = {
-    {__POSIX_FADV_DONTNEED, "__POSIX_FADV_DONTNEED"},
-    {__POSIX_FADV_NOREUSE, "__POSIX_FADV_NOREUSE"},
-#ifdef __USE_XOPEN2K
-    {POSIX_FADV_NORMAL, "POSIX_FADV_NORMAL"},
-    {POSIX_FADV_RANDOM, "POSIX_FADV_RANDOM"},
-    {POSIX_FADV_SEQUENTIAL, "POSIX_FADV_SEQUENTIAL"},
-    {POSIX_FADV_WILLNEED, "POSIX_FADV_WILLNEED"},
-    {POSIX_FADV_DONTNEED, "POSIX_FADV_DONTNEED"},
-    {POSIX_FADV_NOREUSE, "POSIX_FADV_NOREUSE"}
-#endif
+const defines_map fcntl_linux_fadvise = {
+    {4, "__POSIX_FADV_DONTNEED"},
+    {5, "__POSIX_FADV_NOREUSE"},
+    {0, "POSIX_FADV_NORMAL"},
+    {1, "POSIX_FADV_RANDOM"},
+    {2, "POSIX_FADV_SEQUENTIAL"},
+    {3, "POSIX_FADV_WILLNEED"},
+    {4, "POSIX_FADV_DONTNEED"},
+    {5, "POSIX_FADV_NOREUSE"}
 };
 
 template <typename T>
-std::string print_fcntl_linux_enum1(const T v)
+std::string print_fcntl_linux_oflag(const T v)
 {
-    return print_or_enum_entries(v, fcntl_linux_enum1);
+    return print_or_enum_entries(v, fcntl_linux_oflag);
 }
 
 template <typename T>
-std::string print_fcntl_linux_enum2(const T v)
+std::string print_fcntl_linux_cmd(const T v)
 {
-    return print_enum_entry(v, fcntl_linux_enum2);
+    return print_enum_entry(v, fcntl_linux_cmd);
 }
 
 template <typename T>
-std::string print_fcntl_linux_enum3(const T v)
+std::string print_fcntl_linux_ofd_lock(const T v)
 {
-    return print_enum_entry(v, fcntl_linux_enum3);
+    return print_enum_entry(v, fcntl_linux_ofd_lock);
 }
 
 template <typename T>
-std::string print_fcntl_linux_enum4(const T v)
+std::string print_fcntl_linux_otype(const T v)
 {
-    return print_or_enum_entries(v, fcntl_linux_enum4);
+    return print_or_enum_entries(v, fcntl_linux_otype);
 }
 
 template <typename T>
-std::string print_fcntl_linux_enum5(const T v)
+std::string print_fcntl_linux_fd_cloexec(const T v)
 {
-    return print_or_enum_entries(v, fcntl_linux_enum5);
+    return print_or_enum_entries(v, fcntl_linux_fd_cloexec);
 }
 
 template <typename T>
-std::string print_fcntl_linux_enum6(const T v)
+std::string print_fcntl_linux_l_type(const T v)
 {
-    return print_enum_entry(v, fcntl_linux_enum6);
+    return print_enum_entry(v, fcntl_linux_l_type);
 }
 
 template <typename T>
-std::string print_fcntl_linux_enum7(const T v)
+std::string print_fcntl_linux_bsd_l_type(const T v)
 {
-    return print_or_enum_entries(v, fcntl_linux_enum7);
+    return print_or_enum_entries(v, fcntl_linux_bsd_l_type);
 }
 
 template <typename T>
-std::string print_fcntl_linux_enum8(const T v)
+std::string print_fcntl_linux_dir_notification(const T v)
 {
-    return print_or_enum_entries(v, fcntl_linux_enum8);
+    return print_or_enum_entries(v, fcntl_linux_dir_notification);
 }
 
 template <typename T>
-std::string print_fcntl_linux_enum9(const T v)
+std::string print_fcntl_linux___pid_type(const T v)
 {
-    return print_enum_entry(v, fcntl_linux_enum9);
+    return print_enum_entry(v, fcntl_linux___pid_type);
 }
 
 template <typename T>
-std::string print_fcntl_linux_enum10(const T v)
+std::string print_fcntl_linux_seal(const T v)
 {
-    return print_or_enum_entries(v, fcntl_linux_enum10);
+    return print_or_enum_entries(v, fcntl_linux_seal);
 }
 
 template <typename T>
-std::string print_fcntl_linux_enum11(const T v)
+std::string print_fcntl_linux_rw_hint(const T v)
 {
-    return print_enum_entry(v, fcntl_linux_enum11);
+    return print_enum_entry(v, fcntl_linux_rw_hint);
 }
 
 template <typename T>
-std::string print_fcntl_linux_enum12(const T v)
+std::string print_fcntl_linux_fadvise(const T v)
 {
-    return print_enum_entry(v, fcntl_linux_enum12);
+    return print_enum_entry(v, fcntl_linux_fadvise);
 }
 }
 
@@ -287,7 +245,7 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
     auto printer = new ArgPrinter(obj.type, "type", &os);
-    printer->set_enum_printer(print_fcntl_linux_enum9, obj.type);
+    printer->set_enum_printer(print_fcntl_linux___pid_type, obj.type);
     abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.pid, "pid", &os, RECURSE));

@@ -23,7 +23,7 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(printer);
 
     auto printer1 = new ArgPrinter(obj.n_addrtype, "n_addrtype", &os);
-    printer1->set_enum_printer(print_socket_enum2, obj.n_addrtype);
+    printer1->set_enum_printer(print_socket_addr_family, obj.n_addrtype);
     abii_args->push_arg(printer1);
 
     abii_args->push_arg(new ArgPrinter(obj.n_net, "n_net", &os, RECURSE));

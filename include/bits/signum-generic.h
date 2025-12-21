@@ -9,28 +9,28 @@
 
 namespace abii
 {
-const defines_map signum_generic_enum1 = {
-    {SIGINT, "SIGINT"},
-    {SIGILL, "SIGILL"},
-    {SIGABRT, "SIGABRT"},
-    {SIGFPE, "SIGFPE"},
-    {SIGSEGV, "SIGSEGV"},
-    {SIGTERM, "SIGTERM"},
-    {SIGHUP, "SIGHUP"},
-    {SIGQUIT, "SIGQUIT"},
-    {SIGTRAP, "SIGTRAP"},
-    {SIGKILL, "SIGKILL"},
-    {SIGPIPE, "SIGPIPE"},
-    {SIGALRM, "SIGALRM"},
-    {SIGIO, "SIGIO"},
-    {SIGIOT, "SIGIOT"},
-    {SIGCLD, "SIGCLD"}
+const defines_map signum_generic_signal = {
+    {2, "SIGINT"},
+    {4, "SIGILL"},
+    {6, "SIGABRT"},
+    {8, "SIGFPE"},
+    {11, "SIGSEGV"},
+    {15, "SIGTERM"},
+    {1, "SIGHUP"},
+    {3, "SIGQUIT"},
+    {5, "SIGTRAP"},
+    {9, "SIGKILL"},
+    {13, "SIGPIPE"},
+    {14, "SIGALRM"},
+    {29, "SIGIO"},
+    {6, "SIGIOT"},
+    {17, "SIGCLD"}
 };
 
-template<typename T>
-std::string print_signum_generic_enum1(const T v)
+template <typename T>
+std::string print_signum_generic_signal(const T v)
 {
-    return print_enum_entry(v, signum_generic_enum1);
+    return print_enum_entry(v, signum_generic_signal);
 }
 }
 

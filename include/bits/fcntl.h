@@ -18,7 +18,7 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
     auto printer = new ArgPrinter(obj.l_type, "l_type", &os);
-    printer->set_enum_printer(print_fcntl_linux_enum6, obj.l_type);
+    printer->set_enum_printer(print_fcntl_linux_l_type, obj.l_type);
     abii_args->push_arg(printer);
 
     auto printer1 = new ArgPrinter(obj.l_whence, "l_whence", &os);

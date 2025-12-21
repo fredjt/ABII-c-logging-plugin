@@ -195,13 +195,13 @@ std::string print_pthread_once_init(const T v)
 template <typename T>
 std::string print_pthread_barrier_serial_thread(const T v)
 {
-    return print_enum_entry(v, pthread_barrier_serial_thread, errno_defines, errno_base_defines);
+    return print_enum_entry(v, pthread_barrier_serial_thread, errno_error, errno_base_error);
 }
 
 template <typename T>
 std::string print_pthread_attr_no_sigmask_np(const T v)
 {
-    return print_enum_entry(v, pthread_attr_no_sigmask_np, errno_defines, errno_base_defines);
+    return print_enum_entry(v, pthread_attr_no_sigmask_np, errno_error, errno_base_error);
 }
 }
 

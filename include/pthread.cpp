@@ -144,7 +144,7 @@ extern "C" int abii_pthread_clockjoin_np(pthread_t th, void** thread_return, clo
         abii_args->push_arg(new ArgPrinter(thread_return, "__thread_return"));
 
         auto printer = ArgPrinter(clockid, "__clockid");
-        printer.set_enum_printer(print_time_enum1, clockid);
+        printer.set_enum_printer(print_time_clock, clockid);
         abii_args->push_arg(&printer);
 
         abii_args->push_arg(new ArgPrinter(abstime, "__abstime"));
@@ -396,7 +396,7 @@ int abii_pthread_attr_getschedpolicy(const pthread_attr_t* attr, int* policy) __
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
         auto printer = ArgPrinter(policy, "__policy");
-        printer.set_enum_printer_with_depth(print_sched_enum1, *policy, 1);
+        printer.set_enum_printer_with_depth(print_sched_algorithm, *policy, 1);
         abii_args->push_arg(&printer);
 
         auto abii_ret = real_pthread_attr_getschedpolicy(attr, policy);
@@ -420,7 +420,7 @@ int abii_pthread_attr_setschedpolicy(pthread_attr_t* attr, int policy) __THROW
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
         auto printer = ArgPrinter(policy, "__policy");
-        printer.set_enum_printer(print_sched_enum1, policy);
+        printer.set_enum_printer(print_sched_algorithm, policy);
         abii_args->push_arg(&printer);
 
         auto abii_ret = real_pthread_attr_setschedpolicy(attr, policy);
@@ -813,7 +813,7 @@ int abii_pthread_setschedparam(pthread_t target_thread, int policy, const sched_
         abii_args->push_arg(new ArgPrinter(target_thread, "__target_thread"));
 
         auto printer = ArgPrinter(policy, "__policy");
-        printer.set_enum_printer(print_sched_enum1, policy);
+        printer.set_enum_printer(print_sched_algorithm, policy);
         abii_args->push_arg(&printer);
 
         abii_args->push_arg(new ArgPrinter(param, "__param"));
@@ -839,7 +839,7 @@ int abii_pthread_getschedparam(pthread_t target_thread, int* policy, sched_param
         abii_args->push_arg(new ArgPrinter(target_thread, "__target_thread"));
 
         auto printer = ArgPrinter(policy, "__policy");
-        printer.set_enum_printer_with_depth(print_sched_enum1, *policy, 1);
+        printer.set_enum_printer_with_depth(print_sched_algorithm, *policy, 1);
         abii_args->push_arg(&printer);
 
         abii_args->push_arg(new ArgPrinter(param, "__param"));
@@ -1271,7 +1271,7 @@ int abii_pthread_mutex_clocklock(pthread_mutex_t* mutex, clockid_t clockid, cons
         abii_args->push_arg(new ArgPrinter(mutex, "__mutex"));
 
         auto printer = ArgPrinter(clockid, "__clockid");
-        printer.set_enum_printer(print_time_enum1, clockid);
+        printer.set_enum_printer(print_time_clock, clockid);
         abii_args->push_arg(&printer);
 
         abii_args->push_arg(new ArgPrinter(abstime, "__abstime"));
@@ -1756,7 +1756,7 @@ int abii_pthread_rwlock_clockrdlock(pthread_rwlock_t* rwlock, clockid_t clockid,
         abii_args->push_arg(new ArgPrinter(rwlock, "__rwlock"));
 
         auto printer = ArgPrinter(clockid, "__clockid");
-        printer.set_enum_printer(print_time_enum1, clockid);
+        printer.set_enum_printer(print_time_clock, clockid);
         abii_args->push_arg(&printer);
 
         abii_args->push_arg(new ArgPrinter(abstime, "__abstime"));
@@ -1843,7 +1843,7 @@ int abii_pthread_rwlock_clockwrlock(pthread_rwlock_t* rwlock, clockid_t clockid,
         abii_args->push_arg(new ArgPrinter(rwlock, "__rwlock"));
 
         auto printer = ArgPrinter(clockid, "__clockid");
-        printer.set_enum_printer(print_time_enum1, clockid);
+        printer.set_enum_printer(print_time_clock, clockid);
         abii_args->push_arg(&printer);
 
         abii_args->push_arg(new ArgPrinter(abstime, "__abstime"));
@@ -2154,7 +2154,7 @@ int abii_pthread_cond_clockwait(pthread_cond_t* cond, pthread_mutex_t* mutex, __
         abii_args->push_arg(new ArgPrinter(mutex, "__mutex"));
 
         auto printer = ArgPrinter(clock_id, "__clock_id");
-        printer.set_enum_printer(print_time_enum1, clock_id);
+        printer.set_enum_printer(print_time_clock, clock_id);
         abii_args->push_arg(&printer);
 
         abii_args->push_arg(new ArgPrinter(abstime, "__abstime"));
@@ -2268,7 +2268,7 @@ int abii_pthread_condattr_getclock(const pthread_condattr_t* attr, __clockid_t* 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
         auto printer = ArgPrinter(clock_id, "__clock_id");
-        printer.set_enum_printer_with_depth(print_time_enum1, *clock_id, 1);
+        printer.set_enum_printer_with_depth(print_time_clock, *clock_id, 1);
         abii_args->push_arg(&printer);
 
         auto abii_ret = real_pthread_condattr_getclock(attr, clock_id);
@@ -2292,7 +2292,7 @@ int abii_pthread_condattr_setclock(pthread_condattr_t* attr, __clockid_t clock_i
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
         auto printer = ArgPrinter(clock_id, "__clock_id");
-        printer.set_enum_printer(print_time_enum1, clock_id);
+        printer.set_enum_printer(print_time_clock, clock_id);
         abii_args->push_arg(&printer);
 
         auto abii_ret = real_pthread_condattr_setclock(attr, clock_id);
@@ -2649,7 +2649,7 @@ int abii_pthread_getcpuclockid(pthread_t thread_id, __clockid_t* clock_id) __THR
         abii_args->push_arg(new ArgPrinter(thread_id, "__thread_id"));
 
         auto printer = ArgPrinter(clock_id, "__clock_id");
-        printer.set_enum_printer_with_depth(print_time_enum1, *clock_id, 1);
+        printer.set_enum_printer_with_depth(print_time_clock, *clock_id, 1);
         abii_args->push_arg(&printer);
 
         auto abii_ret = real_pthread_getcpuclockid(thread_id, clock_id);
