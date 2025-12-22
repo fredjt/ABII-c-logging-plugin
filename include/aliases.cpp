@@ -6,7 +6,7 @@
 
 namespace abii
 {
-static void (*real_setaliasent)() noexcept(true) = nullptr;
+static void (*real_setaliasent)() __THROW = nullptr;
 
 extern "C" void abii_setaliasent() __THROW
 {
@@ -19,7 +19,7 @@ extern "C" void abii_setaliasent() __THROW
     return real_setaliasent();
 }
 
-static void (*real_endaliasent)() noexcept(true) = nullptr;
+static void (*real_endaliasent)() __THROW = nullptr;
 
 extern "C" void abii_endaliasent() __THROW
 {
@@ -32,7 +32,7 @@ extern "C" void abii_endaliasent() __THROW
     return real_endaliasent();
 }
 
-static aliasent* (*real_getaliasent)() noexcept(true) = nullptr;
+static aliasent* (*real_getaliasent)() __THROW = nullptr;
 
 extern "C" aliasent* abii_getaliasent() __THROW
 {
@@ -47,7 +47,7 @@ extern "C" aliasent* abii_getaliasent() __THROW
     return real_getaliasent();
 }
 
-static int (*real_getaliasent_r)(aliasent*, char*, size_t, aliasent**) noexcept(true) = nullptr;
+static int (*real_getaliasent_r)(aliasent*, char*, size_t, aliasent**) __THROW = nullptr;
 
 extern "C" int abii_getaliasent_r(aliasent* result_buf, char* buffer, size_t buflen, aliasent** result) __THROW
 {
@@ -71,7 +71,7 @@ extern "C" int abii_getaliasent_r(aliasent* result_buf, char* buffer, size_t buf
     return real_getaliasent_r(result_buf, buffer, buflen, result);
 }
 
-static aliasent* (*real_getaliasbyname)(const char*) noexcept(true) = nullptr;
+static aliasent* (*real_getaliasbyname)(const char*) __THROW = nullptr;
 
 extern "C" aliasent* abii_getaliasbyname(const char* name) __THROW
 {
@@ -88,7 +88,7 @@ extern "C" aliasent* abii_getaliasbyname(const char* name) __THROW
     return real_getaliasbyname(name);
 }
 
-static int (*real_getaliasbyname_r)(const char*, aliasent*, char*, size_t, aliasent**) noexcept(true) = nullptr;
+static int (*real_getaliasbyname_r)(const char*, aliasent*, char*, size_t, aliasent**) __THROW = nullptr;
 
 extern "C" int abii_getaliasbyname_r(const char* name, aliasent* result_buf, char* buffer, size_t buflen,
                                      aliasent** result) __THROW
