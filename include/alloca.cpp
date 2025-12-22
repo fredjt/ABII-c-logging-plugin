@@ -8,7 +8,7 @@ namespace abii
 {
 static void* (*real_alloca)(size_t) __THROW = nullptr;
 
-void* abii_alloca(size_t size) __THROW
+extern "C" void* abii_alloca(size_t size) __THROW
 {
     OVERRIDE_PREFIX(alloca)
         pre_fmtd_str str = "alloca(__size)";
