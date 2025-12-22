@@ -63,18 +63,13 @@ add_library(c-logger SHARED
             include/bits/time.h
             include/linux/audit.h
             include/netinet/in.h
-            include/aio.cpp
-            include/aio.h
-            include/dirent.cpp
-            include/dirent.h
-            include/obstack.cpp
-            include/obstack.h
-            include/pthread.cpp
-            include/pthread.h
-            include/regex.cpp
-            include/regex.h
-            include/stdio.cpp
-            include/stdio.h
+            include/aio.cpp include/aio.h
+            include/aliases.cpp include/aliases.h
+            include/dirent.cpp include/dirent.h
+            include/obstack.cpp include/obstack.h
+            include/pthread.cpp include/pthread.h
+            include/regex.cpp include/regex.h
+            include/stdio.cpp include/stdio.h
             custom_enum_printers.h
             custom_printers.h
             include/resolv.cpp
