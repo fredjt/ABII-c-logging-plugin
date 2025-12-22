@@ -18,7 +18,7 @@ extern "C" reg_syntax_t abii_re_set_syntax(reg_syntax_t syntax)
         printer.set_enum_printer(print_regex_syntax, syntax);
         abii_args->push_arg(&printer);
 
-        const auto abii_ret = real_re_set_syntax(syntax);
+        auto abii_ret = real_re_set_syntax(syntax);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(re_set_syntax, abii_ret)
@@ -41,7 +41,7 @@ const char* abii_re_compile_pattern(const char* pattern, size_t length, re_patte
         abii_args->push_arg(new ArgPrinter(length, "__length"));
         abii_args->push_arg(new ArgPrinter(buffer, "__buffer"));
 
-        const auto abii_ret = real_re_compile_pattern(pattern, length, buffer);
+        auto abii_ret = real_re_compile_pattern(pattern, length, buffer);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(re_compile_pattern, abii_ret)
@@ -58,7 +58,7 @@ extern "C" int abii_re_compile_fastmap(re_pattern_buffer* buffer)
 
         abii_args->push_arg(new ArgPrinter(buffer, "__buffer"));
 
-        const auto abii_ret = real_re_compile_fastmap(buffer);
+        auto abii_ret = real_re_compile_fastmap(buffer);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(re_compile_fastmap, abii_ret)
@@ -87,7 +87,7 @@ regoff_t abii_re_search(re_pattern_buffer* buffer, const char* String, regoff_t 
         abii_args->push_arg(new ArgPrinter(range, "__range"));
         abii_args->push_arg(new ArgPrinter(regs, "__regs"));
 
-        const auto abii_ret = real_re_search(buffer, String, length, start, range, regs);
+        auto abii_ret = real_re_search(buffer, String, length, start, range, regs);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(re_search, abii_ret)
@@ -124,7 +124,7 @@ regoff_t abii_re_search_2(re_pattern_buffer* buffer, const char* string1, regoff
         abii_args->push_arg(new ArgPrinter(regs, "__regs"));
         abii_args->push_arg(new ArgPrinter(stop, "__stop"));
 
-        const auto abii_ret = real_re_search_2(buffer, string1, length1, string2, length2, start, range, regs, stop);
+        auto abii_ret = real_re_search_2(buffer, string1, length1, string2, length2, start, range, regs, stop);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(re_search_2, abii_ret)
@@ -152,7 +152,7 @@ regoff_t abii_re_match(re_pattern_buffer* buffer, const char* String, regoff_t l
         abii_args->push_arg(new ArgPrinter(start, "__start"));
         abii_args->push_arg(new ArgPrinter(regs, "__regs"));
 
-        const auto abii_ret = real_re_match(buffer, String, length, start, regs);
+        auto abii_ret = real_re_match(buffer, String, length, start, regs);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(re_match, abii_ret)
@@ -188,7 +188,7 @@ regoff_t abii_re_match_2(re_pattern_buffer* buffer, const char* string1, regoff_
         abii_args->push_arg(new ArgPrinter(regs, "__regs"));
         abii_args->push_arg(new ArgPrinter(stop, "__stop"));
 
-        const auto abii_ret = real_re_match_2(buffer, string1, length1, string2, length2, start, regs, stop);
+        auto abii_ret = real_re_match_2(buffer, string1, length1, string2, length2, start, regs, stop);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(re_match_2, abii_ret)
@@ -231,7 +231,7 @@ extern "C" char* abii_re_comp(const char* str)
 
         abii_args->push_arg(new ArgPrinter(str, "__str"));
 
-        const auto abii_ret = real_re_comp(str);
+        auto abii_ret = real_re_comp(str);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(re_comp, abii_ret)
@@ -248,7 +248,7 @@ extern "C" int abii_re_exec(const char* str)
 
         abii_args->push_arg(new ArgPrinter(str, "__str"));
 
-        const auto abii_ret = real_re_exec(str);
+        auto abii_ret = real_re_exec(str);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(re_exec, abii_ret)
@@ -270,7 +270,7 @@ extern "C" int abii_regcomp(regex_t* preg, const char* pattern, int cflags)
         printer.set_enum_printer(print_regex_cflags, cflags);
         abii_args->push_arg(&printer);
 
-        const auto abii_ret = real_regcomp(preg, pattern, cflags);
+        auto abii_ret = real_regcomp(preg, pattern, cflags);
 
         auto printer1 = ArgPrinter(abii_ret, "return");
         printer1.set_enum_printer(print_regex_reg_errcode_t, abii_ret);
@@ -297,7 +297,7 @@ extern "C" int abii_regexec(const regex_t* preg, const char* String, size_t nmat
         printer.set_enum_printer(print_regex_eflags, eflags);
         abii_args->push_arg(&printer);
 
-        const auto abii_ret = real_regexec(preg, String, nmatch, pmatch, eflags);
+        auto abii_ret = real_regexec(preg, String, nmatch, pmatch, eflags);
 
         auto printer1 = ArgPrinter(abii_ret, "return");
         printer1.set_enum_printer(print_regex_reg_errcode_t, abii_ret);
@@ -327,7 +327,7 @@ size_t abii_regerror(int errcode, const regex_t* preg, char* errbuf, size_t errb
 
         abii_args->push_arg(new ArgPrinter(errbuf_size, "__errbuf_size"));
 
-        const auto abii_ret = real_regerror(errcode, preg, errbuf, errbuf_size);
+        auto abii_ret = real_regerror(errcode, preg, errbuf, errbuf_size);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(regerror, abii_ret)

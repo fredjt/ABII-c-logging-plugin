@@ -36,7 +36,7 @@ extern "C" int abii__obstack_begin(obstack* h, int size, int alignment, void*(*c
         abii_args->push_arg(new ArgPrinter(chunkfun, "chunkfun"));
         abii_args->push_arg(new ArgPrinter(freefun, "freefun"));
 
-        const auto pi_ret = real__obstack_begin(h, size, alignment, chunkfun, freefun);
+        auto pi_ret = real__obstack_begin(h, size, alignment, chunkfun, freefun);
 
         abii_args->push_return(new ArgPrinter(pi_ret, "return"));
     OVERRIDE_SUFFIX(_obstack_begin, pi_ret)
@@ -59,7 +59,7 @@ extern "C" int abii__obstack_begin_1(obstack* h, int size, int alignment, void*(
         abii_args->push_arg(new ArgPrinter(freefun, "freefun"));
         abii_args->push_arg(new ArgPrinter(arg, "arg"));
 
-        const auto pi_ret = real__obstack_begin_1(h, size, alignment, chunkfun, freefun, arg);
+        auto pi_ret = real__obstack_begin_1(h, size, alignment, chunkfun, freefun, arg);
 
         abii_args->push_return(new ArgPrinter(pi_ret, "return"));
     OVERRIDE_SUFFIX(_obstack_begin_1, pi_ret)
@@ -77,7 +77,7 @@ int abii__obstack_memory_used(obstack* h)
 
         abii_args->push_arg(new ArgPrinter(h, "h"));
 
-        const auto pi_ret = real__obstack_memory_used(h);
+        auto pi_ret = real__obstack_memory_used(h);
 
         abii_args->push_return(new ArgPrinter(pi_ret, "return"));
     OVERRIDE_SUFFIX(_obstack_memory_used, pi_ret)

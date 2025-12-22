@@ -18,7 +18,7 @@ struct __res_state* abii___res_state()
         pre_fmtd_str pi_str = "__res_state()";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        const auto abii_ret = real___res_state();
+        auto abii_ret = real___res_state();
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(__res_state, abii_ret)
@@ -33,7 +33,7 @@ extern "C" int abii___res_init() __THROW
         pre_fmtd_str pi_str = "__res_init()";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        const auto abii_ret = real___res_init();
+        auto abii_ret = real___res_init();
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(__res_init, abii_ret)
@@ -71,7 +71,7 @@ extern "C" int abii_res_mkquery(int op, const char* dname, int res_class, int ty
 
         abii_args->push_arg(new ArgPrinter(buflen, "buflen"));
 
-        const auto abii_ret = real_res_mkquery(op, dname, res_class, type, data, datalen, newrr, buf, buflen);
+        auto abii_ret = real_res_mkquery(op, dname, res_class, type, data, datalen, newrr, buf, buflen);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(res_mkquery, abii_ret)
@@ -96,7 +96,7 @@ extern "C" int abii_res_query(const char* dname, int res_class, int type, unsign
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 
-        const auto abii_ret = real_res_query(dname, res_class, type, answer, anslen);
+        auto abii_ret = real_res_query(dname, res_class, type, answer, anslen);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(res_query, abii_ret)
@@ -123,7 +123,7 @@ extern "C" int abii_res_querydomain(const char* name, const char* domain, int re
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 
-        const auto abii_ret = real_res_querydomain(name, domain, res_class, type, answer, anslen);
+        auto abii_ret = real_res_querydomain(name, domain, res_class, type, answer, anslen);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(res_querydomain, abii_ret)
@@ -148,7 +148,7 @@ extern "C" int abii_res_search(const char* dname, int res_class, int type, unsig
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 
-        const auto abii_ret = real_res_search(dname, res_class, type, answer, anslen);
+        auto abii_ret = real_res_search(dname, res_class, type, answer, anslen);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(res_search, abii_ret)
@@ -175,7 +175,7 @@ extern "C" int abii_res_send(const unsigned char* msg, int msglen, unsigned char
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 
-        const auto abii_ret = real_res_send(msg, msglen, answer, anslen);
+        auto abii_ret = real_res_send(msg, msglen, answer, anslen);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(res_send, abii_ret)
@@ -192,7 +192,7 @@ extern "C" int abii_res_hnok(const char* dn) __THROW
 
         abii_args->push_arg(new ArgPrinter(dn, "dn"));
 
-        const auto abii_ret = real_res_hnok(dn);
+        auto abii_ret = real_res_hnok(dn);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(res_hnok, abii_ret)
@@ -209,7 +209,7 @@ extern "C" int abii_res_ownok(const char* dn) __THROW
 
         abii_args->push_arg(new ArgPrinter(dn, "dn"));
 
-        const auto abii_ret = real_res_ownok(dn);
+        auto abii_ret = real_res_ownok(dn);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(res_ownok, abii_ret)
@@ -226,7 +226,7 @@ extern "C" int abii_res_mailok(const char* dn) __THROW
 
         abii_args->push_arg(new ArgPrinter(dn, "dn"));
 
-        const auto abii_ret = real_res_mailok(dn);
+        auto abii_ret = real_res_mailok(dn);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(res_mailok, abii_ret)
@@ -243,7 +243,7 @@ extern "C" int abii_res_dnok(const char* dn) __THROW
 
         abii_args->push_arg(new ArgPrinter(dn, "dn"));
 
-        const auto abii_ret = real_res_dnok(dn);
+        auto abii_ret = real_res_dnok(dn);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(res_dnok, abii_ret)
@@ -261,7 +261,7 @@ extern "C" int abii_dn_skipname(const unsigned char* comp_dn, const unsigned cha
         abii_args->push_arg(new ArgPrinter(comp_dn, "comp_dn"));
         abii_args->push_arg(new ArgPrinter(eom, "eom"));
 
-        const auto abii_ret = real_dn_skipname(comp_dn, eom);
+        auto abii_ret = real_dn_skipname(comp_dn, eom);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(dn_skipname, abii_ret)
@@ -287,7 +287,7 @@ extern "C" int abii_dn_comp(const char* exp_dn, unsigned char* comp_dn, int leng
         abii_args->push_arg(new ArgPrinter(dnptrs, "dnptrs"));
         abii_args->push_arg(new ArgPrinter(lastdnptr, "lastdnptr"));
 
-        const auto abii_ret = real_dn_comp(exp_dn, comp_dn, length, dnptrs, lastdnptr);
+        auto abii_ret = real_dn_comp(exp_dn, comp_dn, length, dnptrs, lastdnptr);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(dn_comp, abii_ret)
@@ -314,7 +314,7 @@ extern "C" int abii_dn_expand(const unsigned char* msg, const unsigned char* eom
 
         abii_args->push_arg(new ArgPrinter(length, "length"));
 
-        const auto abii_ret = real_dn_expand(msg, eomorig, comp_dn, exp_dn, length);
+        auto abii_ret = real_dn_expand(msg, eomorig, comp_dn, exp_dn, length);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(dn_expand, abii_ret)
@@ -330,7 +330,7 @@ unsigned int abii___res_randomid() __THROW
         pre_fmtd_str pi_str = "__res_randomid()";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        const auto abii_ret = real___res_randomid();
+        auto abii_ret = real___res_randomid();
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(__res_randomid, abii_ret)
@@ -347,7 +347,7 @@ extern "C" int abii___res_ninit(res_state statep) __THROW
 
         abii_args->push_arg(new ArgPrinter(statep, "statep"));
 
-        const auto abii_ret = real___res_ninit(statep);
+        auto abii_ret = real___res_ninit(statep);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(__res_ninit, abii_ret)
@@ -374,7 +374,7 @@ extern "C" int abii_res_nquery(res_state statep, const char* dname, int _class, 
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 
-        const auto abii_ret = real_res_nquery(statep, dname, _class, type, answer, anslen);
+        auto abii_ret = real_res_nquery(statep, dname, _class, type, answer, anslen);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(res_nquery, abii_ret)
@@ -401,7 +401,7 @@ extern "C" int abii_res_nsearch(res_state statep, const char* dname, int _class,
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 
-        const auto abii_ret = real_res_nsearch(statep, dname, _class, type, answer, anslen);
+        auto abii_ret = real_res_nsearch(statep, dname, _class, type, answer, anslen);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(res_nsearch, abii_ret)
@@ -430,7 +430,7 @@ extern "C" int abii_res_nquerydomain(res_state statep, const char* name, const c
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 
-        const auto abii_ret = real_res_nquerydomain(statep, name, domain, _class, type, answer, anslen);
+        auto abii_ret = real_res_nquerydomain(statep, name, domain, _class, type, answer, anslen);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(res_nquerydomain, abii_ret)
@@ -467,7 +467,7 @@ extern "C" int abii_res_nmkquery(res_state statep, int op, const char* dname, in
 
         abii_args->push_arg(new ArgPrinter(buflen, "buflen"));
 
-        const auto abii_ret = real_res_nmkquery(statep, op, dname, _class, type, data, datalen, newrr, buf, buflen);
+        auto abii_ret = real_res_nmkquery(statep, op, dname, _class, type, data, datalen, newrr, buf, buflen);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(res_nmkquery, abii_ret)
@@ -497,7 +497,7 @@ extern "C" int abii_res_nsend(res_state statep, const unsigned char* msg, int ms
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 
-        const auto abii_ret = real_res_nsend(statep, msg, msglen, answer, anslen);
+        auto abii_ret = real_res_nsend(statep, msg, msglen, answer, anslen);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(res_nsend, abii_ret)
