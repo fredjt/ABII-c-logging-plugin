@@ -74,7 +74,8 @@ add_library(c-logger SHARED
             custom_enum_printers.h
             custom_printers.h
             include/resolv.cpp
-            include/resolv.h)
+            include/resolv.h
+            include/ar.h)
 
 target_link_libraries(c-logger PUBLIC abii::libabii)
 
