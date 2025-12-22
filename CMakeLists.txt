@@ -114,3 +114,7 @@ else ()
 	set(CMAKE_INSTALL_PLUGINDIR "share/abii/plugins/64")
 endif ()
 install(TARGETS c-logger LIBRARY DESTINATION ${CMAKE_INSTALL_PLUGINDIR})
+
+if (NOT BIT32)
+	install(FILES syms DESTINATION "share/abii/syms" RENAME c-logger)
+endif ()
