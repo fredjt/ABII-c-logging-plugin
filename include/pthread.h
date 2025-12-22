@@ -78,6 +78,8 @@ const defines_map pthread_visibility_flag = {
     {1, "PTHREAD_PROCESS_SHARED"}
 };
 
+// TODO: This changes between glibc versions. Embed the value either based on the current version we are building
+// against or from a copy of the latest version of pthread_cond_t embedded the pthreadtypes header.
 const defines_map<pthread_cond_t> pthread_cond_initializer = {
     {PTHREAD_COND_INITIALIZER, "PTHREAD_COND_INITIALIZER"}
 };
