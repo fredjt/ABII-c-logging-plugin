@@ -25,6 +25,17 @@ getaliasent_r
 getaliasbyname
 getaliasbyname_r
 
+// alloca.h
+alloca
+
+// argp.h
+argp_parse
+argp_help
+argp_state_help
+argp_usage
+argp_error
+argp_failure
+
 // dirent.h
 closedir
 opendir
