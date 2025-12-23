@@ -34,9 +34,9 @@ const char* abii_re_compile_pattern(const char* pattern, size_t length, re_patte
         pre_fmtd_str pi_str = "re_compile_pattern(__pattern, __length, __buffer)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        auto printer = new ArgPrinter(pattern, "__pattern");
-        printer->set_len(length);
-        abii_args->push_arg(printer);
+        auto printer = ArgPrinter(pattern, "__pattern");
+        printer.set_len(length);
+        abii_args->push_arg(&printer);
 
         abii_args->push_arg(new ArgPrinter(length, "__length"));
         abii_args->push_arg(new ArgPrinter(buffer, "__buffer"));

@@ -1030,19 +1030,19 @@ extern "C" int abii_pthread_setcancelstate(int state, int* oldstate)
         pre_fmtd_str pi_str = "pthread_setcancelstate(__state, __oldstate)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        auto printer = new ArgPrinter(state, "__state");
-        printer->set_enum_printer(print_pthread_cancellation, state);
-        abii_args->push_arg(printer);
+        auto printer = ArgPrinter(state, "__state");
+        printer.set_enum_printer(print_pthread_cancellation, state);
+        abii_args->push_arg(&printer);
 
-        auto printer1 = new ArgPrinter(oldstate, "__oldstate");
-        printer->set_enum_printer_with_depth(print_pthread_cancellation, *oldstate, 1);
-        abii_args->push_arg(printer1);
+        auto printer1 = ArgPrinter(oldstate, "__oldstate");
+        printer.set_enum_printer_with_depth(print_pthread_cancellation, *oldstate, 1);
+        abii_args->push_arg(&printer1);
 
         auto abii_ret = real_pthread_setcancelstate(state, oldstate);
 
-        auto printer2 = new ArgPrinter(abii_ret, "return");
-        printer2->set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(printer2);
+        auto printer2 = ArgPrinter(abii_ret, "return");
+        printer2.set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(&printer2);
     OVERRIDE_SUFFIX(pthread_setcancelstate, abii_ret)
     return real_pthread_setcancelstate(state, oldstate);
 }
@@ -1084,9 +1084,9 @@ extern "C" int abii_pthread_cancel(pthread_t th)
 
         auto abii_ret = real_pthread_cancel(th);
 
-        auto printer = new ArgPrinter(abii_ret, "return");
-        printer->set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(printer);
+        auto printer = ArgPrinter(abii_ret, "return");
+        printer.set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(&printer);
     OVERRIDE_SUFFIX(pthread_cancel, abii_ret)
     return real_pthread_cancel(th);
 }

@@ -57,9 +57,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
 #endif
     abii_args->push_arg(new ArgPrinter(obj.sa_mask, "sa_mask", &os));
 
-    auto printer = new ArgPrinter(obj.sa_flags, "sa_flags", &os);
-    printer->set_enum_printer(print_sigaction_flags, obj.sa_flags);
-    abii_args->push_arg(printer);
+    auto printer = ArgPrinter(obj.sa_flags, "sa_flags", &os);
+    printer.set_enum_printer(print_sigaction_flags, obj.sa_flags);
+    abii_args->push_arg(&printer);
 
     abii_args->push_arg(new ArgPrinter(obj.sa_restorer, "sa_restorer", &os, RECURSE));
     OVERRIDE_STREAM_SUFFIX

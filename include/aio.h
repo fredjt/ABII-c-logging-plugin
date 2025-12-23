@@ -54,9 +54,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_PREFIX
     abii_args->push_arg(new ArgPrinter(obj.aio_fildes, "aio_fildes", &os));
 
-    auto printer = new ArgPrinter(obj.aio_lio_opcode, "aio_lio_opcode", &os);
-    printer->set_enum_printer(print_aio_lio_opcode, obj.aio_lio_opcode);
-    abii_args->push_arg(printer);
+    auto printer = ArgPrinter(obj.aio_lio_opcode, "aio_lio_opcode", &os);
+    printer.set_enum_printer(print_aio_lio_opcode, obj.aio_lio_opcode);
+    abii_args->push_arg(&printer);
 
     abii_args->push_arg(new ArgPrinter(obj.aio_reqprio, "aio_reqprio", &os));
     abii_args->push_arg(new ArgPrinter(obj.aio_buf, "aio_buf", &os));
@@ -82,9 +82,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_PREFIX
     abii_args->push_arg(new ArgPrinter(obj.aio_fildes, "aio_fildes", &os));
 
-    auto printer = new ArgPrinter(obj.aio_lio_opcode, "aio_lio_opcode", &os);
-    printer->set_enum_printer(print_aio_lio_opcode, obj.aio_lio_opcode);
-    abii_args->push_arg(printer);
+    auto printer = ArgPrinter(obj.aio_lio_opcode, "aio_lio_opcode", &os);
+    printer.set_enum_printer(print_aio_lio_opcode, obj.aio_lio_opcode);
+    abii_args->push_arg(&printer);
 
     abii_args->push_arg(new ArgPrinter(obj.aio_reqprio, "aio_reqprio", &os));
     abii_args->push_arg(new ArgPrinter(obj.aio_buf, "aio_buf", &os));

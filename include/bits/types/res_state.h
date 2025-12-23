@@ -25,9 +25,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     printer1.set_enum_printer(print_resolv_dflretry, obj.retry);
     abii_args->push_arg(&printer1);
 
-    auto printer2 = new ArgPrinter(obj.options, "options", &os);
-    printer2->set_enum_printer(print_resolv_option, obj.options);
-    abii_args->push_arg(printer2);
+    auto printer2 = ArgPrinter(obj.options, "options", &os);
+    printer2.set_enum_printer(print_resolv_option, obj.options);
+    abii_args->push_arg(&printer2);
 
     abii_args->push_arg(new ArgPrinter(obj.nscount, "nscount", &os));
     abii_args->push_arg(new ArgPrinter(obj.nsaddr_list, "nsaddr_list", &os));

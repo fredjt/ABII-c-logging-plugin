@@ -17,13 +17,13 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, flock>
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = new ArgPrinter(obj.l_type, "l_type", &os);
-    printer->set_enum_printer(print_fcntl_linux_l_type, obj.l_type);
-    abii_args->push_arg(printer);
+    auto printer = ArgPrinter(obj.l_type, "l_type", &os);
+    printer.set_enum_printer(print_fcntl_linux_l_type, obj.l_type);
+    abii_args->push_arg(&printer);
 
-    auto printer1 = new ArgPrinter(obj.l_whence, "l_whence", &os);
-    printer1->set_enum_printer(print_stdio_seek_whence, obj.l_whence);
-    abii_args->push_arg(printer1);
+    auto printer1 = ArgPrinter(obj.l_whence, "l_whence", &os);
+    printer1.set_enum_printer(print_stdio_seek_whence, obj.l_whence);
+    abii_args->push_arg(&printer1);
 
     abii_args->push_arg(new ArgPrinter(obj.l_start, "l_start", &os));
     abii_args->push_arg(new ArgPrinter(obj.l_len, "l_len", &os));
