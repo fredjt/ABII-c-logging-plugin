@@ -55,6 +55,46 @@ __assert_fail
 __assert_perror_fail
 __assert
 
+// ctype.h
+__ctype_b_loc
+__ctype_tolower_loc
+__ctype_toupper_loc
+isalnum
+isalpha
+iscntrl
+isdigit
+islower
+isgraph
+isprint
+ispunct
+isspace
+isupper
+isxdigit
+tolower
+toupper
+isblank
+isctype
+isascii
+toascii
+_toupper
+_tolower
+isalnum_l
+isalpha_l
+iscntrl_l
+isdigit_l
+islower_l
+isgraph_l
+isprint_l
+ispunct_l
+isspace_l
+isupper_l
+isxdigit_l
+isblank_l
+__tolower_l
+tolower_l
+__toupper_l
+toupper_l
+
 // dirent.h
 closedir
 opendir

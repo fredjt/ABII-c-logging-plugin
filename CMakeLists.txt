@@ -69,6 +69,7 @@ add_library(c-logger SHARED
             include/argp.cpp include/argp.h
             include/argz.cpp
             include/assert.cpp
+            include/ctype.cpp include/ctype.h
             include/dirent.cpp include/dirent.h
             include/obstack.cpp include/obstack.h
             include/pthread.cpp include/pthread.h
