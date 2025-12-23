@@ -50,6 +50,11 @@ argz_insert
 argz_replace
 argz_next
 
+// assert.h
+__assert_fail
+__assert_perror_fail
+__assert
+
 // dirent.h
 closedir
 opendir
