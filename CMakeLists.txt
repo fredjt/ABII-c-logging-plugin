@@ -67,6 +67,7 @@ add_library(c-logger SHARED
             include/aliases.cpp include/aliases.h
             include/alloca.cpp
             include/argp.cpp include/argp.h
+            include/argz.cpp
             include/dirent.cpp include/dirent.h
             include/obstack.cpp include/obstack.h
             include/pthread.cpp include/pthread.h
