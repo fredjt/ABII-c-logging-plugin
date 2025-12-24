@@ -77,6 +77,7 @@ add_library(c-logger SHARED
             hooks/elf.h
             hooks/envz.cpp
             hooks/err.cpp
+            hooks/errno.cpp
             hooks/link.cpp hooks/link.h
             hooks/obstack.cpp hooks/obstack.h
             hooks/pthread.cpp hooks/pthread.h
