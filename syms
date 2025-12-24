@@ -118,6 +118,21 @@ getdirentries64
 versionsort
 versionsort64
 
+// dlfcn.h
+dlopen
+dlclose
+dlsym
+dlmopen
+dlvsym
+dlerror
+dladdr
+dladdr1
+dlinfo
+_dl_find_object
+
+// link.h
+dl_iterate_phdr
+
 // obstack.h
 _obstack_newchunk
 _obstack_begin
