@@ -130,6 +130,14 @@ dladdr1
 dlinfo
 _dl_find_object
 
+// envz.h
+envz_entry
+envz_get
+envz_add
+envz_merge
+envz_remove
+envz_strip
+
 // link.h
 dl_iterate_phdr
 
