@@ -138,6 +138,16 @@ envz_merge
 envz_remove
 envz_strip
 
+// err.h
+warn
+vwarn
+warnx
+vwarnx
+err
+verr
+errx
+verrx
+
 // link.h
 dl_iterate_phdr
 

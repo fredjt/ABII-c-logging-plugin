@@ -76,6 +76,7 @@ add_library(c-logger SHARED
             include/dlfcn.cpp include/dlfcn.h
             include/elf.h
             include/envz.cpp
+            include/err.cpp
             include/link.cpp include/link.h
             include/obstack.cpp include/obstack.h
             include/pthread.cpp include/pthread.h
