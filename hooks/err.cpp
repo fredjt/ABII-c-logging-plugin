@@ -187,7 +187,7 @@ void abii_verrx(int status, const char* format, __gnuc_va_list gnuc_va_list)
     }
     if (real_verrx == nullptr)
     {
-        real_verrx = reinterpret_cast<decltype(real_verrx)>(dlsym(RTLD_NEXT, __func__));
+        real_verrx = reinterpret_cast<decltype(real_verrx)>(dlsym(RTLD_NEXT, "verrx"));
         if (real_verrx == nullptr) std::cerr << "Error in `dlsym`: " << dlerror() << std::endl;
     }
     real_verrx(status, format, gnuc_va_list);
