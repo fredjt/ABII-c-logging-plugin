@@ -103,6 +103,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
+template <typename T>
+constexpr bool has_dlfo_reserved_v = requires(T t) { t.__dlfo_reserved; };
+
 template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, dl_find_object>
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
@@ -122,8 +125,12 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.dlfo_eh_count, "dlfo_eh_count", &os));
     abii_args->push_arg(new ArgPrinter(obj.__dlfo_eh_count_pad, "__dlfo_eh_count_pad", &os));
 #endif
-    abii_args->push_arg(new ArgPrinter(obj.__dlfo_reserved, "__dflo_reserved", &os, RECURSE));
+
+    if constexpr (has_dlfo_reserved_v<dl_find_object>)
+        abii_args->push_arg(new ArgPrinter(obj.__dlfo_reserved, "__dlfo_reserved", &os, RECURSE));
+    else
+        abii_args->push_arg(new ArgPrinter(obj.__dflo_reserved, "__dlfo_reserved", &os, RECURSE));
+
     OVERRIDE_STREAM_SUFFIX
 }
-
 #endif //ABII_C_LOGGING_PLUGIN_DLFCN_H
