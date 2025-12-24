@@ -589,9 +589,7 @@ int abii_vfprintf(FILE* s, const char* format, __gnuc_va_list arg)
 
         PUSH_VALIST_ARGS(printer, format, arg, "__arg", print_variadic_args_printf)
 
-        va_copy(abii_vargs, arg);
         auto abii_ret = real_vfprintf(s, format, abii_vargs);
-        va_copy(abii_vargs, arg);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_VALIST_SUFFIX(vfprintf, abii_ret, arg)
@@ -610,9 +608,7 @@ extern "C" int abii_vprintf(const char* format, __gnuc_va_list arg)
 
         PUSH_VALIST_ARGS(printer, format, arg, "__arg", print_variadic_args_printf)
 
-        va_copy(abii_vargs, arg);
         auto abii_ret = real_vprintf(format, abii_vargs);
-        va_copy(abii_vargs, arg);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_VALIST_SUFFIX(vprintf, abii_ret, arg)
@@ -632,9 +628,7 @@ extern "C" int abii_vsprintf(char* s, const char* format, __gnuc_va_list arg) __
 
         PUSH_VALIST_ARGS(printer, format, arg, "__arg", print_variadic_args_printf)
 
-        va_copy(abii_vargs, arg);
         auto abii_ret = real_vsprintf(s, format, abii_vargs);
-        va_copy(abii_vargs, arg);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_VALIST_SUFFIX(vsprintf, abii_ret, arg)
@@ -677,9 +671,7 @@ int abii_vsnprintf(char* s, size_t maxlen, const char* format, __gnuc_va_list ar
 
         PUSH_VALIST_ARGS(printer, format, arg, "__arg", print_variadic_args_printf)
 
-        va_copy(abii_vargs, arg);
         auto abii_ret = real_vsnprintf(s, maxlen, format, abii_vargs);
-        va_copy(abii_vargs, arg);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_VALIST_SUFFIX(vsnprintf, abii_ret, arg)
@@ -700,9 +692,7 @@ int abii_vasprintf(char** ptr, const char* f, __gnuc_va_list arg) __THROWNL
 
         PUSH_VALIST_ARGS(printer, f, arg, "__arg", print_variadic_args_printf)
 
-        va_copy(abii_vargs, arg);
         auto abii_ret = real_vasprintf(ptr, f, abii_vargs);
-        va_copy(abii_vargs, arg);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_VALIST_SUFFIX(vasprintf, abii_ret, arg)
@@ -763,9 +753,7 @@ int abii_vdprintf(int fd, const char* fmt, __gnuc_va_list arg)
 
         PUSH_VALIST_ARGS(printer, fmt, arg, "__arg", print_variadic_args_printf)
 
-        va_copy(abii_vargs, arg);
         auto abii_ret = real_vdprintf(fd, fmt, abii_vargs);
-        va_copy(abii_vargs, arg);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_VALIST_SUFFIX(vdprintf, abii_ret, arg)
@@ -1001,14 +989,12 @@ int abii_vfscanf(FILE* s, const char* format, __gnuc_va_list arg)
 
         PUSH_VALIST_ARGS(printer, format, arg, "__arg", print_variadic_args_printf)
 
-        va_copy(abii_vargs, arg);
         auto abii_ret = real_vfscanf(s, format, abii_vargs);
-        va_copy(abii_vargs, arg);
 
         auto printer1 = ArgPrinter(abii_ret, "return");
         printer1.set_enum_printer(print_stdio_eof, abii_ret);
         abii_args->push_return(&printer1);
-    OVERRIDE_VALIST_SUFFIX(vfscanf, abii_ret, format)
+    OVERRIDE_VALIST_SUFFIX(vfscanf, abii_ret, arg)
     return real_vfscanf(s, format, arg);
 }
 
@@ -1025,14 +1011,12 @@ int abii_vscanf(const char* format, __gnuc_va_list arg)
 
         PUSH_VALIST_ARGS(printer, format, arg, "__arg", print_variadic_args_printf)
 
-        va_copy(abii_vargs, arg);
         auto abii_ret = real_vscanf(format, abii_vargs);
-        va_copy(abii_vargs, arg);
 
         auto printer1 = ArgPrinter(abii_ret, "return");
         printer1.set_enum_printer(print_stdio_eof, abii_ret);
         abii_args->push_return(&printer1);
-    OVERRIDE_VALIST_SUFFIX(vscanf, abii_ret, format)
+    OVERRIDE_VALIST_SUFFIX(vscanf, abii_ret, arg)
     return real_vscanf(format, arg);
 }
 
@@ -1050,14 +1034,12 @@ int abii_vsscanf(const char* s, const char* format, __gnuc_va_list arg) __THROW
 
         PUSH_VALIST_ARGS(printer, format, arg, "__arg", print_variadic_args_printf)
 
-        va_copy(abii_vargs, arg);
         auto abii_ret = real_vsscanf(s, format, abii_vargs);
-        va_copy(abii_vargs, arg);
 
         auto printer1 = ArgPrinter(abii_ret, "return");
         printer1.set_enum_printer(print_stdio_eof, abii_ret);
         abii_args->push_return(&printer1);
-    OVERRIDE_VALIST_SUFFIX(vsscanf, abii_ret, format)
+    OVERRIDE_VALIST_SUFFIX(vsscanf, abii_ret, arg)
     return real_vsscanf(s, format, arg);
 }
 
@@ -2098,12 +2080,10 @@ int abii_obstack_vprintf(obstack* obstack, const char* format, __gnuc_va_list ar
 
         PUSH_VALIST_ARGS(printer, format, args, "__args", print_variadic_args_printf)
 
-        va_copy(abii_vargs, args);
         auto abii_ret = real_obstack_vprintf(obstack, format, abii_vargs);
-        va_copy(abii_vargs, args);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
-    OVERRIDE_VALIST_SUFFIX(obstack_vprintf, abii_ret, arg)
+    OVERRIDE_VALIST_SUFFIX(obstack_vprintf, abii_ret, args)
     return real_obstack_vprintf(obstack, format, args);
 }
 
