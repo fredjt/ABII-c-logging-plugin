@@ -16,6 +16,7 @@ if (NOT CMAKE_BUILD_TYPE STREQUAL "Debug" AND NOT CMAKE_BUILD_TYPE STREQUAL "DEB
 	set(CMAKE_OPTIMIZE_DEPENDENCIES TRUE)
 	add_compile_options("-flto" "-ffat-lto-objects" "-O3")
 endif ()
+add_compile_options("-fPIC")
 
 add_library(c-logger SHARED
             include/arpa/nameser_compat.h
@@ -66,20 +67,22 @@ add_library(c-logger SHARED
             include/aio.cpp include/aio.h
             include/aliases.cpp include/aliases.h
             include/alloca.cpp
+            include/ar.h
             include/argp.cpp include/argp.h
             include/argz.cpp
             include/assert.cpp
             include/ctype.cpp include/ctype.h
             include/dirent.cpp include/dirent.h
+            include/dlfcn.cpp include/dlfcn.h
+            include/elf.h
+            include/link.cpp include/link.h
             include/obstack.cpp include/obstack.h
             include/pthread.cpp include/pthread.h
             include/regex.cpp include/regex.h
+            include/resolv.cpp include/resolv.h
             include/stdio.cpp include/stdio.h
             custom_enum_printers.h
-            custom_printers.h
-            include/resolv.cpp
-            include/resolv.h
-            include/ar.h)
+            custom_printers.h)
 
 target_link_libraries(c-logger PUBLIC abii::libabii)
 
@@ -119,8 +122,8 @@ if (BIT32)
 else ()
 	set(CMAKE_INSTALL_PLUGINDIR "share/abii/plugins/64")
 endif ()
-install(TARGETS c-logger LIBRARY DESTINATION ${CMAKE_INSTALL_PLUGINDIR})
+install(TARGETS c-logger LIBRARY DESTINATION "${CMAKE_INSTALL_PLUGINDIR}")
 
 if (NOT BIT32)
-	install(FILES syms DESTINATION "share/abii/syms" RENAME c-logger)
+	install(FILES syms DESTINATION "share/abii/syms" RENAME "c-logger")
 endif ()
