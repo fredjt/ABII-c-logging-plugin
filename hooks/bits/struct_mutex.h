@@ -7,7 +7,7 @@
 
 #include <bits/struct_mutex.h>
 
-#include "include/pthread.h"
+#include "hooks/pthread.h"
 #include "thread-shared-types.h"
 
 using namespace abii;

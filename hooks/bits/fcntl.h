@@ -8,7 +8,7 @@
 #include <abii/libabii.h>
 
 #include "fcntl-linux.h"
-#include "include/stdio.h"
+#include "hooks/stdio.h"
 
 using namespace abii;
 

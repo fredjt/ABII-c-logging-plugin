@@ -9,7 +9,7 @@
 #include <bits/types/sigevent_t.h>
 
 #include "__sigval_t.h"
-#include "include/bits/pthreadtypes.h"
+#include "hooks/bits/pthreadtypes.h"
 
 using namespace abii;
 

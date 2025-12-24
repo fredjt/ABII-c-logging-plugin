@@ -8,7 +8,7 @@
 #include <abii/libabii.h>
 #include <bits/types/stack_t.h>
 
-#include "include/bits/ss_flags.h"
+#include "hooks/bits/ss_flags.h"
 
 using namespace abii;
 

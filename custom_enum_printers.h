@@ -7,10 +7,10 @@
 
 #include <string>
 
-#include "include/asm-generic/errno-base.h"
-#include "include/asm-generic/errno.h"
-#include "include/bits/signum-arch.h"
-#include "include/bits/signum-generic.h"
+#include "hooks/asm-generic/errno-base.h"
+#include "hooks/asm-generic/errno.h"
+#include "hooks/bits/signum-arch.h"
+#include "hooks/bits/signum-generic.h"
 
 namespace abii
 {

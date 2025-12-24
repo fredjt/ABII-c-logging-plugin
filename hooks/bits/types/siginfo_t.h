@@ -11,8 +11,8 @@
 
 #include "custom_enum_printers.h"
 #include "__sigval_t.h"
-#include "include/bits/siginfo-consts.h"
-#include "include/linux/audit.h"
+#include "hooks/bits/siginfo-consts.h"
+#include "hooks/linux/audit.h"
 
 using namespace abii;
 

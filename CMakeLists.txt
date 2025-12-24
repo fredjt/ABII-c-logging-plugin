@@ -19,70 +19,70 @@ endif ()
 add_compile_options("-fPIC")
 
 add_library(c-logger SHARED
-            include/arpa/nameser_compat.h
-            include/asm-generic/errno.h
-            include/asm-generic/errno-base.h
-            include/bits/types/__fpos64_t.h
-            include/bits/types/__fpos_t.h
-            include/bits/types/__locale_t.h
-            include/bits/types/__mbstate_t.h
-            include/bits/types/__sigset_t.h
-            include/bits/types/__sigval_t.h
-            include/bits/types/cookie_io_functions_t.h
-            include/bits/types/res_state.h
-            include/bits/types/sigevent_t.h
-            include/bits/types/siginfo_t.h
-            include/bits/types/stack_t.h
-            include/bits/types/struct___jmp_buf_tag.h
-            include/bits/types/struct_sched_param.h
-            include/bits/types/struct_sigstack.h
-            include/bits/types/struct_timespec.h
-            include/bits/atomic_wide_counter.h
-            include/bits/cpu-set.h
-            include/bits/dirent.h
-            include/bits/fcntl.h
-            include/bits/fcntl-linux.h
-            include/bits/ioctl-types.h
-            include/bits/mqueue.h
-            include/bits/netdb.h
-            include/bits/pthreadtypes.h
-            include/bits/sched.h
-            include/bits/semaphore.h
-            include/bits/sigaction.h
-            include/bits/sigcontext.h
-            include/bits/siginfo-consts.h
-            include/bits/signum-arch.h
-            include/bits/signum-generic.h
-            include/bits/socket.h
-            include/bits/socket_type.h
-            include/bits/ss_flags.h
-            include/bits/struct_mutex.h
-            include/bits/struct_rwlock.h
-            include/bits/struct_stat.h
-            include/bits/termios-struct.h
-            include/bits/thread-shared-types.h
-            include/bits/time.h
-            include/linux/audit.h
-            include/netinet/in.h
-            include/aio.cpp include/aio.h
-            include/aliases.cpp include/aliases.h
-            include/alloca.cpp
-            include/ar.h
-            include/argp.cpp include/argp.h
-            include/argz.cpp
-            include/assert.cpp
-            include/ctype.cpp include/ctype.h
-            include/dirent.cpp include/dirent.h
-            include/dlfcn.cpp include/dlfcn.h
-            include/elf.h
-            include/envz.cpp
-            include/err.cpp
-            include/link.cpp include/link.h
-            include/obstack.cpp include/obstack.h
-            include/pthread.cpp include/pthread.h
-            include/regex.cpp include/regex.h
-            include/resolv.cpp include/resolv.h
-            include/stdio.cpp include/stdio.h
+            hooks/arpa/nameser_compat.h
+            hooks/asm-generic/errno.h
+            hooks/asm-generic/errno-base.h
+            hooks/bits/types/__fpos64_t.h
+            hooks/bits/types/__fpos_t.h
+            hooks/bits/types/__locale_t.h
+            hooks/bits/types/__mbstate_t.h
+            hooks/bits/types/__sigset_t.h
+            hooks/bits/types/__sigval_t.h
+            hooks/bits/types/cookie_io_functions_t.h
+            hooks/bits/types/res_state.h
+            hooks/bits/types/sigevent_t.h
+            hooks/bits/types/siginfo_t.h
+            hooks/bits/types/stack_t.h
+            hooks/bits/types/struct___jmp_buf_tag.h
+            hooks/bits/types/struct_sched_param.h
+            hooks/bits/types/struct_sigstack.h
+            hooks/bits/types/struct_timespec.h
+            hooks/bits/atomic_wide_counter.h
+            hooks/bits/cpu-set.h
+            hooks/bits/dirent.h
+            hooks/bits/fcntl.h
+            hooks/bits/fcntl-linux.h
+            hooks/bits/ioctl-types.h
+            hooks/bits/mqueue.h
+            hooks/bits/netdb.h
+            hooks/bits/pthreadtypes.h
+            hooks/bits/sched.h
+            hooks/bits/semaphore.h
+            hooks/bits/sigaction.h
+            hooks/bits/sigcontext.h
+            hooks/bits/siginfo-consts.h
+            hooks/bits/signum-arch.h
+            hooks/bits/signum-generic.h
+            hooks/bits/socket.h
+            hooks/bits/socket_type.h
+            hooks/bits/ss_flags.h
+            hooks/bits/struct_mutex.h
+            hooks/bits/struct_rwlock.h
+            hooks/bits/struct_stat.h
+            hooks/bits/termios-struct.h
+            hooks/bits/thread-shared-types.h
+            hooks/bits/time.h
+            hooks/linux/audit.h
+            hooks/netinet/in.h
+            hooks/aio.cpp hooks/aio.h
+            hooks/aliases.cpp hooks/aliases.h
+            hooks/alloca.cpp
+            hooks/ar.h
+            hooks/argp.cpp hooks/argp.h
+            hooks/argz.cpp
+            hooks/assert.cpp
+            hooks/ctype.cpp hooks/ctype.h
+            hooks/dirent.cpp hooks/dirent.h
+            hooks/dlfcn.cpp hooks/dlfcn.h
+            hooks/elf.h
+            hooks/envz.cpp
+            hooks/err.cpp
+            hooks/link.cpp hooks/link.h
+            hooks/obstack.cpp hooks/obstack.h
+            hooks/pthread.cpp hooks/pthread.h
+            hooks/regex.cpp hooks/regex.h
+            hooks/resolv.cpp hooks/resolv.h
+            hooks/stdio.cpp hooks/stdio.h
             custom_enum_printers.h
             custom_printers.h)
 

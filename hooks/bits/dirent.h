@@ -7,7 +7,7 @@
 
 #include <abii/libabii.h>
 
-#include "include/dirent.h"
+#include "hooks/dirent.h"
 
 using namespace abii;
 

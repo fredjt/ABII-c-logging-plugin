@@ -8,7 +8,7 @@
 #include <abii/libabii.h>
 #include <bits/types/res_state.h>
 
-#include "include/resolv.h"
+#include "hooks/resolv.h"
 #include "netinet/in.h"
 
 using namespace abii;
