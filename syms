@@ -151,6 +151,10 @@ verrx
 // errno.h
 __errno_location
 
+// error.h
+error
+error_at_line
+
 // link.h
 dl_iterate_phdr
 
