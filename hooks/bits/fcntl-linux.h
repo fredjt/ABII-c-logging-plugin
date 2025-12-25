@@ -244,9 +244,9 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, f_owner_ex
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.type, "type", &os);
-    printer.set_enum_printer(print_fcntl_linux___pid_type, obj.type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.type, "type", &os);
+    printer->set_enum_printer(print_fcntl_linux___pid_type, obj.type);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.pid, "pid", &os, RECURSE));
     OVERRIDE_STREAM_SUFFIX

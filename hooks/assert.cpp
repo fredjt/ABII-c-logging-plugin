@@ -45,9 +45,9 @@ void abii___assert_perror_fail(int errnum, const char* file, unsigned int line, 
         pre_fmtd_str str = "__assert_perror_fail(__errnum, __file, __line, __function)";
         abii_args->push_func(new ArgPrinter(str));
 
-        auto printer = ArgPrinter(errnum, "__errnum");
-        printer.set_enum_printer(print_errno_base_error, errnum);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(errnum, "__errnum");
+        printer->set_enum_printer(print_errno_base_error, errnum);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(file, "__file"));
         abii_args->push_arg(new ArgPrinter(line, "__line"));

@@ -63,9 +63,9 @@ extern "C" error_t abii_envz_add(char** envz, size_t* envz_len, const char* name
 
         auto pi_ret = real_envz_add(envz, envz_len, name, value);
 
-        auto printer = ArgPrinter(pi_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, pi_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(pi_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, pi_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(envz_add, pi_ret)
     return real_envz_add(envz, envz_len, name, value);
 }
@@ -87,9 +87,9 @@ extern "C" error_t abii_envz_merge(char** envz, size_t* envz_len, const char* en
 
         auto pi_ret = real_envz_merge(envz, envz_len, envz2, envz2_len, override);
 
-        auto printer = ArgPrinter(pi_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, pi_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(pi_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, pi_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(envz_merge, pi_ret)
     return real_envz_merge(envz, envz_len, envz2, envz2_len, override);
 }

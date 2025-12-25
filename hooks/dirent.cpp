@@ -219,8 +219,8 @@ int abii_scandir(const char* dir, dirent*** namelist, int (*selector)(const dire
 
         abii_args->push_arg(new ArgPrinter(dir, "__dir"));
 
-        auto printer = ArgPrinter(namelist, "__namelist");
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(namelist, "__namelist");
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(selector, "__selector"));
         abii_args->push_arg(new ArgPrinter(cmp, "__cmp"));
@@ -228,7 +228,7 @@ int abii_scandir(const char* dir, dirent*** namelist, int (*selector)(const dire
         auto abii_ret = real_scandir(dir, namelist, selector, cmp);
 
         // TODO: This is not implemented yet
-        // printer.set_len(abii_ret, 2);
+        // printer->set_len(abii_ret, 2);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(scandir, abii_ret)
@@ -248,8 +248,8 @@ int abii_scandir64(const char* dir, dirent64*** namelist, int (*selector)(const 
 
         abii_args->push_arg(new ArgPrinter(dir, "__dir"));
 
-        auto printer = ArgPrinter(namelist, "__namelist");
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(namelist, "__namelist");
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(selector, "__selector"));
         abii_args->push_arg(new ArgPrinter(cmp, "__cmp"));
@@ -257,7 +257,7 @@ int abii_scandir64(const char* dir, dirent64*** namelist, int (*selector)(const 
         auto abii_ret = real_scandir64(dir, namelist, selector, cmp);
 
         // TODO: This is not implemented yet
-        // printer.set_len(abii_ret, 2);
+        // printer->set_len(abii_ret, 2);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(scandir64, abii_ret)
@@ -278,8 +278,8 @@ int abii_scandirat(int dfd, const char* dir, dirent*** namelist, int (*selector)
         abii_args->push_arg(new ArgPrinter(dfd, "__dfd"));
         abii_args->push_arg(new ArgPrinter(dir, "__dir"));
 
-        auto printer = ArgPrinter(namelist, "__namelist");
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(namelist, "__namelist");
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(selector, "__selector"));
         abii_args->push_arg(new ArgPrinter(cmp, "__cmp"));
@@ -287,7 +287,7 @@ int abii_scandirat(int dfd, const char* dir, dirent*** namelist, int (*selector)
         auto abii_ret = real_scandirat(dfd, dir, namelist, selector, cmp);
 
         // TODO: This is not implemented yet
-        // printer.set_len(abii_ret, 2);
+        // printer->set_len(abii_ret, 2);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(scandirat, abii_ret)
@@ -308,8 +308,8 @@ int abii_scandirat64(int dfd, const char* dir, dirent64*** namelist, int (*selec
         abii_args->push_arg(new ArgPrinter(dfd, "__dfd"));
         abii_args->push_arg(new ArgPrinter(dir, "__dir"));
 
-        auto printer = ArgPrinter(namelist, "__namelist");
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(namelist, "__namelist");
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(selector, "__selector"));
         abii_args->push_arg(new ArgPrinter(cmp, "__cmp"));
@@ -317,7 +317,7 @@ int abii_scandirat64(int dfd, const char* dir, dirent64*** namelist, int (*selec
         auto abii_ret = real_scandirat64(dfd, dir, namelist, selector, cmp);
 
         // TODO: This is not implemented yet
-        // printer.set_len(abii_ret, 2);
+        // printer->set_len(abii_ret, 2);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(scandirat64, abii_ret)
@@ -373,15 +373,15 @@ __ssize_t abii_getdirentries(int fd, char* buf, size_t nbytes, __off_t* basep) _
 
         abii_args->push_arg(new ArgPrinter(fd, "__fd"));
 
-        auto printer = ArgPrinter(buf, "__buf");
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(buf, "__buf");
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(nbytes, "__nbytes"));
         abii_args->push_arg(new ArgPrinter(basep, "__basep"));
 
         auto abii_ret = real_getdirentries(fd, buf, nbytes, basep);
 
-        printer.set_len(abii_ret);
+        printer->set_len(abii_ret);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(getdirentries, abii_ret)
@@ -399,15 +399,15 @@ __ssize_t abii_getdirentries64(int fd, char* buf, size_t nbytes, __off64_t* base
 
         abii_args->push_arg(new ArgPrinter(fd, "__fd"));
 
-        auto printer = ArgPrinter(buf, "__buf");
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(buf, "__buf");
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(nbytes, "__nbytes"));
         abii_args->push_arg(new ArgPrinter(basep, "__basep"));
 
         auto abii_ret = real_getdirentries64(fd, buf, nbytes, basep);
 
-        printer.set_len(abii_ret);
+        printer->set_len(abii_ret);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(getdirentries64, abii_ret)

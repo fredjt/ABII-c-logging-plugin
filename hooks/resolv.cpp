@@ -50,24 +50,24 @@ extern "C" int abii_res_mkquery(int op, const char* dname, int res_class, int ty
         pre_fmtd_str pi_str = "res_mkquery(op, dname, res_class, type, data, datalen, newrr, buf, buflen)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        auto printer = ArgPrinter(op, "op");
-        printer.set_enum_printer(print_nameser_compat_opcode, op);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(op, "op");
+        printer->set_enum_printer(print_nameser_compat_opcode, op);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(dname, "dname"));
         abii_args->push_arg(new ArgPrinter(res_class, "res_class"));
         abii_args->push_arg(new ArgPrinter(type, "type"));
 
-        auto printer1 = ArgPrinter(data, "data");
-        printer1.set_len(datalen);
-        abii_args->push_arg(&printer1);
+        auto printer1 = new ArgPrinter(data, "data");
+        printer1->set_len(datalen);
+        abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(datalen, "datalen"));
         abii_args->push_arg(new ArgPrinter(newrr, "newrr"));
 
-        auto printer2 = ArgPrinter(buf, "buf");
-        printer2.set_len(buflen);
-        abii_args->push_arg(&printer2);
+        auto printer2 = new ArgPrinter(buf, "buf");
+        printer2->set_len(buflen);
+        abii_args->push_arg(printer2);
 
         abii_args->push_arg(new ArgPrinter(buflen, "buflen"));
 
@@ -90,9 +90,9 @@ extern "C" int abii_res_query(const char* dname, int res_class, int type, unsign
         abii_args->push_arg(new ArgPrinter(res_class, "res_class"));
         abii_args->push_arg(new ArgPrinter(type, "type"));
 
-        auto printer = ArgPrinter(answer, "answer");
-        printer.set_len(anslen);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(answer, "answer");
+        printer->set_len(anslen);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 
@@ -117,9 +117,9 @@ extern "C" int abii_res_querydomain(const char* name, const char* domain, int re
         abii_args->push_arg(new ArgPrinter(res_class, "res_class"));
         abii_args->push_arg(new ArgPrinter(type, "type"));
 
-        auto printer = ArgPrinter(answer, "answer");
-        printer.set_len(anslen);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(answer, "answer");
+        printer->set_len(anslen);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 
@@ -142,9 +142,9 @@ extern "C" int abii_res_search(const char* dname, int res_class, int type, unsig
         abii_args->push_arg(new ArgPrinter(res_class, "res_class"));
         abii_args->push_arg(new ArgPrinter(type, "type"));
 
-        auto printer = ArgPrinter(answer, "answer");
-        printer.set_len(anslen);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(answer, "answer");
+        printer->set_len(anslen);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 
@@ -163,15 +163,15 @@ extern "C" int abii_res_send(const unsigned char* msg, int msglen, unsigned char
         pre_fmtd_str pi_str = "res_send(msg, msglen, answer, anslen)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        auto printer = ArgPrinter(msg, "msg");
-        printer.set_len(msglen);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(msg, "msg");
+        printer->set_len(msglen);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(msglen, "msglen"));
 
-        auto printer1 = ArgPrinter(answer, "answer");
-        printer1.set_len(anslen);
-        abii_args->push_arg(&printer1);
+        auto printer1 = new ArgPrinter(answer, "answer");
+        printer1->set_len(anslen);
+        abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 
@@ -279,9 +279,9 @@ extern "C" int abii_dn_comp(const char* exp_dn, unsigned char* comp_dn, int leng
 
         abii_args->push_arg(new ArgPrinter(exp_dn, "exp_dn"));
 
-        auto printer = ArgPrinter(comp_dn, "comp_dn");
-        printer.set_len(length);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(comp_dn, "comp_dn");
+        printer->set_len(length);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(length, "length"));
         abii_args->push_arg(new ArgPrinter(dnptrs, "dnptrs"));
@@ -308,9 +308,9 @@ extern "C" int abii_dn_expand(const unsigned char* msg, const unsigned char* eom
         abii_args->push_arg(new ArgPrinter(eomorig, "eomorig"));
         abii_args->push_arg(new ArgPrinter(comp_dn, "comp_dn"));
 
-        auto printer = ArgPrinter(exp_dn, "exp_dn");
-        printer.set_len(length);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(exp_dn, "exp_dn");
+        printer->set_len(length);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(length, "length"));
 
@@ -368,9 +368,9 @@ extern "C" int abii_res_nquery(res_state statep, const char* dname, int _class, 
         abii_args->push_arg(new ArgPrinter(_class, "class"));
         abii_args->push_arg(new ArgPrinter(type, "type"));
 
-        auto printer = ArgPrinter(answer, "answer");
-        printer.set_len(anslen);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(answer, "answer");
+        printer->set_len(anslen);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 
@@ -395,9 +395,9 @@ extern "C" int abii_res_nsearch(res_state statep, const char* dname, int _class,
         abii_args->push_arg(new ArgPrinter(_class, "class"));
         abii_args->push_arg(new ArgPrinter(type, "type"));
 
-        auto printer = ArgPrinter(answer, "answer");
-        printer.set_len(anslen);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(answer, "answer");
+        printer->set_len(anslen);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 
@@ -424,9 +424,9 @@ extern "C" int abii_res_nquerydomain(res_state statep, const char* name, const c
         abii_args->push_arg(new ArgPrinter(_class, "class"));
         abii_args->push_arg(new ArgPrinter(type, "type"));
 
-        auto printer = ArgPrinter(answer, "answer");
-        printer.set_len(anslen);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(answer, "answer");
+        printer->set_len(anslen);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 
@@ -454,16 +454,16 @@ extern "C" int abii_res_nmkquery(res_state statep, int op, const char* dname, in
         abii_args->push_arg(new ArgPrinter(_class, "class"));
         abii_args->push_arg(new ArgPrinter(type, "type"));
 
-        auto printer = ArgPrinter(data, "data");
-        printer.set_len(datalen);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(data, "data");
+        printer->set_len(datalen);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(datalen, "datalen"));
         abii_args->push_arg(new ArgPrinter(newrr, "newrr"));
 
-        auto printer1 = ArgPrinter(buf, "buf");
-        printer1.set_len(buflen);
-        abii_args->push_arg(&printer1);
+        auto printer1 = new ArgPrinter(buf, "buf");
+        printer1->set_len(buflen);
+        abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(buflen, "buflen"));
 
@@ -485,15 +485,15 @@ extern "C" int abii_res_nsend(res_state statep, const unsigned char* msg, int ms
 
         abii_args->push_arg(new ArgPrinter(statep, "statep"));
 
-        auto printer = ArgPrinter(msg, "msg");
-        printer.set_len(msglen);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(msg, "msg");
+        printer->set_len(msglen);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(msglen, "msglen"));
 
-        auto printer1 = ArgPrinter(answer, "answer");
-        printer1.set_len(anslen);
-        abii_args->push_arg(&printer1);
+        auto printer1 = new ArgPrinter(answer, "answer");
+        printer1->set_len(anslen);
+        abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(anslen, "anslen"));
 

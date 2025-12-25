@@ -20,9 +20,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.d_off, "d_off", &os));
     abii_args->push_arg(new ArgPrinter(obj.d_reclen, "d_reclen", &os));
 
-    auto printer = ArgPrinter(obj.d_type, "d_type", &os);
-    printer.set_enum_printer(print_dirent_type, obj.d_type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.d_type, "d_type", &os);
+    printer->set_enum_printer(print_dirent_type, obj.d_type);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.d_name, "d_name", &os, RECURSE));
     OVERRIDE_STREAM_SUFFIX

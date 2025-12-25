@@ -22,9 +22,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
 #ifdef __x86_64__
     abii_args->push_arg(new ArgPrinter(obj.__nusers, "__nusers", &os));
 #endif
-    auto printer = ArgPrinter(obj.__kind, "__kind", &os);
-    printer.set_enum_printer(print_pthread_mutex_type, obj.__kind);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.__kind, "__kind", &os);
+    printer->set_enum_printer(print_pthread_mutex_type, obj.__kind);
+    abii_args->push_arg(printer);
 #ifdef __x86_64__
     abii_args->push_arg(new ArgPrinter(obj.__spins, "__spins", &os));
     abii_args->push_arg(new ArgPrinter(obj.__elision, "__elision", &os));

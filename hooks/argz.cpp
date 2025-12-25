@@ -16,18 +16,18 @@ extern "C" error_t abii_argz_create(char* const argv[], char** argz, size_t* len
         pre_fmtd_str str = "argz_create(__argv, __argz, __len)";
         abii_args->push_func(new ArgPrinter(str));
 
-        auto printer = ArgPrinter(argv, "__argv");
-        printer.set_end_test([&](const size_t i) { return argv[i] != nullptr; });
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(argv, "__argv");
+        printer->set_end_test([&](const size_t i) { return argv[i] != nullptr; });
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(argz, "__argz"));
         abii_args->push_arg(new ArgPrinter(len, "__len"));
 
         auto abii_ret = real_argz_create(argv, argz, len);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(argz_create, abii_ret)
     return real_argz_create(argv, argz, len);
 }
@@ -47,9 +47,9 @@ extern "C" error_t abii_argz_create_sep(const char* string, int sep, char** argz
 
         auto abii_ret = real_argz_create_sep(string, sep, argz, len);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(argz_create_sep, abii_ret)
     return real_argz_create_sep(string, sep, argz, len);
 }
@@ -84,9 +84,9 @@ extern "C" void abii_argz_extract(const char* argz, size_t len, char** argv) __T
         abii_args->push_arg(new ArgPrinter(argz, "__argz"));
         abii_args->push_arg(new ArgPrinter(len, "__len"));
 
-        auto printer = ArgPrinter(argv, "__argv");
-        printer.set_end_test([&](const size_t i) { return argv[i] != nullptr; });
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(argv, "__argv");
+        printer->set_end_test([&](const size_t i) { return argv[i] != nullptr; });
+        abii_args->push_arg(printer);
 
         real_argz_extract(argz, len, argv);
     OVERRIDE_SUFFIX(argz_extract,)
@@ -125,9 +125,9 @@ extern "C" error_t abii_argz_append(char** argz, size_t* argz_len, const char* b
 
         auto abii_ret = real_argz_append(argz, argz_len, buf, buf_len);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(argz_append, abii_ret)
     return real_argz_append(argz, argz_len, buf, buf_len);
 }
@@ -146,9 +146,9 @@ extern "C" error_t abii_argz_add(char** argz, size_t* argz_len, const char* str)
 
         auto abii_ret = real_argz_add(argz, argz_len, str);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(argz_add, abii_ret)
     return real_argz_add(argz, argz_len, str);
 }
@@ -168,9 +168,9 @@ extern "C" error_t abii_argz_add_sep(char** argz, size_t* argz_len, const char* 
 
         auto abii_ret = real_argz_add_sep(argz, argz_len, string, delim);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(argz_add_sep, abii_ret)
     return real_argz_add_sep(argz, argz_len, string, delim);
 }
@@ -207,9 +207,9 @@ extern "C" error_t abii_argz_insert(char** argz, size_t* argz_len, char* before,
 
         auto abii_ret = real_argz_insert(argz, argz_len, before, entry);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(argz_insert, abii_ret)
     return real_argz_insert(argz, argz_len, before, entry);
 }
@@ -231,9 +231,9 @@ extern "C" error_t abii_argz_replace(char** argz, size_t* argz_len, const char* 
 
         auto abii_ret = real_argz_replace(argz, argz_len, str, with, replace_count);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(argz_replace, abii_ret)
     return real_argz_replace(argz, argz_len, str, with, replace_count);
 }

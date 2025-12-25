@@ -87,9 +87,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.r_map, "r_map", &os));
     abii_args->push_arg(new ArgPrinter(obj.r_brk, "r_brk", &os));
 
-    auto printer = ArgPrinter(obj.r_state, "r_state", &os);
-    printer.set_enum_printer(print_link_rt, obj.r_state);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.r_state, "r_state", &os);
+    printer->set_enum_printer(print_link_rt, obj.r_state);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.r_ldbase, "r_ldbase", &os, RECURSE));
     OVERRIDE_STREAM_SUFFIX

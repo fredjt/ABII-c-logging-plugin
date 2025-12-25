@@ -93,9 +93,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.dls_size, "dls_size", &os));
     abii_args->push_arg(new ArgPrinter(obj.dls_cnt, "dls_cnt", &os));
 
-    auto printer = ArgPrinter(obj.dls_serpath, "dls_serpath", &os);
-    printer.set_len(obj.dls_cnt);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.dls_serpath, "dls_serpath", &os);
+    printer->set_len(obj.dls_cnt);
+    abii_args->push_arg(printer);
 
 # if __GNUC_PREREQ(3, 0)
     abii_args->push_arg(new ArgPrinter(obj.__dls_serpath_pad, "__dls_serpath_pad", &os, RECURSE));

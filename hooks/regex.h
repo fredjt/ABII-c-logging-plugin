@@ -275,9 +275,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.__REPB_PREFIX(allocated), TOSTRING(__REPB_PREFIX(allocated)), &os));
     abii_args->push_arg(new ArgPrinter(obj.__REPB_PREFIX(used), TOSTRING(__REPB_PREFIX(used)), &os));
 
-    auto printer = ArgPrinter(obj.__REPB_PREFIX(syntax), TOSTRING(__REPB_PREFIX(syntax)), &os);
-    printer.set_enum_printer(print_regex_syntax, obj.__REPB_PREFIX(syntax));
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.__REPB_PREFIX(syntax), TOSTRING(__REPB_PREFIX(syntax)), &os);
+    printer->set_enum_printer(print_regex_syntax, obj.__REPB_PREFIX(syntax));
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.__REPB_PREFIX(fastmap), TOSTRING(__REPB_PREFIX(fastmap)), &os));
     abii_args->push_arg(new ArgPrinter(obj.__REPB_PREFIX(translate), TOSTRING(__REPB_PREFIX(translate)), &os));
@@ -285,10 +285,10 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(static_cast<unsigned>(obj.__REPB_PREFIX(can_be_null)),
                                        TOSTRING(__REPB_PREFIX(can_be_null)), &os));
 
-    auto printer1 = ArgPrinter(static_cast<unsigned>(obj.__REPB_PREFIX(regs_allocated)),
+    auto printer1 = new ArgPrinter(static_cast<unsigned>(obj.__REPB_PREFIX(regs_allocated)),
                                TOSTRING(__REPB_PREFIX(regs_allocated)), &os);
-    printer1.set_enum_printer(print_regex_regs_allocation, obj.__REPB_PREFIX(regs_allocated));
-    abii_args->push_arg(&printer1);
+    printer1->set_enum_printer(print_regex_regs_allocation, obj.__REPB_PREFIX(regs_allocated));
+    abii_args->push_arg(printer1);
 
     abii_args->push_arg(new ArgPrinter(static_cast<unsigned>(obj.__REPB_PREFIX(fastmap_accurate)),
                                        TOSTRING(__REPB_PREFIX(fastmap_accurate)), &os));
@@ -314,9 +314,9 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, re_registe
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.num_regs, "num_regs", &os);
-    printer.set_enum_printer(print_regex_re_nregs, obj.num_regs);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.num_regs, "num_regs", &os);
+    printer->set_enum_printer(print_regex_re_nregs, obj.num_regs);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.start, "start", &os));
     abii_args->push_arg(new ArgPrinter(obj.end, "end", &os, RECURSE));

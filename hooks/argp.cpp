@@ -19,22 +19,22 @@ extern "C" error_t abii_argp_parse(const argp* argp, int argc, char** argv, unsi
         abii_args->push_arg(new ArgPrinter(argp, "__argp"));
         abii_args->push_arg(new ArgPrinter(argc, "__argc"));
 
-        auto printer = ArgPrinter(argv, "__argv");
-        printer.set_len(argc);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(argv, "__argv");
+        printer->set_len(argc);
+        abii_args->push_arg(printer);
 
-        auto printer1 = ArgPrinter(flags, "__flags");
-        printer1.set_enum_printer(print_argp_parse_flag, flags);
-        abii_args->push_arg(&printer1);
+        auto printer1 = new ArgPrinter(flags, "__flags");
+        printer1->set_enum_printer(print_argp_parse_flag, flags);
+        abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(arg_index, "__arg_index"));
         abii_args->push_arg(new ArgPrinter(input, "__input"));
 
         auto abii_ret = real_argp_parse(argp, argc, argv, flags, arg_index, input);
 
-        auto printer2 = ArgPrinter(abii_ret, "return");;
-        printer2.set_enum_printer(print_argp_err_unknown, abii_ret);
-        abii_args->push_return(&printer2);
+        auto printer2 = new ArgPrinter(abii_ret, "return");;
+        printer2->set_enum_printer(print_argp_err_unknown, abii_ret);
+        abii_args->push_return(printer2);
     OVERRIDE_SUFFIX(argp_parse, abii_ret)
     return real_argp_parse(argp, argc, argv, flags, arg_index, input);
 }
@@ -50,9 +50,9 @@ extern "C" void abii_argp_help(const argp* argp, FILE* stream, unsigned flags, c
         abii_args->push_arg(new ArgPrinter(argp, "__argp"));
         abii_args->push_arg(new ArgPrinter(stream, "__stream"));
 
-        auto printer = ArgPrinter(flags, "__flags");
-        printer.set_enum_printer(print_argp_help_flag, flags);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(flags, "__flags");
+        printer->set_enum_printer(print_argp_help_flag, flags);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(name, "__name"));
 
@@ -72,9 +72,9 @@ extern "C" void abii_argp_state_help(const argp_state* state, FILE* stream, unsi
         abii_args->push_arg(new ArgPrinter(state, "__state"));
         abii_args->push_arg(new ArgPrinter(stream, "__stream"));
 
-        auto printer = ArgPrinter(flags, "__flags");
-        printer.set_enum_printer(print_argp_help_flag, flags);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(flags, "__flags");
+        printer->set_enum_printer(print_argp_help_flag, flags);
+        abii_args->push_arg(printer);
 
         real_argp_state_help(state, stream, flags);
     OVERRIDE_SUFFIX(argp_state_help,)

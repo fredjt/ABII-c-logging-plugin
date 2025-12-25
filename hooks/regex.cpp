@@ -14,9 +14,9 @@ extern "C" reg_syntax_t abii_re_set_syntax(reg_syntax_t syntax)
         pre_fmtd_str pi_str = "re_set_syntax(__syntax)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        auto printer = ArgPrinter(syntax, "__syntax");
-        printer.set_enum_printer(print_regex_syntax, syntax);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(syntax, "__syntax");
+        printer->set_enum_printer(print_regex_syntax, syntax);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_re_set_syntax(syntax);
 
@@ -34,9 +34,9 @@ const char* abii_re_compile_pattern(const char* pattern, size_t length, re_patte
         pre_fmtd_str pi_str = "re_compile_pattern(__pattern, __length, __buffer)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        auto printer = ArgPrinter(pattern, "__pattern");
-        printer.set_len(length);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(pattern, "__pattern");
+        printer->set_len(length);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(length, "__length"));
         abii_args->push_arg(new ArgPrinter(buffer, "__buffer"));
@@ -78,9 +78,9 @@ regoff_t abii_re_search(re_pattern_buffer* buffer, const char* String, regoff_t 
 
         abii_args->push_arg(new ArgPrinter(buffer, "__buffer"));
 
-        auto printer = ArgPrinter(String, "__String");
-        printer.set_len(length);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(String, "__String");
+        printer->set_len(length);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(length, "__length"));
         abii_args->push_arg(new ArgPrinter(start, "__start"));
@@ -108,15 +108,15 @@ regoff_t abii_re_search_2(re_pattern_buffer* buffer, const char* string1, regoff
 
         abii_args->push_arg(new ArgPrinter(buffer, "__buffer"));
 
-        auto printer = ArgPrinter(string1, "__string1");
-        printer.set_len(length1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(string1, "__string1");
+        printer->set_len(length1);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(length1, "__length1"));
 
-        auto printer1 = ArgPrinter(string2, "__string2");
-        printer1.set_len(length2);
-        abii_args->push_arg(&printer1);
+        auto printer1 = new ArgPrinter(string2, "__string2");
+        printer1->set_len(length2);
+        abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(length2, "__length2"));
         abii_args->push_arg(new ArgPrinter(start, "__start"));
@@ -144,9 +144,9 @@ regoff_t abii_re_match(re_pattern_buffer* buffer, const char* String, regoff_t l
 
         abii_args->push_arg(new ArgPrinter(buffer, "__buffer"));
 
-        auto printer = ArgPrinter(String, "__String");
-        printer.set_len(length);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(String, "__String");
+        printer->set_len(length);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(length, "__length"));
         abii_args->push_arg(new ArgPrinter(start, "__start"));
@@ -173,15 +173,15 @@ regoff_t abii_re_match_2(re_pattern_buffer* buffer, const char* string1, regoff_
 
         abii_args->push_arg(new ArgPrinter(buffer, "__buffer"));
 
-        auto printer = ArgPrinter(string1, "__string1");
-        printer.set_len(length1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(string1, "__string1");
+        printer->set_len(length1);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(length1, "__length1"));
 
-        auto printer1 = ArgPrinter(string2, "__string2");
-        printer1.set_len(length2);
-        abii_args->push_arg(&printer1);
+        auto printer1 = new ArgPrinter(string2, "__string2");
+        printer1->set_len(length2);
+        abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(length2, "__length2"));
         abii_args->push_arg(new ArgPrinter(start, "__start"));
@@ -208,13 +208,13 @@ extern "C" void abii_re_set_registers(re_pattern_buffer* buffer, re_registers* r
         abii_args->push_arg(new ArgPrinter(regs, "__regs"));
         abii_args->push_arg(new ArgPrinter(num_regs, "__num_regs"));
 
-        auto printer = ArgPrinter(starts, "__starts");
-        printer.set_len(num_regs);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(starts, "__starts");
+        printer->set_len(num_regs);
+        abii_args->push_arg(printer);
 
-        auto printer1 = ArgPrinter(ends, "__ends");
-        printer1.set_len(num_regs);
-        abii_args->push_arg(&printer1);
+        auto printer1 = new ArgPrinter(ends, "__ends");
+        printer1->set_len(num_regs);
+        abii_args->push_arg(printer1);
 
         real_re_set_registers(buffer, regs, num_regs, starts, ends);
     OVERRIDE_SUFFIX(re_set_registers,)
@@ -266,15 +266,15 @@ extern "C" int abii_regcomp(regex_t* preg, const char* pattern, int cflags)
         abii_args->push_arg(new ArgPrinter(preg, "__preg"));
         abii_args->push_arg(new ArgPrinter(pattern, "__pattern"));
 
-        auto printer = ArgPrinter(cflags, "__cflags");
-        printer.set_enum_printer(print_regex_cflags, cflags);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(cflags, "__cflags");
+        printer->set_enum_printer(print_regex_cflags, cflags);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_regcomp(preg, pattern, cflags);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_regex_reg_errcode_t, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_regex_reg_errcode_t, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(regcomp, abii_ret)
     return real_regcomp(preg, pattern, cflags);
 }
@@ -293,15 +293,15 @@ extern "C" int abii_regexec(const regex_t* preg, const char* String, size_t nmat
         abii_args->push_arg(new ArgPrinter(nmatch, "__nmatch"));
         abii_args->push_arg(new ArgPrinter(pmatch, "__pmatch"));
 
-        auto printer = ArgPrinter(eflags, "__eflags");
-        printer.set_enum_printer(print_regex_eflags, eflags);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(eflags, "__eflags");
+        printer->set_enum_printer(print_regex_eflags, eflags);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_regexec(preg, String, nmatch, pmatch, eflags);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_regex_reg_errcode_t, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_regex_reg_errcode_t, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(regexec, abii_ret)
     return real_regexec(preg, String, nmatch, pmatch, eflags);
 }
@@ -315,15 +315,15 @@ size_t abii_regerror(int errcode, const regex_t* preg, char* errbuf, size_t errb
         pre_fmtd_str pi_str = "regerror(__errcode, __preg, __errbuf, __errbuf_size)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        auto printer = ArgPrinter(errcode, "__errcode");
-        printer.set_enum_printer(print_regex_reg_errcode_t, errcode);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(errcode, "__errcode");
+        printer->set_enum_printer(print_regex_reg_errcode_t, errcode);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(preg, "__preg"));
 
-        auto printer1 = ArgPrinter(errbuf, "__errbuf");
-        printer1.set_len(errbuf_size);
-        abii_args->push_arg(&printer1);
+        auto printer1 = new ArgPrinter(errbuf, "__errbuf");
+        printer1->set_len(errbuf_size);
+        abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(errbuf_size, "__errbuf_size"));
 

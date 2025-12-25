@@ -26,13 +26,13 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.__pad1, "__pad1", &os));
     abii_args->push_arg(new ArgPrinter(obj.__pad2, "__pad2", &os));
 
-    auto printer = ArgPrinter(obj.__flags, "__flags", &os, RECURSE);
-    printer.set_enum_printer(print_pthread_rwlock_type, obj.__flags);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.__flags, "__flags", &os, RECURSE);
+    printer->set_enum_printer(print_pthread_rwlock_type, obj.__flags);
+    abii_args->push_arg(printer);
 #else
-    auto printer = ArgPrinter(obj.__flags, "__flags", &os, RECURSE);
-    printer.set_enum_printer(print_pthread_rwlock_type, obj.__flags);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.__flags, "__flags", &os, RECURSE);
+    printer->set_enum_printer(print_pthread_rwlock_type, obj.__flags);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.__shared, "__shared", &os));
     abii_args->push_arg(new ArgPrinter(obj.__rwelision, "__rwelision", &os));

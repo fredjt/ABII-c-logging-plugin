@@ -126,15 +126,15 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_PREFIX
     abii_args->push_arg(new ArgPrinter(obj.name, "name", &os));
 
-    auto printer = ArgPrinter(obj.key, "key", &os);
-    printer.set_enum_printer(print_argp_option_key, obj.key);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.key, "key", &os);
+    printer->set_enum_printer(print_argp_option_key, obj.key);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.arg, "arg", &os));
 
-    auto printer1 = ArgPrinter(obj.flags, "flags", &os);
-    printer1.set_enum_printer(print_argp_option, obj.flags);
-    abii_args->push_arg(&printer1);
+    auto printer1 = new ArgPrinter(obj.flags, "flags", &os);
+    printer1->set_enum_printer(print_argp_option, obj.flags);
+    abii_args->push_arg(printer1);
 
     abii_args->push_arg(new ArgPrinter(obj.doc, "doc", &os));
     abii_args->push_arg(new ArgPrinter(obj.group, "group", &os, RECURSE));
@@ -148,17 +148,17 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, argp>
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.options, "options", &os);
-    printer.set_end_test([obj](const size_t i) { return obj.options[i].name != nullptr || obj.options[i].key != 0; });
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.options, "options", &os);
+    printer->set_end_test([obj](const size_t i) { return obj.options[i].name != nullptr || obj.options[i].key != 0; });
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.parser, "parser", &os));
     abii_args->push_arg(new ArgPrinter(obj.args_doc, "args_doc", &os));
     abii_args->push_arg(new ArgPrinter(obj.doc, "doc", &os));
 
-    auto printer1 = ArgPrinter(obj.children, "children", &os);
-    printer1.set_end_test([obj](const size_t i) { return obj.children[i].argp != nullptr; });
-    abii_args->push_arg(&printer1);
+    auto printer1 = new ArgPrinter(obj.children, "children", &os);
+    printer1->set_end_test([obj](const size_t i) { return obj.children[i].argp != nullptr; });
+    abii_args->push_arg(printer1);
 
     abii_args->push_arg(new ArgPrinter(obj.help_filter, "help_filter", &os));
     abii_args->push_arg(new ArgPrinter(obj.argp_domain, "argp_domain", &os, RECURSE));
@@ -171,9 +171,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_PREFIX
     abii_args->push_arg(new ArgPrinter(obj.argp, "argp", &os));
 
-    auto printer = ArgPrinter(obj.flags, "flags", &os);
-    printer.set_enum_printer(print_argp_option, obj.flags);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.flags, "flags", &os);
+    printer->set_enum_printer(print_argp_option, obj.flags);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.header, "header", &os));
     abii_args->push_arg(new ArgPrinter(obj.group, "group", &os, RECURSE));
@@ -187,15 +187,15 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.root_argp, "root_argp", &os));
     abii_args->push_arg(new ArgPrinter(obj.argc, "argc", &os));
 
-    auto printer = ArgPrinter(obj.argv, "argv", &os);
-    printer.set_len(obj.argc);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.argv, "argv", &os);
+    printer->set_len(obj.argc);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.next, "next", &os));
 
-    auto printer1 = ArgPrinter(obj.flags, "flags", &os);
-    printer1.set_enum_printer(print_argp_parse_flag, obj.flags);
-    abii_args->push_arg(&printer1);
+    auto printer1 = new ArgPrinter(obj.flags, "flags", &os);
+    printer1->set_enum_printer(print_argp_parse_flag, obj.flags);
+    abii_args->push_arg(printer1);
 
     abii_args->push_arg(new ArgPrinter(obj.arg_num, "arg_num", &os));
     abii_args->push_arg(new ArgPrinter(obj.quoted, "quoted", &os));
@@ -205,9 +205,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     if (bomb_detector(obj.root_argp) && bomb_detector(obj.root_argp->children))
         for (auto child = obj.root_argp->children; bomb_detector(child->argp); ++child)
             nchildren++;
-    auto printer2 = ArgPrinter(obj.child_inputs, "child_inputs", &os);
-    printer2.set_len(nchildren);
-    abii_args->push_arg(&printer2);
+    auto printer2 = new ArgPrinter(obj.child_inputs, "child_inputs", &os);
+    printer2->set_len(nchildren);
+    abii_args->push_arg(printer2);
 
     abii_args->push_arg(new ArgPrinter(obj.hook, "hook", &os));
     abii_args->push_arg(new ArgPrinter(obj.name, "name", &os));

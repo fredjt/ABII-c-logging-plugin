@@ -57,9 +57,9 @@ extern "C" int abii_getaliasent_r(aliasent* result_buf, char* buffer, size_t buf
 
         abii_args->push_arg(new ArgPrinter(result_buf, "__result_buf"));
 
-        auto printer = ArgPrinter(buffer, "__buffer");
-        printer.set_len(buflen);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(buffer, "__buffer");
+        printer->set_len(buflen);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(buflen, "__buflen"));
         abii_args->push_arg(new ArgPrinter(result, "__result"));
@@ -100,9 +100,9 @@ extern "C" int abii_getaliasbyname_r(const char* name, aliasent* result_buf, cha
         abii_args->push_arg(new ArgPrinter(name, "__name"));
         abii_args->push_arg(new ArgPrinter(result_buf, "__result_buf"));
 
-        auto printer = ArgPrinter(buffer, "__buffer");
-        printer.set_len(buflen);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(buffer, "__buffer");
+        printer->set_len(buflen);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(buflen, "__buflen"));
         abii_args->push_arg(new ArgPrinter(result, "__result"));

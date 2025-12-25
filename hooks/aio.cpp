@@ -72,9 +72,9 @@ extern "C" int abii_lio_listio(int mode, aiocb* const list[__restrict_arr], int 
 
         abii_args->push_arg(new ArgPrinter(mode, "__mode"));
 
-        auto printer = ArgPrinter(list, "__list");
-        printer.set_len(nent);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(list, "__list");
+        printer->set_len(nent);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(nent, "__nent"));
         abii_args->push_arg(new ArgPrinter(sig, "__sig"));
@@ -99,9 +99,9 @@ int abii_aio_error(const aiocb* aiocbp) __THROW
 
         auto abii_ret = real_aio_error(aiocbp);
 
-        ArgPrinter printer(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(aio_error, abii_ret)
     return real_aio_error(aiocbp);
 }
@@ -151,9 +151,9 @@ int abii_aio_suspend(const aiocb* const list[], int nent, const timespec* timeou
         pre_fmtd_str str = "aio_suspend(__list, __nent, __timeout)";
         abii_args->push_func(new ArgPrinter(str));
 
-        auto printer = ArgPrinter(list, "__list");
-        printer.set_len(nent);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(list, "__list");
+        printer->set_len(nent);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(nent, "__nent"));
         abii_args->push_arg(new ArgPrinter(timeout, "__timeout"));
@@ -231,9 +231,9 @@ int abii_lio_listio64(int mode, aiocb64* const list[__restrict_arr], int nent, s
 
         abii_args->push_arg(new ArgPrinter(mode, "__mode"));
 
-        auto printer = ArgPrinter(list, "__list");
-        printer.set_len(nent);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(list, "__list");
+        printer->set_len(nent);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(nent, "__nent"));
         abii_args->push_arg(new ArgPrinter(sig, "__sig"));
@@ -308,9 +308,9 @@ int abii_aio_suspend64(const aiocb64* const list[], int nent, const timespec* ti
         pre_fmtd_str str = "aio_suspend64(__list, __nent, __timeou)";
         abii_args->push_func(new ArgPrinter(str));
 
-        auto printer = ArgPrinter(list, "__list");
-        printer.set_len(nent);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(list, "__list");
+        printer->set_len(nent);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(nent, "__nent"));
         abii_args->push_arg(new ArgPrinter(timeout, "__timeout"));

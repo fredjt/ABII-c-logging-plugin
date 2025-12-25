@@ -17,17 +17,17 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, struct __r
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.retrans, "retrans", &os);
-    printer.set_enum_printer(print_resolv_timeout, obj.retrans);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.retrans, "retrans", &os);
+    printer->set_enum_printer(print_resolv_timeout, obj.retrans);
+    abii_args->push_arg(printer);
 
-    auto printer1 = ArgPrinter(obj.retry, "retry", &os);
-    printer1.set_enum_printer(print_resolv_dflretry, obj.retry);
-    abii_args->push_arg(&printer1);
+    auto printer1 = new ArgPrinter(obj.retry, "retry", &os);
+    printer1->set_enum_printer(print_resolv_dflretry, obj.retry);
+    abii_args->push_arg(printer1);
 
-    auto printer2 = ArgPrinter(obj.options, "options", &os);
-    printer2.set_enum_printer(print_resolv_option, obj.options);
-    abii_args->push_arg(&printer2);
+    auto printer2 = new ArgPrinter(obj.options, "options", &os);
+    printer2->set_enum_printer(print_resolv_option, obj.options);
+    abii_args->push_arg(printer2);
 
     abii_args->push_arg(new ArgPrinter(obj.nscount, "nscount", &os));
     abii_args->push_arg(new ArgPrinter(obj.nsaddr_list, "nsaddr_list", &os));
@@ -35,9 +35,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.dnsrch, "dnsrch", &os));
     abii_args->push_arg(new ArgPrinter(obj.defdname, "defdname", &os));
 
-    auto printer3 = ArgPrinter(obj.pfcode, "pfcode", &os);
-    printer3.set_enum_printer(print_resolv_pfcode, obj.pfcode);
-    abii_args->push_arg(&printer3);
+    auto printer3 = new ArgPrinter(obj.pfcode, "pfcode", &os);
+    printer3->set_enum_printer(print_resolv_pfcode, obj.pfcode);
+    abii_args->push_arg(printer3);
 
     abii_args->push_arg(new ArgPrinter(static_cast<unsigned>(obj.ndots), "ndots", &os));
     abii_args->push_arg(new ArgPrinter(static_cast<unsigned>(obj.nsort), "nsort", &os));

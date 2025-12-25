@@ -134,9 +134,9 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, sockaddr>
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.sa_family, "sa_family", &os);
-    printer.set_enum_printer(print_socket_addr_family, obj.sa_family);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.sa_family, "sa_family", &os);
+    printer->set_enum_printer(print_socket_addr_family, obj.sa_family);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.sa_data, "sa_data", &os, RECURSE));
     OVERRIDE_STREAM_SUFFIX

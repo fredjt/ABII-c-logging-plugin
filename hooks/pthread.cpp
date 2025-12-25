@@ -33,9 +33,9 @@ int abii_pthread_create(pthread_t* newthread, const pthread_attr_t* attr, void*(
 
         auto abii_ret = real_pthread_create(newthread, attr, start_routine, arg);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_create, abii_ret)
     return real_pthread_create(newthread, attr, start_routine, arg);
 }
@@ -78,15 +78,15 @@ extern "C" int abii_pthread_join(pthread_t th, void** thread_return)
 
         abii_args->push_arg(new ArgPrinter(th, "__th"));
 
-        auto printer = ArgPrinter(thread_return, "__thread_return");
-        printer.set_enum_printer(print_pthread_cancelled, *thread_return);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(thread_return, "__thread_return");
+        printer->set_enum_printer(print_pthread_cancelled, *thread_return);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_join(th, thread_return);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_join, abii_ret)
     return real_pthread_join(th, thread_return);
 }
@@ -104,9 +104,9 @@ extern "C" int abii_pthread_tryjoin_np(pthread_t th, void** thread_return) __THR
 
         auto abii_ret = real_pthread_tryjoin_np(th, thread_return);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_tryjoin_np, abii_ret)
     return real_pthread_tryjoin_np(th, thread_return);
 }
@@ -125,9 +125,9 @@ extern "C" int abii_pthread_timedjoin_np(pthread_t th, void** thread_return, con
 
         auto abii_ret = real_pthread_timedjoin_np(th, thread_return, abstime);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_timedjoin_np, abii_ret)
     return real_pthread_timedjoin_np(th, thread_return, abstime);
 }
@@ -143,17 +143,17 @@ extern "C" int abii_pthread_clockjoin_np(pthread_t th, void** thread_return, clo
         abii_args->push_arg(new ArgPrinter(th, "__th"));
         abii_args->push_arg(new ArgPrinter(thread_return, "__thread_return"));
 
-        auto printer = ArgPrinter(clockid, "__clockid");
-        printer.set_enum_printer(print_time_clock, clockid);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(clockid, "__clockid");
+        printer->set_enum_printer(print_time_clock, clockid);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(abstime, "__abstime"));
 
         auto abii_ret = real_pthread_clockjoin_np(th, thread_return, clockid, abstime);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_clockjoin_np, abii_ret)
     return real_pthread_clockjoin_np(th, thread_return, clockid, abstime);
 }
@@ -170,9 +170,9 @@ extern "C" int abii_pthread_detach(pthread_t th) __THROW
 
         auto abii_ret = real_pthread_detach(th);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_detach, abii_ret)
     return real_pthread_detach(th);
 }
@@ -225,9 +225,9 @@ int abii_pthread_attr_init(pthread_attr_t* attr) __THROW
 
         auto abii_ret = real_pthread_attr_init(attr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_init, abii_ret)
     return real_pthread_attr_init(attr);
 }
@@ -245,9 +245,9 @@ int abii_pthread_attr_destroy(pthread_attr_t* attr) __THROW
 
         auto abii_ret = real_pthread_attr_destroy(attr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_destroy, abii_ret)
     return real_pthread_attr_destroy(attr);
 }
@@ -263,15 +263,15 @@ int abii_pthread_attr_getdetachstate(const pthread_attr_t* attr, int* detachstat
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(detachstate, "__detachstate");
-        printer.set_enum_printer_with_depth(print_pthread_detach_state, *detachstate, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(detachstate, "__detachstate");
+        printer->set_enum_printer_with_depth(print_pthread_detach_state, *detachstate, 1);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_attr_getdetachstate(attr, detachstate);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_attr_getdetachstate, abii_ret)
     return real_pthread_attr_getdetachstate(attr, detachstate);
 }
@@ -287,15 +287,15 @@ int abii_pthread_attr_setdetachstate(pthread_attr_t* attr, int detachstate) __TH
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(detachstate, "__detachstate");
-        printer.set_enum_printer(print_pthread_detach_state, detachstate);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(detachstate, "__detachstate");
+        printer->set_enum_printer(print_pthread_detach_state, detachstate);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_attr_setdetachstate(attr, detachstate);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_attr_setdetachstate, abii_ret)
     return real_pthread_attr_setdetachstate(attr, detachstate);
 }
@@ -314,9 +314,9 @@ int abii_pthread_attr_getguardsize(const pthread_attr_t* attr, size_t* guardsize
 
         auto abii_ret = real_pthread_attr_getguardsize(attr, guardsize);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_getguardsize, abii_ret)
     return real_pthread_attr_getguardsize(attr, guardsize);
 }
@@ -335,9 +335,9 @@ int abii_pthread_attr_setguardsize(pthread_attr_t* attr, size_t guardsize) __THR
 
         auto abii_ret = real_pthread_attr_setguardsize(attr, guardsize);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_setguardsize, abii_ret)
     return real_pthread_attr_setguardsize(attr, guardsize);
 }
@@ -356,9 +356,9 @@ int abii_pthread_attr_getschedparam(const pthread_attr_t* attr, sched_param* par
 
         auto abii_ret = real_pthread_attr_getschedparam(attr, param);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_getschedparam, abii_ret)
     return real_pthread_attr_getschedparam(attr, param);
 }
@@ -377,9 +377,9 @@ int abii_pthread_attr_setschedparam(pthread_attr_t* attr, const sched_param* par
 
         auto abii_ret = real_pthread_attr_setschedparam(attr, param);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_setschedparam, abii_ret)
     return real_pthread_attr_setschedparam(attr, param);
 }
@@ -395,15 +395,15 @@ int abii_pthread_attr_getschedpolicy(const pthread_attr_t* attr, int* policy) __
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(policy, "__policy");
-        printer.set_enum_printer_with_depth(print_sched_algorithm, *policy, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(policy, "__policy");
+        printer->set_enum_printer_with_depth(print_sched_algorithm, *policy, 1);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_attr_getschedpolicy(attr, policy);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_attr_getschedpolicy, abii_ret)
     return real_pthread_attr_getschedpolicy(attr, policy);
 }
@@ -419,15 +419,15 @@ int abii_pthread_attr_setschedpolicy(pthread_attr_t* attr, int policy) __THROW
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(policy, "__policy");
-        printer.set_enum_printer(print_sched_algorithm, policy);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(policy, "__policy");
+        printer->set_enum_printer(print_sched_algorithm, policy);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_attr_setschedpolicy(attr, policy);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_attr_setschedpolicy, abii_ret)
     return real_pthread_attr_setschedpolicy(attr, policy);
 }
@@ -443,15 +443,15 @@ int abii_pthread_attr_getinheritsched(const pthread_attr_t* attr, int* inherit) 
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(inherit, "__inherit");
-        printer.set_enum_printer_with_depth(print_pthread_scheduler_inheritance, *inherit, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(inherit, "__inherit");
+        printer->set_enum_printer_with_depth(print_pthread_scheduler_inheritance, *inherit, 1);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_attr_getinheritsched(attr, inherit);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_attr_getinheritsched, abii_ret)
     return real_pthread_attr_getinheritsched(attr, inherit);
 }
@@ -467,15 +467,15 @@ int abii_pthread_attr_setinheritsched(pthread_attr_t* attr, int inherit) __THROW
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(inherit, "__inherit");
-        printer.set_enum_printer(print_pthread_scheduler_inheritance, inherit);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(inherit, "__inherit");
+        printer->set_enum_printer(print_pthread_scheduler_inheritance, inherit);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_attr_setinheritsched(attr, inherit);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_attr_setinheritsched, abii_ret)
     return real_pthread_attr_setinheritsched(attr, inherit);
 }
@@ -491,15 +491,15 @@ int abii_pthread_attr_getscope(const pthread_attr_t* attr, int* scope) __THROW
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(scope, "__scope");
-        printer.set_enum_printer_with_depth(print_pthread_scope_handling, *scope, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(scope, "__scope");
+        printer->set_enum_printer_with_depth(print_pthread_scope_handling, *scope, 1);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_attr_getscope(attr, scope);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_attr_getscope, abii_ret)
     return real_pthread_attr_getscope(attr, scope);
 }
@@ -515,15 +515,15 @@ int abii_pthread_attr_setscope(pthread_attr_t* attr, int scope) __THROW
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(scope, "__scope");
-        printer.set_enum_printer(print_pthread_scope_handling, scope);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(scope, "__scope");
+        printer->set_enum_printer(print_pthread_scope_handling, scope);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_attr_setscope(attr, scope);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_attr_setscope, abii_ret)
     return real_pthread_attr_setscope(attr, scope);
 }
@@ -542,9 +542,9 @@ int abii_pthread_attr_getstackaddr(const pthread_attr_t* attr, void** stackaddr)
 
         auto abii_ret = real_pthread_attr_getstackaddr(attr, stackaddr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_getstackaddr, abii_ret)
     return real_pthread_attr_getstackaddr(attr, stackaddr);
 }
@@ -563,9 +563,9 @@ int abii_pthread_attr_setstackaddr(pthread_attr_t* attr, void* stackaddr) __THRO
 
         auto abii_ret = real_pthread_attr_setstackaddr(attr, stackaddr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_setstackaddr, abii_ret)
     return real_pthread_attr_setstackaddr(attr, stackaddr);
 }
@@ -584,9 +584,9 @@ int abii_pthread_attr_getstacksize(const pthread_attr_t* attr, size_t* stacksize
 
         auto abii_ret = real_pthread_attr_getstacksize(attr, stacksize);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_getstacksize, abii_ret)
     return real_pthread_attr_getstacksize(attr, stacksize);
 }
@@ -605,9 +605,9 @@ int abii_pthread_attr_setstacksize(pthread_attr_t* attr, size_t stacksize) __THR
 
         auto abii_ret = real_pthread_attr_setstacksize(attr, stacksize);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_setstacksize, abii_ret)
     return real_pthread_attr_setstacksize(attr, stacksize);
 }
@@ -627,9 +627,9 @@ int abii_pthread_attr_getstack(const pthread_attr_t* attr, void** stackaddr, siz
 
         auto abii_ret = real_pthread_attr_getstack(attr, stackaddr, stacksize);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_getstack, abii_ret)
     return real_pthread_attr_getstack(attr, stackaddr, stacksize);
 }
@@ -649,9 +649,9 @@ int abii_pthread_attr_setstack(pthread_attr_t* attr, void* stackaddr, size_t sta
 
         auto abii_ret = real_pthread_attr_setstack(attr, stackaddr, stacksize);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_setstack, abii_ret)
     return real_pthread_attr_setstack(attr, stackaddr, stacksize);
 }
@@ -671,9 +671,9 @@ int abii_pthread_attr_setaffinity_np(pthread_attr_t* attr, size_t cpusetsize, co
 
         auto abii_ret = real_pthread_attr_setaffinity_np(attr, cpusetsize, cpuset);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_setaffinity_np, abii_ret)
     return real_pthread_attr_setaffinity_np(attr, cpusetsize, cpuset);
 }
@@ -693,9 +693,9 @@ int abii_pthread_attr_getaffinity_np(const pthread_attr_t* attr, size_t cpusetsi
 
         auto abii_ret = real_pthread_attr_getaffinity_np(attr, cpusetsize, cpuset);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_getaffinity_np, abii_ret)
     return real_pthread_attr_getaffinity_np(attr, cpusetsize, cpuset);
 }
@@ -713,9 +713,9 @@ int abii_pthread_getattr_default_np(pthread_attr_t* attr) __THROW
 
         auto abii_ret = real_pthread_getattr_default_np(attr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_getattr_default_np, abii_ret)
     return real_pthread_getattr_default_np(attr);
 }
@@ -733,9 +733,9 @@ extern "C" int abii_pthread_attr_setsigmask_np(pthread_attr_t* attr, const __sig
 
         auto abii_ret = real_pthread_attr_setsigmask_np(attr, sigmask);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_setsigmask_np, abii_ret)
     return real_pthread_attr_setsigmask_np(attr, sigmask);
 }
@@ -753,9 +753,9 @@ extern "C" int abii_pthread_attr_getsigmask_np(const pthread_attr_t* attr, __sig
 
         auto abii_ret = real_pthread_attr_getsigmask_np(attr, sigmask);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_pthread_attr_no_sigmask_np, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_pthread_attr_no_sigmask_np, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_attr_getsigmask_np, abii_ret)
     return real_pthread_attr_getsigmask_np(attr, sigmask);
 }
@@ -773,9 +773,9 @@ int abii_pthread_setattr_default_np(const pthread_attr_t* attr) __THROW
 
         auto abii_ret = real_pthread_setattr_default_np(attr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_setattr_default_np, abii_ret)
     return real_pthread_setattr_default_np(attr);
 }
@@ -794,9 +794,9 @@ int abii_pthread_getattr_np(pthread_t th, pthread_attr_t* attr) __THROW
 
         auto abii_ret = real_pthread_getattr_np(th, attr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_getattr_np, abii_ret)
     return real_pthread_getattr_np(th, attr);
 }
@@ -812,17 +812,17 @@ int abii_pthread_setschedparam(pthread_t target_thread, int policy, const sched_
 
         abii_args->push_arg(new ArgPrinter(target_thread, "__target_thread"));
 
-        auto printer = ArgPrinter(policy, "__policy");
-        printer.set_enum_printer(print_sched_algorithm, policy);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(policy, "__policy");
+        printer->set_enum_printer(print_sched_algorithm, policy);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(param, "__param"));
 
         auto abii_ret = real_pthread_setschedparam(target_thread, policy, param);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_setschedparam, abii_ret)
     return real_pthread_setschedparam(target_thread, policy, param);
 }
@@ -838,17 +838,17 @@ int abii_pthread_getschedparam(pthread_t target_thread, int* policy, sched_param
 
         abii_args->push_arg(new ArgPrinter(target_thread, "__target_thread"));
 
-        auto printer = ArgPrinter(policy, "__policy");
-        printer.set_enum_printer_with_depth(print_sched_algorithm, *policy, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(policy, "__policy");
+        printer->set_enum_printer_with_depth(print_sched_algorithm, *policy, 1);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(param, "__param"));
 
         auto abii_ret = real_pthread_getschedparam(target_thread, policy, param);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_getschedparam, abii_ret)
     return real_pthread_getschedparam(target_thread, policy, param);
 }
@@ -866,9 +866,9 @@ extern "C" int abii_pthread_setschedprio(pthread_t target_thread, int prio) __TH
 
         auto abii_ret = real_pthread_setschedprio(target_thread, prio);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_setschedprio, abii_ret)
     return real_pthread_setschedprio(target_thread, prio);
 }
@@ -884,17 +884,17 @@ int abii_pthread_getname_np(pthread_t target_thread, char* buf, size_t buflen) _
 
         abii_args->push_arg(new ArgPrinter(target_thread, "__target_thread"));
 
-        auto printer = ArgPrinter(buf, "__buf");
-        printer.set_len(buflen);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(buf, "__buf");
+        printer->set_len(buflen);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(buflen, "__buflen"));
 
         auto abii_ret = real_pthread_getname_np(target_thread, buf, buflen);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_getname_np, abii_ret)
     return real_pthread_getname_np(target_thread, buf, buflen);
 }
@@ -913,9 +913,9 @@ int abii_pthread_setname_np(pthread_t target_thread, const char* name) __THROW
 
         auto abii_ret = real_pthread_setname_np(target_thread, name);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_setname_np, abii_ret)
     return real_pthread_setname_np(target_thread, name);
 }
@@ -947,9 +947,9 @@ extern "C" int abii_pthread_setconcurrency(int level) __THROW
 
         auto abii_ret = real_pthread_setconcurrency(level);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_setconcurrency, abii_ret)
     return real_pthread_setconcurrency(level);
 }
@@ -969,9 +969,9 @@ int abii_pthread_setaffinity_np(pthread_t th, size_t cpusetsize, const cpu_set_t
 
         auto abii_ret = real_pthread_setaffinity_np(th, cpusetsize, cpuset);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_setaffinity_np, abii_ret)
     return real_pthread_setaffinity_np(th, cpusetsize, cpuset);
 }
@@ -991,9 +991,9 @@ int abii_pthread_getaffinity_np(pthread_t th, size_t cpusetsize, cpu_set_t* cpus
 
         auto abii_ret = real_pthread_getaffinity_np(th, cpusetsize, cpuset);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_getaffinity_np, abii_ret)
     return real_pthread_getaffinity_np(th, cpusetsize, cpuset);
 }
@@ -1007,17 +1007,17 @@ int abii_pthread_once(pthread_once_t* once_control, void (*init_routine)())
         pre_fmtd_str pi_str = "pthread_once(__once_control, __init_routine)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        auto printer = ArgPrinter(once_control, "__once_control");
-        printer.set_enum_printer_with_depth(print_pthread_once_init, *once_control, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(once_control, "__once_control");
+        printer->set_enum_printer_with_depth(print_pthread_once_init, *once_control, 1);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(init_routine, "__init_routine"));
 
         auto abii_ret = real_pthread_once(once_control, init_routine);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_once, abii_ret)
     return real_pthread_once(once_control, init_routine);
 }
@@ -1030,19 +1030,19 @@ extern "C" int abii_pthread_setcancelstate(int state, int* oldstate)
         pre_fmtd_str pi_str = "pthread_setcancelstate(__state, __oldstate)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        auto printer = ArgPrinter(state, "__state");
-        printer.set_enum_printer(print_pthread_cancellation, state);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(state, "__state");
+        printer->set_enum_printer(print_pthread_cancellation, state);
+        abii_args->push_arg(printer);
 
-        auto printer1 = ArgPrinter(oldstate, "__oldstate");
-        printer.set_enum_printer_with_depth(print_pthread_cancellation, *oldstate, 1);
-        abii_args->push_arg(&printer1);
+        auto printer1 = new ArgPrinter(oldstate, "__oldstate");
+        printer->set_enum_printer_with_depth(print_pthread_cancellation, *oldstate, 1);
+        abii_args->push_arg(printer1);
 
         auto abii_ret = real_pthread_setcancelstate(state, oldstate);
 
-        auto printer2 = ArgPrinter(abii_ret, "return");
-        printer2.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer2);
+        auto printer2 = new ArgPrinter(abii_ret, "return");
+        printer2->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer2);
     OVERRIDE_SUFFIX(pthread_setcancelstate, abii_ret)
     return real_pthread_setcancelstate(state, oldstate);
 }
@@ -1055,19 +1055,19 @@ extern "C" int abii_pthread_setcanceltype(int type, int* oldtype)
         pre_fmtd_str pi_str = "pthread_setcanceltype(__type, __oldtype)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        auto printer = ArgPrinter(type, "__type");
-        printer.set_enum_printer(print_pthread_cancellation_type, type);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(type, "__type");
+        printer->set_enum_printer(print_pthread_cancellation_type, type);
+        abii_args->push_arg(printer);
 
-        auto printer1 = ArgPrinter(oldtype, "__oldtype");
-        printer1.set_enum_printer_with_depth(print_pthread_cancellation_type, *oldtype, 1);
-        abii_args->push_arg(&printer1);
+        auto printer1 = new ArgPrinter(oldtype, "__oldtype");
+        printer1->set_enum_printer_with_depth(print_pthread_cancellation_type, *oldtype, 1);
+        abii_args->push_arg(printer1);
 
         auto abii_ret = real_pthread_setcanceltype(type, oldtype);
 
-        auto printer2 = ArgPrinter(abii_ret, "return");
-        printer2.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer2);
+        auto printer2 = new ArgPrinter(abii_ret, "return");
+        printer2->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer2);
     OVERRIDE_SUFFIX(pthread_setcanceltype, abii_ret)
     return real_pthread_setcanceltype(type, oldtype);
 }
@@ -1084,9 +1084,9 @@ extern "C" int abii_pthread_cancel(pthread_t th)
 
         auto abii_ret = real_pthread_cancel(th);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_cancel, abii_ret)
     return real_pthread_cancel(th);
 }
@@ -1150,9 +1150,9 @@ extern "C" int abii___sigsetjmp(__jmp_buf_tag env[1], int savemask) __THROWNL
 
         auto abii_ret = real___sigsetjmp(env, savemask);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(__sigsetjmp, abii_ret)
     return real___sigsetjmp(env, savemask);
 }
@@ -1171,9 +1171,9 @@ int abii_pthread_mutex_init(pthread_mutex_t* mutex, const pthread_mutexattr_t* m
 
         auto abii_ret = real_pthread_mutex_init(mutex, mutexattr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_mutex_init, abii_ret)
     return real_pthread_mutex_init(mutex, mutexattr);
 }
@@ -1191,9 +1191,9 @@ int abii_pthread_mutex_destroy(pthread_mutex_t* mutex) __THROW
 
         auto abii_ret = real_pthread_mutex_destroy(mutex);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_mutex_destroy, abii_ret)
     return real_pthread_mutex_destroy(mutex);
 }
@@ -1211,9 +1211,9 @@ int abii_pthread_mutex_trylock(pthread_mutex_t* mutex) __THROWNL
 
         auto abii_ret = real_pthread_mutex_trylock(mutex);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_mutex_trylock, abii_ret)
     return real_pthread_mutex_trylock(mutex);
 }
@@ -1231,9 +1231,9 @@ int abii_pthread_mutex_lock(pthread_mutex_t* mutex) __THROWNL
 
         auto abii_ret = real_pthread_mutex_lock(mutex);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_mutex_lock, abii_ret)
     return real_pthread_mutex_lock(mutex);
 }
@@ -1252,9 +1252,9 @@ int abii_pthread_mutex_timedlock(pthread_mutex_t* mutex, const timespec* abstime
 
         auto abii_ret = real_pthread_mutex_timedlock(mutex, abstime);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_mutex_timedlock, abii_ret)
     return real_pthread_mutex_timedlock(mutex, abstime);
 }
@@ -1270,17 +1270,17 @@ int abii_pthread_mutex_clocklock(pthread_mutex_t* mutex, clockid_t clockid, cons
 
         abii_args->push_arg(new ArgPrinter(mutex, "__mutex"));
 
-        auto printer = ArgPrinter(clockid, "__clockid");
-        printer.set_enum_printer(print_time_clock, clockid);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(clockid, "__clockid");
+        printer->set_enum_printer(print_time_clock, clockid);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(abstime, "__abstime"));
 
         auto abii_ret = real_pthread_mutex_clocklock(mutex, clockid, abstime);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_mutex_clocklock, abii_ret)
     return real_pthread_mutex_clocklock(mutex, clockid, abstime);
 }
@@ -1298,9 +1298,9 @@ int abii_pthread_mutex_unlock(pthread_mutex_t* mutex) __THROWNL
 
         auto abii_ret = real_pthread_mutex_unlock(mutex);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_mutex_unlock, abii_ret)
     return real_pthread_mutex_unlock(mutex);
 }
@@ -1319,9 +1319,9 @@ int abii_pthread_mutex_getprioceiling(const pthread_mutex_t* mutex, int* priocei
 
         auto abii_ret = real_pthread_mutex_getprioceiling(mutex, prioceiling);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_mutex_getprioceiling, abii_ret)
     return real_pthread_mutex_getprioceiling(mutex, prioceiling);
 }
@@ -1341,9 +1341,9 @@ int abii_pthread_mutex_setprioceiling(pthread_mutex_t* mutex, int prioceiling, i
 
         auto abii_ret = real_pthread_mutex_setprioceiling(mutex, prioceiling, old_ceiling);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_mutex_setprioceiling, abii_ret)
     return real_pthread_mutex_setprioceiling(mutex, prioceiling, old_ceiling);
 }
@@ -1361,9 +1361,9 @@ int abii_pthread_mutex_consistent(pthread_mutex_t* mutex) __THROW
 
         auto abii_ret = real_pthread_mutex_consistent(mutex);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_mutex_consistent, abii_ret)
     return real_pthread_mutex_consistent(mutex);
 }
@@ -1381,9 +1381,9 @@ int abii_pthread_mutexattr_init(pthread_mutexattr_t* attr) __THROW
 
         auto abii_ret = real_pthread_mutexattr_init(attr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_mutexattr_init, abii_ret)
     return real_pthread_mutexattr_init(attr);
 }
@@ -1401,9 +1401,9 @@ int abii_pthread_mutexattr_destroy(pthread_mutexattr_t* attr) __THROW
 
         auto abii_ret = real_pthread_mutexattr_destroy(attr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_mutexattr_destroy, abii_ret)
     return real_pthread_mutexattr_destroy(attr);
 }
@@ -1419,15 +1419,15 @@ int abii_pthread_mutexattr_getpshared(const pthread_mutexattr_t* attr, int* psha
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(pshared, "__pshared");
-        printer.set_enum_printer_with_depth(print_pthread_visibility_flag, *pshared, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(pshared, "__pshared");
+        printer->set_enum_printer_with_depth(print_pthread_visibility_flag, *pshared, 1);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_mutexattr_getpshared(attr, pshared);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_mutexattr_getpshared, abii_ret)
     return real_pthread_mutexattr_getpshared(attr, pshared);
 }
@@ -1443,15 +1443,15 @@ int abii_pthread_mutexattr_setpshared(pthread_mutexattr_t* attr, int pshared) __
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(pshared, "__pshared");
-        printer.set_enum_printer(print_pthread_visibility_flag, pshared);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(pshared, "__pshared");
+        printer->set_enum_printer(print_pthread_visibility_flag, pshared);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_mutexattr_setpshared(attr, pshared);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_mutexattr_setpshared, abii_ret)
     return real_pthread_mutexattr_setpshared(attr, pshared);
 }
@@ -1467,15 +1467,15 @@ int abii_pthread_mutexattr_gettype(const pthread_mutexattr_t* attr, int* kind) _
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(kind, "__kind");
-        printer.set_enum_printer_with_depth(print_pthread_mutex_type, *kind, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(kind, "__kind");
+        printer->set_enum_printer_with_depth(print_pthread_mutex_type, *kind, 1);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_mutexattr_gettype(attr, kind);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_mutexattr_gettype, abii_ret)
     return real_pthread_mutexattr_gettype(attr, kind);
 }
@@ -1491,15 +1491,15 @@ int abii_pthread_mutexattr_settype(pthread_mutexattr_t* attr, int kind) __THROW
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(kind, "__kind");
-        printer.set_enum_printer(print_pthread_mutex_type, kind);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(kind, "__kind");
+        printer->set_enum_printer(print_pthread_mutex_type, kind);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_mutexattr_settype(attr, kind);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_mutexattr_settype, abii_ret)
     return real_pthread_mutexattr_settype(attr, kind);
 }
@@ -1515,15 +1515,15 @@ int abii_pthread_mutexattr_getprotocol(const pthread_mutexattr_t* attr, int* pro
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(protocol, "__protocol");
-        printer.set_enum_printer_with_depth(print_pthread_mutex_protocol, *protocol, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(protocol, "__protocol");
+        printer->set_enum_printer_with_depth(print_pthread_mutex_protocol, *protocol, 1);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_mutexattr_getprotocol(attr, protocol);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_mutexattr_getprotocol, abii_ret)
     return real_pthread_mutexattr_getprotocol(attr, protocol);
 }
@@ -1539,15 +1539,15 @@ int abii_pthread_mutexattr_setprotocol(pthread_mutexattr_t* attr, int protocol) 
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(protocol, "__protocol");
-        printer.set_enum_printer(print_pthread_mutex_protocol, protocol);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(protocol, "__protocol");
+        printer->set_enum_printer(print_pthread_mutex_protocol, protocol);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_mutexattr_setprotocol(attr, protocol);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_mutexattr_setprotocol, abii_ret)
     return real_pthread_mutexattr_setprotocol(attr, protocol);
 }
@@ -1566,9 +1566,9 @@ int abii_pthread_mutexattr_getprioceiling(const pthread_mutexattr_t* attr, int* 
 
         auto abii_ret = real_pthread_mutexattr_getprioceiling(attr, prioceiling);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_mutexattr_getprioceiling, abii_ret)
     return real_pthread_mutexattr_getprioceiling(attr, prioceiling);
 }
@@ -1587,9 +1587,9 @@ int abii_pthread_mutexattr_setprioceiling(pthread_mutexattr_t* attr, int priocei
 
         auto abii_ret = real_pthread_mutexattr_setprioceiling(attr, prioceiling);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_mutexattr_setprioceiling, abii_ret)
     return real_pthread_mutexattr_setprioceiling(attr, prioceiling);
 }
@@ -1605,15 +1605,15 @@ int abii_pthread_mutexattr_getrobust(const pthread_mutexattr_t* attr, int* robus
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(robustness, "__robustness");
-        printer.set_enum_printer_with_depth(print_pthread_mutex_flag, *robustness, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(robustness, "__robustness");
+        printer->set_enum_printer_with_depth(print_pthread_mutex_flag, *robustness, 1);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_mutexattr_getrobust(attr, robustness);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_mutexattr_getrobust, abii_ret)
     return real_pthread_mutexattr_getrobust(attr, robustness);
 }
@@ -1629,15 +1629,15 @@ int abii_pthread_mutexattr_setrobust(pthread_mutexattr_t* attr, int robustness) 
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(robustness, "__robustness");
-        printer.set_enum_printer(print_pthread_mutex_flag, robustness);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(robustness, "__robustness");
+        printer->set_enum_printer(print_pthread_mutex_flag, robustness);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_mutexattr_setrobust(attr, robustness);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_mutexattr_setrobust, abii_ret)
     return real_pthread_mutexattr_setrobust(attr, robustness);
 }
@@ -1656,9 +1656,9 @@ int abii_pthread_rwlock_init(pthread_rwlock_t* rwlock, const pthread_rwlockattr_
 
         auto abii_ret = real_pthread_rwlock_init(rwlock, attr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_rwlock_init, abii_ret)
     return real_pthread_rwlock_init(rwlock, attr);
 }
@@ -1676,9 +1676,9 @@ int abii_pthread_rwlock_destroy(pthread_rwlock_t* rwlock) __THROW
 
         auto abii_ret = real_pthread_rwlock_destroy(rwlock);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_rwlock_destroy, abii_ret)
     return real_pthread_rwlock_destroy(rwlock);
 }
@@ -1696,9 +1696,9 @@ int abii_pthread_rwlock_rdlock(pthread_rwlock_t* rwlock) __THROWNL
 
         auto abii_ret = real_pthread_rwlock_rdlock(rwlock);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_rwlock_rdlock, abii_ret)
     return real_pthread_rwlock_rdlock(rwlock);
 }
@@ -1716,9 +1716,9 @@ int abii_pthread_rwlock_tryrdlock(pthread_rwlock_t* rwlock) __THROWNL
 
         auto abii_ret = real_pthread_rwlock_tryrdlock(rwlock);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_rwlock_tryrdlock, abii_ret)
     return real_pthread_rwlock_tryrdlock(rwlock);
 }
@@ -1737,9 +1737,9 @@ int abii_pthread_rwlock_timedrdlock(pthread_rwlock_t* rwlock, const timespec* ab
 
         auto abii_ret = real_pthread_rwlock_timedrdlock(rwlock, abstime);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_rwlock_timedrdlock, abii_ret)
     return real_pthread_rwlock_timedrdlock(rwlock, abstime);
 }
@@ -1755,17 +1755,17 @@ int abii_pthread_rwlock_clockrdlock(pthread_rwlock_t* rwlock, clockid_t clockid,
 
         abii_args->push_arg(new ArgPrinter(rwlock, "__rwlock"));
 
-        auto printer = ArgPrinter(clockid, "__clockid");
-        printer.set_enum_printer(print_time_clock, clockid);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(clockid, "__clockid");
+        printer->set_enum_printer(print_time_clock, clockid);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(abstime, "__abstime"));
 
         auto abii_ret = real_pthread_rwlock_clockrdlock(rwlock, clockid, abstime);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_rwlock_clockrdlock, abii_ret)
     return real_pthread_rwlock_clockrdlock(rwlock, clockid, abstime);
 }
@@ -1783,9 +1783,9 @@ int abii_pthread_rwlock_wrlock(pthread_rwlock_t* rwlock) __THROWNL
 
         auto abii_ret = real_pthread_rwlock_wrlock(rwlock);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_rwlock_wrlock, abii_ret)
     return real_pthread_rwlock_wrlock(rwlock);
 }
@@ -1803,9 +1803,9 @@ int abii_pthread_rwlock_trywrlock(pthread_rwlock_t* rwlock) __THROWNL
 
         auto abii_ret = real_pthread_rwlock_trywrlock(rwlock);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_rwlock_trywrlock, abii_ret)
     return real_pthread_rwlock_trywrlock(rwlock);
 }
@@ -1824,9 +1824,9 @@ int abii_pthread_rwlock_timedwrlock(pthread_rwlock_t* rwlock, const timespec* ab
 
         auto abii_ret = real_pthread_rwlock_timedwrlock(rwlock, abstime);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_rwlock_timedwrlock, abii_ret)
     return real_pthread_rwlock_timedwrlock(rwlock, abstime);
 }
@@ -1842,17 +1842,17 @@ int abii_pthread_rwlock_clockwrlock(pthread_rwlock_t* rwlock, clockid_t clockid,
 
         abii_args->push_arg(new ArgPrinter(rwlock, "__rwlock"));
 
-        auto printer = ArgPrinter(clockid, "__clockid");
-        printer.set_enum_printer(print_time_clock, clockid);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(clockid, "__clockid");
+        printer->set_enum_printer(print_time_clock, clockid);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(abstime, "__abstime"));
 
         auto abii_ret = real_pthread_rwlock_clockwrlock(rwlock, clockid, abstime);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_rwlock_clockwrlock, abii_ret)
     return real_pthread_rwlock_clockwrlock(rwlock, clockid, abstime);
 }
@@ -1870,9 +1870,9 @@ int abii_pthread_rwlock_unlock(pthread_rwlock_t* rwlock) __THROWNL
 
         auto abii_ret = real_pthread_rwlock_unlock(rwlock);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_rwlock_unlock, abii_ret)
     return real_pthread_rwlock_unlock(rwlock);
 }
@@ -1890,9 +1890,9 @@ int abii_pthread_rwlockattr_init(pthread_rwlockattr_t* attr) __THROW
 
         auto abii_ret = real_pthread_rwlockattr_init(attr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_rwlockattr_init, abii_ret)
     return real_pthread_rwlockattr_init(attr);
 }
@@ -1910,9 +1910,9 @@ int abii_pthread_rwlockattr_destroy(pthread_rwlockattr_t* attr) __THROW
 
         auto abii_ret = real_pthread_rwlockattr_destroy(attr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_rwlockattr_destroy, abii_ret)
     return real_pthread_rwlockattr_destroy(attr);
 }
@@ -1928,15 +1928,15 @@ int abii_pthread_rwlockattr_getpshared(const pthread_rwlockattr_t* attr, int* ps
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(pshared, "__pshared");
-        printer.set_enum_printer_with_depth(print_pthread_visibility_flag, *pshared, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(pshared, "__pshared");
+        printer->set_enum_printer_with_depth(print_pthread_visibility_flag, *pshared, 1);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_rwlockattr_getpshared(attr, pshared);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_rwlockattr_getpshared, abii_ret)
     return real_pthread_rwlockattr_getpshared(attr, pshared);
 }
@@ -1952,15 +1952,15 @@ int abii_pthread_rwlockattr_setpshared(pthread_rwlockattr_t* attr, int pshared) 
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(pshared, "__pshared");
-        printer.set_enum_printer(print_pthread_visibility_flag, pshared);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(pshared, "__pshared");
+        printer->set_enum_printer(print_pthread_visibility_flag, pshared);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_rwlockattr_setpshared(attr, pshared);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_rwlockattr_setpshared, abii_ret)
     return real_pthread_rwlockattr_setpshared(attr, pshared);
 }
@@ -1976,15 +1976,15 @@ int abii_pthread_rwlockattr_getkind_np(const pthread_rwlockattr_t* attr, int* pr
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(pref, "__pref");
-        printer.set_enum_printer_with_depth(print_pthread_rwlock_type, *pref, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(pref, "__pref");
+        printer->set_enum_printer_with_depth(print_pthread_rwlock_type, *pref, 1);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_rwlockattr_getkind_np(attr, pref);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_rwlockattr_getkind_np, abii_ret)
     return real_pthread_rwlockattr_getkind_np(attr, pref);
 }
@@ -2000,15 +2000,15 @@ int abii_pthread_rwlockattr_setkind_np(pthread_rwlockattr_t* attr, int pref) __T
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(pref, "__pref");
-        printer.set_enum_printer(print_pthread_rwlock_type, pref);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(pref, "__pref");
+        printer->set_enum_printer(print_pthread_rwlock_type, pref);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_rwlockattr_setkind_np(attr, pref);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_rwlockattr_setkind_np, abii_ret)
     return real_pthread_rwlockattr_setkind_np(attr, pref);
 }
@@ -2022,17 +2022,17 @@ int abii_pthread_cond_init(pthread_cond_t* cond, const pthread_condattr_t* cond_
         pre_fmtd_str pi_str = "pthread_cond_init(__cond, __cond_attr)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        auto printer = ArgPrinter(cond, "__cond");
-        printer.set_enum_printer_with_depth(print_pthread_cond_initializer, *cond, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(cond, "__cond");
+        printer->set_enum_printer_with_depth(print_pthread_cond_initializer, *cond, 1);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(cond_attr, "__cond_attr"));
 
         auto abii_ret = real_pthread_cond_init(cond, cond_attr);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_cond_init, abii_ret)
     return real_pthread_cond_init(cond, cond_attr);
 }
@@ -2050,9 +2050,9 @@ int abii_pthread_cond_destroy(pthread_cond_t* cond) __THROW
 
         auto abii_ret = real_pthread_cond_destroy(cond);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_cond_destroy, abii_ret)
     return real_pthread_cond_destroy(cond);
 }
@@ -2070,9 +2070,9 @@ int abii_pthread_cond_signal(pthread_cond_t* cond) __THROWNL
 
         auto abii_ret = real_pthread_cond_signal(cond);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_cond_signal, abii_ret)
     return real_pthread_cond_signal(cond);
 }
@@ -2090,9 +2090,9 @@ int abii_pthread_cond_broadcast(pthread_cond_t* cond) __THROWNL
 
         auto abii_ret = real_pthread_cond_broadcast(cond);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_cond_broadcast, abii_ret)
     return real_pthread_cond_broadcast(cond);
 }
@@ -2111,9 +2111,9 @@ int abii_pthread_cond_wait(pthread_cond_t* cond, pthread_mutex_t* mutex)
 
         auto abii_ret = real_pthread_cond_wait(cond, mutex);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_cond_wait, abii_ret)
     return real_pthread_cond_wait(cond, mutex);
 }
@@ -2133,9 +2133,9 @@ int abii_pthread_cond_timedwait(pthread_cond_t* cond, pthread_mutex_t* mutex, co
 
         auto abii_ret = real_pthread_cond_timedwait(cond, mutex, abstime);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_cond_timedwait, abii_ret)
     return real_pthread_cond_timedwait(cond, mutex, abstime);
 }
@@ -2153,17 +2153,17 @@ int abii_pthread_cond_clockwait(pthread_cond_t* cond, pthread_mutex_t* mutex, __
         abii_args->push_arg(new ArgPrinter(cond, "__cond"));
         abii_args->push_arg(new ArgPrinter(mutex, "__mutex"));
 
-        auto printer = ArgPrinter(clock_id, "__clock_id");
-        printer.set_enum_printer(print_time_clock, clock_id);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(clock_id, "__clock_id");
+        printer->set_enum_printer(print_time_clock, clock_id);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(abstime, "__abstime"));
 
         auto abii_ret = real_pthread_cond_clockwait(cond, mutex, clock_id, abstime);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_cond_clockwait, abii_ret)
     return real_pthread_cond_clockwait(cond, mutex, clock_id, abstime);
 }
@@ -2181,9 +2181,9 @@ int abii_pthread_condattr_init(pthread_condattr_t* attr) __THROW
 
         auto abii_ret = real_pthread_condattr_init(attr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_condattr_init, abii_ret)
     return real_pthread_condattr_init(attr);
 }
@@ -2201,9 +2201,9 @@ int abii_pthread_condattr_destroy(pthread_condattr_t* attr) __THROW
 
         auto abii_ret = real_pthread_condattr_destroy(attr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_condattr_destroy, abii_ret)
     return real_pthread_condattr_destroy(attr);
 }
@@ -2219,15 +2219,15 @@ int abii_pthread_condattr_getpshared(const pthread_condattr_t* attr, int* pshare
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(pshared, "__pshared");
-        printer.set_enum_printer_with_depth(print_pthread_visibility_flag, *pshared, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(pshared, "__pshared");
+        printer->set_enum_printer_with_depth(print_pthread_visibility_flag, *pshared, 1);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_condattr_getpshared(attr, pshared);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_condattr_getpshared, abii_ret)
     return real_pthread_condattr_getpshared(attr, pshared);
 }
@@ -2243,15 +2243,15 @@ int abii_pthread_condattr_setpshared(pthread_condattr_t* attr, int pshared) __TH
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(pshared, "__pshared");
-        printer.set_enum_printer(print_pthread_visibility_flag, pshared);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(pshared, "__pshared");
+        printer->set_enum_printer(print_pthread_visibility_flag, pshared);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_condattr_setpshared(attr, pshared);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_condattr_setpshared, abii_ret)
     return real_pthread_condattr_setpshared(attr, pshared);
 }
@@ -2267,15 +2267,15 @@ int abii_pthread_condattr_getclock(const pthread_condattr_t* attr, __clockid_t* 
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(clock_id, "__clock_id");
-        printer.set_enum_printer_with_depth(print_time_clock, *clock_id, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(clock_id, "__clock_id");
+        printer->set_enum_printer_with_depth(print_time_clock, *clock_id, 1);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_condattr_getclock(attr, clock_id);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_condattr_getclock, abii_ret)
     return real_pthread_condattr_getclock(attr, clock_id);
 }
@@ -2291,15 +2291,15 @@ int abii_pthread_condattr_setclock(pthread_condattr_t* attr, __clockid_t clock_i
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(clock_id, "__clock_id");
-        printer.set_enum_printer(print_time_clock, clock_id);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(clock_id, "__clock_id");
+        printer->set_enum_printer(print_time_clock, clock_id);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_condattr_setclock(attr, clock_id);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_condattr_setclock, abii_ret)
     return real_pthread_condattr_setclock(attr, clock_id);
 }
@@ -2315,15 +2315,15 @@ int abii_pthread_spin_init(pthread_spinlock_t* lock, int pshared) __THROW
 
         abii_args->push_arg(new ArgPrinter(lock, "__lock"));
 
-        auto printer = ArgPrinter(pshared, "__pshared");
-        printer.set_enum_printer(print_pthread_visibility_flag, pshared);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(pshared, "__pshared");
+        printer->set_enum_printer(print_pthread_visibility_flag, pshared);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_spin_init(lock, pshared);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_spin_init, abii_ret)
     return real_pthread_spin_init(lock, pshared);
 }
@@ -2341,9 +2341,9 @@ int abii_pthread_spin_destroy(pthread_spinlock_t* lock) __THROW
 
         auto abii_ret = real_pthread_spin_destroy(lock);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_spin_destroy, abii_ret)
     return real_pthread_spin_destroy(lock);
 }
@@ -2361,9 +2361,9 @@ int abii_pthread_spin_lock(pthread_spinlock_t* lock) __THROWNL
 
         auto abii_ret = real_pthread_spin_lock(lock);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_spin_lock, abii_ret)
     return real_pthread_spin_lock(lock);
 }
@@ -2381,9 +2381,9 @@ int abii_pthread_spin_trylock(pthread_spinlock_t* lock) __THROWNL
 
         auto abii_ret = real_pthread_spin_trylock(lock);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_spin_trylock, abii_ret)
     return real_pthread_spin_trylock(lock);
 }
@@ -2401,9 +2401,9 @@ int abii_pthread_spin_unlock(pthread_spinlock_t* lock) __THROWNL
 
         auto abii_ret = real_pthread_spin_unlock(lock);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_spin_unlock, abii_ret)
     return real_pthread_spin_unlock(lock);
 }
@@ -2424,9 +2424,9 @@ int abii_pthread_barrier_init(pthread_barrier_t* barrier, const pthread_barriera
 
         auto abii_ret = real_pthread_barrier_init(barrier, attr, count);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_barrier_init, abii_ret)
     return real_pthread_barrier_init(barrier, attr, count);
 }
@@ -2444,9 +2444,9 @@ int abii_pthread_barrier_destroy(pthread_barrier_t* barrier) __THROW
 
         auto abii_ret = real_pthread_barrier_destroy(barrier);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_barrier_destroy, abii_ret)
     return real_pthread_barrier_destroy(barrier);
 }
@@ -2464,9 +2464,9 @@ int abii_pthread_barrier_wait(pthread_barrier_t* barrier) __THROWNL
 
         auto abii_ret = real_pthread_barrier_wait(barrier);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_pthread_barrier_serial_thread, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_pthread_barrier_serial_thread, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_barrier_wait, abii_ret)
     return real_pthread_barrier_wait(barrier);
 }
@@ -2484,9 +2484,9 @@ int abii_pthread_barrierattr_init(pthread_barrierattr_t* attr) __THROW
 
         auto abii_ret = real_pthread_barrierattr_init(attr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_barrierattr_init, abii_ret)
     return real_pthread_barrierattr_init(attr);
 }
@@ -2504,9 +2504,9 @@ int abii_pthread_barrierattr_destroy(pthread_barrierattr_t* attr) __THROW
 
         auto abii_ret = real_pthread_barrierattr_destroy(attr);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_barrierattr_destroy, abii_ret)
     return real_pthread_barrierattr_destroy(attr);
 }
@@ -2522,15 +2522,15 @@ int abii_pthread_barrierattr_getpshared(const pthread_barrierattr_t* attr, int* 
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(pshared, "__pshared");
-        printer.set_enum_printer_with_depth(print_pthread_visibility_flag, *pshared, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(pshared, "__pshared");
+        printer->set_enum_printer_with_depth(print_pthread_visibility_flag, *pshared, 1);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_barrierattr_getpshared(attr, pshared);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_barrierattr_getpshared, abii_ret)
     return real_pthread_barrierattr_getpshared(attr, pshared);
 }
@@ -2546,15 +2546,15 @@ int abii_pthread_barrierattr_setpshared(pthread_barrierattr_t* attr, int pshared
 
         abii_args->push_arg(new ArgPrinter(attr, "__attr"));
 
-        auto printer = ArgPrinter(pshared, "__pshared");
-        printer.set_enum_printer(print_pthread_visibility_flag, pshared);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(pshared, "__pshared");
+        printer->set_enum_printer(print_pthread_visibility_flag, pshared);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_barrierattr_setpshared(attr, pshared);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_barrierattr_setpshared, abii_ret)
     return real_pthread_barrierattr_setpshared(attr, pshared);
 }
@@ -2573,9 +2573,9 @@ int abii_pthread_key_create(pthread_key_t* key, void (*destr_function)(void*)) _
 
         auto abii_ret = real_pthread_key_create(key, destr_function);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_key_create, abii_ret)
     return real_pthread_key_create(key, destr_function);
 }
@@ -2592,9 +2592,9 @@ extern "C" int abii_pthread_key_delete(pthread_key_t key) __THROW
 
         auto abii_ret = real_pthread_key_delete(key);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_key_delete, abii_ret)
     return real_pthread_key_delete(key);
 }
@@ -2630,9 +2630,9 @@ int abii_pthread_setspecific(pthread_key_t key, const void* pointer) __THROW
 
         auto abii_ret = real_pthread_setspecific(key, pointer);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_setspecific, abii_ret)
     return real_pthread_setspecific(key, pointer);
 }
@@ -2648,15 +2648,15 @@ int abii_pthread_getcpuclockid(pthread_t thread_id, __clockid_t* clock_id) __THR
 
         abii_args->push_arg(new ArgPrinter(thread_id, "__thread_id"));
 
-        auto printer = ArgPrinter(clock_id, "__clock_id");
-        printer.set_enum_printer_with_depth(print_time_clock, *clock_id, 1);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(clock_id, "__clock_id");
+        printer->set_enum_printer_with_depth(print_time_clock, *clock_id, 1);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_pthread_getcpuclockid(thread_id, clock_id);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(pthread_getcpuclockid, abii_ret)
     return real_pthread_getcpuclockid(thread_id, clock_id);
 }
@@ -2675,9 +2675,9 @@ extern "C" int abii_pthread_atfork(void (*prepare)(), void (*parent)(), void (*c
 
         auto abii_ret = real_pthread_atfork(prepare, parent, child);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(pthread_atfork, abii_ret)
     return real_pthread_atfork(prepare, parent, child);
 }

@@ -80,9 +80,9 @@ extern "C" int abii_renameat2(int oldfd, const char* old, int newfd, const char*
         abii_args->push_arg(new ArgPrinter(newfd, "__newfd"));
         abii_args->push_arg(new ArgPrinter(_new, "__new"));
 
-        auto printer = ArgPrinter(_new, "__flags");
-        printer.set_enum_printer(print_stdio_rename_flags, flags);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(_new, "__flags");
+        printer->set_enum_printer(print_stdio_rename_flags, flags);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_renameat2(oldfd, old, newfd, _new, flags);
 
@@ -184,9 +184,9 @@ char* abii_tempnam(const char* dir, const char* pfx) __THROW
         pre_fmtd_str pi_str = "tempnam(__dir, __pfx)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        auto printer = ArgPrinter(dir, "__dir");
-        printer.set_enum_printer(print_stdio_p_tmpdir, dir);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(dir, "__dir");
+        printer->set_enum_printer(print_stdio_p_tmpdir, dir);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(pfx, "__pfx"));
 
@@ -392,10 +392,10 @@ FILE* abii_open_memstream(char** bufloc, size_t* sizeloc) __THROW
         pre_fmtd_str pi_str = "open_memstream(__bufloc, __sizeloc)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        auto printer = ArgPrinter(bufloc, "__bufloc");
+        auto printer = new ArgPrinter(bufloc, "__bufloc");
         // TODO: This is not implemented yet
-        // printer.set_len(*sizeloc, 1);
-        abii_args->push_arg(&printer);
+        // printer->set_len(*sizeloc, 1);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(sizeloc, "__sizeloc"));
 
@@ -416,10 +416,10 @@ __FILE* abii_open_wmemstream(wchar_t** bufloc, size_t* sizeloc) __THROW
         pre_fmtd_str pi_str = "open_wmemstream(__bufloc, __sizeloc)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        auto printer = ArgPrinter(bufloc, "__bufloc");
+        auto printer = new ArgPrinter(bufloc, "__bufloc");
         // TODO: This is not implemented yet
-        // printer.set_len(*sizeloc, 1);
-        abii_args->push_arg(&printer);
+        // printer->set_len(*sizeloc, 1);
+        abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(sizeloc, "__sizeloc"));
 
@@ -459,17 +459,17 @@ int abii_setvbuf(FILE* stream, char* buf, int modes, size_t n) __THROW
 
         abii_args->push_arg(new ArgPrinter(stream, "__stream"));
 
-        auto printer = ArgPrinter(buf, "__buf");
-        printer.set_len(n);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(buf, "__buf");
+        printer->set_len(n);
+        abii_args->push_arg(printer);
 
-        auto printer1 = ArgPrinter(modes, "__modes");
-        printer1.set_enum_printer(print_stdio_buffer_mode, modes);
-        abii_args->push_arg(&printer1);
+        auto printer1 = new ArgPrinter(modes, "__modes");
+        printer1->set_enum_printer(print_stdio_buffer_mode, modes);
+        abii_args->push_arg(printer1);
 
-        auto printer2 = ArgPrinter(n, "__n");
-        printer2.set_enum_printer(print_stdio_bufsiz, n);
-        abii_args->push_arg(&printer2);
+        auto printer2 = new ArgPrinter(n, "__n");
+        printer2->set_enum_printer(print_stdio_bufsiz, n);
+        abii_args->push_arg(printer2);
 
         auto abii_ret = real_setvbuf(stream, buf, modes, n);
 
@@ -489,13 +489,13 @@ void abii_setbuffer(FILE* stream, char* buf, size_t size) __THROW
 
         abii_args->push_arg(new ArgPrinter(stream, "__stream"));
 
-        auto printer = ArgPrinter(buf, "__buf");
-        printer.set_len(size);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(buf, "__buf");
+        printer->set_len(size);
+        abii_args->push_arg(printer);
 
-        auto printer1 = ArgPrinter(size, "__size");
-        printer1.set_enum_printer(print_stdio_bufsiz, size);
-        abii_args->push_arg(&printer1);
+        auto printer1 = new ArgPrinter(size, "__size");
+        printer1->set_enum_printer(print_stdio_bufsiz, size);
+        abii_args->push_arg(printer1);
 
         real_setbuffer(stream, buf, size);
     OVERRIDE_SUFFIX(setbuffer,)
@@ -775,9 +775,9 @@ int abii_dprintf(int fd, const char* fmt, ...)
 
         auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real_dprintf), abii_bi_vargs, 1000);
 
-        auto printer1 = ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
-        printer1.set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
+        printer1->set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
+        abii_args->push_return(printer1);
     OVERRIDE_VARIADIC_SUFFIX(dprintf, abii_ret, fmt)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real_dprintf), abii_bi_vargs, 1000));
 }
@@ -797,9 +797,9 @@ int abii_fscanf(FILE* stream, const char* format, ...)
 
         auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real_fscanf), abii_bi_vargs, 1000);
 
-        auto printer1 = ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
-        printer1.set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
+        printer1->set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
+        abii_args->push_return(printer1);
     OVERRIDE_VARIADIC_SUFFIX(fscanf, abii_ret, format)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real_fscanf), abii_bi_vargs, 1000));
 }
@@ -817,9 +817,9 @@ extern "C" int abii_scanf(const char* format, ...) __wur
 
         auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real_scanf), abii_bi_vargs, 1000);
 
-        auto printer1 = ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
-        printer1.set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
+        printer1->set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
+        abii_args->push_return(printer1);
     OVERRIDE_VARIADIC_SUFFIX(scanf, abii_ret, format)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real_scanf), abii_bi_vargs, 1000));
 }
@@ -838,9 +838,9 @@ extern "C" int abii_sscanf(const char* s, const char* format, ...) __THROW
 
         auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real_sscanf), abii_bi_vargs, 1000);
 
-        auto printer1 = ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
-        printer1.set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
+        printer1->set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
+        abii_args->push_return(printer1);
     OVERRIDE_VARIADIC_SUFFIX(sscanf, abii_ret, format)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real_sscanf), abii_bi_vargs, 1000));
 }
@@ -861,9 +861,9 @@ int abii___isoc23_fscanf(FILE* stream, const char* format, ...)
         auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc23_fscanf), abii_bi_vargs,
                                         1000);
 
-        auto printer1 = ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
-        printer1.set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
+        printer1->set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
+        abii_args->push_return(printer1);
     OVERRIDE_VARIADIC_SUFFIX(__isoc23_fscanf, abii_ret, format)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc23_fscanf), abii_bi_vargs, 1000));
 }
@@ -881,9 +881,9 @@ extern "C" __wur int abii___isoc23_scanf(const char* format, ...)
 
         auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc23_scanf), abii_bi_vargs, 1000);
 
-        auto printer1 = ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
-        printer1.set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
+        printer1->set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
+        abii_args->push_return(printer1);
     OVERRIDE_VARIADIC_SUFFIX(__isoc23_scanf, abii_ret, format)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc23_scanf), abii_bi_vargs, 1000));
 }
@@ -903,9 +903,9 @@ int abii___isoc23_sscanf(const char* s, const char* format, ...)
 
         auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc23_sscanf), abii_bi_vargs, 1000);
 
-        auto printer1 = ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
-        printer1.set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
+        printer1->set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
+        abii_args->push_return(printer1);
     OVERRIDE_VARIADIC_SUFFIX(__isoc23_sscanf, abii_ret, format)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc23_sscanf), abii_bi_vargs, 1000));
 }
@@ -926,9 +926,9 @@ int abii___isoc99_fscanf(FILE* stream, const char* format, ...)
         auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc99_fscanf), abii_bi_vargs,
                                         1000);
 
-        auto printer1 = ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
-        printer1.set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
+        printer1->set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
+        abii_args->push_return(printer1);
     OVERRIDE_VARIADIC_SUFFIX(__isoc99_fscanf, abii_ret, format)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc99_fscanf), abii_bi_vargs, 1000));
 }
@@ -946,9 +946,9 @@ extern "C" __wur int abii___isoc99_scanf(const char* format, ...)
 
         auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc99_scanf), abii_bi_vargs, 1000);
 
-        auto printer1 = ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
-        printer1.set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
+        printer1->set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
+        abii_args->push_return(printer1);
     OVERRIDE_VARIADIC_SUFFIX(__isoc99_scanf, abii_ret, format)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc99_scanf), abii_bi_vargs, 1000));
 }
@@ -968,9 +968,9 @@ int abii___isoc99_sscanf(const char* s, const char* format, ...)
 
         auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc99_sscanf), abii_bi_vargs, 1000);
 
-        auto printer1 = ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
-        printer1.set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter<int>(*reinterpret_cast<int*>(abii_ret), "return");
+        printer1->set_enum_printer(print_stdio_eof, *reinterpret_cast<int*>(abii_ret));
+        abii_args->push_return(printer1);
     OVERRIDE_VARIADIC_SUFFIX(__isoc99_sscanf, abii_ret, format)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc99_sscanf), abii_bi_vargs, 1000));
 }
@@ -991,9 +991,9 @@ int abii_vfscanf(FILE* s, const char* format, __gnuc_va_list arg)
 
         auto abii_ret = real_vfscanf(s, format, abii_vargs);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_VALIST_SUFFIX(vfscanf, abii_ret, arg)
     return real_vfscanf(s, format, arg);
 }
@@ -1013,9 +1013,9 @@ int abii_vscanf(const char* format, __gnuc_va_list arg)
 
         auto abii_ret = real_vscanf(format, abii_vargs);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_VALIST_SUFFIX(vscanf, abii_ret, arg)
     return real_vscanf(format, arg);
 }
@@ -1036,9 +1036,9 @@ int abii_vsscanf(const char* s, const char* format, __gnuc_va_list arg) __THROW
 
         auto abii_ret = real_vsscanf(s, format, abii_vargs);
 
-        auto printer1 = ArgPrinter(abii_ret, "return");
-        printer1.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer1);
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_VALIST_SUFFIX(vsscanf, abii_ret, arg)
     return real_vsscanf(s, format, arg);
 }
@@ -1056,9 +1056,9 @@ int abii_fgetc(FILE* stream)
 
         auto abii_ret = real_fgetc(stream);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(fgetc, abii_ret)
     return real_fgetc(stream);
 }
@@ -1091,9 +1091,9 @@ extern "C" int abii_getchar()
 
         auto abii_ret = real_getchar();
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(getchar, abii_ret)
     return real_getchar();
 }
@@ -1126,9 +1126,9 @@ extern "C" int abii_getchar_unlocked()
 
         auto abii_ret = real_getchar_unlocked();
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(getchar_unlocked, abii_ret)
     return real_getchar_unlocked();
 }
@@ -1146,9 +1146,9 @@ int abii_fgetc_unlocked(FILE* stream)
 
         auto abii_ret = real_fgetc_unlocked(stream);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(fgetc_unlocked, abii_ret)
     return real_fgetc_unlocked(stream);
 }
@@ -1167,9 +1167,9 @@ int abii_fputc(int c, FILE* stream)
 
         auto abii_ret = real_fputc(c, stream);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(fputc, abii_ret)
     return real_fputc(c, stream);
 }
@@ -1188,9 +1188,9 @@ int abii_putc(int c, FILE* stream)
 
         auto abii_ret = real_putc(c, stream);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(putc, abii_ret)
     return real_putc(c, stream);
 }
@@ -1207,9 +1207,9 @@ extern "C" int abii_putchar(int c)
 
         auto abii_ret = real_putchar(c);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(putchar, abii_ret)
     return real_putchar(c);
 }
@@ -1228,9 +1228,9 @@ int abii_fputc_unlocked(int c, FILE* stream)
 
         auto abii_ret = real_fputc_unlocked(c, stream);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(fputc_unlocked, abii_ret)
     return real_fputc_unlocked(c, stream);
 }
@@ -1249,9 +1249,9 @@ int abii_putc_unlocked(int c, FILE* stream)
 
         auto abii_ret = real_putc_unlocked(c, stream);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(putc_unlocked, abii_ret)
     return real_putc_unlocked(c, stream);
 }
@@ -1268,9 +1268,9 @@ extern "C" int abii_putchar_unlocked(int c)
 
         auto abii_ret = real_putchar_unlocked(c);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(putchar_unlocked, abii_ret)
     return real_putchar_unlocked(c);
 }
@@ -1288,9 +1288,9 @@ int abii_getw(FILE* stream)
 
         auto abii_ret = real_getw(stream);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(getw, abii_ret)
     return real_getw(stream);
 }
@@ -1309,9 +1309,9 @@ int abii_putw(int w, FILE* stream)
 
         auto abii_ret = real_putw(w, stream);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(putw, abii_ret)
     return real_putw(w, stream);
 }
@@ -1450,9 +1450,9 @@ int abii_fputs(const char* s, FILE* stream)
 
         auto abii_ret = real_fputs(s, stream);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(fputs, abii_ret)
     return real_fputs(s, stream);
 }
@@ -1469,9 +1469,9 @@ extern "C" int abii_puts(const char* s)
 
         auto abii_ret = real_puts(s);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(puts, abii_ret)
     return real_puts(s);
 }
@@ -1490,9 +1490,9 @@ int abii_ungetc(int c, FILE* stream)
 
         auto abii_ret = real_ungetc(c, stream);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(ungetc, abii_ret)
     return real_ungetc(c, stream);
 }
@@ -1553,9 +1553,9 @@ int abii_fputs_unlocked(const char* s, FILE* stream)
 
         auto abii_ret = real_fputs_unlocked(s, stream);
 
-        auto printer = ArgPrinter(abii_ret, "return");
-        printer.set_enum_printer(print_stdio_eof, abii_ret);
-        abii_args->push_return(&printer);
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdio_eof, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(fputs_unlocked, abii_ret)
     return real_fputs_unlocked(s, stream);
 }
@@ -1614,9 +1614,9 @@ int abii_fseek(FILE* stream, long int off, int whence)
         abii_args->push_arg(new ArgPrinter(stream, "__stream"));
         abii_args->push_arg(new ArgPrinter(off, "__off"));
 
-        auto printer = ArgPrinter(whence, "__whence");
-        printer.set_enum_printer(print_stdio_seek_whence, whence);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(whence, "__whence");
+        printer->set_enum_printer(print_stdio_seek_whence, whence);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_fseek(stream, off, whence);
 
@@ -1671,9 +1671,9 @@ int abii_fseeko(FILE* stream, __off_t off, int whence)
         abii_args->push_arg(new ArgPrinter(stream, "__stream"));
         abii_args->push_arg(new ArgPrinter(off, "__off"));
 
-        auto printer = ArgPrinter(whence, "__whence");
-        printer.set_enum_printer(print_stdio_seek_whence, whence);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(whence, "__whence");
+        printer->set_enum_printer(print_stdio_seek_whence, whence);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_fseeko(stream, off, whence);
 
@@ -1750,9 +1750,9 @@ int abii_fseeko64(FILE* stream, __off64_t off, int whence)
         abii_args->push_arg(new ArgPrinter(stream, "__stream"));
         abii_args->push_arg(new ArgPrinter(off, "__off"));
 
-        auto printer = ArgPrinter(whence, "__whence");
-        printer.set_enum_printer(print_stdio_seek_whence, whence);
-        abii_args->push_arg(&printer);
+        auto printer = new ArgPrinter(whence, "__whence");
+        printer->set_enum_printer(print_stdio_seek_whence, whence);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_fseeko64(stream, off, whence);
 

@@ -4557,35 +4557,35 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     // TODO: e_ident should print in the form e_ident[EI_* (elf_enum1)]: NNN [ELF_* (elf_enum2-elf_enum9)] {'c'}
     abii_args->push_arg(new ArgPrinter(obj.e_ident, "e_ident", &os));
 
-    auto printer = ArgPrinter(obj.e_type, "e_type", &os);
-    printer.set_enum_printer(print_elf_et, obj.e_type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.e_type, "e_type", &os);
+    printer->set_enum_printer(print_elf_et, obj.e_type);
+    abii_args->push_arg(printer);
 
-    auto printer1 = ArgPrinter(obj.e_machine, "e_machine", &os);
-    printer1.set_enum_printer(print_elf_em, obj.e_machine);
-    abii_args->push_arg(&printer1);
+    auto printer1 = new ArgPrinter(obj.e_machine, "e_machine", &os);
+    printer1->set_enum_printer(print_elf_em, obj.e_machine);
+    abii_args->push_arg(printer1);
 
-    auto printer2 = ArgPrinter(obj.e_version, "e_version", &os);
-    printer2.set_enum_printer(print_elf_ev, obj.e_version);
-    abii_args->push_arg(&printer2);
+    auto printer2 = new ArgPrinter(obj.e_version, "e_version", &os);
+    printer2->set_enum_printer(print_elf_ev, obj.e_version);
+    abii_args->push_arg(printer2);
 
     abii_args->push_arg(new ArgPrinter(obj.e_entry, "e_entry", &os));
     abii_args->push_arg(new ArgPrinter(obj.e_phoff, "e_phoff", &os));
     abii_args->push_arg(new ArgPrinter(obj.e_shoff, "e_shoff", &os));
 
-    auto printer3 = ArgPrinter(obj.e_flags, "e_flags", &os);
-    printer3.set_enum_printer(print_elf_enum_eflags32, obj.e_flags);
-    abii_args->push_arg(&printer3);
+    auto printer3 = new ArgPrinter(obj.e_flags, "e_flags", &os);
+    printer3->set_enum_printer(print_elf_enum_eflags32, obj.e_flags);
+    abii_args->push_arg(printer3);
 
     auto arm_eabi_version = EF_ARM_EABI_VERSION(obj.e_flags);
-    auto printer4 = ArgPrinter(arm_eabi_version, "\t(EF_ARM_EABI_VERSION)", &os);
-    printer4.set_enum_printer(print_elf_ef_arm_eabi, arm_eabi_version);
-    abii_args->push_arg(&printer4);
+    auto printer4 = new ArgPrinter(arm_eabi_version, "\t(EF_ARM_EABI_VERSION)", &os);
+    printer4->set_enum_printer(print_elf_ef_arm_eabi, arm_eabi_version);
+    abii_args->push_arg(printer4);
 
     auto csky_abi = obj.e_flags & EF_CSKY_ABIMASK;
-    auto printer5 = ArgPrinter(csky_abi, "\t(EF_CSKY_ABI)", &os);
-    printer5.set_enum_printer(print_elf_ef_csky_abiv, csky_abi);
-    abii_args->push_arg(&printer5);
+    auto printer5 = new ArgPrinter(csky_abi, "\t(EF_CSKY_ABI)", &os);
+    printer5->set_enum_printer(print_elf_ef_csky_abiv, csky_abi);
+    abii_args->push_arg(printer5);
 
     auto csky_other = obj.e_flags & EF_CSKY_OTHER;
     abii_args->push_arg(new ArgPrinter(csky_other, "\t(EF_CSKY_OTHER)", &os));
@@ -4596,9 +4596,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.e_ehsize, "e_ehsize", &os));
     abii_args->push_arg(new ArgPrinter(obj.e_phentsize, "e_phentsize", &os));
 
-    auto printer6 = ArgPrinter(obj.e_phnum, "e_phnum", &os);
-    printer6.set_enum_printer(print_elf_pn, obj.e_phnum);
-    abii_args->push_arg(&printer6);
+    auto printer6 = new ArgPrinter(obj.e_phnum, "e_phnum", &os);
+    printer6->set_enum_printer(print_elf_pn, obj.e_phnum);
+    abii_args->push_arg(printer6);
 
     abii_args->push_arg(new ArgPrinter(obj.e_shentsize, "e_shentsize", &os));
     abii_args->push_arg(new ArgPrinter(obj.e_shnum, "e_shnum", &os));
@@ -4613,25 +4613,25 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     // TODO: e_ident should print in the form e_ident[EI_* (elf_enum1)]: NNN [ELF_* (elf_enum2-elf_enum9)] {'c'}
     abii_args->push_arg(new ArgPrinter(obj.e_ident, "e_ident", &os));
 
-    auto printer = ArgPrinter(obj.e_type, "e_type", &os);
-    printer.set_enum_printer(print_elf_et, obj.e_type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.e_type, "e_type", &os);
+    printer->set_enum_printer(print_elf_et, obj.e_type);
+    abii_args->push_arg(printer);
 
-    auto printer1 = ArgPrinter(obj.e_machine, "e_machine", &os);
-    printer1.set_enum_printer(print_elf_em, obj.e_machine);
-    abii_args->push_arg(&printer1);
+    auto printer1 = new ArgPrinter(obj.e_machine, "e_machine", &os);
+    printer1->set_enum_printer(print_elf_em, obj.e_machine);
+    abii_args->push_arg(printer1);
 
-    auto printer2 = ArgPrinter(obj.e_version, "e_version", &os);
-    printer2.set_enum_printer(print_elf_ev, obj.e_version);
-    abii_args->push_arg(&printer2);
+    auto printer2 = new ArgPrinter(obj.e_version, "e_version", &os);
+    printer2->set_enum_printer(print_elf_ev, obj.e_version);
+    abii_args->push_arg(printer2);
 
     abii_args->push_arg(new ArgPrinter(obj.e_entry, "e_entry", &os));
     abii_args->push_arg(new ArgPrinter(obj.e_phoff, "e_phoff", &os));
     abii_args->push_arg(new ArgPrinter(obj.e_shoff, "e_shoff", &os));
 
-    auto printer3 = ArgPrinter(obj.e_flags, "e_flags", &os);
-    printer3.set_enum_printer(print_elf_enum_eflags64, obj.e_flags);
-    abii_args->push_arg(&printer3);
+    auto printer3 = new ArgPrinter(obj.e_flags, "e_flags", &os);
+    printer3->set_enum_printer(print_elf_enum_eflags64, obj.e_flags);
+    abii_args->push_arg(printer3);
 
     auto ia_64_maskos = obj.e_flags & EF_IA_64_MASKOS;
     abii_args->push_arg(new ArgPrinter(ia_64_maskos, "\t(EF_IA_64_OS)", &os));
@@ -4642,9 +4642,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.e_ehsize, "e_ehsize", &os));
     abii_args->push_arg(new ArgPrinter(obj.e_phentsize, "e_phentsize", &os));
 
-    auto printer4 = ArgPrinter(obj.e_phnum, "e_phnum", &os);
-    printer4.set_enum_printer(print_elf_pn, obj.e_phnum);
-    abii_args->push_arg(&printer4);
+    auto printer4 = new ArgPrinter(obj.e_phnum, "e_phnum", &os);
+    printer4->set_enum_printer(print_elf_pn, obj.e_phnum);
+    abii_args->push_arg(printer4);
 
     abii_args->push_arg(new ArgPrinter(obj.e_shentsize, "e_shentsize", &os));
     abii_args->push_arg(new ArgPrinter(obj.e_shnum, "e_shnum", &os));
@@ -4658,13 +4658,13 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_PREFIX
     abii_args->push_arg(new ArgPrinter(obj.sh_name, "sh_name", &os));
 
-    auto printer = ArgPrinter(obj.sh_type, "sh_type", &os);
-    printer.set_enum_printer(print_elf_enum_shtype32, obj.sh_type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.sh_type, "sh_type", &os);
+    printer->set_enum_printer(print_elf_enum_shtype32, obj.sh_type);
+    abii_args->push_arg(printer);
 
-    auto printer1 = ArgPrinter(obj.sh_flags, "sh_flags", &os);
-    printer1.set_enum_printer(print_elf_enum_shflags32, obj.sh_flags);
-    abii_args->push_arg(&printer1);
+    auto printer1 = new ArgPrinter(obj.sh_flags, "sh_flags", &os);
+    printer1->set_enum_printer(print_elf_enum_shflags32, obj.sh_flags);
+    abii_args->push_arg(printer1);
 
     abii_args->push_arg(new ArgPrinter(obj.sh_addr, "sh_addr", &os));
     abii_args->push_arg(new ArgPrinter(obj.sh_offset, "sh_offset", &os));
@@ -4682,13 +4682,13 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_PREFIX
     abii_args->push_arg(new ArgPrinter(obj.sh_name, "sh_name", &os));
 
-    auto printer = ArgPrinter(obj.sh_type, "sh_type", &os);
-    printer.set_enum_printer(print_elf_enum_shtype64, obj.sh_type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.sh_type, "sh_type", &os);
+    printer->set_enum_printer(print_elf_enum_shtype64, obj.sh_type);
+    abii_args->push_arg(printer);
 
-    auto printer1 = ArgPrinter(obj.sh_flags, "sh_flags", &os);
-    printer1.set_enum_printer(print_elf_enum_shflags64, obj.sh_flags);
-    abii_args->push_arg(&printer1);
+    auto printer1 = new ArgPrinter(obj.sh_flags, "sh_flags", &os);
+    printer1->set_enum_printer(print_elf_enum_shflags64, obj.sh_flags);
+    abii_args->push_arg(printer1);
 
     abii_args->push_arg(new ArgPrinter(obj.sh_addr, "sh_addr", &os));
     abii_args->push_arg(new ArgPrinter(obj.sh_offset, "sh_offset", &os));
@@ -4704,9 +4704,9 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, Elf32_Chdr
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.ch_type, "ch_type", &os);
-    printer.set_enum_printer(print_elf_elfcompress, obj.ch_type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.ch_type, "ch_type", &os);
+    printer->set_enum_printer(print_elf_elfcompress, obj.ch_type);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.ch_size, "ch_size", &os));
     abii_args->push_arg(new ArgPrinter(obj.ch_addralign, "ch_addralign", &os, RECURSE));
@@ -4717,9 +4717,9 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, Elf64_Chdr
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.ch_type, "ch_type", &os);
-    printer.set_enum_printer(print_elf_elfcompress, obj.ch_type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.ch_type, "ch_type", &os);
+    printer->set_enum_printer(print_elf_elfcompress, obj.ch_type);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.ch_reserved, "ch_reserved", &os));
     abii_args->push_arg(new ArgPrinter(obj.ch_size, "ch_size", &os));
@@ -4735,32 +4735,32 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.st_value, "st_value", &os));
     abii_args->push_arg(new ArgPrinter(obj.st_size, "st_size", &os));
 
-    auto printer = ArgPrinter(obj.st_info, "st_info", &os);
-    printer.set_enum_printer(print_elf_stb_mips, obj.st_info);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.st_info, "st_info", &os);
+    printer->set_enum_printer(print_elf_stb_mips, obj.st_info);
+    abii_args->push_arg(printer);
 
     auto st_bind = ELF32_ST_BIND(obj.st_info);
-    auto printer1 = ArgPrinter(st_bind, "\t(ST_BIND)", &os);
-    printer1.set_enum_printer(print_elf_stb, st_bind);
-    abii_args->push_arg(&printer1);
+    auto printer1 = new ArgPrinter(st_bind, "\t(ST_BIND)", &os);
+    printer1->set_enum_printer(print_elf_stb, st_bind);
+    abii_args->push_arg(printer1);
 
     auto st_type = ELF32_ST_TYPE(obj.st_info);
-    auto printer2 = ArgPrinter(st_type, "\t(ST_TYPE)", &os);
-    printer2.set_enum_printer(print_elf_enum_sttype32, st_type);
-    abii_args->push_arg(&printer2);
+    auto printer2 = new ArgPrinter(st_type, "\t(ST_TYPE)", &os);
+    printer2->set_enum_printer(print_elf_enum_sttype32, st_type);
+    abii_args->push_arg(printer2);
 
-    auto printer3 = ArgPrinter(obj.st_other, "st_other", &os);
-    printer3.set_enum_printer(print_elf_enum_stother32, obj.st_other);
-    abii_args->push_arg(&printer3);
+    auto printer3 = new ArgPrinter(obj.st_other, "st_other", &os);
+    printer3->set_enum_printer(print_elf_enum_stother32, obj.st_other);
+    abii_args->push_arg(printer3);
 
     auto st_visibility = ELF32_ST_VISIBILITY(obj.st_other);
-    auto printer4 = ArgPrinter(st_visibility, "\t(ST_VISIBILITY)", &os);
-    printer4.set_enum_printer(print_elf_stv, st_visibility);
-    abii_args->push_arg(&printer4);
+    auto printer4 = new ArgPrinter(st_visibility, "\t(ST_VISIBILITY)", &os);
+    printer4->set_enum_printer(print_elf_stv, st_visibility);
+    abii_args->push_arg(printer4);
 
-    auto printer5 = ArgPrinter(obj.st_shndx, "st_shndx", &os, RECURSE);
-    printer5.set_enum_printer(print_elf_enum_stshndx, obj.st_shndx);
-    abii_args->push_arg(&printer5);
+    auto printer5 = new ArgPrinter(obj.st_shndx, "st_shndx", &os, RECURSE);
+    printer5->set_enum_printer(print_elf_enum_stshndx, obj.st_shndx);
+    abii_args->push_arg(printer5);
     OVERRIDE_STREAM_SUFFIX
 }
 
@@ -4772,27 +4772,27 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.st_info, "st_info", &os));
 
     auto st_bind = ELF64_ST_BIND(obj.st_info);
-    auto printer = ArgPrinter(st_bind, "\t(ST_BIND)", &os);
-    printer.set_enum_printer(print_elf_stb, st_bind);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(st_bind, "\t(ST_BIND)", &os);
+    printer->set_enum_printer(print_elf_stb, st_bind);
+    abii_args->push_arg(printer);
 
     auto st_type = ELF64_ST_TYPE(obj.st_info);
-    auto printer1 = ArgPrinter(st_type, "\t(ST_TYPE)", &os);
-    printer1.set_enum_printer(print_elf_enum_sttype64, st_type);
-    abii_args->push_arg(&printer1);
+    auto printer1 = new ArgPrinter(st_type, "\t(ST_TYPE)", &os);
+    printer1->set_enum_printer(print_elf_enum_sttype64, st_type);
+    abii_args->push_arg(printer1);
 
-    auto printer2 = ArgPrinter(obj.st_other, "st_other", &os);
-    printer2.set_enum_printer(print_elf_enum_stother64, obj.st_other);
-    abii_args->push_arg(&printer2);
+    auto printer2 = new ArgPrinter(obj.st_other, "st_other", &os);
+    printer2->set_enum_printer(print_elf_enum_stother64, obj.st_other);
+    abii_args->push_arg(printer2);
 
     auto st_visibility = ELF64_ST_VISIBILITY(obj.st_other);
-    auto printer3 = ArgPrinter(st_visibility, "\t(ST_VISIBILITY)", &os);
-    printer3.set_enum_printer(print_elf_stv, st_visibility);
-    abii_args->push_arg(&printer3);
+    auto printer3 = new ArgPrinter(st_visibility, "\t(ST_VISIBILITY)", &os);
+    printer3->set_enum_printer(print_elf_stv, st_visibility);
+    abii_args->push_arg(printer3);
 
-    auto printer4 = ArgPrinter(obj.st_shndx, "st_shndx", &os);
-    printer4.set_enum_printer(print_elf_enum_stshndx, obj.st_shndx);
-    abii_args->push_arg(&printer4);
+    auto printer4 = new ArgPrinter(obj.st_shndx, "st_shndx", &os);
+    printer4->set_enum_printer(print_elf_enum_stshndx, obj.st_shndx);
+    abii_args->push_arg(printer4);
 
     abii_args->push_arg(new ArgPrinter(obj.st_value, "st_value", &os));
     abii_args->push_arg(new ArgPrinter(obj.st_size, "st_size", &os, RECURSE));
@@ -4804,13 +4804,13 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, Elf32_Symi
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.si_boundto, "si_boundto", &os);
-    printer.set_enum_printer(print_elf_syminfo_bt, obj.si_boundto);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.si_boundto, "si_boundto", &os);
+    printer->set_enum_printer(print_elf_syminfo_bt, obj.si_boundto);
+    abii_args->push_arg(printer);
 
-    auto printer1 = ArgPrinter(obj.si_flags, "si_flags", &os, RECURSE);
-    printer1.set_enum_printer(print_elf_syminfo_flg, obj.si_flags);
-    abii_args->push_arg(&printer1);
+    auto printer1 = new ArgPrinter(obj.si_flags, "si_flags", &os, RECURSE);
+    printer1->set_enum_printer(print_elf_syminfo_flg, obj.si_flags);
+    abii_args->push_arg(printer1);
     OVERRIDE_STREAM_SUFFIX
 }
 
@@ -4825,9 +4825,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(r_sym, "\t(R_SYM)", &os));
 
     auto r_type = ELF32_R_TYPE(obj.r_info);
-    auto printer = ArgPrinter(r_type, "\t(R_TYPE)", &os, RECURSE);
-    printer.set_enum_printer(print_elf_enum_rtype32, r_type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(r_type, "\t(R_TYPE)", &os, RECURSE);
+    printer->set_enum_printer(print_elf_enum_rtype32, r_type);
+    abii_args->push_arg(printer);
     OVERRIDE_STREAM_SUFFIX
 }
 
@@ -4842,9 +4842,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(r_sym, "\t(R_SYM)", &os));
 
     auto r_type = ELF64_R_TYPE(obj.r_info);
-    auto printer = ArgPrinter(r_type, "\t(R_TYPE)", &os, RECURSE);
-    printer.set_enum_printer(print_elf_enum_rtype64, r_type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(r_type, "\t(R_TYPE)", &os, RECURSE);
+    printer->set_enum_printer(print_elf_enum_rtype64, r_type);
+    abii_args->push_arg(printer);
     OVERRIDE_STREAM_SUFFIX
 }
 
@@ -4859,9 +4859,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(r_sym, "\t(R_SYM)", &os));
 
     auto r_type = ELF32_R_TYPE(obj.r_info);
-    auto printer = ArgPrinter(r_type, "\t(R_TYPE)", &os, RECURSE);
-    printer.set_enum_printer(print_elf_enum_rtype32, r_type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(r_type, "\t(R_TYPE)", &os, RECURSE);
+    printer->set_enum_printer(print_elf_enum_rtype32, r_type);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.r_addend, "r_addend", &os, RECURSE));
     OVERRIDE_STREAM_SUFFIX
@@ -4878,14 +4878,14 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(r_sym, "\t(R_SYM)", &os));
 
     auto r_type = ELF64_R_TYPE(obj.r_info);
-    auto printer = ArgPrinter(r_type, "\t(R_TYPE)", &os, RECURSE);
-    printer.set_enum_printer(print_elf_enum_rtype64, r_type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(r_type, "\t(R_TYPE)", &os, RECURSE);
+    printer->set_enum_printer(print_elf_enum_rtype64, r_type);
+    abii_args->push_arg(printer);
 
-    auto printer1 = ArgPrinter(obj.r_addend, "r_addend", &os, RECURSE);
+    auto printer1 = new ArgPrinter(obj.r_addend, "r_addend", &os, RECURSE);
     if (r_type == R_ALPHA_LITUSE)
-        printer1.set_enum_printer(print_elf_lituse_alpha, obj.r_addend);
-    abii_args->push_arg(&printer);
+        printer1->set_enum_printer(print_elf_lituse_alpha, obj.r_addend);
+    abii_args->push_arg(printer);
     OVERRIDE_STREAM_SUFFIX
 }
 
@@ -4893,9 +4893,9 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, Elf32_Phdr
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.p_type, "p_type", &os);
-    printer.set_enum_printer(print_elf_enum_ptype32, obj.p_type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.p_type, "p_type", &os);
+    printer->set_enum_printer(print_elf_enum_ptype32, obj.p_type);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.p_offset, "p_offset", &os));
     abii_args->push_arg(new ArgPrinter(obj.p_vaddr, "p_vaddr", &os));
@@ -4903,9 +4903,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.p_filesz, "p_filesz", &os));
     abii_args->push_arg(new ArgPrinter(obj.p_memsz, "p_memsz", &os));
 
-    auto printer1 = ArgPrinter(obj.p_flags, "p_flags", &os);
-    printer1.set_enum_printer(print_elf_enum_pflags32, obj.p_flags);
-    abii_args->push_arg(&printer1);
+    auto printer1 = new ArgPrinter(obj.p_flags, "p_flags", &os);
+    printer1->set_enum_printer(print_elf_enum_pflags32, obj.p_flags);
+    abii_args->push_arg(printer1);
 
     abii_args->push_arg(new ArgPrinter(obj.p_align, "p_align", &os, RECURSE));
     OVERRIDE_STREAM_SUFFIX
@@ -4915,13 +4915,13 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, Elf64_Phdr
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.p_type, "p_type", &os);
-    printer.set_enum_printer(print_elf_enum_ptype64, obj.p_type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.p_type, "p_type", &os);
+    printer->set_enum_printer(print_elf_enum_ptype64, obj.p_type);
+    abii_args->push_arg(printer);
 
-    auto printer1 = ArgPrinter(obj.p_flags, "p_flags", &os);
-    printer1.set_enum_printer(print_elf_enum_pflags64, obj.p_flags);
-    abii_args->push_arg(&printer1);
+    auto printer1 = new ArgPrinter(obj.p_flags, "p_flags", &os);
+    printer1->set_enum_printer(print_elf_enum_pflags64, obj.p_flags);
+    abii_args->push_arg(printer1);
 
     abii_args->push_arg(new ArgPrinter(obj.p_offset, "p_offset", &os));
     abii_args->push_arg(new ArgPrinter(obj.p_vaddr, "p_vaddr", &os));
@@ -4936,27 +4936,27 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, Elf32_Dyn>
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.d_tag, "d_tag", &os);
-    printer.set_enum_printer(print_elf_enum_dtag32, obj.d_tag);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.d_tag, "d_tag", &os);
+    printer->set_enum_printer(print_elf_enum_dtag32, obj.d_tag);
+    abii_args->push_arg(printer);
 
     pre_fmtd_str str = "d_un: (" + get_type(obj.d_un) + ")";
     abii_args->push_arg(new ArgPrinter(str, "", &os));
 
-    auto printer1 = ArgPrinter(obj.d_un.d_val, "\td_val", &os);
+    auto printer1 = new ArgPrinter(obj.d_un.d_val, "\td_val", &os);
     if (obj.d_tag == DT_FLAGS)
-        printer1.set_enum_printer(print_elf_df, obj.d_un.d_val);
+        printer1->set_enum_printer(print_elf_df, obj.d_un.d_val);
     else if (obj.d_tag == DT_FLAGS_1)
-        printer1.set_enum_printer(print_elf_df_1, obj.d_un.d_val);
+        printer1->set_enum_printer(print_elf_df_1, obj.d_un.d_val);
     else if (obj.d_tag == DT_FEATURE_1)
-        printer1.set_enum_printer(print_elf_dtf_1, obj.d_un.d_val);
+        printer1->set_enum_printer(print_elf_dtf_1, obj.d_un.d_val);
     else if (obj.d_tag == DT_POSFLAG_1)
-        printer1.set_enum_printer(print_elf_df_p1, obj.d_un.d_val);
+        printer1->set_enum_printer(print_elf_df_p1, obj.d_un.d_val);
     else if (obj.d_tag == DT_MIPS_FLAGS)
-        printer1.set_enum_printer(print_elf_rhf, obj.d_un.d_val);
+        printer1->set_enum_printer(print_elf_rhf, obj.d_un.d_val);
     else if (obj.d_tag == DT_PPC_OPT)
-        printer1.set_enum_printer(print_elf_ppc_opt, obj.d_un.d_val);
-    abii_args->push_arg(&printer1);
+        printer1->set_enum_printer(print_elf_ppc_opt, obj.d_un.d_val);
+    abii_args->push_arg(printer1);
 
     abii_args->push_arg(new ArgPrinter(obj.d_un.d_ptr, "\td_ptr", &os, RECURSE));
     OVERRIDE_STREAM_SUFFIX
@@ -4966,25 +4966,25 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, Elf64_Dyn>
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.d_tag, "d_tag", &os);
-    printer.set_enum_printer(print_elf_enum_dtag64, obj.d_tag);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.d_tag, "d_tag", &os);
+    printer->set_enum_printer(print_elf_enum_dtag64, obj.d_tag);
+    abii_args->push_arg(printer);
 
     pre_fmtd_str str = "d_un: (" + get_type(obj.d_un) + ")";
     abii_args->push_arg(new ArgPrinter(str, "", &os));
 
-    auto printer1 = ArgPrinter(obj.d_un.d_val, "\td_val", &os);
+    auto printer1 = new ArgPrinter(obj.d_un.d_val, "\td_val", &os);
     if (obj.d_tag == DT_FLAGS)
-        printer1.set_enum_printer(print_elf_df, obj.d_un.d_val);
+        printer1->set_enum_printer(print_elf_df, obj.d_un.d_val);
     else if (obj.d_tag == DT_FLAGS_1)
-        printer1.set_enum_printer(print_elf_df_1, obj.d_un.d_val);
+        printer1->set_enum_printer(print_elf_df_1, obj.d_un.d_val);
     else if (obj.d_tag == DT_FEATURE_1)
-        printer1.set_enum_printer(print_elf_dtf_1, obj.d_un.d_val);
+        printer1->set_enum_printer(print_elf_dtf_1, obj.d_un.d_val);
     else if (obj.d_tag == DT_POSFLAG_1)
-        printer1.set_enum_printer(print_elf_df_p1, obj.d_un.d_val);
+        printer1->set_enum_printer(print_elf_df_p1, obj.d_un.d_val);
     else if (obj.d_tag == DT_PPC64_OPT)
-        printer1.set_enum_printer(print_elf_ppc64_opt, obj.d_un.d_val);
-    abii_args->push_arg(&printer1);
+        printer1->set_enum_printer(print_elf_ppc64_opt, obj.d_un.d_val);
+    abii_args->push_arg(printer1);
 
     abii_args->push_arg(new ArgPrinter(obj.d_un.d_ptr, "\td_ptr", &os, RECURSE));
     OVERRIDE_STREAM_SUFFIX
@@ -4995,17 +4995,17 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, Elf32_Verd
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.vd_version, "vd_version", &os);
-    printer.set_enum_printer(print_elf_ver_def, obj.vd_version);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.vd_version, "vd_version", &os);
+    printer->set_enum_printer(print_elf_ver_def, obj.vd_version);
+    abii_args->push_arg(printer);
 
-    auto printer1 = ArgPrinter(obj.vd_flags, "vd_flags", &os);
-    printer1.set_enum_printer(print_elf_ver_flg, obj.vd_flags);
-    abii_args->push_arg(&printer1);
+    auto printer1 = new ArgPrinter(obj.vd_flags, "vd_flags", &os);
+    printer1->set_enum_printer(print_elf_ver_flg, obj.vd_flags);
+    abii_args->push_arg(printer1);
 
-    auto printer2 = ArgPrinter(obj.vd_ndx, "vd_ndx", &os);
-    printer2.set_enum_printer(print_elf_ver_ndx, obj.vd_ndx);
-    abii_args->push_arg(&printer2);
+    auto printer2 = new ArgPrinter(obj.vd_ndx, "vd_ndx", &os);
+    printer2->set_enum_printer(print_elf_ver_ndx, obj.vd_ndx);
+    abii_args->push_arg(printer2);
 
     abii_args->push_arg(new ArgPrinter(obj.vd_cnt, "vd_cnt", &os));
     abii_args->push_arg(new ArgPrinter(obj.vd_hash, "vd_hash", &os));
@@ -5029,9 +5029,9 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, Elf32_Vern
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.vn_version, "vn_version", &os);
-    printer.set_enum_printer(print_elf_ver_need, obj.vn_version);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.vn_version, "vn_version", &os);
+    printer->set_enum_printer(print_elf_ver_need, obj.vn_version);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.vn_cnt, "vn_cnt", &os));
     abii_args->push_arg(new ArgPrinter(obj.vn_file, "vn_file", &os));
@@ -5047,9 +5047,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_PREFIX
     abii_args->push_arg(new ArgPrinter(obj.vna_hash, "vna_hash", &os));
 
-    auto printer = ArgPrinter(obj.vna_flags, "vna_flags", &os);
-    printer.set_enum_printer(print_elf_ver_flg, obj.vna_flags);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.vna_flags, "vna_flags", &os);
+    printer->set_enum_printer(print_elf_ver_flg, obj.vna_flags);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.vna_other, "vna_other", &os));
     abii_args->push_arg(new ArgPrinter(obj.vna_name, "vna_name", &os));
@@ -5062,9 +5062,9 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, Elf32_auxv
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.a_type, "a_type", &os);
-    printer.set_enum_printer(print_elf_at, obj.a_type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.a_type, "a_type", &os);
+    printer->set_enum_printer(print_elf_at, obj.a_type);
+    abii_args->push_arg(printer);
 
     pre_fmtd_str str = "a_un: (" + get_type(obj.a_un) + ")";
     abii_args->push_arg(new ArgPrinter(str, "", &os));
@@ -5081,9 +5081,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.n_namesz, "n_namesz", &os));
     abii_args->push_arg(new ArgPrinter(obj.n_descsz, "n_descsz", &os));
 
-    auto printer = ArgPrinter(obj.n_type, "n_type", &os, RECURSE);
-    printer.set_enum_printer(print_elf_enum_ntype, obj.n_type);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.n_type, "n_type", &os, RECURSE);
+    printer->set_enum_printer(print_elf_enum_ntype, obj.n_type);
+    abii_args->push_arg(printer);
     OVERRIDE_STREAM_SUFFIX
 }
 
@@ -5157,21 +5157,21 @@ template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, Elf_Option
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    auto printer = ArgPrinter(obj.kind, "kind", &os);
-    printer.set_enum_printer(print_elf_odk, obj.kind);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.kind, "kind", &os);
+    printer->set_enum_printer(print_elf_odk, obj.kind);
+    abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.size, "size", &os));
     abii_args->push_arg(new ArgPrinter(obj.section, "section", &os));
 
-    auto printer1 = ArgPrinter(obj.info, "info", &os, RECURSE);
+    auto printer1 = new ArgPrinter(obj.info, "info", &os, RECURSE);
     if (obj.kind == ODK_EXCEPTIONS)
-        printer1.set_enum_printer(print_elf_oex, obj.info);
+        printer1->set_enum_printer(print_elf_oex, obj.info);
     else if (obj.kind == ODK_HWPATCH)
-        printer1.set_enum_printer(print_elf_ohw, obj.info);
+        printer1->set_enum_printer(print_elf_ohw, obj.info);
     else if (obj.kind == ODK_HWAND || obj.kind == ODK_HWOR)
-        printer1.set_enum_printer(print_elf_ohwa, obj.info);
-    abii_args->push_arg(&printer1);
+        printer1->set_enum_printer(print_elf_ohwa, obj.info);
+    abii_args->push_arg(printer1);
     OVERRIDE_STREAM_SUFFIX
 }
 
@@ -5194,9 +5194,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.l_checksum, "l_checksum", &os));
     abii_args->push_arg(new ArgPrinter(obj.l_version, "l_version", &os));
 
-    auto printer = ArgPrinter(obj.l_flags, "l_flags", &os, RECURSE);
-    printer.set_enum_printer(print_elf_ll, obj.l_flags);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.l_flags, "l_flags", &os, RECURSE);
+    printer->set_enum_printer(print_elf_ll, obj.l_flags);
+    abii_args->push_arg(printer);
     OVERRIDE_STREAM_SUFFIX
 }
 
@@ -5208,31 +5208,31 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.isa_level, "isa_level", &os));
     abii_args->push_arg(new ArgPrinter(obj.isa_rev, "isa_rev", &os));
 
-    auto printer = ArgPrinter(obj.gpr_size, "gpr_size", &os);
-    printer.set_enum_printer(print_elf_mips_afl_reg, obj.gpr_size);
-    abii_args->push_arg(&printer);
+    auto printer = new ArgPrinter(obj.gpr_size, "gpr_size", &os);
+    printer->set_enum_printer(print_elf_mips_afl_reg, obj.gpr_size);
+    abii_args->push_arg(printer);
 
-    auto printer1 = ArgPrinter(obj.cpr1_size, "cpr1_size", &os);
-    printer1.set_enum_printer(print_elf_mips_afl_reg, obj.cpr1_size);
-    abii_args->push_arg(&printer1);
+    auto printer1 = new ArgPrinter(obj.cpr1_size, "cpr1_size", &os);
+    printer1->set_enum_printer(print_elf_mips_afl_reg, obj.cpr1_size);
+    abii_args->push_arg(printer1);
 
-    auto printer2 = ArgPrinter(obj.cpr2_size, "cpr2_size", &os);
-    printer2.set_enum_printer(print_elf_mips_afl_reg, obj.cpr2_size);
-    abii_args->push_arg(&printer2);
+    auto printer2 = new ArgPrinter(obj.cpr2_size, "cpr2_size", &os);
+    printer2->set_enum_printer(print_elf_mips_afl_reg, obj.cpr2_size);
+    abii_args->push_arg(printer2);
 
     abii_args->push_arg(new ArgPrinter(obj.fp_abi, "fp_abi", &os));
 
-    auto printer3 = ArgPrinter(obj.isa_ext, "isa_ext", &os);
-    printer3.set_enum_printer(print_elf_mips_afl_ext, obj.isa_ext);
-    abii_args->push_arg(&printer3);
+    auto printer3 = new ArgPrinter(obj.isa_ext, "isa_ext", &os);
+    printer3->set_enum_printer(print_elf_mips_afl_ext, obj.isa_ext);
+    abii_args->push_arg(printer3);
 
-    auto printer4 = ArgPrinter(obj.ases, "ases", &os);
-    printer4.set_enum_printer(print_elf_mips_afl_ase, obj.ases);
-    abii_args->push_arg(&printer4);
+    auto printer4 = new ArgPrinter(obj.ases, "ases", &os);
+    printer4->set_enum_printer(print_elf_mips_afl_ase, obj.ases);
+    abii_args->push_arg(printer4);
 
-    auto printer5 = ArgPrinter(obj.flags1, "flags1", &os);
-    printer5.set_enum_printer(print_elf_mips_afl_flags1, obj.flags1);
-    abii_args->push_arg(&printer5);
+    auto printer5 = new ArgPrinter(obj.flags1, "flags1", &os);
+    printer5->set_enum_printer(print_elf_mips_afl_flags1, obj.flags1);
+    abii_args->push_arg(printer5);
 
     abii_args->push_arg(new ArgPrinter(obj.flags2, "flags2", &os, RECURSE));
     OVERRIDE_STREAM_SUFFIX
