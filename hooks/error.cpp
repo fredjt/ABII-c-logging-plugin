@@ -2,7 +2,6 @@
 // Created by Trent Tanchin on 8/17/24.
 //
 
-#include <error.h>
 #include <abii/libabii.h>
 
 #include "custom_enum_printers.h"
