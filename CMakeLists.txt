@@ -87,6 +87,7 @@ add_library(c-logger SHARED
             hooks/fts.cpp hooks/fts.h
             hooks/ftw.cpp hooks/ftw.h
             hooks/gconv.h
+            hooks/glob.cpp hooks/glob.h
             hooks/link.cpp hooks/link.h
             hooks/obstack.cpp hooks/obstack.h
             hooks/pthread.cpp hooks/pthread.h

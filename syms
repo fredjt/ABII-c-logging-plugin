@@ -208,6 +208,13 @@ ftw64
 nftw
 nftw64
 
+// glob.h
+glob
+globfree
+glob64
+globfree64
+glob_pattern_p
+
 // link.h
 dl_iterate_phdr
 
