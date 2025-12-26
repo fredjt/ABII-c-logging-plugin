@@ -190,6 +190,18 @@ getfsfile
 setfsent
 endfsent
 
+// fts.h
+fts_read
+fts_open
+fts_children
+fts_close
+fts64_children
+fts_set
+fts64_close
+fts64_open
+fts64_read
+fts64_set
+
 // link.h
 dl_iterate_phdr
 
