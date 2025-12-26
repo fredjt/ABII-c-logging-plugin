@@ -87,9 +87,11 @@ extern "C" int abii_fcntl(int fd, int cmd, ...)
         case F_SET_FILE_RW_HINT:
             {
                 auto arg = va_arg(vargs, uint64_t *);
+
                 auto printer1 = new ArgPrinter(arg, "...");
                 printer1->set_enum_printer_with_depth(print_fcntl_linux_rw_hint, *arg, 1);
                 abii_args->push_arg(printer1);
+
                 abii_ret = real_fcntl(fd, cmd, arg);
                 break;
             }
@@ -481,7 +483,7 @@ extern "C" int abii_lockf64(int fd, int cmd, off_t len)
     return real_lockf64(fd, cmd, len);
 }
 
-static int (*real_posix_fadvise)(int, off_t, off_t, int) noexcept(true) = nullptr;
+static int (*real_posix_fadvise)(int, off_t, off_t, int) __THROW = nullptr;
 
 extern "C" int abii_posix_fadvise(int fd, off_t offset, off_t len, int advise) __THROW
 {
@@ -504,7 +506,7 @@ extern "C" int abii_posix_fadvise(int fd, off_t offset, off_t len, int advise) _
     return real_posix_fadvise(fd, offset, len, advise);
 }
 
-static int (*real_posix_fadvise64)(int, off64_t, off64_t, int) noexcept(true) = nullptr;
+static int (*real_posix_fadvise64)(int, off64_t, off64_t, int) __THROW = nullptr;
 
 extern "C" int abii_posix_fadvise64(int fd, off_t offset, off_t len, int advise) __THROW
 {
