@@ -231,6 +231,19 @@ setgroups
 getgrouplist
 initgroups
 
+// gshadow.h
+endsgent
+setsgent
+getsgnam
+sgetsgent
+getsgent
+putsgent
+fgetsgent
+getsgent_r
+getsgnam_r
+sgetsgent_r
+fgetsgent_r
+
 // link.h
 dl_iterate_phdr
 
