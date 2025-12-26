@@ -215,6 +215,22 @@ glob64
 globfree64
 glob_pattern_p
 
+// grp.h
+setgrent
+endgrent
+getgrent
+fgetgrent
+putgrent
+getgrgid
+getgrnam
+getgrent_r
+getgrgid_r
+getgrnam_r
+fgetgrent_r
+setgroups
+getgrouplist
+initgroups
+
 // link.h
 dl_iterate_phdr
 
