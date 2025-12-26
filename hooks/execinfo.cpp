@@ -28,7 +28,7 @@ int abii_backtrace(void** array, int size)
     return real_backtrace(array, size);
 }
 
-static char** (*real_backtrace_symbols)(void* const*, int) noexcept(true) = nullptr;
+static char** (*real_backtrace_symbols)(void* const*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 char** abii_backtrace_symbols(void* const* array, int size) __THROW
@@ -52,7 +52,7 @@ char** abii_backtrace_symbols(void* const* array, int size) __THROW
     return real_backtrace_symbols(array, size);
 }
 
-static void (*real_backtrace_symbols_fd)(void* const*, int, int) noexcept(true) = nullptr;
+static void (*real_backtrace_symbols_fd)(void* const*, int, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 void abii_backtrace_symbols_fd(void* const * array, int size, int fd) __THROW
