@@ -183,6 +183,13 @@ addseverity
 // fnmatch.h
 fnmatch
 
+// fstab.h
+getfsent
+getfsspec
+getfsfile
+setfsent
+endfsent
+
 // link.h
 dl_iterate_phdr
 

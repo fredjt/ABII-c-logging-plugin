@@ -83,6 +83,7 @@ add_library(c-logger SHARED
             hooks/fcntl.cpp hooks/fcntl.h
             hooks/fmtmsg.cpp hooks/fmtmsg.h
             hooks/fnmatch.cpp hooks/fnmatch.h
+            hooks/fstab.cpp hooks/fstab.h
             hooks/link.cpp hooks/link.h
             hooks/obstack.cpp hooks/obstack.h
             hooks/pthread.cpp hooks/pthread.h
