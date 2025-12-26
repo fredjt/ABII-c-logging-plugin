@@ -180,6 +180,9 @@ posix_fallocate64
 fmtmsg
 addseverity
 
+// fnmatch.h
+fnmatch
+
 // link.h
 dl_iterate_phdr
 
