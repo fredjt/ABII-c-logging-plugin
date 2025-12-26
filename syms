@@ -176,6 +176,10 @@ posix_fadvise64
 posix_fallocate
 posix_fallocate64
 
+// fmtmsg.h
+fmtmsg
+addseverity
+
 // link.h
 dl_iterate_phdr
 
