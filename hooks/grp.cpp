@@ -231,7 +231,7 @@ int abii_fgetgrent_r(FILE* stream, group* resultbuf, char* buffer, size_t buflen
     return real_fgetgrent_r(stream, resultbuf, buffer, buflen, result);
 }
 
-static int (*real_setgroups)(size_t, const __gid_t*) noexcept(true) = nullptr;
+static int (*real_setgroups)(size_t, const __gid_t*) __THROW = nullptr;
 
 extern "C" int abii_setgroups(size_t n, const __gid_t* groups) __THROW
 {
