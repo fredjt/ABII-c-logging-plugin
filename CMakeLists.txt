@@ -80,6 +80,7 @@ add_library(c-logger SHARED
             hooks/errno.cpp
             hooks/error.cpp
             hooks/execinfo.cpp
+            hooks/fcntl.cpp hooks/fcntl.h
             hooks/link.cpp hooks/link.h
             hooks/obstack.cpp hooks/obstack.h
             hooks/pthread.cpp hooks/pthread.h

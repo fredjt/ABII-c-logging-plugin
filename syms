@@ -160,6 +160,22 @@ backtrace
 backtrace_symbols
 backtrace_symbols_fd
 
+// fcntl.h
+open64
+creat
+openat
+fcntl64
+openat64
+creat64
+lockf
+open
+lockf64
+posix_fadvise
+fcntl
+posix_fadvise64
+posix_fallocate
+posix_fallocate64
+
 // link.h
 dl_iterate_phdr
 
