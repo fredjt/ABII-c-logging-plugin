@@ -40,25 +40,25 @@ const defines_map dlfcn_rtld_di = {
 };
 
 template <typename T>
-std::string print_dlfcn_enum1(const T v)
+std::string print_dlfcn_lm_id(const T v)
 {
     return print_enum_entry(v, dlfcn_lm_id);
 }
 
 template <typename T>
-std::string print_dlfcn_enum2(const T v)
+std::string print_dlfcn_rtld(const T v)
 {
     return print_enum_entry(v, dlfcn_rtld);
 }
 
 template <typename T>
-std::string print_dlfcn_enum3(const T v)
+std::string print_dlfcn_rtld_dl(const T v)
 {
     return print_enum_entry(v, dlfcn_rtld_dl);
 }
 
 template <typename T>
-std::string print_dlfcn_enum4(const T v)
+std::string print_dlfcn_rtld_di(const T v)
 {
     return print_enum_entry(v, dlfcn_rtld_di);
 }

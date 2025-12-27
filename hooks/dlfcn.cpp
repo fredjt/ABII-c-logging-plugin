@@ -66,7 +66,7 @@ void* abii_dlsym(void* handle, const char* name) __THROW
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(handle, "__handle");
-        printer->set_enum_printer(print_dlfcn_enum2, handle);
+        printer->set_enum_printer(print_dlfcn_rtld, handle);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(name, "__name"));
@@ -99,7 +99,7 @@ extern "C" void* abii_dlmopen(Lmid_t nsid, const char* file, int mode) __THROWNL
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(nsid, "__nsid");
-        printer->set_enum_printer(print_dlfcn_enum1, nsid);
+        printer->set_enum_printer(print_dlfcn_lm_id, nsid);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(file, "__file"));
@@ -123,7 +123,7 @@ void* abii_dlvsym(void* handle, const char* name, const char* version) __THROW
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(handle, "__handle");
-        printer->set_enum_printer(print_dlfcn_enum2, handle);
+        printer->set_enum_printer(print_dlfcn_rtld, handle);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(name, "__name"));
@@ -220,7 +220,7 @@ int abii_dladdr1(const void* address, Dl_info* info, void** extra_info, int flag
             abii_args->push_arg(new ArgPrinter(extra_info, "__extra_info"));
 
         auto printer = new ArgPrinter(flags, "__flags");
-        printer->set_enum_printer(print_dlfcn_enum3, flags);
+        printer->set_enum_printer(print_dlfcn_rtld_dl, flags);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_dladdr1(address, info, extra_info, flags);
@@ -242,14 +242,14 @@ int abii_dlinfo(void* handle, int request, void* arg) __THROW
         abii_args->push_arg(new ArgPrinter(handle, "__handle"));
 
         auto printer = new ArgPrinter(request, "__request");
-        printer->set_enum_printer(print_dlfcn_enum4, request);
+        printer->set_enum_printer(print_dlfcn_rtld_di, request);
         abii_args->push_arg(printer);
 
         if (request == RTLD_DI_LMID)
         {
             auto arg_f = static_cast<Lmid_t*>(arg);
             auto printer1 = new ArgPrinter(arg_f, "__arg");
-            printer1->set_enum_printer_with_depth(print_dlfcn_enum1, *arg_f, 1);
+            printer1->set_enum_printer_with_depth(print_dlfcn_lm_id, *arg_f, 1);
             abii_args->push_arg(printer1);
         }
         else if (request == RTLD_DI_LINKMAP)
