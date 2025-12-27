@@ -90,6 +90,7 @@ add_library(c-logger SHARED
             hooks/glob.cpp hooks/glob.h
             hooks/grp.cpp hooks/grp.h
             hooks/gshadow.cpp hooks/gshadow.h
+            hooks/iconv.cpp
             hooks/link.cpp hooks/link.h
             hooks/obstack.cpp hooks/obstack.h
             hooks/pthread.cpp hooks/pthread.h

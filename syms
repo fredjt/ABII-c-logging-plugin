@@ -244,6 +244,11 @@ getsgnam_r
 sgetsgent_r
 fgetsgent_r
 
+// iconv.h
+iconv_close
+iconv_open
+iconv
+
 // link.h
 dl_iterate_phdr
 
