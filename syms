@@ -269,6 +269,10 @@ __isoc23_wcstoumax
 nl_langinfo
 nl_langinfo_l
 
+// libgen.h
+dirname
+__xpg_basename
+
 // link.h
 dl_iterate_phdr
 
