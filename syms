@@ -314,6 +314,14 @@ malloc_usable_size
 malloc_stats
 malloc_info
 
+// mcheck.h
+mcheck
+mcheck_pedantic
+mcheck_check_all
+mprobe
+mtrace
+muntrace
+
 // obstack.h
 _obstack_newchunk
 _obstack_begin
