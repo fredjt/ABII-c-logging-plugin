@@ -265,6 +265,10 @@ __isoc23_strtoumax
 __isoc23_wcstoimax
 __isoc23_wcstoumax
 
+// langinfo.h
+nl_langinfo
+nl_langinfo_l
+
 // link.h
 dl_iterate_phdr
 
