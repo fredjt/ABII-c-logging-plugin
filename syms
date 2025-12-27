@@ -297,6 +297,23 @@ duplocale
 freelocale
 uselocale
 
+// malloc.h
+malloc
+calloc
+realloc
+reallocarray
+free
+memalign
+valloc
+pvalloc
+mallinfo
+mallinfo2
+mallopt
+malloc_trim
+malloc_usable_size
+malloc_stats
+malloc_info
+
 // obstack.h
 _obstack_newchunk
 _obstack_begin
