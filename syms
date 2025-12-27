@@ -330,6 +330,10 @@ addmntent
 endmntent
 hasmntopt
 
+// monetary.h
+strfmon
+strfmon_l
+
 // obstack.h
 _obstack_newchunk
 _obstack_begin
