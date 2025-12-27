@@ -8,7 +8,7 @@
 
 namespace abii
 {
-static char* (*real_gettext)(const char*) noexcept(true) = nullptr;
+static char* (*real_gettext)(const char*) __THROW = nullptr;
 
 extern "C" __attribute_format_arg__(1)
 char* abii_gettext(const char* msgid) __THROW
@@ -26,7 +26,7 @@ char* abii_gettext(const char* msgid) __THROW
     return real_gettext(msgid);
 }
 
-static char* (*real_dgettext)(const char*, const char*) noexcept(true) = nullptr;
+static char* (*real_dgettext)(const char*, const char*) __THROW = nullptr;
 
 extern "C" __attribute_format_arg__(2)
 char* abii_dgettext(const char* domainname, const char* msgid) __THROW
@@ -45,7 +45,7 @@ char* abii_dgettext(const char* domainname, const char* msgid) __THROW
     return real_dgettext(domainname, msgid);
 }
 
-static char* (*real___dgettext)(const char*, const char*) noexcept(true) = nullptr;
+static char* (*real___dgettext)(const char*, const char*) __THROW = nullptr;
 
 extern "C" __attribute_format_arg__(2)
 char* abii___dgettext(const char* domainname, const char* msgid) __THROW
@@ -64,7 +64,7 @@ char* abii___dgettext(const char* domainname, const char* msgid) __THROW
     return real___dgettext(domainname, msgid);
 }
 
-static char* (*real_dcgettext)(const char*, const char*, int) noexcept(true) = nullptr;
+static char* (*real_dcgettext)(const char*, const char*, int) __THROW = nullptr;
 
 extern "C" __attribute_format_arg__(2)
 char* abii_dcgettext(const char* domainname, const char* msgid, int category) __THROW
@@ -87,7 +87,7 @@ char* abii_dcgettext(const char* domainname, const char* msgid, int category) __
     return real_dcgettext(domainname, msgid, category);
 }
 
-static char* (*real___dcgettext)(const char*, const char*, int) noexcept(true) = nullptr;
+static char* (*real___dcgettext)(const char*, const char*, int) __THROW = nullptr;
 
 extern "C" __attribute_format_arg__(2)
 char* abii___dcgettext(const char* domainname, const char* msgid, int category) __THROW
@@ -110,7 +110,7 @@ char* abii___dcgettext(const char* domainname, const char* msgid, int category) 
     return real___dcgettext(domainname, msgid, category);
 }
 
-static char* (*real_ngettext)(const char*, const char*, unsigned long int) noexcept(true) = nullptr;
+static char* (*real_ngettext)(const char*, const char*, unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_format_arg__(1) __attribute_format_arg__(2)
 char* abii_ngettext(const char* msgid1, const char* msgid2, unsigned long int n) __THROW
@@ -130,7 +130,7 @@ char* abii_ngettext(const char* msgid1, const char* msgid2, unsigned long int n)
     return real_ngettext(msgid1, msgid2, n);
 }
 
-static char* (*real_dngettext)(const char*, const char*, const char*, unsigned long int) noexcept(true) = nullptr;
+static char* (*real_dngettext)(const char*, const char*, const char*, unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_format_arg__(2) __attribute_format_arg__(3)
 char* abii_dngettext(const char* domainname, const char* msgid1, const char* msgid2, unsigned long int n) __THROW
@@ -151,7 +151,7 @@ char* abii_dngettext(const char* domainname, const char* msgid1, const char* msg
     return real_dngettext(domainname, msgid1, msgid2, n);
 }
 
-static char* (*real_dcngettext)(const char*, const char*, const char*, unsigned long int, int) noexcept(true) = nullptr;
+static char* (*real_dcngettext)(const char*, const char*, const char*, unsigned long int, int) __THROW = nullptr;
 
 extern "C" __attribute_format_arg__(2) __attribute_format_arg__(3)
 char* abii_dcngettext(const char* domainname, const char* msgid1, const char* msgid2, unsigned long int n,
@@ -177,7 +177,7 @@ char* abii_dcngettext(const char* domainname, const char* msgid1, const char* ms
     return real_dcngettext(domainname, msgid1, msgid2, n, category);
 }
 
-static char* (*real_textdomain)(const char*) noexcept(true) = nullptr;
+static char* (*real_textdomain)(const char*) __THROW = nullptr;
 
 extern "C" char* abii_textdomain(const char* domainname) __THROW
 {
@@ -194,7 +194,7 @@ extern "C" char* abii_textdomain(const char* domainname) __THROW
     return real_textdomain(domainname);
 }
 
-static char* (*real_bindtextdomain)(const char*, const char*) noexcept(true) = nullptr;
+static char* (*real_bindtextdomain)(const char*, const char*) __THROW = nullptr;
 
 extern "C" char* abii_bindtextdomain(const char* domainname, const char* dirname) __THROW
 {
@@ -212,7 +212,7 @@ extern "C" char* abii_bindtextdomain(const char* domainname, const char* dirname
     return real_bindtextdomain(domainname, dirname);
 }
 
-static char* (*real_bind_textdomain_codeset)(const char*, const char*) noexcept(true) = nullptr;
+static char* (*real_bind_textdomain_codeset)(const char*, const char*) __THROW = nullptr;
 
 extern "C" char* abii_bind_textdomain_codeset(const char* domainname, const char* codeset) __THROW
 {
