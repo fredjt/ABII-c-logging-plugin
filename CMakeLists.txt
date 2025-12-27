@@ -92,6 +92,7 @@ add_library(c-logger SHARED
             hooks/gshadow.cpp hooks/gshadow.h
             hooks/iconv.cpp
             hooks/ifaddrs.cpp hooks/ifaddrs.h
+            hooks/inttypes.cpp hooks/inttypes.h
             hooks/link.cpp hooks/link.h
             hooks/obstack.cpp hooks/obstack.h
             hooks/pthread.cpp hooks/pthread.h
