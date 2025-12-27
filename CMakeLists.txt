@@ -96,6 +96,7 @@ add_library(c-logger SHARED
             hooks/langinfo.cpp hooks/langinfo.h
             hooks/libgen.cpp
             hooks/link.cpp hooks/link.h
+            hooks/locale.cpp hooks/locale.h
             hooks/obstack.cpp hooks/obstack.h
             hooks/pthread.cpp hooks/pthread.h
             hooks/regex.cpp hooks/regex.h

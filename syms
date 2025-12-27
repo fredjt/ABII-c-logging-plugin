@@ -276,6 +276,14 @@ __xpg_basename
 // link.h
 dl_iterate_phdr
 
+// locale.h
+setlocale
+localeconv
+newlocale
+duplocale
+freelocale
+uselocale
+
 // obstack.h
 _obstack_newchunk
 _obstack_begin
