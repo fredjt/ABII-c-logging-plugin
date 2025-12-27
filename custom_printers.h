@@ -611,6 +611,33 @@ inline std::string print_variadic_args_printf(const char* fmt, va_list vargs_ro,
     va_end(vargs);
     CUSTOM_PRINT_SUFFIX
 }
+
+inline std::string print_variadic_args_strfmon(const char* fmt, va_list vargs, size_t /*size*/)
+{
+    CUSTOM_PRINT_PREFIX
+    const char* p = fmt;
+    while (*p)
+    {
+        if (*p == '%')
+        {
+            // ReSharper disable once CppPossiblyErroneousEmptyStatements
+            while (*++p && (*p < 65 || (*p > 90 && *p < 97) || *p > 122));
+            switch (*p)
+            {
+            case 'i':
+            case 'n':
+                {
+                    FUNCTION_ARGS_FMT(double)
+                    break;
+                }
+            default:
+                break;
+            }
+        }
+        ++p;
+    }
+    CUSTOM_PRINT_SUFFIX
+}
 }
 
 #endif //CUSTOM_PRINTERS_H
