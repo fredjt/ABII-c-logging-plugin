@@ -6,7 +6,6 @@
 #define ABII_C_LOGGING_PLUGIN_SOCKET_TYPE_H
 
 #include <abii/libabii.h>
-#include <bits/socket_type.h>
 
 namespace abii
 {

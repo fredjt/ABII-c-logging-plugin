@@ -2,11 +2,11 @@
 // Created by Trent Tanchin on 10/15/24.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_NETDB_H
-#define ABII_C_LOGGING_PLUGIN_NETDB_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_NETDB_H
+#define ABII_C_LOGGING_PLUGIN_BITS_NETDB_H
 
+#include <netdb.h>
 #include <abii/libabii.h>
-#include <bits/netdb.h>
 
 #include "socket.h"
 
@@ -30,4 +30,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_NETDB_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_NETDB_H
