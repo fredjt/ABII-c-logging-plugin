@@ -322,6 +322,14 @@ mprobe
 mtrace
 muntrace
 
+// mntent.h
+setmntent
+getmntent
+getmntent_r
+addmntent
+endmntent
+hasmntopt
+
 // obstack.h
 _obstack_newchunk
 _obstack_begin
