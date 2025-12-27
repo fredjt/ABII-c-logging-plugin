@@ -6,7 +6,7 @@
 
 namespace abii
 {
-static int (*real_mcheck)(void (*)(::mcheck_status)) noexcept(true) = nullptr;
+static int (*real_mcheck)(void (*)(::mcheck_status)) __THROW = nullptr;
 
 extern "C" int abii_mcheck(void (*abortfunc)(::mcheck_status)) __THROW
 {
@@ -23,7 +23,7 @@ extern "C" int abii_mcheck(void (*abortfunc)(::mcheck_status)) __THROW
     return real_mcheck(abortfunc);
 }
 
-static int (*real_mcheck_pedantic)(void (*)(::mcheck_status)) noexcept(true) = nullptr;
+static int (*real_mcheck_pedantic)(void (*)(::mcheck_status)) __THROW = nullptr;
 
 extern "C" int abii_mcheck_pedantic(void (*abortfunc)(::mcheck_status)) __THROW
 {
@@ -53,7 +53,7 @@ extern "C" void abii_mcheck_check_all()
     return real_mcheck_check_all();
 }
 
-static ::mcheck_status (*real_mprobe)(void*) noexcept(true) = nullptr;
+static ::mcheck_status (*real_mprobe)(void*) __THROW = nullptr;
 
 extern "C" ::mcheck_status abii_mprobe(void* ptr) __THROW
 {
@@ -72,7 +72,7 @@ extern "C" ::mcheck_status abii_mprobe(void* ptr) __THROW
     return real_mprobe(ptr);
 }
 
-static void (*real_mtrace)() noexcept(true) = nullptr;
+static void (*real_mtrace)() __THROW = nullptr;
 
 extern "C" void abii_mtrace() __THROW
 {
@@ -85,7 +85,7 @@ extern "C" void abii_mtrace() __THROW
     return real_mtrace();
 }
 
-static void (*real_muntrace)() noexcept(true) = nullptr;
+static void (*real_muntrace)() __THROW = nullptr;
 
 extern "C" void abii_muntrace() __THROW
 {
