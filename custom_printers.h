@@ -638,6 +638,18 @@ inline std::string print_variadic_args_strfmon(const char* fmt, va_list vargs, s
     }
     CUSTOM_PRINT_SUFFIX
 }
+
+inline std::string print_variadic_args_mq_open(const char* /*fmt*/, va_list vargs, size_t /*size*/)
+{
+    CUSTOM_PRINT_PREFIX
+    {
+        FUNCTION_ARGS_FMT(unsigned)
+    }
+    {
+        FUNCTION_ARGS_FMT(unsigned)
+    }
+    CUSTOM_PRINT_SUFFIX
+}
 }
 
 #endif //CUSTOM_PRINTERS_H

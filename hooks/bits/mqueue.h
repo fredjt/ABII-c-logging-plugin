@@ -5,8 +5,8 @@
 #ifndef ABII_C_LOGGING_PLUGIN_MQUEUE_H
 #define ABII_C_LOGGING_PLUGIN_MQUEUE_H
 
+#include <mqueue.h>
 #include <abii/libabii.h>
-#include <bits/mqueue.h>
 
 using namespace abii;
 

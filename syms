@@ -334,6 +334,18 @@ hasmntopt
 strfmon
 strfmon_l
 
+// mqueue.h
+mq_open
+mq_getattr
+mq_close
+mq_setattr
+mq_unlink
+mq_notify
+mq_receive
+mq_send
+mq_timedreceive
+mq_timedsend
+
 // obstack.h
 _obstack_newchunk
 _obstack_begin
