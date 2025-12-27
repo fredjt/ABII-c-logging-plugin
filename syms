@@ -249,6 +249,10 @@ iconv_close
 iconv_open
 iconv
 
+// ifaddrs.h
+getifaddrs
+freeifaddrs
+
 // link.h
 dl_iterate_phdr
 
