@@ -556,6 +556,10 @@ pthread_setspecific
 pthread_getcpuclockid
 pthread_atfork
 
+// pty.h
+openpty
+forkpty
+
 // regex.h
 re_set_syntax
 re_compile_pattern

@@ -6,7 +6,7 @@
 #define ABII_C_LOGGING_PLUGIN_IOCTL_TYPES_H
 
 #include <abii/libabii.h>
-#include <bits/ioctl-types.h>
+#include <sys/ioctl.h>
 
 using namespace abii;
 

@@ -5,8 +5,8 @@
 #ifndef ABII_C_LOGGING_PLUGIN_TERMIOS_STRUCT_H
 #define ABII_C_LOGGING_PLUGIN_TERMIOS_STRUCT_H
 
+#include <termios.h>
 #include <abii/libabii.h>
-#include <bits/termios-struct.h>
 
 using namespace abii;
 
