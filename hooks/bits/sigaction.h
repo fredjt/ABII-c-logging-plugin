@@ -46,7 +46,7 @@ std::string print_sigaction_how(const T v)
 
 using namespace abii;
 
-template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, sigaction>
+template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, struct sigaction>
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX

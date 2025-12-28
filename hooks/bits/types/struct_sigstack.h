@@ -10,7 +10,7 @@
 
 using namespace abii;
 
-template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, sigstack>
+template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, struct sigstack>
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
