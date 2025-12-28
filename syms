@@ -626,6 +626,24 @@ sched_rr_get_interval
 sched_setaffinity
 sched_getaffinity
 
+// search.h
+insque
+remque
+hsearch
+hcreate
+hdestroy
+hsearch_r
+hcreate_r
+hdestroy_r
+tsearch
+tfind
+tdelete
+twalk
+twalk_r
+tdestroy
+lfind
+lsearch
+
 // stdio.h
 remove
 rename
