@@ -106,6 +106,7 @@ add_library(c-logger SHARED
             hooks/mqueue.cpp
             hooks/netdb.cpp hooks/netdb.h
             hooks/nl_types.cpp hooks/nl_types.h
+            hooks/nss.cpp hooks/nss.h
             hooks/obstack.cpp hooks/obstack.h
             hooks/pthread.cpp hooks/pthread.h
             hooks/regex.cpp hooks/regex.h

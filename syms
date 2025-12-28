@@ -413,6 +413,9 @@ catopen
 catgets
 catclose
 
+// nss.h
+__nss_configure_lookup
+
 // obstack.h
 _obstack_newchunk
 _obstack_begin
