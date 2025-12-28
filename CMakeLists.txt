@@ -115,6 +115,7 @@ add_library(c-logger SHARED
             hooks/pwd.cpp hooks/pwd.h
             hooks/regex.cpp hooks/regex.h
             hooks/resolv.cpp hooks/resolv.h
+            hooks/sched.cpp
             hooks/stdio.cpp hooks/stdio.h
             custom_enum_printers.h
             custom_printers.h)
