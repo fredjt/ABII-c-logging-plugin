@@ -6,7 +6,7 @@
 #define ABII_C_LOGGING_PLUGIN_SEMAPHORE_H
 
 #include <abii/libabii.h>
-#include <bits/semaphore.h>
+#include <semaphore.h>
 
 using namespace abii;
 
