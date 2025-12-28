@@ -118,6 +118,7 @@ add_library(c-logger SHARED
             hooks/sched.cpp
             hooks/search.cpp hooks/search.h
             hooks/semaphore.cpp
+            hooks/setjmp.cpp
             hooks/stdio.cpp hooks/stdio.h
             custom_enum_printers.h
             custom_printers.h)

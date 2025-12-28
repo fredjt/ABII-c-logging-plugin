@@ -484,7 +484,6 @@ pthread_setcanceltype
 pthread_cancel
 pthread_testcancel
 __pthread_unwind_next
-__sigsetjmp
 pthread_mutex_init
 pthread_mutex_destroy
 pthread_mutex_trylock
@@ -656,6 +655,14 @@ sem_clockwait
 sem_trywait
 sem_post
 sem_getvalue
+
+// setjmp.h
+setjmp
+__sigsetjmp
+_setjmp
+longjmp
+_longjmp
+siglongjmp
 
 // stdio.h
 remove

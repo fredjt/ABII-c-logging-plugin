@@ -1137,26 +1137,6 @@ void abii___pthread_unwind_next(__pthread_unwind_buf_t* buf)
     real___pthread_unwind_next(buf);
 }
 
-static int (*real___sigsetjmp)(__jmp_buf_tag __env[1], int __savemask) __THROWNL = nullptr;
-
-extern "C" int abii___sigsetjmp(__jmp_buf_tag env[1], int savemask) __THROWNL
-{
-    OVERRIDE_PREFIX(__sigsetjmp)
-        pre_fmtd_str pi_str = "__sigsetjmp(__env, __savemask)";
-        abii_args->push_func(new ArgPrinter(pi_str));
-
-        abii_args->push_arg(new ArgPrinter(env, "__env"));
-        abii_args->push_arg(new ArgPrinter(savemask, "__savemask"));
-
-        auto abii_ret = real___sigsetjmp(env, savemask);
-
-        auto printer = new ArgPrinter(abii_ret, "return");
-        printer->set_enum_printer(print_error_enum_entry, abii_ret);
-        abii_args->push_return(printer);
-    OVERRIDE_SUFFIX(__sigsetjmp, abii_ret)
-    return real___sigsetjmp(env, savemask);
-}
-
 static int (*real_pthread_mutex_init)(pthread_mutex_t*, const pthread_mutexattr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
