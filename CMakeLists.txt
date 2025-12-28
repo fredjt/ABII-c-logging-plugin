@@ -120,6 +120,7 @@ add_library(c-logger SHARED
             hooks/semaphore.cpp
             hooks/setjmp.cpp
             hooks/sgtty.cpp hooks/sgtty.h
+            hooks/shadow.cpp hooks/shadow.h
             hooks/stdio.cpp hooks/stdio.h
             custom_enum_printers.h
             custom_printers.h)
