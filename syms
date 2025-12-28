@@ -408,6 +408,11 @@ gai_suspend
 gai_error
 gai_cancel
 
+// nl_types.h
+catopen
+catgets
+catclose
+
 // obstack.h
 _obstack_newchunk
 _obstack_begin
