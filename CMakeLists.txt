@@ -109,6 +109,7 @@ add_library(c-logger SHARED
             hooks/nss.cpp hooks/nss.h
             hooks/obstack.cpp hooks/obstack.h
             hooks/paths.h
+            hooks/printf.cpp hooks/printf.h
             hooks/pthread.cpp hooks/pthread.h
             hooks/regex.cpp hooks/regex.h
             hooks/resolv.cpp hooks/resolv.h

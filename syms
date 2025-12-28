@@ -423,6 +423,15 @@ _obstack_begin_1
 _obstack_memory_used
 obstack_free
 
+// printf.h
+register_printf_specifier
+register_printf_function
+register_printf_modifier
+register_printf_type
+parse_printf_format
+printf_size
+printf_size_info
+
 // pthread.h
 pthread_create
 pthread_exit
