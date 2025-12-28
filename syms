@@ -560,6 +560,20 @@ pthread_atfork
 openpty
 forkpty
 
+// pwd.h
+setpwent
+endpwent
+getpwent
+fgetpwent
+putpwent
+getpwuid
+getpwnam
+getpwent_r
+getpwuid_r
+getpwnam_r
+fgetpwent_r
+getpw
+
 // regex.h
 re_set_syntax
 re_compile_pattern

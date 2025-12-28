@@ -112,6 +112,7 @@ add_library(c-logger SHARED
             hooks/printf.cpp hooks/printf.h
             hooks/pthread.cpp hooks/pthread.h
             hooks/pty.cpp
+            hooks/pwd.cpp hooks/pwd.h
             hooks/regex.cpp hooks/regex.h
             hooks/resolv.cpp hooks/resolv.h
             hooks/stdio.cpp hooks/stdio.h
