@@ -664,6 +664,10 @@ longjmp
 _longjmp
 siglongjmp
 
+// sgtty.h
+gtty
+stty
+
 // stdio.h
 remove
 rename
