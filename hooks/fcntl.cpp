@@ -6,9 +6,16 @@
 
 #include "bits/fcntl.h"
 #include "custom_enum_printers.h"
+#include "stdint.h"
 
 namespace abii
 {
+template <typename T>
+std::string print_fcntl_rw_hint(const T v)
+{
+    return print_enum_entry(v, fcntl_linux_rw_hint, stdint_uint64);
+}
+
 static int (*real_fcntl)(int, int, ...) = nullptr;
 
 extern "C" int abii_fcntl(int fd, int cmd, ...)
@@ -89,7 +96,7 @@ extern "C" int abii_fcntl(int fd, int cmd, ...)
                 auto arg = va_arg(vargs, uint64_t *);
 
                 auto printer1 = new ArgPrinter(arg, "...");
-                printer1->set_enum_printer_with_depth(print_fcntl_linux_rw_hint, *arg, 1);
+                printer1->set_enum_printer_with_depth(print_fcntl_rw_hint, *arg, 1);
                 abii_args->push_arg(printer1);
 
                 abii_ret = real_fcntl(fd, cmd, arg);
@@ -206,7 +213,7 @@ extern "C" int abii_fcntl64(int fd, int cmd, ...)
                 auto arg = va_arg(vargs, uint64_t *);
 
                 auto printer1 = new ArgPrinter(arg, "...");
-                printer1->set_enum_printer_with_depth(print_fcntl_linux_rw_hint, *arg, 1);
+                printer1->set_enum_printer_with_depth(print_fcntl_rw_hint, *arg, 1);
                 abii_args->push_arg(printer1);
 
                 abii_ret = real_fcntl64(fd, cmd, arg);

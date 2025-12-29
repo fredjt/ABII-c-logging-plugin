@@ -8,6 +8,8 @@
 #include <abii/libabii.h>
 #include <gconv.h>
 
+#include "stdint.h"
+
 namespace abii
 {
 const defines_map<wchar_t> gconv___unknown_10646_char = {
@@ -35,7 +37,7 @@ const defines_map gconv_flag = {
 };
 
 template <typename T>
-std::string print_gconv___unknown_10646_char(const T v)
+std::string print_gconv___unknown_10646_char_(const T v)
 {
     return print_enum_entry(v, gconv___unknown_10646_char);
 }
@@ -50,6 +52,12 @@ template <typename T>
 std::string print_gconv_flag(const T v)
 {
     return print_or_enum_entries(v, gconv_flag);
+}
+
+template <typename T>
+std::string print_gconv___unknown_10646_char(const T v)
+{
+    return print_enum_entry(v, gconv___unknown_10646_char, stdint_wchar);
 }
 }
 

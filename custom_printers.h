@@ -11,6 +11,8 @@
 
 #include <abii/libabii.h>
 
+#include "hooks/stdint.h"
+
 #define CUSTOM_PRINT_PREFIX \
 std::stringstream ss; \
 bool first = true; \
@@ -137,7 +139,7 @@ inline std::string print_variadic_args_printf(const char* fmt, va_list vargs_ro,
                             case 'n':
                                 {
                                     if (const auto val = va_arg(vargs, signed char*); val != nullptr)
-                                        *val = p - fmt; // NOLINT(*-narrowing-conversions)
+                                        *val = p - fmt;
                                     break;
                                 }
                             case 'o':
@@ -173,7 +175,7 @@ inline std::string print_variadic_args_printf(const char* fmt, va_list vargs_ro,
                     case 'n':
                         {
                             if (const auto val = va_arg(vargs, short*); val != nullptr)
-                                *val = p - fmt; // NOLINT(*-narrowing-conversions)
+                                *val = p - fmt;
                             break;
                         }
                     case 'o':
@@ -386,12 +388,26 @@ inline std::string print_variadic_args_printf(const char* fmt, va_list vargs_ro,
                         }
                     case 's':
                         {
-                            FUNCTION_ARGS_FMT(const wchar_t*)
+                            std::stringstream ss1;
+                            ss1 << "[" << n++ << "]";
+                            auto&& arg = va_arg(vargs, const wchar_t*);
+
+                            auto printer = new ArgPrinter(arg, ss1.str(), &ss);
+                            printer->set_enum_printer_with_depth(print_stdint_wchar, *arg, 1);
+                            args->push_arg(printer);
+
                             break;
                         }
                     case 'S':
                         {
-                            FUNCTION_ARGS_FMT(const wchar_t*)
+                            std::stringstream ss1;
+                            ss1 << "[" << n++ << "]";
+                            auto&& arg = va_arg(vargs, const wchar_t*);
+
+                            auto printer = new ArgPrinter(arg, ss1.str(), &ss);
+                            printer->set_enum_printer_with_depth(print_stdint_wchar, *arg, 1);
+                            args->push_arg(printer);
+
                             break;
                         }
                     case 'u':
@@ -467,7 +483,7 @@ inline std::string print_variadic_args_printf(const char* fmt, va_list vargs_ro,
             case 'n':
                 {
                     if (const auto val = va_arg(vargs, int*); val != nullptr)
-                        *val = p - fmt; // NOLINT(*-narrowing-conversions)
+                        *val = p - fmt;
                     break;
                 }
             case 'o':
@@ -487,7 +503,14 @@ inline std::string print_variadic_args_printf(const char* fmt, va_list vargs_ro,
                 }
             case 'S':
                 {
-                    FUNCTION_ARGS_FMT(const wchar_t*)
+                    std::stringstream ss1;
+                    ss1 << "[" << n++ << "]";
+                    auto&& arg = va_arg(vargs, const wchar_t*);
+
+                    auto printer = new ArgPrinter(arg, ss1.str(), &ss);
+                    printer->set_enum_printer_with_depth(print_stdint_wchar, *arg, 1);
+                    args->push_arg(printer);
+
                     break;
                 }
             case 't':

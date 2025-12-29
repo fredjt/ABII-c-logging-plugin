@@ -4,6 +4,8 @@
 
 #include "printf.h"
 
+#include "stdint.h"
+
 namespace abii
 {
 static int (*real_register_printf_specifier)(int, printf_function, printf_arginfo_size_function) __THROW = nullptr;
@@ -54,7 +56,9 @@ extern "C" __wur int abii_register_printf_modifier(const wchar_t* str) __THROW
         pre_fmtd_str pi_str = "register_printf_modifier(__str)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        abii_args->push_arg(new ArgPrinter(str, "__str"));
+        auto printer = new ArgPrinter(str, "__str");
+        printer->set_enum_printer_with_depth(print_stdint_wchar, *str, 1);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_register_printf_modifier(str);
 

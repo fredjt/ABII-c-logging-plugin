@@ -6,6 +6,7 @@
 
 #include "custom_printers.h"
 #include "obstack.h"
+#include "stdint.h"
 #include "bits/types/cookie_io_functions_t.h"
 #include "bits/types/__fpos64_t.h"
 #include "bits/types/__fpos_t.h"
@@ -418,7 +419,8 @@ __FILE* abii_open_wmemstream(wchar_t** bufloc, size_t* sizeloc) __THROW
 
         auto printer = new ArgPrinter(bufloc, "__bufloc");
         // TODO: This is not implemented yet
-        // printer->set_len(*sizeloc, 1);
+        // printer->set_len_with_depth(*sizeloc, 1);
+        printer->set_enum_printer_with_depth(print_stdint_wchar, **bufloc, 2);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(sizeloc, "__sizeloc"));

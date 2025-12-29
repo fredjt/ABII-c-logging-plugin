@@ -4,6 +4,8 @@
 
 #include "inttypes.h"
 
+#include "stdint.h"
+
 namespace abii
 {
 static intmax_t (*real_imaxabs)(intmax_t) __THROW = nullptr;
@@ -15,11 +17,15 @@ intmax_t abii_imaxabs(intmax_t n) __THROW
         pre_fmtd_str str = "imaxabs(__n)";
         abii_args->push_func(new ArgPrinter(str));
 
-        abii_args->push_arg(new ArgPrinter(n, "__n"));
+        auto printer = new ArgPrinter(n, "__n");
+        printer->set_enum_printer(print_stdint_intmax, n);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_imaxabs(n);
 
-        abii_args->push_return(new ArgPrinter(abii_ret, "return"));
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_stdint_intmax, abii_ret);
+        abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(imaxabs, abii_ret)
     return real_imaxabs(n);
 }
@@ -57,7 +63,9 @@ extern "C" intmax_t abii_strtoimax(const char* nptr, char** endptr, int base) __
 
         auto abii_ret = real_strtoimax(nptr, endptr, base);
 
-        abii_args->push_return(new ArgPrinter(abii_ret, "return"));
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdint_intmax, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(strtoimax, abii_ret)
     return real_strtoimax(nptr, endptr, base);
 }
@@ -76,45 +84,63 @@ extern "C" uintmax_t abii_strtoumax(const char* nptr, char** endptr, int base) _
 
         auto abii_ret = real_strtoumax(nptr, endptr, base);
 
-        abii_args->push_return(new ArgPrinter(abii_ret, "return"));
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdint_uintmax, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(strtoumax, abii_ret)
     return real_strtoumax(nptr, endptr, base);
 }
 
-static intmax_t (*real_wcstoimax)(const __gwchar_t*, __gwchar_t**, int) __THROW = nullptr;
+static intmax_t (*real_wcstoimax)(const wchar_t*, wchar_t**, int) __THROW = nullptr;
 
-extern "C" intmax_t abii_wcstoimax(const __gwchar_t* nptr, __gwchar_t** endptr, int base) __THROW
+extern "C" intmax_t abii_wcstoimax(const wchar_t* nptr, wchar_t** endptr, int base) __THROW
 {
     OVERRIDE_PREFIX(wcstoimax)
         pre_fmtd_str str = "wcstoimax(__nptr, __endptr, __base)";
         abii_args->push_func(new ArgPrinter(str));
 
-        abii_args->push_arg(new ArgPrinter(nptr, "__nptr"));
-        abii_args->push_arg(new ArgPrinter(endptr, "__endptr"));
+        auto printer = new ArgPrinter(nptr, "__nptr");
+        printer->set_enum_printer_with_depth(print_stdint_wchar, *nptr, 1);
+        abii_args->push_arg(printer);
+
+        auto printer1 = new ArgPrinter(endptr, "__endptr");
+        printer1->set_enum_printer_with_depth(print_stdint_wchar, **endptr, 1);
+        abii_args->push_arg(printer1);
+
         abii_args->push_arg(new ArgPrinter(base, "__base"));
 
         auto abii_ret = real_wcstoimax(nptr, endptr, base);
 
-        abii_args->push_return(new ArgPrinter(abii_ret, "return"));
+        auto printer2 = new ArgPrinter(abii_ret, "return");
+        printer2->set_enum_printer(print_stdint_intmax, abii_ret);
+        abii_args->push_return(printer2);
     OVERRIDE_SUFFIX(wcstoimax, abii_ret)
     return real_wcstoimax(nptr, endptr, base);
 }
 
-static uintmax_t (*real_wcstoumax)(const __gwchar_t*, __gwchar_t**, int) __THROW = nullptr;
+static uintmax_t (*real_wcstoumax)(const wchar_t*, wchar_t**, int) __THROW = nullptr;
 
-extern "C" uintmax_t abii_wcstoumax(const __gwchar_t* nptr, __gwchar_t** endptr, int base) __THROW
+extern "C" uintmax_t abii_wcstoumax(const wchar_t* nptr, wchar_t** endptr, int base) __THROW
 {
     OVERRIDE_PREFIX(wcstoumax)
         pre_fmtd_str str = "wcstoumax(__nptr, __endptr, __base)";
         abii_args->push_func(new ArgPrinter(str));
 
-        abii_args->push_arg(new ArgPrinter(nptr, "__nptr"));
-        abii_args->push_arg(new ArgPrinter(endptr, "__endptr"));
+        auto printer = new ArgPrinter(nptr, "__nptr");
+        printer->set_enum_printer_with_depth(print_stdint_wchar, *nptr, 1);
+        abii_args->push_arg(printer);
+
+        auto printer1 = new ArgPrinter(endptr, "__endptr");
+        printer1->set_enum_printer_with_depth(print_stdint_wchar, **endptr, 1);
+        abii_args->push_arg(printer1);
+
         abii_args->push_arg(new ArgPrinter(base, "__base"));
 
         auto abii_ret = real_wcstoumax(nptr, endptr, base);
 
-        abii_args->push_return(new ArgPrinter(abii_ret, "return"));
+        auto printer2 = new ArgPrinter(abii_ret, "return");
+        printer2->set_enum_printer(print_stdint_uintmax, abii_ret);
+        abii_args->push_return(printer2);
     OVERRIDE_SUFFIX(wcstoumax, abii_ret)
     return real_wcstoumax(nptr, endptr, base);
 }
@@ -133,7 +159,9 @@ extern "C" intmax_t abii___isoc23_strtoimax(const char* nptr, char** endptr, int
 
         auto abii_ret = real___isoc23_strtoimax(nptr, endptr, base);
 
-        abii_args->push_return(new ArgPrinter(abii_ret, "return"));
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdint_intmax, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(__isoc23_strtoimax, abii_ret)
     return real___isoc23_strtoimax(nptr, endptr, base);
 }
@@ -152,45 +180,63 @@ extern "C" uintmax_t abii___isoc23_strtoumax(const char* nptr, char** endptr, in
 
         auto abii_ret = real___isoc23_strtoumax(nptr, endptr, base);
 
-        abii_args->push_return(new ArgPrinter(abii_ret, "return"));
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer(print_stdint_uintmax, abii_ret);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(__isoc23_strtoumax, abii_ret)
     return real___isoc23_strtoumax(nptr, endptr, base);
 }
 
-static intmax_t (*real___isoc23_wcstoimax)(const __gwchar_t*, __gwchar_t**, int) __THROW = nullptr;
+static intmax_t (*real___isoc23_wcstoimax)(const wchar_t*, wchar_t**, int) __THROW = nullptr;
 
-extern "C" intmax_t abii___isoc23_wcstoimax(const __gwchar_t* nptr, __gwchar_t** endptr, int base) __THROW
+extern "C" intmax_t abii___isoc23_wcstoimax(const wchar_t* nptr, wchar_t** endptr, int base) __THROW
 {
     OVERRIDE_PREFIX(__isoc23_wcstoimax)
         pre_fmtd_str str = "__isoc23_wcstoimax(__nptr, __endptr, __base)";
         abii_args->push_func(new ArgPrinter(str));
 
-        abii_args->push_arg(new ArgPrinter(nptr, "__nptr"));
-        abii_args->push_arg(new ArgPrinter(endptr, "__endptr"));
+        auto printer = new ArgPrinter(nptr, "__nptr");
+        printer->set_enum_printer_with_depth(print_stdint_wchar, *nptr, 1);
+        abii_args->push_arg(printer);
+
+        auto printer1 = new ArgPrinter(endptr, "__endptr");
+        printer1->set_enum_printer_with_depth(print_stdint_wchar, **endptr, 1);
+        abii_args->push_arg(printer1);
+
         abii_args->push_arg(new ArgPrinter(base, "__base"));
 
         auto abii_ret = real___isoc23_wcstoimax(nptr, endptr, base);
 
-        abii_args->push_return(new ArgPrinter(abii_ret, "return"));
+        auto printer2 = new ArgPrinter(abii_ret, "return");
+        printer2->set_enum_printer(print_stdint_intmax, abii_ret);
+        abii_args->push_return(printer2);
     OVERRIDE_SUFFIX(__isoc23_wcstoimax, abii_ret)
     return real___isoc23_wcstoimax(nptr, endptr, base);
 }
 
-static uintmax_t (*real___isoc23_wcstoumax)(const __gwchar_t*, __gwchar_t**, int) __THROW = nullptr;
+static uintmax_t (*real___isoc23_wcstoumax)(const wchar_t*, wchar_t**, int) __THROW = nullptr;
 
-extern "C" uintmax_t abii___isoc23_wcstoumax(const __gwchar_t* nptr, __gwchar_t** endptr, int base) __THROW
+extern "C" uintmax_t abii___isoc23_wcstoumax(const wchar_t* nptr, wchar_t** endptr, int base) __THROW
 {
     OVERRIDE_PREFIX(__isoc23_wcstoumax)
         pre_fmtd_str str = "__isoc23_wcstoumax(__nptr, __endptr, __base)";
         abii_args->push_func(new ArgPrinter(str));
 
-        abii_args->push_arg(new ArgPrinter(nptr, "__nptr"));
-        abii_args->push_arg(new ArgPrinter(endptr, "__endptr"));
+        auto printer = new ArgPrinter(nptr, "__nptr");
+        printer->set_enum_printer_with_depth(print_stdint_wchar, *nptr, 1);
+        abii_args->push_arg(printer);
+
+        auto printer1 = new ArgPrinter(endptr, "__endptr");
+        printer1->set_enum_printer_with_depth(print_stdint_wchar, **endptr, 1);
+        abii_args->push_arg(printer1);
+
         abii_args->push_arg(new ArgPrinter(base, "__base"));
 
         auto abii_ret = real___isoc23_wcstoumax(nptr, endptr, base);
 
-        abii_args->push_return(new ArgPrinter(abii_ret, "return"));
+        auto printer2 = new ArgPrinter(abii_ret, "return");
+        printer2->set_enum_printer(print_stdint_uintmax, abii_ret);
+        abii_args->push_return(printer2);
     OVERRIDE_SUFFIX(__isoc23_wcstoumax, abii_ret)
     return real___isoc23_wcstoumax(nptr, endptr, base);
 }

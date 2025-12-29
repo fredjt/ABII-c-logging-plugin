@@ -4,6 +4,7 @@
 
 #include "ctype.h"
 
+#include "stdint.h"
 #include "bits/types/__locale_t.h"
 
 namespace abii
@@ -35,7 +36,9 @@ const __int32_t** abii___ctype_tolower_loc() __THROW
 
         auto abii_ret = real___ctype_tolower_loc();
 
-        abii_args->push_return(new ArgPrinter(abii_ret, "return"));
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer_with_depth(print_stdint_int32, **abii_ret, 2);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(__ctype_tolower_loc, abii_ret)
     return real___ctype_tolower_loc();
 }
@@ -51,7 +54,9 @@ const __int32_t** abii___ctype_toupper_loc() __THROW
 
         auto abii_ret = real___ctype_toupper_loc();
 
-        abii_args->push_return(new ArgPrinter(abii_ret, "return"));
+        auto printer = new ArgPrinter(abii_ret, "return");
+        printer->set_enum_printer_with_depth(print_stdint_int32, **abii_ret, 2);
+        abii_args->push_return(printer);
     OVERRIDE_SUFFIX(__ctype_toupper_loc, abii_ret)
     return real___ctype_toupper_loc();
 }

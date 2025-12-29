@@ -5,6 +5,7 @@
 #include "netdb.h"
 #include "bits/netdb.h"
 
+#include "stdint.h"
 #include "bits/types/sigevent_t.h"
 #include "bits/types/struct_timespec.h"
 
@@ -343,11 +344,13 @@ extern "C" netent* abii_getnetbyaddr(uint32_t net, int type)
         pre_fmtd_str pi_str = "getnetbyaddr(__net, __type)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        abii_args->push_arg(new ArgPrinter(net, "__net"));
-
-        auto printer = new ArgPrinter(type, "__type");
-        printer->set_enum_printer(print_socket_addr_family, type);
+        auto printer = new ArgPrinter(net, "__net");
+        printer->set_enum_printer(print_stdint_uint32, net);
         abii_args->push_arg(printer);
+
+        auto printer1 = new ArgPrinter(type, "__type");
+        printer1->set_enum_printer(print_socket_addr_family, type);
+        abii_args->push_arg(printer1);
 
         auto abii_ret = real_getnetbyaddr(net, type);
 
@@ -410,24 +413,26 @@ extern "C" int abii_getnetbyaddr_r(uint32_t net, int type, netent* result_buf, c
         pre_fmtd_str pi_str = "getnetbyaddr_r(__net, __type, __result_buf, __buf, __buflen, __result, __h_errnop)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        abii_args->push_arg(new ArgPrinter(net, "__net"));
-
-        auto printer = new ArgPrinter(type, "__type");
-        printer->set_enum_printer(print_socket_addr_family, type);
+        auto printer = new ArgPrinter(net, "__net");
+        printer->set_enum_printer(print_stdint_uint32, net);
         abii_args->push_arg(printer);
+
+        auto printer1 = new ArgPrinter(type, "__type");
+        printer1->set_enum_printer(print_socket_addr_family, type);
+        abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(result_buf, "__result_buf"));
 
-        auto printer1 = new ArgPrinter(buf, "__buf");
-        printer1->set_len(buflen);
-        abii_args->push_arg(printer1);
+        auto printer2 = new ArgPrinter(buf, "__buf");
+        printer2->set_len(buflen);
+        abii_args->push_arg(printer2);
 
         abii_args->push_arg(new ArgPrinter(buflen, "__buflen"));
         abii_args->push_arg(new ArgPrinter(result, "__result"));
 
-        auto printer2 = new ArgPrinter(h_errnop, "__h_errnop");
-        printer2->set_enum_printer_with_depth(print_netdb_h_errno, *h_errnop, 1);
-        abii_args->push_arg(printer2);
+        auto printer3 = new ArgPrinter(h_errnop, "__h_errnop");
+        printer3->set_enum_printer_with_depth(print_netdb_h_errno, *h_errnop, 1);
+        abii_args->push_arg(printer3);
 
         auto abii_ret = real_getnetbyaddr_r(net, type, result_buf, buf, buflen, result, h_errnop);
 
@@ -1022,7 +1027,10 @@ extern "C" int abii_iruserok(uint32_t raddr, int suser, const char* remuser, con
         pre_fmtd_str pi_str = "iruserok(__raddr, __suser, __remuser, __locuser)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        abii_args->push_arg(new ArgPrinter(raddr, "__raddr"));
+        auto printer = new ArgPrinter(raddr, "__raddr");
+        printer->set_enum_printer(print_stdint_uint32, raddr);
+        abii_args->push_arg(printer);
+
         abii_args->push_arg(new ArgPrinter(suser, "__suser"));
         abii_args->push_arg(new ArgPrinter(remuser, "__remuser"));
         abii_args->push_arg(new ArgPrinter(locuser, "__locuser"));

@@ -4,8 +4,16 @@
 
 #include "grp.h"
 
+#include "stdint.h"
+
 namespace abii
 {
+template <typename T>
+std::string print_grp_nss_buflen_group_size(const T v)
+{
+    return print_enum_entry(v, grp_nss_buflen_group, stdint_size);
+}
+
 static void (*real_setgrent)() = nullptr;
 
 extern "C" void abii_setgrent()
@@ -132,7 +140,7 @@ int abii_getgrent_r(group* resultbuf, char* buffer, size_t buflen, group** resul
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(buflen, "__buflen");
-        printer1->set_enum_printer(print_grp_nss_buflen_group, buflen);
+        printer1->set_enum_printer(print_grp_nss_buflen_group_size, buflen);
         abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(result, "__result"));
@@ -161,7 +169,7 @@ int abii_getgrgid_r(__gid_t gid, group* resultbuf, char* buffer, size_t buflen, 
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(buflen, "__buflen");
-        printer1->set_enum_printer(print_grp_nss_buflen_group, buflen);
+        printer1->set_enum_printer(print_grp_nss_buflen_group_size, buflen);
         abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(result, "__result"));
@@ -190,7 +198,7 @@ int abii_getgrnam_r(const char* name, group* resultbuf, char* buffer, size_t buf
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(buflen, "__buflen");
-        printer1->set_enum_printer(print_grp_nss_buflen_group, buflen);
+        printer1->set_enum_printer(print_grp_nss_buflen_group_size, buflen);
         abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(result, "__result"));
@@ -219,7 +227,7 @@ int abii_fgetgrent_r(FILE* stream, group* resultbuf, char* buffer, size_t buflen
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(buflen, "__buflen");
-        printer1->set_enum_printer(print_grp_nss_buflen_group, buflen);
+        printer1->set_enum_printer(print_grp_nss_buflen_group_size, buflen);
         abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(result, "__result"));
@@ -239,11 +247,13 @@ extern "C" int abii_setgroups(size_t n, const __gid_t* groups) __THROW
         pre_fmtd_str str = "setgroups(__n, __groups)";
         abii_args->push_func(new ArgPrinter(str));
 
-        abii_args->push_arg(new ArgPrinter(n, "__n"));
-
-        auto printer = new ArgPrinter(groups, "__groups");
-        printer->set_len(n);
+        auto printer = new ArgPrinter(n, "__n");
+        printer->set_enum_printer(print_stdint_size, n);
         abii_args->push_arg(printer);
+
+        auto printer1 = new ArgPrinter(groups, "__groups");
+        printer1->set_len(n);
+        abii_args->push_arg(printer1);
 
         auto abii_ret = real_setgroups(n, groups);
 
