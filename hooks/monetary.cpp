@@ -26,7 +26,7 @@ ssize_t abii_strfmon(char* s, size_t maxsize, const char* format, ...) __THROW
         abii_args->push_arg(new ArgPrinter(format, "__format"));
         PUSH_VARIADIC_ARGS(printer1, format, print_variadic_args_strfmon, maxsize)
 
-        const auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real_strfmon), abii_bi_vargs, 1000);
+        auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real_strfmon), abii_bi_vargs, 1000);
 
         abii_args->push_return(new ArgPrinter(*reinterpret_cast<ssize_t*>(abii_ret), "return"));
     OVERRIDE_VARIADIC_SUFFIX(strfmon, abii_ret, format)
@@ -51,7 +51,7 @@ ssize_t abii_strfmon_l(char* s, size_t maxsize, locale_t loc, const char* format
         abii_args->push_arg(new ArgPrinter(format, "__format"));
         PUSH_VARIADIC_ARGS(printer1, format, print_variadic_args_strfmon, maxsize)
 
-        const auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real_strfmon_l), abii_bi_vargs, 1000);
+        auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real_strfmon_l), abii_bi_vargs, 1000);
 
         abii_args->push_return(new ArgPrinter(*reinterpret_cast<ssize_t*>(abii_ret), "return"));
     OVERRIDE_VARIADIC_SUFFIX(strfmon_l, abii_ret, format)

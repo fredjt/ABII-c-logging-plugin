@@ -34,7 +34,7 @@ mqd_t abii_mq_open(const char* name, int oflag, ...) __THROW
             format = "%u%lu"; // The contents of this string are unimportant; it just shows what is in vargs.
         PUSH_VARIADIC_ARGS(printer1, format, print_variadic_args_mq_open)
 
-        const auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real_mq_open), abii_bi_vargs, 1000);
+        auto abii_ret = __builtin_apply(reinterpret_cast<void (*)(...)>(real_mq_open), abii_bi_vargs, 1000);
 
         abii_args->push_return(new ArgPrinter(*reinterpret_cast<mqd_t*>(abii_ret), "return"));
     OVERRIDE_VARIADIC_SUFFIX(mq_open, abii_ret, format)
@@ -51,7 +51,7 @@ extern "C" int abii_mq_close(mqd_t mqdes) __THROW
 
         abii_args->push_arg(new ArgPrinter(mqdes, "__mqdes"));
 
-        const auto abii_ret = real_mq_close(mqdes);
+        auto abii_ret = real_mq_close(mqdes);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(mq_close, abii_ret)
@@ -70,7 +70,7 @@ int abii_mq_getattr(mqd_t mqdes, mq_attr* mqstat) __THROW
         abii_args->push_arg(new ArgPrinter(mqdes, "__mqdes"));
         abii_args->push_arg(new ArgPrinter(mqstat, "__mqstat"));
 
-        const auto abii_ret = real_mq_getattr(mqdes, mqstat);
+        auto abii_ret = real_mq_getattr(mqdes, mqstat);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(mq_getattr, abii_ret)
@@ -90,7 +90,7 @@ int abii_mq_setattr(mqd_t mqdes, const mq_attr* mqstat, mq_attr* omqstat) __THRO
         abii_args->push_arg(new ArgPrinter(mqstat, "__mqstat"));
         abii_args->push_arg(new ArgPrinter(omqstat, "__omqstat"));
 
-        const auto abii_ret = real_mq_setattr(mqdes, mqstat, omqstat);
+        auto abii_ret = real_mq_setattr(mqdes, mqstat, omqstat);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(mq_setattr, abii_ret)
@@ -108,7 +108,7 @@ int abii_mq_unlink(const char* name) __THROW
 
         abii_args->push_arg(new ArgPrinter(name, "__name"));
 
-        const auto abii_ret = real_mq_unlink(name);
+        auto abii_ret = real_mq_unlink(name);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(mq_unlink, abii_ret)
@@ -126,7 +126,7 @@ extern "C" int abii_mq_notify(mqd_t mqdes, const sigevent* notification) __THROW
         abii_args->push_arg(new ArgPrinter(mqdes, "__mqdes"));
         abii_args->push_arg(new ArgPrinter(notification, "__notification"));
 
-        const auto abii_ret = real_mq_notify(mqdes, notification);
+        auto abii_ret = real_mq_notify(mqdes, notification);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(mq_notify, abii_ret)
@@ -151,7 +151,7 @@ ssize_t abii_mq_receive(mqd_t mqdes, char* msg_ptr, size_t msg_len, unsigned int
         abii_args->push_arg(new ArgPrinter(msg_len, "__msg_len"));
         abii_args->push_arg(new ArgPrinter(msg_prio, "__msg_prio"));
 
-        const auto abii_ret = real_mq_receive(mqdes, msg_ptr, msg_len, msg_prio);
+        auto abii_ret = real_mq_receive(mqdes, msg_ptr, msg_len, msg_prio);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(mq_receive, abii_ret)
@@ -176,7 +176,7 @@ int abii_mq_send(mqd_t mqdes, const char* msg_ptr, size_t msg_len, unsigned int 
         abii_args->push_arg(new ArgPrinter(msg_len, "__msg_len"));
         abii_args->push_arg(new ArgPrinter(msg_prio, "__msg_prio"));
 
-        const auto abii_ret = real_mq_send(mqdes, msg_ptr, msg_len, msg_prio);
+        auto abii_ret = real_mq_send(mqdes, msg_ptr, msg_len, msg_prio);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(mq_send, abii_ret)
@@ -203,7 +203,7 @@ ssize_t abii_mq_timedreceive(mqd_t mqdes, char* msg_ptr, size_t msg_len, unsigne
         abii_args->push_arg(new ArgPrinter(msg_prio, "__msg_prio"));
         abii_args->push_arg(new ArgPrinter(abs_timeout, "__abs_timeout"));
 
-        const auto abii_ret = real_mq_timedreceive(mqdes, msg_ptr, msg_len, msg_prio, abs_timeout);
+        auto abii_ret = real_mq_timedreceive(mqdes, msg_ptr, msg_len, msg_prio, abs_timeout);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(mq_timedreceive, abii_ret)
@@ -230,7 +230,7 @@ int abii_mq_timedsend(mqd_t mqdes, const char* msg_ptr, size_t msg_len, unsigned
         abii_args->push_arg(new ArgPrinter(msg_prio, "__msg_prio"));
         abii_args->push_arg(new ArgPrinter(abs_timeout, "__abs_timeout"));
 
-        const auto abii_ret = real_mq_timedsend(mqdes, msg_ptr, msg_len, msg_prio, abs_timeout);
+        auto abii_ret = real_mq_timedsend(mqdes, msg_ptr, msg_len, msg_prio, abs_timeout);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(mq_timedsend, abii_ret)
