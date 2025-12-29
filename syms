@@ -938,3 +938,15 @@ ftrylockfile
 funlockfile
 __uflow
 __overflow
+
+// stio_ext.h
+__fbufsize
+__freading
+__fwriting
+__freadable
+__fwritable
+__flbf
+__fpurge
+__fpending
+_flushlbf
+__fsetlocking
