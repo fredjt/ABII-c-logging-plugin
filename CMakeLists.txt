@@ -122,6 +122,7 @@ add_library(c-logger SHARED
             hooks/sgtty.cpp hooks/sgtty.h
             hooks/shadow.cpp hooks/shadow.h
             hooks/signal.cpp
+            hooks/spawn.cpp hooks/spawn.h
             hooks/stdio.cpp hooks/stdio.h
             custom_enum_printers.h
             custom_printers.h)
