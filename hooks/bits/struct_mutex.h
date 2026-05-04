@@ -27,23 +27,23 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(printer);
 #ifdef __x86_64__
     abii_args->push_arg(new ArgPrinter(obj.__spins, "__spins", &os));
-    abii_args->push_arg(new ArgPrinter(obj.__elision, "__elision", &os));
+    abii_args->push_arg(new ArgPrinter(obj.__unused, "__unused", &os));
     abii_args->push_arg(new ArgPrinter(obj.__list, "__list", &os, RECURSE));
 #else
     abii_args->push_arg(new ArgPrinter(obj.__nusers, "__nusers", &os));
-    abii_args->push_arg(new ArgPrinter(obj.__elision_data, "__elision_data", &os));
+    abii_args->push_arg(new ArgPrinter(obj.__data, "__data", &os));
     abii_args->push_arg(new ArgPrinter(obj.__list, "__list", &os, RECURSE));
 #endif
     OVERRIDE_STREAM_SUFFIX
 }
 
 #ifndef __x86_64__
-template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, decltype(__pthread_mutex_s::__elision_data)>
+template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, decltype(__pthread_mutex_s::__data)>
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    abii_args->push_arg(new ArgPrinter(obj.__espins, "__espins", &os));
-    abii_args->push_arg(new ArgPrinter(obj.__eelision, "__eelision", &os, RECURSE));
+    abii_args->push_arg(new ArgPrinter(obj.__data_spins, "__data_spins", &os));
+    abii_args->push_arg(new ArgPrinter(obj.__data_unused, "__data_unused", &os, RECURSE));
     OVERRIDE_STREAM_SUFFIX
 }
 #endif

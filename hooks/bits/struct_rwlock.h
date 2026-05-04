@@ -22,7 +22,6 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
 #ifdef __x86_64__
     abii_args->push_arg(new ArgPrinter(obj.__cur_writer, "__cur_writer", &os));
     abii_args->push_arg(new ArgPrinter(obj.__shared, "__shared", &os));
-    abii_args->push_arg(new ArgPrinter(obj.__rwelision, "__rwelision", &os));
     abii_args->push_arg(new ArgPrinter(obj.__pad1, "__pad1", &os));
     abii_args->push_arg(new ArgPrinter(obj.__pad2, "__pad2", &os));
 
@@ -35,7 +34,7 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.__shared, "__shared", &os));
-    abii_args->push_arg(new ArgPrinter(obj.__rwelision, "__rwelision", &os));
+    abii_args->push_arg(new ArgPrinter(obj.__pad1, "__pad1", &os));
     abii_args->push_arg(new ArgPrinter(obj.__pad2, "__pad2", &os));
     abii_args->push_arg(new ArgPrinter(obj.__cur_writer, "__cur_writer", &os, RECURSE));
 #endif

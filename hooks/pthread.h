@@ -52,10 +52,9 @@ const defines_map pthread_rwlock_type = {
 
 const defines_map<pthread_rwlock_t> pthread_rwlock_initializer = {
 #ifdef __x86_64__
-    {pthread_rwlock_t({{0, 0, 0, 0, 0, 0, 0, 0, 0, {0, 0, 0, 0, 0, 0, 0}, 0, 0}}), "PTHREAD_RWLOCK_INITIALIZER"},
+    {{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}, "PTHREAD_RWLOCK_INITIALIZER"},
     {
-        pthread_rwlock_t({{0, 0, 0, 0, 0, 0, 0, 0, 0, {0, 0, 0, 0, 0, 0, 0}, 0, 2}}),
-        "PTHREAD_RWLOCK_WRITER_NONRECURSIVE_INITIALIZER_NP"
+        {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2}}, "PTHREAD_RWLOCK_WRITER_NONRECURSIVE_INITIALIZER_NP"
     }
 #else
     {pthread_rwlock_t({{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}), "PTHREAD_RWLOCK_INITIALIZER"},
