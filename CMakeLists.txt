@@ -127,6 +127,7 @@ add_library(c-logger SHARED
             hooks/stdint.h
             hooks/stdio.cpp hooks/stdio.h
             hooks/stdio_ext.cpp hooks/stdio_ext.h
+            hooks/stdlib.cpp hooks/stdlib.h
             custom_enum_printers.h
             custom_printers.h)
 

@@ -41,4 +41,12 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
+template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, __once_flag>
+std::ostream& operator<<(std::ostream& os, T&& obj)
+{
+    OVERRIDE_STREAM_PREFIX
+    abii_args->push_arg(new ArgPrinter(obj.__data, "__data", &os, RECURSE));
+    OVERRIDE_STREAM_SUFFIX
+}
+
 #endif //ABII_C_LOGGING_PLUGIN_THREAD_SHARED_TYPES_H
