@@ -12,3 +12,6 @@ supported functions.
 
 - dlsym and dlvsym cannot be simultaneously intercepted
 - Intercepting mcheck/mcheck_pedantic breaks mcheck/mcheck_pedantic functionality
+
+### Supported versions of glibc:
+- 2.43
