@@ -9,7 +9,8 @@
 
 namespace abii
 {
-static ssize_t (*real_strfmon)(char*, size_t, const char*, ...) __THROW = nullptr;
+static __attribute_format_strfmon__(3, 4) __attr_access((__write_only__, 1, 2))
+ssize_t (*real_strfmon)(char*, size_t, const char*, ...) __THROW = nullptr;
 
 extern "C" __attribute_format_strfmon__(3, 4) __attr_access((__write_only__, 1, 2))
 ssize_t abii_strfmon(char* s, size_t maxsize, const char* format, ...) __THROW
@@ -33,7 +34,8 @@ ssize_t abii_strfmon(char* s, size_t maxsize, const char* format, ...) __THROW
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real_strfmon), abii_bi_vargs, 1000));
 }
 
-static ssize_t (*real_strfmon_l)(char*, size_t, locale_t, const char*, ...) __THROW = nullptr;
+static __attribute_format_strfmon__(4, 5) __attr_access((__write_only__, 1, 2))
+ssize_t (*real_strfmon_l)(char*, size_t, locale_t, const char*, ...) __THROW = nullptr;
 
 extern "C" __attribute_format_strfmon__(4, 5) __attr_access((__write_only__, 1, 2))
 ssize_t abii_strfmon_l(char* s, size_t maxsize, locale_t loc, const char* format, ...) __THROW

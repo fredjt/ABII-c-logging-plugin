@@ -80,7 +80,7 @@ extern "C" __sighandler_t abii_signal(int sig, __sighandler_t handler) __THROW
 
 static __sighandler_t (*real_bsd_signal)(int, __sighandler_t) __THROW = nullptr;
 
-__sighandler_t bsd_signal(int sig, __sighandler_t handler) __THROW
+extern "C" __sighandler_t abii_bsd_signal(int sig, __sighandler_t handler) __THROW
 {
     OVERRIDE_PREFIX(bsd_signal)
         pre_fmtd_str pi_str = "bsd_signal(__sig, __handler)";
@@ -349,7 +349,7 @@ int abii_siggetmask() __THROW
     return real_siggetmask();
 }
 
-static int (*real_sigemptyset)(sigset_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_sigemptyset)(sigset_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sigemptyset(sigset_t* set) __THROW
@@ -367,7 +367,7 @@ int abii_sigemptyset(sigset_t* set) __THROW
     return real_sigemptyset(set);
 }
 
-static int (*real_sigfillset)(sigset_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_sigfillset)(sigset_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sigfillset(sigset_t* set) __THROW
@@ -385,7 +385,7 @@ int abii_sigfillset(sigset_t* set) __THROW
     return real_sigfillset(set);
 }
 
-static int (*real_sigaddset)(sigset_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_sigaddset)(sigset_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sigaddset(sigset_t* set, int signo) __THROW
@@ -407,7 +407,7 @@ int abii_sigaddset(sigset_t* set, int signo) __THROW
     return real_sigaddset(set, signo);
 }
 
-static int (*real_sigdelset)(sigset_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_sigdelset)(sigset_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sigdelset(sigset_t* set, int signo) __THROW
@@ -429,7 +429,7 @@ int abii_sigdelset(sigset_t* set, int signo) __THROW
     return real_sigdelset(set, signo);
 }
 
-static int (*real_sigismember)(const sigset_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_sigismember)(const sigset_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sigismember(const sigset_t* set, int signo) __THROW
@@ -451,7 +451,7 @@ int abii_sigismember(const sigset_t* set, int signo) __THROW
     return real_sigismember(set, signo);
 }
 
-static int (*real_sigisemptyset)(const sigset_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_sigisemptyset)(const sigset_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sigisemptyset(const sigset_t* set) __THROW
@@ -469,7 +469,7 @@ int abii_sigisemptyset(const sigset_t* set) __THROW
     return real_sigisemptyset(set);
 }
 
-static int (*real_sigandset)(sigset_t*, const sigset_t*, const sigset_t*) __THROW = nullptr;
+static __nonnull((1, 2, 3)) int (*real_sigandset)(sigset_t*, const sigset_t*, const sigset_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2, 3))
 int abii_sigandset(sigset_t* set, const sigset_t* left, const sigset_t* right) __THROW
@@ -489,7 +489,7 @@ int abii_sigandset(sigset_t* set, const sigset_t* left, const sigset_t* right) _
     return real_sigandset(set, left, right);
 }
 
-static int (*real_sigorset)(sigset_t*, const sigset_t*, const sigset_t*) __THROW = nullptr;
+static __nonnull((1, 2, 3)) int (*real_sigorset)(sigset_t*, const sigset_t*, const sigset_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2, 3))
 int abii_sigorset(sigset_t* set, const sigset_t* left, const sigset_t* right) __THROW
@@ -531,7 +531,7 @@ extern "C" int abii_sigprocmask(int how, const sigset_t* set, sigset_t* oset) __
     return real_sigprocmask(how, set, oset);
 }
 
-static int (*real_sigsuspend)(const sigset_t*) = nullptr;
+static __nonnull((1)) int (*real_sigsuspend)(const sigset_t*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sigsuspend(const sigset_t* set)
@@ -571,7 +571,7 @@ extern "C" int abii_sigaction(int sig, const struct sigaction* act, struct sigac
     return real_sigaction(sig, act, oact);
 }
 
-static int (*real_sigpending)(sigset_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_sigpending)(sigset_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sigpending(sigset_t* set) __THROW
@@ -589,7 +589,7 @@ int abii_sigpending(sigset_t* set) __THROW
     return real_sigpending(set);
 }
 
-static int (*real_sigwait)(const sigset_t*, int*) = nullptr;
+static __nonnull((1, 2)) int (*real_sigwait)(const sigset_t*, int*) = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_sigwait(const sigset_t* set, int* sig)
@@ -611,7 +611,7 @@ int abii_sigwait(const sigset_t* set, int* sig)
     return real_sigwait(set, sig);
 }
 
-static int (*real_sigwaitinfo)(const sigset_t*, siginfo_t*) = nullptr;
+static __nonnull((1)) int (*real_sigwaitinfo)(const sigset_t*, siginfo_t*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sigwaitinfo(const sigset_t* set, siginfo_t* info)
@@ -630,7 +630,7 @@ int abii_sigwaitinfo(const sigset_t* set, siginfo_t* info)
     return real_sigwaitinfo(set, info);
 }
 
-static int (*real_sigtimedwait)(const sigset_t*, siginfo_t*, const timespec*) = nullptr;
+static __nonnull((1)) int (*real_sigtimedwait)(const sigset_t*, siginfo_t*, const timespec*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sigtimedwait(const sigset_t* set, siginfo_t* info, const timespec* timeout)

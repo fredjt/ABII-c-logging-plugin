@@ -9,7 +9,7 @@
 
 namespace abii
 {
-static struct __res_state* (*real___res_state)() = nullptr;
+static __attribute__ ((__const__)) struct __res_state* (*real___res_state)() = nullptr;
 
 extern "C" __attribute__ ((__const__))
 struct __res_state* abii___res_state()

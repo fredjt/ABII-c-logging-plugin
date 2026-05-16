@@ -116,7 +116,7 @@ extern "C" int abii_putsgent(const sgrp* g, FILE* stream)
     return real_putsgent(g, stream);
 }
 
-static int (*real_getsgent_r)(sgrp*, char*, size_t, sgrp**) = nullptr;
+static __attr_access((__write_only__, 2, 3)) int (*real_getsgent_r)(sgrp*, char*, size_t, sgrp**) = nullptr;
 
 extern "C" __attr_access((__write_only__, 2, 3))
 int abii_getsgent_r(sgrp* result_buf, char* buffer, size_t buflen, sgrp** result)
@@ -141,7 +141,8 @@ int abii_getsgent_r(sgrp* result_buf, char* buffer, size_t buflen, sgrp** result
     return real_getsgent_r(result_buf, buffer, buflen, result);
 }
 
-static int (*real_getsgnam_r)(const char*, sgrp*, char*, size_t, sgrp**) = nullptr;
+static __attr_access((__write_only__, 3, 4))
+int (*real_getsgnam_r)(const char*, sgrp*, char*, size_t, sgrp**) = nullptr;
 
 extern "C" __attr_access((__write_only__, 3, 4))
 int abii_getsgnam_r(const char* name, sgrp* result_buf, char* buffer, size_t buflen, sgrp** result)
@@ -167,7 +168,8 @@ int abii_getsgnam_r(const char* name, sgrp* result_buf, char* buffer, size_t buf
     return real_getsgnam_r(name, result_buf, buffer, buflen, result);
 }
 
-static int (*real_sgetsgent_r)(const char*, sgrp*, char*, size_t, sgrp**) = nullptr;
+static __attr_access((__write_only__, 3, 4))
+int (*real_sgetsgent_r)(const char*, sgrp*, char*, size_t, sgrp**) = nullptr;
 
 extern "C" __attr_access((__write_only__, 3, 4))
 int abii_sgetsgent_r(const char* string, sgrp* result_buf, char* buffer, size_t buflen, sgrp** result)
@@ -193,7 +195,7 @@ int abii_sgetsgent_r(const char* string, sgrp* result_buf, char* buffer, size_t 
     return real_sgetsgent_r(string, result_buf, buffer, buflen, result);
 }
 
-static int (*real_fgetsgent_r)(FILE*, sgrp*, char*, size_t, sgrp**) = nullptr;
+static __attr_access((__write_only__, 3, 4)) int (*real_fgetsgent_r)(FILE*, sgrp*, char*, size_t, sgrp**) = nullptr;
 
 extern "C" __attr_access((__write_only__, 3, 4))
 int abii_fgetsgent_r(FILE* stream, sgrp* result_buf, char* buffer, size_t buflen, sgrp** result)

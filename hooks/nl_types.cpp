@@ -8,7 +8,7 @@
 
 namespace abii
 {
-static nl_catd (*real_catopen)(const char*, int) = nullptr;
+static __nonnull((1)) nl_catd (*real_catopen)(const char*, int) = nullptr;
 
 extern "C" __nonnull((1))
 nl_catd abii_catopen(const char* cat_name, int flag)
@@ -30,7 +30,7 @@ nl_catd abii_catopen(const char* cat_name, int flag)
     return real_catopen(cat_name, flag);
 }
 
-static char* (*real_catgets)(nl_catd, int, int, const char*) __THROW = nullptr;
+static __nonnull((1)) char* (*real_catgets)(nl_catd, int, int, const char*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 char* abii_catgets(nl_catd catalog, int set, int number, const char* string) __THROW
@@ -55,7 +55,7 @@ char* abii_catgets(nl_catd catalog, int set, int number, const char* string) __T
     return real_catgets(catalog, set, number, string);
 }
 
-static int (*real_catclose)(nl_catd) __THROW = nullptr;
+static __nonnull((1)) int (*real_catclose)(nl_catd) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_catclose(nl_catd catalog) __THROW

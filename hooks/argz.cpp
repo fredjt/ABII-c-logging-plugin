@@ -54,7 +54,7 @@ extern "C" error_t abii_argz_create_sep(const char* string, int sep, char** argz
     return real_argz_create_sep(string, sep, argz, len);
 }
 
-static size_t (*real_argz_count)(const char*, size_t) __THROW = nullptr;
+static __attribute_pure__ size_t (*real_argz_count)(const char*, size_t) __THROW = nullptr;
 
 extern "C" __attribute_pure__
 size_t abii_argz_count(const char* argz, size_t len) __THROW

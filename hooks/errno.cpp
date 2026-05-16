@@ -8,7 +8,7 @@
 
 namespace abii
 {
-static int* (*real___errno_location)() __THROW = nullptr;
+static __attribute_const__ int* (*real___errno_location)() __THROW = nullptr;
 
 extern "C" __attribute_const__
 int* abii___errno_location() __THROW

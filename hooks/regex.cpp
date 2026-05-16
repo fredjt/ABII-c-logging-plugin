@@ -25,7 +25,8 @@ extern "C" reg_syntax_t abii_re_set_syntax(reg_syntax_t syntax)
     return real_re_set_syntax(syntax);
 }
 
-static const char*(*real_re_compile_pattern)(const char*, size_t, re_pattern_buffer*) = nullptr;
+static _Attr_access_((__read_only__, 1, 2))
+const char*(*real_re_compile_pattern)(const char*, size_t, re_pattern_buffer*) = nullptr;
 
 extern "C" _Attr_access_((__read_only__, 1, 2))
 const char* abii_re_compile_pattern(const char* pattern, size_t length, re_pattern_buffer* buffer)
@@ -65,8 +66,8 @@ extern "C" int abii_re_compile_fastmap(re_pattern_buffer* buffer)
     return real_re_compile_fastmap(buffer);
 }
 
-static regoff_t (*real_re_search)(re_pattern_buffer*, const char*, regoff_t, regoff_t, regoff_t, re_registers*) =
-    nullptr;
+static _Attr_access_((__read_only__, 2, 3))
+regoff_t (*real_re_search)(re_pattern_buffer*, const char*, regoff_t, regoff_t, regoff_t, re_registers*) = nullptr;
 
 extern "C" _Attr_access_((__read_only__, 2, 3))
 regoff_t abii_re_search(re_pattern_buffer* buffer, const char* String, regoff_t length, regoff_t start, regoff_t range,
@@ -94,8 +95,9 @@ regoff_t abii_re_search(re_pattern_buffer* buffer, const char* String, regoff_t 
     return real_re_search(buffer, String, length, start, range, regs);
 }
 
-static regoff_t (*real_re_search_2)(re_pattern_buffer*, const char*, regoff_t, const char*, regoff_t, regoff_t,
-                                    regoff_t, re_registers*, regoff_t) = nullptr;
+static _Attr_access_((__read_only__, 2, 3)) _Attr_access_((__read_only__, 4, 5))
+regoff_t (*real_re_search_2)(re_pattern_buffer*, const char*, regoff_t, const char*, regoff_t, regoff_t, regoff_t,
+                             re_registers*, regoff_t) = nullptr;
 
 extern "C" _Attr_access_((__read_only__, 2, 3)) _Attr_access_((__read_only__, 4, 5))
 regoff_t abii_re_search_2(re_pattern_buffer* buffer, const char* string1, regoff_t length1, const char* string2,
@@ -131,7 +133,8 @@ regoff_t abii_re_search_2(re_pattern_buffer* buffer, const char* string1, regoff
     return real_re_search_2(buffer, string1, length1, string2, length2, start, range, regs, stop);
 }
 
-static regoff_t (*real_re_match)(re_pattern_buffer*, const char*, regoff_t, regoff_t, re_registers*) = nullptr;
+static _Attr_access_((__read_only__, 2, 3))
+regoff_t (*real_re_match)(re_pattern_buffer*, const char*, regoff_t, regoff_t, re_registers*) = nullptr;
 
 extern "C" _Attr_access_((__read_only__, 2, 3))
 regoff_t abii_re_match(re_pattern_buffer* buffer, const char* String, regoff_t length, regoff_t start,
@@ -159,8 +162,9 @@ regoff_t abii_re_match(re_pattern_buffer* buffer, const char* String, regoff_t l
     return real_re_match(buffer, String, length, start, regs);
 }
 
-static regoff_t (*real_re_match_2)(re_pattern_buffer*, const char*, regoff_t, const char*, regoff_t, regoff_t,
-                                   re_registers*, regoff_t) = nullptr;
+static _Attr_access_((__read_only__, 2, 3)) _Attr_access_((__read_only__, 4, 5))
+regoff_t (*real_re_match_2)(re_pattern_buffer*, const char*, regoff_t, const char*, regoff_t, regoff_t, re_registers*,
+                            regoff_t) = nullptr;
 
 extern "C" _Attr_access_((__read_only__, 2, 3)) _Attr_access_((__read_only__, 4, 5))
 regoff_t abii_re_match_2(re_pattern_buffer* buffer, const char* string1, regoff_t length1, const char* string2,
@@ -306,7 +310,7 @@ extern "C" int abii_regexec(const regex_t* preg, const char* String, size_t nmat
     return real_regexec(preg, String, nmatch, pmatch, eflags);
 }
 
-static size_t (*real_regerror)(int, const regex_t*, char*, size_t) = nullptr;
+static _Attr_access_((__write_only__, 3, 4)) size_t (*real_regerror)(int, const regex_t*, char*, size_t) = nullptr;
 
 extern "C" _Attr_access_((__write_only__, 3, 4))
 size_t abii_regerror(int errcode, const regex_t* preg, char* errbuf, size_t errbuf_size)

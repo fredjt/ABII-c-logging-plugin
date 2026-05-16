@@ -7,7 +7,7 @@
 
 namespace abii
 {
-static int (*real_closedir)(DIR*) = nullptr;
+static __nonnull((1)) int (*real_closedir)(DIR*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_closedir(DIR* dirp)
@@ -25,7 +25,7 @@ int abii_closedir(DIR* dirp)
     return real_closedir(dirp);
 }
 
-static DIR*(*real_opendir)(const char*) = nullptr;
+static __nonnull((1)) DIR*(*real_opendir)(const char*) = nullptr;
 
 extern "C" __nonnull((1)) __attribute_malloc__ __attr_dealloc(closedir, 1)
 DIR* abii_opendir(const char* name)
@@ -61,7 +61,7 @@ DIR* abii_fdopendir(int fd)
     return real_fdopendir(fd);
 }
 
-static dirent*(*real_readdir)(DIR*) = nullptr;
+static __nonnull((1)) dirent*(*real_readdir)(DIR*) = nullptr;
 
 extern "C" __nonnull((1))
 dirent* abii_readdir(DIR* dirp)
@@ -79,7 +79,7 @@ dirent* abii_readdir(DIR* dirp)
     return real_readdir(dirp);
 }
 
-static dirent64*(*real_readdir64)(DIR*) = nullptr;
+static __nonnull((1)) dirent64*(*real_readdir64)(DIR*) = nullptr;
 
 extern "C" __nonnull((1))
 dirent64* abii_readdir64(DIR* dirp)
@@ -97,7 +97,7 @@ dirent64* abii_readdir64(DIR* dirp)
     return real_readdir64(dirp);
 }
 
-static int (*real_readdir_r)(DIR*, dirent*, dirent**) = nullptr;
+static __nonnull((1, 2, 3)) int (*real_readdir_r)(DIR*, dirent*, dirent**) = nullptr;
 
 extern "C" __nonnull((1, 2, 3)) __attribute_deprecated__
 int abii_readdir_r(DIR* dirp, dirent* entry, dirent** result)
@@ -117,7 +117,7 @@ int abii_readdir_r(DIR* dirp, dirent* entry, dirent** result)
     return real_readdir_r(dirp, entry, result);
 }
 
-static int (*real_readdir64_r)(DIR*, dirent64*, dirent64**) = nullptr;
+static __nonnull((1, 2, 3)) int (*real_readdir64_r)(DIR*, dirent64*, dirent64**) = nullptr;
 
 extern "C" __nonnull((1, 2, 3)) __attribute_deprecated__
 int abii_readdir64_r(DIR* dirp, dirent64* entry, dirent64** result)
@@ -137,7 +137,7 @@ int abii_readdir64_r(DIR* dirp, dirent64* entry, dirent64** result)
     return real_readdir64_r(dirp, entry, result);
 }
 
-static void (*real_rewinddir)(DIR*) __THROW = nullptr;
+static __nonnull((1)) void (*real_rewinddir)(DIR*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 void abii_rewinddir(DIR* dirp) __THROW
@@ -153,7 +153,7 @@ void abii_rewinddir(DIR* dirp) __THROW
     return real_rewinddir(dirp);
 }
 
-static void (*real_seekdir)(DIR*, long int) __THROW = nullptr;
+static __nonnull((1)) void (*real_seekdir)(DIR*, long int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 void abii_seekdir(DIR* dirp, long int pos) __THROW
@@ -170,7 +170,7 @@ void abii_seekdir(DIR* dirp, long int pos) __THROW
     return real_seekdir(dirp, pos);
 }
 
-static long int (*real_telldir)(DIR*) __THROW = nullptr;
+static __nonnull((1)) long int (*real_telldir)(DIR*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 long int abii_telldir(DIR* dirp) __THROW
@@ -188,7 +188,7 @@ long int abii_telldir(DIR* dirp) __THROW
     return real_telldir(dirp);
 }
 
-static int (*real_dirfd)(DIR*) __THROW = nullptr;
+static __nonnull((1)) int (*real_dirfd)(DIR*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_dirfd(DIR* dirp) __THROW
@@ -206,8 +206,8 @@ int abii_dirfd(DIR* dirp) __THROW
     return real_dirfd(dirp);
 }
 
-static int (*real_scandir)(const char*, dirent***, int (*)(const dirent*), int (*)(const dirent**, const dirent**)) =
-    nullptr;
+static __nonnull((1, 2))
+int (*real_scandir)(const char*, dirent***, int (*)(const dirent*), int (*)(const dirent**, const dirent**)) = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_scandir(const char* dir, dirent*** namelist, int (*selector)(const dirent*),
@@ -235,8 +235,9 @@ int abii_scandir(const char* dir, dirent*** namelist, int (*selector)(const dire
     return real_scandir(dir, namelist, selector, cmp);
 }
 
-static int (*real_scandir64)(const char*, dirent64***, int (*)(const dirent64*),
-                             int (*)(const dirent64**, const dirent64**)) = nullptr;
+static __nonnull((1, 2))
+int (*real_scandir64)(const char*, dirent64***, int (*)(const dirent64*),
+                      int (*)(const dirent64**, const dirent64**)) = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_scandir64(const char* dir, dirent64*** namelist, int (*selector)(const dirent64*),
@@ -264,8 +265,9 @@ int abii_scandir64(const char* dir, dirent64*** namelist, int (*selector)(const 
     return real_scandir64(dir, namelist, selector, cmp);
 }
 
-static int (*real_scandirat)(int, const char*, dirent***, int (*)(const dirent*),
-                             int (*)(const dirent**, const dirent**)) = nullptr;
+static __nonnull((2, 3))
+int (*real_scandirat)(int, const char*, dirent***, int (*)(const dirent*), int (*)(const dirent**, const dirent**)) =
+    nullptr;
 
 extern "C" __nonnull((2, 3))
 int abii_scandirat(int dfd, const char* dir, dirent*** namelist, int (*selector)(const dirent*),
@@ -294,8 +296,9 @@ int abii_scandirat(int dfd, const char* dir, dirent*** namelist, int (*selector)
     return real_scandirat(dfd, dir, namelist, selector, cmp);
 }
 
-static int (*real_scandirat64)(int, const char*, dirent64***, int (*)(const dirent64*),
-                               int (*)(const dirent64**, const dirent64**)) = nullptr;
+static __nonnull((2, 3))
+int (*real_scandirat64)(int, const char*, dirent64***, int (*)(const dirent64*),
+                        int (*)(const dirent64**, const dirent64**)) = nullptr;
 
 extern "C" __nonnull((2, 3))
 int abii_scandirat64(int dfd, const char* dir, dirent64*** namelist, int (*selector)(const dirent64*),
@@ -324,7 +327,7 @@ int abii_scandirat64(int dfd, const char* dir, dirent64*** namelist, int (*selec
     return real_scandirat64(dfd, dir, namelist, selector, cmp);
 }
 
-static int (*real_alphasort)(const dirent**, const dirent**) __THROW = nullptr;
+static __attribute_pure__ __nonnull((1, 2)) int (*real_alphasort)(const dirent**, const dirent**) __THROW = nullptr;
 
 extern "C" __attribute_pure__ __nonnull((1, 2))
 int abii_alphasort(const dirent** e1, const dirent** e2) __THROW
@@ -343,7 +346,8 @@ int abii_alphasort(const dirent** e1, const dirent** e2) __THROW
     return real_alphasort(e1, e2);
 }
 
-static int (*real_alphasort64)(const dirent64**, const dirent64**) __THROW = nullptr;
+static __attribute_pure__ __nonnull((1, 2)) int (*real_alphasort64)(const dirent64**, const dirent64**) __THROW =
+    nullptr;
 
 extern "C" __attribute_pure__ __nonnull((1, 2))
 int abii_alphasort64(const dirent64** e1, const dirent64** e2) __THROW
@@ -362,7 +366,7 @@ int abii_alphasort64(const dirent64** e1, const dirent64** e2) __THROW
     return real_alphasort64(e1, e2);
 }
 
-static __ssize_t (*real_getdirentries)(int, char*, size_t, __off_t*) __THROW = nullptr;
+static __nonnull((2, 4)) __ssize_t (*real_getdirentries)(int, char*, size_t, __off_t*) __THROW = nullptr;
 
 extern "C" __nonnull((2, 4))
 __ssize_t abii_getdirentries(int fd, char* buf, size_t nbytes, __off_t* basep) __THROW
@@ -388,7 +392,7 @@ __ssize_t abii_getdirentries(int fd, char* buf, size_t nbytes, __off_t* basep) _
     return real_getdirentries(fd, buf, nbytes, basep);
 }
 
-static __ssize_t (*real_getdirentries64)(int, char*, size_t, __off64_t*) __THROW = nullptr;
+static __nonnull((2, 4)) __ssize_t (*real_getdirentries64)(int, char*, size_t, __off64_t*) __THROW = nullptr;
 
 extern "C" __nonnull((2, 4))
 __ssize_t abii_getdirentries64(int fd, char* buf, size_t nbytes, __off64_t* basep) __THROW
@@ -414,7 +418,7 @@ __ssize_t abii_getdirentries64(int fd, char* buf, size_t nbytes, __off64_t* base
     return real_getdirentries64(fd, buf, nbytes, basep);
 }
 
-static int (*real_versionsort)(const dirent**, const dirent**) __THROW = nullptr;
+static __attribute_pure__ __nonnull((1, 2)) int (*real_versionsort)(const dirent**, const dirent**) __THROW = nullptr;
 
 extern "C" __attribute_pure__ __nonnull((1, 2))
 int abii_versionsort(const dirent** e1, const dirent** e2) __THROW
@@ -433,7 +437,8 @@ int abii_versionsort(const dirent** e1, const dirent** e2) __THROW
     return real_versionsort(e1, e2);
 }
 
-static int (*real_versionsort64)(const dirent64**, const dirent64**) __THROW = nullptr;
+static __attribute_pure__ __nonnull((1, 2))
+int (*real_versionsort64)(const dirent64**, const dirent64**) __THROW = nullptr;
 
 extern "C" __attribute_pure__ __nonnull((1, 2))
 int abii_versionsort64(const dirent64** e1, const dirent64** e2) __THROW

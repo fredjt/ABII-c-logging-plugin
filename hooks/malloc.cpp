@@ -6,7 +6,7 @@
 
 namespace abii
 {
-static void* (*real_malloc)(size_t) __THROW = nullptr;
+static __attribute_alloc_size__((1)) __wur void* (*real_malloc)(size_t) __THROW = nullptr;
 
 extern "C" __attribute_malloc__ __attribute_alloc_size__((1)) __wur
 void* abii_malloc(size_t size) __THROW
@@ -24,7 +24,7 @@ void* abii_malloc(size_t size) __THROW
     return real_malloc(size);
 }
 
-static void* (*real_calloc)(size_t, size_t) __THROW = nullptr;
+static __attribute_alloc_size__((1, 2)) __wur void* (*real_calloc)(size_t, size_t) __THROW = nullptr;
 
 extern "C" __attribute_malloc__ __attribute_alloc_size__((1, 2)) __wur
 void* abii_calloc(size_t nmemb, size_t size) __THROW
@@ -43,7 +43,8 @@ void* abii_calloc(size_t nmemb, size_t size) __THROW
     return real_calloc(nmemb, size);
 }
 
-static void* (*real_realloc)(void*, size_t) __THROW = nullptr;
+static __attribute_warn_unused_result__ __attribute_alloc_size__((2))
+void* (*real_realloc)(void*, size_t) __THROW = nullptr;
 
 extern "C" __attribute_warn_unused_result__ __attribute_alloc_size__((2))
 void* abii_realloc(void* ptr, size_t size) __THROW
@@ -62,7 +63,8 @@ void* abii_realloc(void* ptr, size_t size) __THROW
     return real_realloc(ptr, size);
 }
 
-static void* (*real_reallocarray)(void*, size_t, size_t) __THROW = nullptr;
+static __attribute_warn_unused_result__ __attribute_alloc_size__((2, 3))
+void* (*real_reallocarray)(void*, size_t, size_t) __THROW = nullptr;
 
 extern "C" __attribute_warn_unused_result__ __attribute_alloc_size__((2, 3)) __attr_dealloc_free
 void* abii_reallocarray(void* ptr, size_t nmemb, size_t size) __THROW
@@ -110,7 +112,8 @@ extern "C" void abii_free(void* ptr) __THROW
     return real_free(ptr);
 }
 
-static void* (*real_memalign)(size_t, size_t) __THROW = nullptr;
+static __attribute_alloc_align__((1)) __attribute_alloc_size__((2)) __wur
+void* (*real_memalign)(size_t, size_t) __THROW = nullptr;
 
 extern "C" __attribute_malloc__ __attribute_alloc_align__((1)) __attribute_alloc_size__((2)) __wur __attr_dealloc_free
 void* abii_memalign(size_t alignment, size_t size) __THROW
@@ -129,7 +132,7 @@ void* abii_memalign(size_t alignment, size_t size) __THROW
     return real_memalign(alignment, size);
 }
 
-static void* (*real_valloc)(size_t) __THROW = nullptr;
+static __attribute_alloc_size__((1)) __wur void* (*real_valloc)(size_t) __THROW = nullptr;
 
 extern "C" __attribute_malloc__ __attribute_alloc_size__((1)) __wur __attr_dealloc_free
 void* abii_valloc(size_t size) __THROW
@@ -147,7 +150,7 @@ void* abii_valloc(size_t size) __THROW
     return real_valloc(size);
 }
 
-static void* (*real_pvalloc)(size_t) __THROW = nullptr;
+static __wur void* (*real_pvalloc)(size_t) __THROW = nullptr;
 
 extern "C" __attribute_malloc__ __wur __attr_dealloc_free
 void* abii_pvalloc(size_t size) __THROW

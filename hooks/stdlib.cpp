@@ -2955,7 +2955,7 @@ int abii_ptsname_r(int fd, char* buf, size_t buflen) __THROW
 
 static int (*real_getpt)() = nullptr;
 
-extern "C" int getpt()
+extern "C" int abii_getpt()
 {
     OVERRIDE_PREFIX(getpt)
         pre_fmtd_str pi_str = "getpt()";

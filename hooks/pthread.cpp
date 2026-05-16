@@ -16,7 +16,8 @@
 
 namespace abii
 {
-static int (*real_pthread_create)(pthread_t*, const pthread_attr_t*, void*(*)(void*), void*) __THROWNL = nullptr;
+static __nonnull((1, 3)) int (*real_pthread_create)(pthread_t*, const pthread_attr_t*, void*(*)(void*), void*) __THROWNL
+    = nullptr;
 
 extern "C" __nonnull((1, 3))
 int abii_pthread_create(pthread_t* newthread, const pthread_attr_t* attr, void*(*start_routine)(void*),
@@ -40,7 +41,7 @@ int abii_pthread_create(pthread_t* newthread, const pthread_attr_t* attr, void*(
     return real_pthread_create(newthread, attr, start_routine, arg);
 }
 
-static void (*real_pthread_exit)(void*) = nullptr;
+static __attribute__ ((__noreturn__)) void (*real_pthread_exit)(void*) = nullptr;
 
 extern "C" __attribute__ ((__noreturn__))
 void abii_pthread_exit(void* retval)
@@ -56,8 +57,6 @@ void abii_pthread_exit(void* retval)
         delete abii_args;
 
         real_pthread_exit(retval);
-
-        ENABLE_OVERRIDES
     }
     if (real_pthread_exit == nullptr)
     {
@@ -177,7 +176,7 @@ extern "C" int abii_pthread_detach(pthread_t th) __THROW
     return real_pthread_detach(th);
 }
 
-static pthread_t (*real_pthread_self)() __THROW = nullptr;
+static __attribute__ ((__const__)) pthread_t (*real_pthread_self)() __THROW = nullptr;
 
 extern "C" __attribute__ ((__const__))
 pthread_t abii_pthread_self() __THROW
@@ -193,7 +192,7 @@ pthread_t abii_pthread_self() __THROW
     return real_pthread_self();
 }
 
-static int (*real_pthread_equal)(pthread_t, pthread_t) __THROW = nullptr;
+static __attribute__ ((__const__)) int (*real_pthread_equal)(pthread_t, pthread_t) __THROW = nullptr;
 
 extern "C" __attribute__ ((__const__))
 int abii_pthread_equal(pthread_t thread1, pthread_t thread2) __THROW
@@ -212,7 +211,7 @@ int abii_pthread_equal(pthread_t thread1, pthread_t thread2) __THROW
     return real_pthread_equal(thread1, thread2);
 }
 
-static int (*real_pthread_attr_init)(pthread_attr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_attr_init)(pthread_attr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_attr_init(pthread_attr_t* attr) __THROW
@@ -232,7 +231,7 @@ int abii_pthread_attr_init(pthread_attr_t* attr) __THROW
     return real_pthread_attr_init(attr);
 }
 
-static int (*real_pthread_attr_destroy)(pthread_attr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_attr_destroy)(pthread_attr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_attr_destroy(pthread_attr_t* attr) __THROW
@@ -252,7 +251,7 @@ int abii_pthread_attr_destroy(pthread_attr_t* attr) __THROW
     return real_pthread_attr_destroy(attr);
 }
 
-static int (*real_pthread_attr_getdetachstate)(const pthread_attr_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_attr_getdetachstate)(const pthread_attr_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_attr_getdetachstate(const pthread_attr_t* attr, int* detachstate) __THROW
@@ -276,7 +275,7 @@ int abii_pthread_attr_getdetachstate(const pthread_attr_t* attr, int* detachstat
     return real_pthread_attr_getdetachstate(attr, detachstate);
 }
 
-static int (*real_pthread_attr_setdetachstate)(pthread_attr_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_attr_setdetachstate)(pthread_attr_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_attr_setdetachstate(pthread_attr_t* attr, int detachstate) __THROW
@@ -300,7 +299,7 @@ int abii_pthread_attr_setdetachstate(pthread_attr_t* attr, int detachstate) __TH
     return real_pthread_attr_setdetachstate(attr, detachstate);
 }
 
-static int (*real_pthread_attr_getguardsize)(const pthread_attr_t*, size_t*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_attr_getguardsize)(const pthread_attr_t*, size_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_attr_getguardsize(const pthread_attr_t* attr, size_t* guardsize) __THROW
@@ -321,7 +320,7 @@ int abii_pthread_attr_getguardsize(const pthread_attr_t* attr, size_t* guardsize
     return real_pthread_attr_getguardsize(attr, guardsize);
 }
 
-static int (*real_pthread_attr_setguardsize)(pthread_attr_t*, size_t) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_attr_setguardsize)(pthread_attr_t*, size_t) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_attr_setguardsize(pthread_attr_t* attr, size_t guardsize) __THROW
@@ -342,7 +341,7 @@ int abii_pthread_attr_setguardsize(pthread_attr_t* attr, size_t guardsize) __THR
     return real_pthread_attr_setguardsize(attr, guardsize);
 }
 
-static int (*real_pthread_attr_getschedparam)(const pthread_attr_t*, sched_param*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_attr_getschedparam)(const pthread_attr_t*, sched_param*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_attr_getschedparam(const pthread_attr_t* attr, sched_param* param) __THROW
@@ -363,7 +362,7 @@ int abii_pthread_attr_getschedparam(const pthread_attr_t* attr, sched_param* par
     return real_pthread_attr_getschedparam(attr, param);
 }
 
-static int (*real_pthread_attr_setschedparam)(pthread_attr_t*, const sched_param*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_attr_setschedparam)(pthread_attr_t*, const sched_param*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_attr_setschedparam(pthread_attr_t* attr, const sched_param* param) __THROW
@@ -384,7 +383,7 @@ int abii_pthread_attr_setschedparam(pthread_attr_t* attr, const sched_param* par
     return real_pthread_attr_setschedparam(attr, param);
 }
 
-static int (*real_pthread_attr_getschedpolicy)(const pthread_attr_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_attr_getschedpolicy)(const pthread_attr_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_attr_getschedpolicy(const pthread_attr_t* attr, int* policy) __THROW
@@ -408,7 +407,7 @@ int abii_pthread_attr_getschedpolicy(const pthread_attr_t* attr, int* policy) __
     return real_pthread_attr_getschedpolicy(attr, policy);
 }
 
-static int (*real_pthread_attr_setschedpolicy)(pthread_attr_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_attr_setschedpolicy)(pthread_attr_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_attr_setschedpolicy(pthread_attr_t* attr, int policy) __THROW
@@ -432,7 +431,7 @@ int abii_pthread_attr_setschedpolicy(pthread_attr_t* attr, int policy) __THROW
     return real_pthread_attr_setschedpolicy(attr, policy);
 }
 
-static int (*real_pthread_attr_getinheritsched)(const pthread_attr_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_attr_getinheritsched)(const pthread_attr_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_attr_getinheritsched(const pthread_attr_t* attr, int* inherit) __THROW
@@ -456,7 +455,7 @@ int abii_pthread_attr_getinheritsched(const pthread_attr_t* attr, int* inherit) 
     return real_pthread_attr_getinheritsched(attr, inherit);
 }
 
-static int (*real_pthread_attr_setinheritsched)(pthread_attr_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_attr_setinheritsched)(pthread_attr_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_attr_setinheritsched(pthread_attr_t* attr, int inherit) __THROW
@@ -480,7 +479,7 @@ int abii_pthread_attr_setinheritsched(pthread_attr_t* attr, int inherit) __THROW
     return real_pthread_attr_setinheritsched(attr, inherit);
 }
 
-static int (*real_pthread_attr_getscope)(const pthread_attr_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_attr_getscope)(const pthread_attr_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_attr_getscope(const pthread_attr_t* attr, int* scope) __THROW
@@ -504,7 +503,7 @@ int abii_pthread_attr_getscope(const pthread_attr_t* attr, int* scope) __THROW
     return real_pthread_attr_getscope(attr, scope);
 }
 
-static int (*real_pthread_attr_setscope)(pthread_attr_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_attr_setscope)(pthread_attr_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_attr_setscope(pthread_attr_t* attr, int scope) __THROW
@@ -528,7 +527,7 @@ int abii_pthread_attr_setscope(pthread_attr_t* attr, int scope) __THROW
     return real_pthread_attr_setscope(attr, scope);
 }
 
-static int (*real_pthread_attr_getstackaddr)(const pthread_attr_t*, void**) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_attr_getstackaddr)(const pthread_attr_t*, void**) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2)) __attribute_deprecated__
 int abii_pthread_attr_getstackaddr(const pthread_attr_t* attr, void** stackaddr) __THROW
@@ -549,7 +548,7 @@ int abii_pthread_attr_getstackaddr(const pthread_attr_t* attr, void** stackaddr)
     return real_pthread_attr_getstackaddr(attr, stackaddr);
 }
 
-static int (*real_pthread_attr_setstackaddr)(pthread_attr_t*, void*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_attr_setstackaddr)(pthread_attr_t*, void*) __THROW = nullptr;
 
 extern "C" __nonnull((1)) __attribute_deprecated__
 int abii_pthread_attr_setstackaddr(pthread_attr_t* attr, void* stackaddr) __THROW
@@ -570,7 +569,7 @@ int abii_pthread_attr_setstackaddr(pthread_attr_t* attr, void* stackaddr) __THRO
     return real_pthread_attr_setstackaddr(attr, stackaddr);
 }
 
-static int (*real_pthread_attr_getstacksize)(const pthread_attr_t*, size_t*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_attr_getstacksize)(const pthread_attr_t*, size_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_attr_getstacksize(const pthread_attr_t* attr, size_t* stacksize) __THROW
@@ -591,7 +590,7 @@ int abii_pthread_attr_getstacksize(const pthread_attr_t* attr, size_t* stacksize
     return real_pthread_attr_getstacksize(attr, stacksize);
 }
 
-static int (*real_pthread_attr_setstacksize)(pthread_attr_t*, size_t) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_attr_setstacksize)(pthread_attr_t*, size_t) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_attr_setstacksize(pthread_attr_t* attr, size_t stacksize) __THROW
@@ -612,7 +611,7 @@ int abii_pthread_attr_setstacksize(pthread_attr_t* attr, size_t stacksize) __THR
     return real_pthread_attr_setstacksize(attr, stacksize);
 }
 
-static int (*real_pthread_attr_getstack)(const pthread_attr_t*, void**, size_t*) __THROW = nullptr;
+static __nonnull((1, 2, 3)) int (*real_pthread_attr_getstack)(const pthread_attr_t*, void**, size_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2, 3))
 int abii_pthread_attr_getstack(const pthread_attr_t* attr, void** stackaddr, size_t* stacksize) __THROW
@@ -634,7 +633,7 @@ int abii_pthread_attr_getstack(const pthread_attr_t* attr, void** stackaddr, siz
     return real_pthread_attr_getstack(attr, stackaddr, stacksize);
 }
 
-static int (*real_pthread_attr_setstack)(pthread_attr_t*, void*, size_t) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_attr_setstack)(pthread_attr_t*, void*, size_t) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_attr_setstack(pthread_attr_t* attr, void* stackaddr, size_t stacksize) __THROW
@@ -656,7 +655,8 @@ int abii_pthread_attr_setstack(pthread_attr_t* attr, void* stackaddr, size_t sta
     return real_pthread_attr_setstack(attr, stackaddr, stacksize);
 }
 
-static int (*real_pthread_attr_setaffinity_np)(pthread_attr_t*, size_t, const cpu_set_t*) __THROW = nullptr;
+static __nonnull((1, 3))
+int (*real_pthread_attr_setaffinity_np)(pthread_attr_t*, size_t, const cpu_set_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 3))
 int abii_pthread_attr_setaffinity_np(pthread_attr_t* attr, size_t cpusetsize, const cpu_set_t* cpuset) __THROW
@@ -678,7 +678,8 @@ int abii_pthread_attr_setaffinity_np(pthread_attr_t* attr, size_t cpusetsize, co
     return real_pthread_attr_setaffinity_np(attr, cpusetsize, cpuset);
 }
 
-static int (*real_pthread_attr_getaffinity_np)(const pthread_attr_t*, size_t, cpu_set_t*) __THROW = nullptr;
+static __nonnull((1, 3))
+int (*real_pthread_attr_getaffinity_np)(const pthread_attr_t*, size_t, cpu_set_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 3))
 int abii_pthread_attr_getaffinity_np(const pthread_attr_t* attr, size_t cpusetsize, cpu_set_t* cpuset) __THROW
@@ -700,7 +701,7 @@ int abii_pthread_attr_getaffinity_np(const pthread_attr_t* attr, size_t cpusetsi
     return real_pthread_attr_getaffinity_np(attr, cpusetsize, cpuset);
 }
 
-static int (*real_pthread_getattr_default_np)(pthread_attr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_getattr_default_np)(pthread_attr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_getattr_default_np(pthread_attr_t* attr) __THROW
@@ -760,7 +761,7 @@ extern "C" int abii_pthread_attr_getsigmask_np(const pthread_attr_t* attr, __sig
     return real_pthread_attr_getsigmask_np(attr, sigmask);
 }
 
-static int (*real_pthread_setattr_default_np)(const pthread_attr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_setattr_default_np)(const pthread_attr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_setattr_default_np(const pthread_attr_t* attr) __THROW
@@ -780,7 +781,7 @@ int abii_pthread_setattr_default_np(const pthread_attr_t* attr) __THROW
     return real_pthread_setattr_default_np(attr);
 }
 
-static int (*real_pthread_getattr_np)(pthread_t, pthread_attr_t*) __THROW = nullptr;
+static __nonnull((2)) int (*real_pthread_getattr_np)(pthread_t, pthread_attr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((2))
 int abii_pthread_getattr_np(pthread_t th, pthread_attr_t* attr) __THROW
@@ -801,7 +802,7 @@ int abii_pthread_getattr_np(pthread_t th, pthread_attr_t* attr) __THROW
     return real_pthread_getattr_np(th, attr);
 }
 
-static int (*real_pthread_setschedparam)(pthread_t, int, const sched_param*) __THROW = nullptr;
+static __nonnull((3)) int (*real_pthread_setschedparam)(pthread_t, int, const sched_param*) __THROW = nullptr;
 
 extern "C" __nonnull((3))
 int abii_pthread_setschedparam(pthread_t target_thread, int policy, const sched_param* param) __THROW
@@ -827,7 +828,7 @@ int abii_pthread_setschedparam(pthread_t target_thread, int policy, const sched_
     return real_pthread_setschedparam(target_thread, policy, param);
 }
 
-static int (*real_pthread_getschedparam)(pthread_t, int*, sched_param*) __THROW = nullptr;
+static __nonnull((2, 3)) int (*real_pthread_getschedparam)(pthread_t, int*, sched_param*) __THROW = nullptr;
 
 extern "C" __nonnull((2, 3))
 int abii_pthread_getschedparam(pthread_t target_thread, int* policy, sched_param* param) __THROW
@@ -873,7 +874,7 @@ extern "C" int abii_pthread_setschedprio(pthread_t target_thread, int prio) __TH
     return real_pthread_setschedprio(target_thread, prio);
 }
 
-static int (*real_pthread_getname_np)(pthread_t, char*, size_t) __THROW = nullptr;
+static __nonnull((2)) int (*real_pthread_getname_np)(pthread_t, char*, size_t) __THROW = nullptr;
 
 extern "C" __nonnull((2))
 int abii_pthread_getname_np(pthread_t target_thread, char* buf, size_t buflen) __THROW
@@ -899,7 +900,7 @@ int abii_pthread_getname_np(pthread_t target_thread, char* buf, size_t buflen) _
     return real_pthread_getname_np(target_thread, buf, buflen);
 }
 
-static int (*real_pthread_setname_np)(pthread_t, const char*) __THROW = nullptr;
+static __nonnull((2)) int (*real_pthread_setname_np)(pthread_t, const char*) __THROW = nullptr;
 
 extern "C" __nonnull((2))
 int abii_pthread_setname_np(pthread_t target_thread, const char* name) __THROW
@@ -954,7 +955,7 @@ extern "C" int abii_pthread_setconcurrency(int level) __THROW
     return real_pthread_setconcurrency(level);
 }
 
-static int (*real_pthread_setaffinity_np)(pthread_t, size_t, const cpu_set_t*) __THROW = nullptr;
+static __nonnull((3)) int (*real_pthread_setaffinity_np)(pthread_t, size_t, const cpu_set_t*) __THROW = nullptr;
 
 extern "C" __nonnull((3))
 int abii_pthread_setaffinity_np(pthread_t th, size_t cpusetsize, const cpu_set_t* cpuset) __THROW
@@ -976,7 +977,7 @@ int abii_pthread_setaffinity_np(pthread_t th, size_t cpusetsize, const cpu_set_t
     return real_pthread_setaffinity_np(th, cpusetsize, cpuset);
 }
 
-static int (*real_pthread_getaffinity_np)(pthread_t, size_t, cpu_set_t*) __THROW = nullptr;
+static __nonnull((3)) int (*real_pthread_getaffinity_np)(pthread_t, size_t, cpu_set_t*) __THROW = nullptr;
 
 extern "C" __nonnull((3))
 int abii_pthread_getaffinity_np(pthread_t th, size_t cpusetsize, cpu_set_t* cpuset) __THROW
@@ -998,7 +999,7 @@ int abii_pthread_getaffinity_np(pthread_t th, size_t cpusetsize, cpu_set_t* cpus
     return real_pthread_getaffinity_np(th, cpusetsize, cpuset);
 }
 
-static int (*real_pthread_once)(pthread_once_t*, void (*)()) = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_once)(pthread_once_t*, void (*)()) = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_once(pthread_once_t* once_control, void (*init_routine)())
@@ -1104,7 +1105,8 @@ extern "C" void abii_pthread_testcancel()
     return real_pthread_testcancel();
 }
 
-static void (*real___pthread_unwind_next)(__pthread_unwind_buf_t* __buf) = nullptr;
+static __attribute__ ((__noreturn__)) __cleanup_fct_attribute
+void (*real___pthread_unwind_next)(__pthread_unwind_buf_t* __buf) = nullptr;
 
 extern "C"
 #ifndef SHARED
@@ -1137,7 +1139,7 @@ void abii___pthread_unwind_next(__pthread_unwind_buf_t* buf)
     real___pthread_unwind_next(buf);
 }
 
-static int (*real_pthread_mutex_init)(pthread_mutex_t*, const pthread_mutexattr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_mutex_init)(pthread_mutex_t*, const pthread_mutexattr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_mutex_init(pthread_mutex_t* mutex, const pthread_mutexattr_t* mutexattr) __THROW
@@ -1158,7 +1160,7 @@ int abii_pthread_mutex_init(pthread_mutex_t* mutex, const pthread_mutexattr_t* m
     return real_pthread_mutex_init(mutex, mutexattr);
 }
 
-static int (*real_pthread_mutex_destroy)(pthread_mutex_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_mutex_destroy)(pthread_mutex_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_mutex_destroy(pthread_mutex_t* mutex) __THROW
@@ -1178,7 +1180,7 @@ int abii_pthread_mutex_destroy(pthread_mutex_t* mutex) __THROW
     return real_pthread_mutex_destroy(mutex);
 }
 
-static int (*real_pthread_mutex_trylock)(pthread_mutex_t*) __THROWNL = nullptr;
+static __nonnull((1)) int (*real_pthread_mutex_trylock)(pthread_mutex_t*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_mutex_trylock(pthread_mutex_t* mutex) __THROWNL
@@ -1198,7 +1200,7 @@ int abii_pthread_mutex_trylock(pthread_mutex_t* mutex) __THROWNL
     return real_pthread_mutex_trylock(mutex);
 }
 
-static int (*real_pthread_mutex_lock)(pthread_mutex_t*) __THROWNL = nullptr;
+static __nonnull((1)) int (*real_pthread_mutex_lock)(pthread_mutex_t*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_mutex_lock(pthread_mutex_t* mutex) __THROWNL
@@ -1218,7 +1220,7 @@ int abii_pthread_mutex_lock(pthread_mutex_t* mutex) __THROWNL
     return real_pthread_mutex_lock(mutex);
 }
 
-static int (*real_pthread_mutex_timedlock)(pthread_mutex_t*, const timespec*) __THROWNL = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_mutex_timedlock)(pthread_mutex_t*, const timespec*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_mutex_timedlock(pthread_mutex_t* mutex, const timespec* abstime) __THROWNL
@@ -1239,7 +1241,8 @@ int abii_pthread_mutex_timedlock(pthread_mutex_t* mutex, const timespec* abstime
     return real_pthread_mutex_timedlock(mutex, abstime);
 }
 
-static int (*real_pthread_mutex_clocklock)(pthread_mutex_t*, clockid_t, const timespec*) __THROWNL = nullptr;
+static __nonnull((1, 3))
+int (*real_pthread_mutex_clocklock)(pthread_mutex_t*, clockid_t, const timespec*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1, 3))
 int abii_pthread_mutex_clocklock(pthread_mutex_t* mutex, clockid_t clockid, const timespec* abstime) __THROWNL
@@ -1265,7 +1268,7 @@ int abii_pthread_mutex_clocklock(pthread_mutex_t* mutex, clockid_t clockid, cons
     return real_pthread_mutex_clocklock(mutex, clockid, abstime);
 }
 
-static int (*real_pthread_mutex_unlock)(pthread_mutex_t*) __THROWNL = nullptr;
+static __nonnull((1)) int (*real_pthread_mutex_unlock)(pthread_mutex_t*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_mutex_unlock(pthread_mutex_t* mutex) __THROWNL
@@ -1285,7 +1288,7 @@ int abii_pthread_mutex_unlock(pthread_mutex_t* mutex) __THROWNL
     return real_pthread_mutex_unlock(mutex);
 }
 
-static int (*real_pthread_mutex_getprioceiling)(const pthread_mutex_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_mutex_getprioceiling)(const pthread_mutex_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_mutex_getprioceiling(const pthread_mutex_t* mutex, int* prioceiling) __THROW
@@ -1306,7 +1309,7 @@ int abii_pthread_mutex_getprioceiling(const pthread_mutex_t* mutex, int* priocei
     return real_pthread_mutex_getprioceiling(mutex, prioceiling);
 }
 
-static int (*real_pthread_mutex_setprioceiling)(pthread_mutex_t*, int, int*) __THROW = nullptr;
+static __nonnull((1, 3)) int (*real_pthread_mutex_setprioceiling)(pthread_mutex_t*, int, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 3))
 int abii_pthread_mutex_setprioceiling(pthread_mutex_t* mutex, int prioceiling, int* old_ceiling) __THROW
@@ -1328,7 +1331,7 @@ int abii_pthread_mutex_setprioceiling(pthread_mutex_t* mutex, int prioceiling, i
     return real_pthread_mutex_setprioceiling(mutex, prioceiling, old_ceiling);
 }
 
-static int (*real_pthread_mutex_consistent)(pthread_mutex_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_mutex_consistent)(pthread_mutex_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_mutex_consistent(pthread_mutex_t* mutex) __THROW
@@ -1348,7 +1351,7 @@ int abii_pthread_mutex_consistent(pthread_mutex_t* mutex) __THROW
     return real_pthread_mutex_consistent(mutex);
 }
 
-static int (*real_pthread_mutexattr_init)(pthread_mutexattr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_mutexattr_init)(pthread_mutexattr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_mutexattr_init(pthread_mutexattr_t* attr) __THROW
@@ -1368,7 +1371,7 @@ int abii_pthread_mutexattr_init(pthread_mutexattr_t* attr) __THROW
     return real_pthread_mutexattr_init(attr);
 }
 
-static int (*real_pthread_mutexattr_destroy)(pthread_mutexattr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_mutexattr_destroy)(pthread_mutexattr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_mutexattr_destroy(pthread_mutexattr_t* attr) __THROW
@@ -1388,7 +1391,7 @@ int abii_pthread_mutexattr_destroy(pthread_mutexattr_t* attr) __THROW
     return real_pthread_mutexattr_destroy(attr);
 }
 
-static int (*real_pthread_mutexattr_getpshared)(const pthread_mutexattr_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_mutexattr_getpshared)(const pthread_mutexattr_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_mutexattr_getpshared(const pthread_mutexattr_t* attr, int* pshared) __THROW
@@ -1412,7 +1415,7 @@ int abii_pthread_mutexattr_getpshared(const pthread_mutexattr_t* attr, int* psha
     return real_pthread_mutexattr_getpshared(attr, pshared);
 }
 
-static int (*real_pthread_mutexattr_setpshared)(pthread_mutexattr_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_mutexattr_setpshared)(pthread_mutexattr_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_mutexattr_setpshared(pthread_mutexattr_t* attr, int pshared) __THROW
@@ -1436,7 +1439,7 @@ int abii_pthread_mutexattr_setpshared(pthread_mutexattr_t* attr, int pshared) __
     return real_pthread_mutexattr_setpshared(attr, pshared);
 }
 
-static int (*real_pthread_mutexattr_gettype)(const pthread_mutexattr_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_mutexattr_gettype)(const pthread_mutexattr_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_mutexattr_gettype(const pthread_mutexattr_t* attr, int* kind) __THROW
@@ -1460,7 +1463,7 @@ int abii_pthread_mutexattr_gettype(const pthread_mutexattr_t* attr, int* kind) _
     return real_pthread_mutexattr_gettype(attr, kind);
 }
 
-static int (*real_pthread_mutexattr_settype)(pthread_mutexattr_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_mutexattr_settype)(pthread_mutexattr_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_mutexattr_settype(pthread_mutexattr_t* attr, int kind) __THROW
@@ -1484,7 +1487,7 @@ int abii_pthread_mutexattr_settype(pthread_mutexattr_t* attr, int kind) __THROW
     return real_pthread_mutexattr_settype(attr, kind);
 }
 
-static int (*real_pthread_mutexattr_getprotocol)(const pthread_mutexattr_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_mutexattr_getprotocol)(const pthread_mutexattr_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_mutexattr_getprotocol(const pthread_mutexattr_t* attr, int* protocol) __THROW
@@ -1508,7 +1511,7 @@ int abii_pthread_mutexattr_getprotocol(const pthread_mutexattr_t* attr, int* pro
     return real_pthread_mutexattr_getprotocol(attr, protocol);
 }
 
-static int (*real_pthread_mutexattr_setprotocol)(pthread_mutexattr_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_mutexattr_setprotocol)(pthread_mutexattr_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_mutexattr_setprotocol(pthread_mutexattr_t* attr, int protocol) __THROW
@@ -1532,7 +1535,8 @@ int abii_pthread_mutexattr_setprotocol(pthread_mutexattr_t* attr, int protocol) 
     return real_pthread_mutexattr_setprotocol(attr, protocol);
 }
 
-static int (*real_pthread_mutexattr_getprioceiling)(const pthread_mutexattr_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2))
+int (*real_pthread_mutexattr_getprioceiling)(const pthread_mutexattr_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_mutexattr_getprioceiling(const pthread_mutexattr_t* attr, int* prioceiling) __THROW
@@ -1553,7 +1557,7 @@ int abii_pthread_mutexattr_getprioceiling(const pthread_mutexattr_t* attr, int* 
     return real_pthread_mutexattr_getprioceiling(attr, prioceiling);
 }
 
-static int (*real_pthread_mutexattr_setprioceiling)(pthread_mutexattr_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_mutexattr_setprioceiling)(pthread_mutexattr_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_mutexattr_setprioceiling(pthread_mutexattr_t* attr, int prioceiling) __THROW
@@ -1574,7 +1578,7 @@ int abii_pthread_mutexattr_setprioceiling(pthread_mutexattr_t* attr, int priocei
     return real_pthread_mutexattr_setprioceiling(attr, prioceiling);
 }
 
-static int (*real_pthread_mutexattr_getrobust)(const pthread_mutexattr_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_mutexattr_getrobust)(const pthread_mutexattr_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_mutexattr_getrobust(const pthread_mutexattr_t* attr, int* robustness) __THROW
@@ -1598,7 +1602,7 @@ int abii_pthread_mutexattr_getrobust(const pthread_mutexattr_t* attr, int* robus
     return real_pthread_mutexattr_getrobust(attr, robustness);
 }
 
-static int (*real_pthread_mutexattr_setrobust)(pthread_mutexattr_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_mutexattr_setrobust)(pthread_mutexattr_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_mutexattr_setrobust(pthread_mutexattr_t* attr, int robustness) __THROW
@@ -1622,7 +1626,7 @@ int abii_pthread_mutexattr_setrobust(pthread_mutexattr_t* attr, int robustness) 
     return real_pthread_mutexattr_setrobust(attr, robustness);
 }
 
-static int (*real_pthread_rwlock_init)(pthread_rwlock_t*, const pthread_rwlockattr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_rwlock_init)(pthread_rwlock_t*, const pthread_rwlockattr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_rwlock_init(pthread_rwlock_t* rwlock, const pthread_rwlockattr_t* attr) __THROW
@@ -1643,7 +1647,7 @@ int abii_pthread_rwlock_init(pthread_rwlock_t* rwlock, const pthread_rwlockattr_
     return real_pthread_rwlock_init(rwlock, attr);
 }
 
-static int (*real_pthread_rwlock_destroy)(pthread_rwlock_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_rwlock_destroy)(pthread_rwlock_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_rwlock_destroy(pthread_rwlock_t* rwlock) __THROW
@@ -1663,7 +1667,7 @@ int abii_pthread_rwlock_destroy(pthread_rwlock_t* rwlock) __THROW
     return real_pthread_rwlock_destroy(rwlock);
 }
 
-static int (*real_pthread_rwlock_rdlock)(pthread_rwlock_t*) __THROWNL = nullptr;
+static __nonnull((1)) int (*real_pthread_rwlock_rdlock)(pthread_rwlock_t*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_rwlock_rdlock(pthread_rwlock_t* rwlock) __THROWNL
@@ -1683,7 +1687,7 @@ int abii_pthread_rwlock_rdlock(pthread_rwlock_t* rwlock) __THROWNL
     return real_pthread_rwlock_rdlock(rwlock);
 }
 
-static int (*real_pthread_rwlock_tryrdlock)(pthread_rwlock_t*) __THROWNL = nullptr;
+static __nonnull((1)) int (*real_pthread_rwlock_tryrdlock)(pthread_rwlock_t*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_rwlock_tryrdlock(pthread_rwlock_t* rwlock) __THROWNL
@@ -1703,7 +1707,7 @@ int abii_pthread_rwlock_tryrdlock(pthread_rwlock_t* rwlock) __THROWNL
     return real_pthread_rwlock_tryrdlock(rwlock);
 }
 
-static int (*real_pthread_rwlock_timedrdlock)(pthread_rwlock_t*, const timespec*) __THROWNL = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_rwlock_timedrdlock)(pthread_rwlock_t*, const timespec*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_rwlock_timedrdlock(pthread_rwlock_t* rwlock, const timespec* abstime) __THROWNL
@@ -1724,7 +1728,8 @@ int abii_pthread_rwlock_timedrdlock(pthread_rwlock_t* rwlock, const timespec* ab
     return real_pthread_rwlock_timedrdlock(rwlock, abstime);
 }
 
-static int (*real_pthread_rwlock_clockrdlock)(pthread_rwlock_t*, clockid_t, const timespec*) __THROWNL = nullptr;
+static __nonnull((1, 3))
+int (*real_pthread_rwlock_clockrdlock)(pthread_rwlock_t*, clockid_t, const timespec*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1, 3))
 int abii_pthread_rwlock_clockrdlock(pthread_rwlock_t* rwlock, clockid_t clockid, const timespec* abstime) __THROWNL
@@ -1750,7 +1755,7 @@ int abii_pthread_rwlock_clockrdlock(pthread_rwlock_t* rwlock, clockid_t clockid,
     return real_pthread_rwlock_clockrdlock(rwlock, clockid, abstime);
 }
 
-static int (*real_pthread_rwlock_wrlock)(pthread_rwlock_t*) __THROWNL = nullptr;
+static __nonnull((1)) int (*real_pthread_rwlock_wrlock)(pthread_rwlock_t*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_rwlock_wrlock(pthread_rwlock_t* rwlock) __THROWNL
@@ -1770,7 +1775,7 @@ int abii_pthread_rwlock_wrlock(pthread_rwlock_t* rwlock) __THROWNL
     return real_pthread_rwlock_wrlock(rwlock);
 }
 
-static int (*real_pthread_rwlock_trywrlock)(pthread_rwlock_t*) __THROWNL = nullptr;
+static __nonnull((1)) int (*real_pthread_rwlock_trywrlock)(pthread_rwlock_t*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_rwlock_trywrlock(pthread_rwlock_t* rwlock) __THROWNL
@@ -1790,7 +1795,7 @@ int abii_pthread_rwlock_trywrlock(pthread_rwlock_t* rwlock) __THROWNL
     return real_pthread_rwlock_trywrlock(rwlock);
 }
 
-static int (*real_pthread_rwlock_timedwrlock)(pthread_rwlock_t*, const timespec*) __THROWNL = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_rwlock_timedwrlock)(pthread_rwlock_t*, const timespec*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_rwlock_timedwrlock(pthread_rwlock_t* rwlock, const timespec* abstime) __THROWNL
@@ -1811,7 +1816,8 @@ int abii_pthread_rwlock_timedwrlock(pthread_rwlock_t* rwlock, const timespec* ab
     return real_pthread_rwlock_timedwrlock(rwlock, abstime);
 }
 
-static int (*real_pthread_rwlock_clockwrlock)(pthread_rwlock_t*, clockid_t, const timespec*) __THROWNL = nullptr;
+static __nonnull((1, 3))
+int (*real_pthread_rwlock_clockwrlock)(pthread_rwlock_t*, clockid_t, const timespec*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1, 3))
 int abii_pthread_rwlock_clockwrlock(pthread_rwlock_t* rwlock, clockid_t clockid, const timespec* abstime) __THROWNL
@@ -1837,7 +1843,7 @@ int abii_pthread_rwlock_clockwrlock(pthread_rwlock_t* rwlock, clockid_t clockid,
     return real_pthread_rwlock_clockwrlock(rwlock, clockid, abstime);
 }
 
-static int (*real_pthread_rwlock_unlock)(pthread_rwlock_t*) __THROWNL = nullptr;
+static __nonnull((1)) int (*real_pthread_rwlock_unlock)(pthread_rwlock_t*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_rwlock_unlock(pthread_rwlock_t* rwlock) __THROWNL
@@ -1857,7 +1863,7 @@ int abii_pthread_rwlock_unlock(pthread_rwlock_t* rwlock) __THROWNL
     return real_pthread_rwlock_unlock(rwlock);
 }
 
-static int (*real_pthread_rwlockattr_init)(pthread_rwlockattr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_rwlockattr_init)(pthread_rwlockattr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_rwlockattr_init(pthread_rwlockattr_t* attr) __THROW
@@ -1877,7 +1883,7 @@ int abii_pthread_rwlockattr_init(pthread_rwlockattr_t* attr) __THROW
     return real_pthread_rwlockattr_init(attr);
 }
 
-static int (*real_pthread_rwlockattr_destroy)(pthread_rwlockattr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_rwlockattr_destroy)(pthread_rwlockattr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_rwlockattr_destroy(pthread_rwlockattr_t* attr) __THROW
@@ -1897,7 +1903,7 @@ int abii_pthread_rwlockattr_destroy(pthread_rwlockattr_t* attr) __THROW
     return real_pthread_rwlockattr_destroy(attr);
 }
 
-static int (*real_pthread_rwlockattr_getpshared)(const pthread_rwlockattr_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_rwlockattr_getpshared)(const pthread_rwlockattr_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_rwlockattr_getpshared(const pthread_rwlockattr_t* attr, int* pshared) __THROW
@@ -1921,7 +1927,7 @@ int abii_pthread_rwlockattr_getpshared(const pthread_rwlockattr_t* attr, int* ps
     return real_pthread_rwlockattr_getpshared(attr, pshared);
 }
 
-static int (*real_pthread_rwlockattr_setpshared)(pthread_rwlockattr_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_rwlockattr_setpshared)(pthread_rwlockattr_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_rwlockattr_setpshared(pthread_rwlockattr_t* attr, int pshared) __THROW
@@ -1945,7 +1951,7 @@ int abii_pthread_rwlockattr_setpshared(pthread_rwlockattr_t* attr, int pshared) 
     return real_pthread_rwlockattr_setpshared(attr, pshared);
 }
 
-static int (*real_pthread_rwlockattr_getkind_np)(const pthread_rwlockattr_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_rwlockattr_getkind_np)(const pthread_rwlockattr_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_rwlockattr_getkind_np(const pthread_rwlockattr_t* attr, int* pref) __THROW
@@ -1969,7 +1975,7 @@ int abii_pthread_rwlockattr_getkind_np(const pthread_rwlockattr_t* attr, int* pr
     return real_pthread_rwlockattr_getkind_np(attr, pref);
 }
 
-static int (*real_pthread_rwlockattr_setkind_np)(pthread_rwlockattr_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_rwlockattr_setkind_np)(pthread_rwlockattr_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_rwlockattr_setkind_np(pthread_rwlockattr_t* attr, int pref) __THROW
@@ -1993,7 +1999,7 @@ int abii_pthread_rwlockattr_setkind_np(pthread_rwlockattr_t* attr, int pref) __T
     return real_pthread_rwlockattr_setkind_np(attr, pref);
 }
 
-static int (*real_pthread_cond_init)(pthread_cond_t*, const pthread_condattr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_cond_init)(pthread_cond_t*, const pthread_condattr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_cond_init(pthread_cond_t* cond, const pthread_condattr_t* cond_attr) __THROW
@@ -2017,7 +2023,7 @@ int abii_pthread_cond_init(pthread_cond_t* cond, const pthread_condattr_t* cond_
     return real_pthread_cond_init(cond, cond_attr);
 }
 
-static int (*real_pthread_cond_destroy)(pthread_cond_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_cond_destroy)(pthread_cond_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_cond_destroy(pthread_cond_t* cond) __THROW
@@ -2037,7 +2043,7 @@ int abii_pthread_cond_destroy(pthread_cond_t* cond) __THROW
     return real_pthread_cond_destroy(cond);
 }
 
-static int (*real_pthread_cond_signal)(pthread_cond_t*) __THROWNL = nullptr;
+static __nonnull((1)) int (*real_pthread_cond_signal)(pthread_cond_t*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_cond_signal(pthread_cond_t* cond) __THROWNL
@@ -2057,7 +2063,7 @@ int abii_pthread_cond_signal(pthread_cond_t* cond) __THROWNL
     return real_pthread_cond_signal(cond);
 }
 
-static int (*real_pthread_cond_broadcast)(pthread_cond_t*) __THROWNL = nullptr;
+static __nonnull((1)) int (*real_pthread_cond_broadcast)(pthread_cond_t*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_cond_broadcast(pthread_cond_t* cond) __THROWNL
@@ -2077,7 +2083,7 @@ int abii_pthread_cond_broadcast(pthread_cond_t* cond) __THROWNL
     return real_pthread_cond_broadcast(cond);
 }
 
-static int (*real_pthread_cond_wait)(pthread_cond_t*, pthread_mutex_t*) = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_cond_wait)(pthread_cond_t*, pthread_mutex_t*) = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_cond_wait(pthread_cond_t* cond, pthread_mutex_t* mutex)
@@ -2098,7 +2104,8 @@ int abii_pthread_cond_wait(pthread_cond_t* cond, pthread_mutex_t* mutex)
     return real_pthread_cond_wait(cond, mutex);
 }
 
-static int (*real_pthread_cond_timedwait)(pthread_cond_t*, pthread_mutex_t*, const timespec*) = nullptr;
+static __nonnull((1, 2, 3))
+int (*real_pthread_cond_timedwait)(pthread_cond_t*, pthread_mutex_t*, const timespec*) = nullptr;
 
 extern "C" __nonnull((1, 2, 3))
 int abii_pthread_cond_timedwait(pthread_cond_t* cond, pthread_mutex_t* mutex, const timespec* abstime)
@@ -2120,7 +2127,8 @@ int abii_pthread_cond_timedwait(pthread_cond_t* cond, pthread_mutex_t* mutex, co
     return real_pthread_cond_timedwait(cond, mutex, abstime);
 }
 
-static int (*real_pthread_cond_clockwait)(pthread_cond_t*, pthread_mutex_t*, __clockid_t, const timespec*) = nullptr;
+static __nonnull((1, 2, 4))
+int (*real_pthread_cond_clockwait)(pthread_cond_t*, pthread_mutex_t*, __clockid_t, const timespec*) = nullptr;
 
 extern "C" __nonnull((1, 2, 4))
 int abii_pthread_cond_clockwait(pthread_cond_t* cond, pthread_mutex_t* mutex, __clockid_t clock_id,
@@ -2148,7 +2156,7 @@ int abii_pthread_cond_clockwait(pthread_cond_t* cond, pthread_mutex_t* mutex, __
     return real_pthread_cond_clockwait(cond, mutex, clock_id, abstime);
 }
 
-static int (*real_pthread_condattr_init)(pthread_condattr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_condattr_init)(pthread_condattr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_condattr_init(pthread_condattr_t* attr) __THROW
@@ -2168,7 +2176,7 @@ int abii_pthread_condattr_init(pthread_condattr_t* attr) __THROW
     return real_pthread_condattr_init(attr);
 }
 
-static int (*real_pthread_condattr_destroy)(pthread_condattr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_condattr_destroy)(pthread_condattr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_condattr_destroy(pthread_condattr_t* attr) __THROW
@@ -2188,7 +2196,7 @@ int abii_pthread_condattr_destroy(pthread_condattr_t* attr) __THROW
     return real_pthread_condattr_destroy(attr);
 }
 
-static int (*real_pthread_condattr_getpshared)(const pthread_condattr_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_condattr_getpshared)(const pthread_condattr_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_condattr_getpshared(const pthread_condattr_t* attr, int* pshared) __THROW
@@ -2212,7 +2220,7 @@ int abii_pthread_condattr_getpshared(const pthread_condattr_t* attr, int* pshare
     return real_pthread_condattr_getpshared(attr, pshared);
 }
 
-static int (*real_pthread_condattr_setpshared)(pthread_condattr_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_condattr_setpshared)(pthread_condattr_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_condattr_setpshared(pthread_condattr_t* attr, int pshared) __THROW
@@ -2236,7 +2244,8 @@ int abii_pthread_condattr_setpshared(pthread_condattr_t* attr, int pshared) __TH
     return real_pthread_condattr_setpshared(attr, pshared);
 }
 
-static int (*real_pthread_condattr_getclock)(const pthread_condattr_t*, __clockid_t*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_pthread_condattr_getclock)(const pthread_condattr_t*, __clockid_t*) __THROW =
+    nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_condattr_getclock(const pthread_condattr_t* attr, __clockid_t* clock_id) __THROW
@@ -2260,7 +2269,7 @@ int abii_pthread_condattr_getclock(const pthread_condattr_t* attr, __clockid_t* 
     return real_pthread_condattr_getclock(attr, clock_id);
 }
 
-static int (*real_pthread_condattr_setclock)(pthread_condattr_t*, __clockid_t) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_condattr_setclock)(pthread_condattr_t*, __clockid_t) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_condattr_setclock(pthread_condattr_t* attr, __clockid_t clock_id) __THROW
@@ -2284,7 +2293,7 @@ int abii_pthread_condattr_setclock(pthread_condattr_t* attr, __clockid_t clock_i
     return real_pthread_condattr_setclock(attr, clock_id);
 }
 
-static int (*real_pthread_spin_init)(pthread_spinlock_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_spin_init)(pthread_spinlock_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_spin_init(pthread_spinlock_t* lock, int pshared) __THROW
@@ -2308,7 +2317,7 @@ int abii_pthread_spin_init(pthread_spinlock_t* lock, int pshared) __THROW
     return real_pthread_spin_init(lock, pshared);
 }
 
-static int (*real_pthread_spin_destroy)(pthread_spinlock_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_spin_destroy)(pthread_spinlock_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_spin_destroy(pthread_spinlock_t* lock) __THROW
@@ -2328,7 +2337,7 @@ int abii_pthread_spin_destroy(pthread_spinlock_t* lock) __THROW
     return real_pthread_spin_destroy(lock);
 }
 
-static int (*real_pthread_spin_lock)(pthread_spinlock_t*) __THROWNL = nullptr;
+static __nonnull((1)) int (*real_pthread_spin_lock)(pthread_spinlock_t*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_spin_lock(pthread_spinlock_t* lock) __THROWNL
@@ -2348,7 +2357,7 @@ int abii_pthread_spin_lock(pthread_spinlock_t* lock) __THROWNL
     return real_pthread_spin_lock(lock);
 }
 
-static int (*real_pthread_spin_trylock)(pthread_spinlock_t*) __THROWNL = nullptr;
+static __nonnull((1)) int (*real_pthread_spin_trylock)(pthread_spinlock_t*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_spin_trylock(pthread_spinlock_t* lock) __THROWNL
@@ -2368,7 +2377,7 @@ int abii_pthread_spin_trylock(pthread_spinlock_t* lock) __THROWNL
     return real_pthread_spin_trylock(lock);
 }
 
-static int (*real_pthread_spin_unlock)(pthread_spinlock_t*) __THROWNL = nullptr;
+static __nonnull((1)) int (*real_pthread_spin_unlock)(pthread_spinlock_t*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_spin_unlock(pthread_spinlock_t* lock) __THROWNL
@@ -2388,8 +2397,8 @@ int abii_pthread_spin_unlock(pthread_spinlock_t* lock) __THROWNL
     return real_pthread_spin_unlock(lock);
 }
 
-static int (*real_pthread_barrier_init)(pthread_barrier_t*, const pthread_barrierattr_t*, unsigned int) __THROW =
-    nullptr;
+static __nonnull((1))
+int (*real_pthread_barrier_init)(pthread_barrier_t*, const pthread_barrierattr_t*, unsigned int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_barrier_init(pthread_barrier_t* barrier, const pthread_barrierattr_t* attr, unsigned int count) __THROW
@@ -2411,7 +2420,7 @@ int abii_pthread_barrier_init(pthread_barrier_t* barrier, const pthread_barriera
     return real_pthread_barrier_init(barrier, attr, count);
 }
 
-static int (*real_pthread_barrier_destroy)(pthread_barrier_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_barrier_destroy)(pthread_barrier_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_barrier_destroy(pthread_barrier_t* barrier) __THROW
@@ -2431,7 +2440,7 @@ int abii_pthread_barrier_destroy(pthread_barrier_t* barrier) __THROW
     return real_pthread_barrier_destroy(barrier);
 }
 
-static int (*real_pthread_barrier_wait)(pthread_barrier_t*) __THROWNL = nullptr;
+static __nonnull((1)) int (*real_pthread_barrier_wait)(pthread_barrier_t*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_barrier_wait(pthread_barrier_t* barrier) __THROWNL
@@ -2451,7 +2460,7 @@ int abii_pthread_barrier_wait(pthread_barrier_t* barrier) __THROWNL
     return real_pthread_barrier_wait(barrier);
 }
 
-static int (*real_pthread_barrierattr_init)(pthread_barrierattr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_barrierattr_init)(pthread_barrierattr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_barrierattr_init(pthread_barrierattr_t* attr) __THROW
@@ -2471,7 +2480,7 @@ int abii_pthread_barrierattr_init(pthread_barrierattr_t* attr) __THROW
     return real_pthread_barrierattr_init(attr);
 }
 
-static int (*real_pthread_barrierattr_destroy)(pthread_barrierattr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_barrierattr_destroy)(pthread_barrierattr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_barrierattr_destroy(pthread_barrierattr_t* attr) __THROW
@@ -2491,7 +2500,8 @@ int abii_pthread_barrierattr_destroy(pthread_barrierattr_t* attr) __THROW
     return real_pthread_barrierattr_destroy(attr);
 }
 
-static int (*real_pthread_barrierattr_getpshared)(const pthread_barrierattr_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2))
+int (*real_pthread_barrierattr_getpshared)(const pthread_barrierattr_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_pthread_barrierattr_getpshared(const pthread_barrierattr_t* attr, int* pshared) __THROW
@@ -2515,7 +2525,7 @@ int abii_pthread_barrierattr_getpshared(const pthread_barrierattr_t* attr, int* 
     return real_pthread_barrierattr_getpshared(attr, pshared);
 }
 
-static int (*real_pthread_barrierattr_setpshared)(pthread_barrierattr_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_barrierattr_setpshared)(pthread_barrierattr_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_barrierattr_setpshared(pthread_barrierattr_t* attr, int pshared) __THROW
@@ -2539,7 +2549,7 @@ int abii_pthread_barrierattr_setpshared(pthread_barrierattr_t* attr, int pshared
     return real_pthread_barrierattr_setpshared(attr, pshared);
 }
 
-static int (*real_pthread_key_create)(pthread_key_t*, void (*)(void*)) __THROW = nullptr;
+static __nonnull((1)) int (*real_pthread_key_create)(pthread_key_t*, void (*)(void*)) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pthread_key_create(pthread_key_t* key, void (*destr_function)(void*)) __THROW
@@ -2596,7 +2606,7 @@ extern "C" void* abii_pthread_getspecific(pthread_key_t key) __THROW
     return real_pthread_getspecific(key);
 }
 
-static int (*real_pthread_setspecific)(pthread_key_t, const void*) __THROW = nullptr;
+static __attr_access_none(2) int (*real_pthread_setspecific)(pthread_key_t, const void*) __THROW = nullptr;
 
 extern "C" __attr_access_none(2)
 int abii_pthread_setspecific(pthread_key_t key, const void* pointer) __THROW
@@ -2617,7 +2627,7 @@ int abii_pthread_setspecific(pthread_key_t key, const void* pointer) __THROW
     return real_pthread_setspecific(key, pointer);
 }
 
-static int (*real_pthread_getcpuclockid)(pthread_t, __clockid_t*) __THROW = nullptr;
+static __nonnull((2)) int (*real_pthread_getcpuclockid)(pthread_t, __clockid_t*) __THROW = nullptr;
 
 extern "C" __nonnull((2))
 int abii_pthread_getcpuclockid(pthread_t thread_id, __clockid_t* clock_id) __THROW

@@ -9,7 +9,7 @@
 
 namespace abii
 {
-static void (*real_error)(int, int, const char*, ...) = nullptr;
+static __attribute__ ((__format__ (__printf__, 3, 4))) void (*real_error)(int, int, const char*, ...) = nullptr;
 
 extern "C" __attribute__ ((__format__ (__printf__, 3, 4))) __COLD
 void abii_error(int status, int errnum, const char* format, ...)
@@ -40,10 +40,11 @@ void abii_error(int status, int errnum, const char* format, ...)
     __builtin_apply(reinterpret_cast<void (*)(...)>(real_error), abii_bi_vargs, 1000);
 }
 
-static void (*real_error_at_line)(int, int, const char*, unsigned int, const char*, ...) = nullptr;
+static __attribute__ ((__format__ (__printf__, 5, 6)))
+void (*real_error_at_line)(int, int, const char*, unsigned int, const char*, ...) = nullptr;
 
-__attribute__ ((__format__ (__printf__, 5, 6))) __COLD
-void error_at_line(int status, int errnum, const char* fname, unsigned int lineno, const char* format, ...)
+extern "C" __attribute__ ((__format__ (__printf__, 5, 6))) __COLD
+void abii_error_at_line(int status, int errnum, const char* fname, unsigned int lineno, const char* format, ...)
 {
     OVERRIDE_VARIADIC_PREFIX(error_at_line, format)
         pre_fmtd_str str = "error_at_line(__status, __errnum, __fname, __lineno, __format, ...)";

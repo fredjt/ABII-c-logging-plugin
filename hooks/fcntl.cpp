@@ -250,7 +250,7 @@ extern "C" int abii_fcntl64(int fd, int cmd, ...)
     return real_fcntl64(fd, cmd);
 }
 
-static int (*real_open)(const char*, int, ...) = nullptr;
+static __nonnull((1)) int (*real_open)(const char*, int, ...) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_open(const char* file, int oflag, ...)
@@ -287,7 +287,7 @@ int abii_open(const char* file, int oflag, ...)
     return real_open(file, oflag);
 }
 
-static int (*real_open64)(const char*, int, ...) = nullptr;
+static __nonnull((1)) int (*real_open64)(const char*, int, ...) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_open64(const char* file, int oflag, ...)
@@ -324,7 +324,7 @@ int abii_open64(const char* file, int oflag, ...)
     return real_open64(file, oflag);
 }
 
-static int (*real_openat)(int __fd, const char* __file, int __oflag, ...) = nullptr;
+static __nonnull((2)) int (*real_openat)(int __fd, const char* __file, int __oflag, ...) = nullptr;
 
 extern "C" __nonnull((2))
 int abii_openat(int fd, const char* file, int oflag, ...)
@@ -362,7 +362,7 @@ int abii_openat(int fd, const char* file, int oflag, ...)
     return real_openat(fd, file, oflag);
 }
 
-static int (*real_openat64)(int, const char*, int, ...) = nullptr;
+static __nonnull((2)) int (*real_openat64)(int, const char*, int, ...) = nullptr;
 
 extern "C" __nonnull((2))
 int abii_openat64(int fd, const char* file, int oflag, ...)
@@ -400,7 +400,7 @@ int abii_openat64(int fd, const char* file, int oflag, ...)
     return real_openat64(fd, file, oflag);
 }
 
-static int (*real_creat)(const char*, mode_t) = nullptr;
+static __nonnull((1)) int (*real_creat)(const char*, mode_t) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_creat(const char* file, mode_t mode)
@@ -422,7 +422,7 @@ int abii_creat(const char* file, mode_t mode)
     return real_creat(file, mode);
 }
 
-static int (*real_creat64)(const char*, mode_t) = nullptr;
+static __nonnull((1)) int (*real_creat64)(const char*, mode_t) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_creat64(const char* file, mode_t mode)

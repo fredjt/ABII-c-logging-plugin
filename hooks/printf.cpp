@@ -48,7 +48,7 @@ int abii_register_printf_function(int spec, printf_function func, printf_arginfo
     return real_register_printf_function(spec, func, arginfo);
 }
 
-static int (*real_register_printf_modifier)(const wchar_t*) __THROW = nullptr;
+static __wur int (*real_register_printf_modifier)(const wchar_t*) __THROW = nullptr;
 
 extern "C" __wur int abii_register_printf_modifier(const wchar_t* str) __THROW
 {
@@ -67,7 +67,7 @@ extern "C" __wur int abii_register_printf_modifier(const wchar_t* str) __THROW
     return real_register_printf_modifier(str);
 }
 
-static int (*real_register_printf_type)(printf_va_arg_function) __THROW = nullptr;
+static __wur int (*real_register_printf_type)(printf_va_arg_function) __THROW = nullptr;
 
 extern "C" __wur int abii_register_printf_type(printf_va_arg_function fct) __THROW
 {

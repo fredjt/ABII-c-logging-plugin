@@ -92,7 +92,7 @@ extern "C" int abii_renameat2(int oldfd, const char* old, int newfd, const char*
     return real_renameat2(oldfd, old, newfd, _new, flags);
 }
 
-static int (*real_fclose)(FILE*) = nullptr;
+static __nonnull((1)) int (*real_fclose)(FILE*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_fclose(FILE* stream)
@@ -110,7 +110,7 @@ int abii_fclose(FILE* stream)
     return real_fclose(stream);
 }
 
-static FILE* (*real_tmpfile)() = nullptr;
+static __wur FILE* (*real_tmpfile)() = nullptr;
 
 extern "C" __attribute_malloc__ __attr_dealloc_fclose __wur
 FILE* abii_tmpfile()
@@ -126,7 +126,7 @@ FILE* abii_tmpfile()
     return real_tmpfile();
 }
 
-static FILE* (*real_tmpfile64)() = nullptr;
+static __wur FILE* (*real_tmpfile64)() = nullptr;
 
 extern "C" __attribute_malloc__ __attr_dealloc_fclose __wur
 FILE* abii_tmpfile64()
@@ -142,7 +142,7 @@ FILE* abii_tmpfile64()
     return real_tmpfile64();
 }
 
-static char* (*real_tmpnam)(char [L_tmpnam]) __THROW = nullptr;
+static __wur char* (*real_tmpnam)(char [L_tmpnam]) __THROW = nullptr;
 
 extern "C" __wur char* abii_tmpnam(char s[L_tmpnam]) __THROW
 {
@@ -159,7 +159,7 @@ extern "C" __wur char* abii_tmpnam(char s[L_tmpnam]) __THROW
     return real_tmpnam(s);
 }
 
-static char* (*real_tmpnam_r)(char [L_tmpnam]) __THROW = nullptr;
+static __wur char* (*real_tmpnam_r)(char [L_tmpnam]) __THROW = nullptr;
 
 extern "C" __wur char* abii_tmpnam_r(char s[L_tmpnam]) __THROW
 {
@@ -176,7 +176,7 @@ extern "C" __wur char* abii_tmpnam_r(char s[L_tmpnam]) __THROW
     return real_tmpnam_r(s);
 }
 
-static char* (*real_tempnam)(const char*, const char*) __THROW = nullptr;
+static __wur char* (*real_tempnam)(const char*, const char*) __THROW = nullptr;
 
 extern "C" __attribute_malloc__ __attr_dealloc_free __wur
 char* abii_tempnam(const char* dir, const char* pfx) __THROW
@@ -247,7 +247,7 @@ extern "C" int abii_fcloseall()
     return real_fcloseall();
 }
 
-static FILE* (*real_fopen)(const char*, const char*) = nullptr;
+static __wur FILE* (*real_fopen)(const char*, const char*) = nullptr;
 
 extern "C" __attribute_malloc__ __attr_dealloc_fclose __wur
 FILE* abii_fopen(const char* filename, const char* modes)
@@ -266,7 +266,7 @@ FILE* abii_fopen(const char* filename, const char* modes)
     return real_fopen(filename, modes);
 }
 
-static FILE* (*real_freopen)(const char*, const char*, FILE*) = nullptr;
+static __nonnull((3)) __wur FILE* (*real_freopen)(const char*, const char*, FILE*) = nullptr;
 
 extern "C" __nonnull((3)) __wur
 FILE* abii_freopen(const char* filename, const char* modes, FILE* stream)
@@ -286,7 +286,7 @@ FILE* abii_freopen(const char* filename, const char* modes, FILE* stream)
     return real_freopen(filename, modes, stream);
 }
 
-static FILE* (*real_fopen64)(const char*, const char*) = nullptr;
+static __wur FILE* (*real_fopen64)(const char*, const char*) = nullptr;
 
 extern "C" __attribute_malloc__ __attr_dealloc_fclose __wur
 FILE* abii_fopen64(const char* filename, const char* modes)
@@ -305,7 +305,7 @@ FILE* abii_fopen64(const char* filename, const char* modes)
     return real_fopen64(filename, modes);
 }
 
-static FILE* (*real_freopen64)(const char*, const char*, FILE*) = nullptr;
+static __nonnull((3)) __wur FILE* (*real_freopen64)(const char*, const char*, FILE*) = nullptr;
 
 extern "C" __nonnull((3)) __wur
 FILE* abii_freopen64(const char* filename, const char* modes, FILE* stream)
@@ -325,7 +325,7 @@ FILE* abii_freopen64(const char* filename, const char* modes, FILE* stream)
     return real_freopen64(filename, modes, stream);
 }
 
-static FILE* (*real_fdopen)(int, const char*) __THROW = nullptr;
+static __wur FILE* (*real_fdopen)(int, const char*) __THROW = nullptr;
 
 extern "C" __attribute_malloc__ __attr_dealloc_fclose __wur
 FILE* abii_fdopen(int fd, const char* modes) __THROW
@@ -344,7 +344,7 @@ FILE* abii_fdopen(int fd, const char* modes) __THROW
     return real_fdopen(fd, modes);
 }
 
-static FILE* (*real_fopencookie)(void*, const char*, cookie_io_functions_t) __THROW = nullptr;
+static __wur FILE* (*real_fopencookie)(void*, const char*, cookie_io_functions_t) __THROW = nullptr;
 
 extern "C" __attribute_malloc__ __attr_dealloc_fclose __wur
 FILE* abii_fopencookie(void* magic_cookie, const char* modes, cookie_io_functions_t io_funcs) __THROW
@@ -364,7 +364,7 @@ FILE* abii_fopencookie(void* magic_cookie, const char* modes, cookie_io_function
     return real_fopencookie(magic_cookie, modes, io_funcs);
 }
 
-static FILE* (*real_fmemopen)(void*, size_t, const char*) __THROW = nullptr;
+static __wur FILE* (*real_fmemopen)(void*, size_t, const char*) __THROW = nullptr;
 
 extern "C" __attribute_malloc__ __attr_dealloc_fclose __wur
 FILE* abii_fmemopen(void* s, size_t len, const char* modes) __THROW
@@ -384,7 +384,7 @@ FILE* abii_fmemopen(void* s, size_t len, const char* modes) __THROW
     return real_fmemopen(s, len, modes);
 }
 
-static FILE* (*real_open_memstream)(char**, size_t*) __THROW = nullptr;
+static __wur FILE* (*real_open_memstream)(char**, size_t*) __THROW = nullptr;
 
 extern "C" __attribute_malloc__ __attr_dealloc_fclose __wur
 FILE* abii_open_memstream(char** bufloc, size_t* sizeloc) __THROW
@@ -433,7 +433,7 @@ __FILE* abii_open_wmemstream(wchar_t** bufloc, size_t* sizeloc) __THROW
 }
 #endif
 
-static void (*real_setbuf)(FILE*, char*) __THROW = nullptr;
+static __nonnull((1)) void (*real_setbuf)(FILE*, char*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 void abii_setbuf(FILE* stream, char* buf) __THROW
@@ -450,7 +450,7 @@ void abii_setbuf(FILE* stream, char* buf) __THROW
     return real_setbuf(stream, buf);
 }
 
-static int (*real_setvbuf)(FILE*, char*, int, size_t) __THROW = nullptr;
+static __nonnull((1)) int (*real_setvbuf)(FILE*, char*, int, size_t) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_setvbuf(FILE* stream, char* buf, int modes, size_t n) __THROW
@@ -480,7 +480,7 @@ int abii_setvbuf(FILE* stream, char* buf, int modes, size_t n) __THROW
     return real_setvbuf(stream, buf, modes, n);
 }
 
-static void (*real_setbuffer)(FILE*, char*, size_t) __THROW = nullptr;
+static __nonnull((1)) void (*real_setbuffer)(FILE*, char*, size_t) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 void abii_setbuffer(FILE* stream, char* buf, size_t size) __THROW
@@ -504,7 +504,7 @@ void abii_setbuffer(FILE* stream, char* buf, size_t size) __THROW
     return real_setbuffer(stream, buf, size);
 }
 
-static void (*real_setlinebuf)(FILE*) __THROW = nullptr;
+static __nonnull((1)) void (*real_setlinebuf)(FILE*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 void abii_setlinebuf(FILE* stream) __THROW
@@ -520,7 +520,7 @@ void abii_setlinebuf(FILE* stream) __THROW
     return real_setlinebuf(stream);
 }
 
-static int (*real_fprintf)(FILE*, const char*, ...) = nullptr;
+static __nonnull((1)) int (*real_fprintf)(FILE*, const char*, ...) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_fprintf(FILE* stream, const char* format, ...)
@@ -577,7 +577,7 @@ extern "C" int abii_sprintf(char* s, const char* format, ...) __THROWNL
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real_sprintf), abii_bi_vargs, 1000));
 }
 
-static int (*real_vfprintf)(FILE*, const char*, __gnuc_va_list) = nullptr;
+static __nonnull((1)) int (*real_vfprintf)(FILE*, const char*, __gnuc_va_list) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_vfprintf(FILE* s, const char* format, __gnuc_va_list arg)
@@ -637,7 +637,8 @@ extern "C" int abii_vsprintf(char* s, const char* format, __gnuc_va_list arg) __
     return real_vsprintf(s, format, arg);
 }
 
-static int (*real_snprintf)(char*, size_t, const char*, ...) __THROWNL = nullptr;
+static __attribute__ (( __format__ (__printf__, 3 , 4)))
+int (*real_snprintf)(char*, size_t, const char*, ...) __THROWNL = nullptr;
 
 extern "C" __attribute__ (( __format__ (__printf__, 3 , 4)))
 int abii_snprintf(char* s, size_t maxlen, const char* format, ...) __THROWNL
@@ -658,7 +659,8 @@ int abii_snprintf(char* s, size_t maxlen, const char* format, ...) __THROWNL
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real_snprintf), abii_bi_vargs, 1000));
 }
 
-static int (*real_vsnprintf)(char*, size_t, const char*, __gnuc_va_list) __THROWNL = nullptr;
+static __attribute__ ((__format__ (__printf__, 3, 0)))
+int (*real_vsnprintf)(char*, size_t, const char*, __gnuc_va_list) __THROWNL = nullptr;
 
 extern "C" __attribute__ ((__format__ (__printf__, 3, 0)))
 int abii_vsnprintf(char* s, size_t maxlen, const char* format, __gnuc_va_list arg) __THROWNL
@@ -680,7 +682,8 @@ int abii_vsnprintf(char* s, size_t maxlen, const char* format, __gnuc_va_list ar
     return real_vsnprintf(s, maxlen, format, arg);
 }
 
-static int (*real_vasprintf)(char**, const char*, __gnuc_va_list) __THROWNL = nullptr;
+static __attribute__ ((__format__ (__printf__, 2, 0))) __wur
+int (*real_vasprintf)(char**, const char*, __gnuc_va_list) __THROWNL = nullptr;
 
 extern "C" __attribute__ ((__format__ (__printf__, 2, 0))) __wur
 int abii_vasprintf(char** ptr, const char* f, __gnuc_va_list arg) __THROWNL
@@ -701,7 +704,8 @@ int abii_vasprintf(char** ptr, const char* f, __gnuc_va_list arg) __THROWNL
     return real_vasprintf(ptr, f, arg);
 }
 
-static int (*real___asprintf)(char**, const char*, ...) __THROWNL = nullptr;
+static __attribute__ ((__format__ (__printf__, 2, 3))) __wur
+int (*real___asprintf)(char**, const char*, ...) __THROWNL = nullptr;
 
 extern "C" __attribute__ ((__format__ (__printf__, 2, 3))) __wur
 int abii___asprintf(char** ptr, const char* fmt, ...) __THROWNL
@@ -721,7 +725,8 @@ int abii___asprintf(char** ptr, const char* fmt, ...) __THROWNL
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real___asprintf), abii_bi_vargs, 1000));
 }
 
-static int (*real_asprintf)(char**, const char*, ...) __THROWNL = nullptr;
+static __attribute__ ((__format__ (__printf__, 2, 3))) __wur
+int (*real_asprintf)(char**, const char*, ...) __THROWNL = nullptr;
 
 extern "C" __attribute__ ((__format__ (__printf__, 2, 3))) __wur
 int abii_asprintf(char** ptr, const char* fmt, ...) __THROWNL
@@ -741,7 +746,8 @@ int abii_asprintf(char** ptr, const char* fmt, ...) __THROWNL
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real_asprintf), abii_bi_vargs, 1000));
 }
 
-static int (*real_vdprintf)(int, const char*, __gnuc_va_list) = nullptr;
+static __attribute__ ((__format__ (__printf__, 2, 0)))
+int (*real_vdprintf)(int, const char*, __gnuc_va_list) = nullptr;
 
 extern "C" __attribute__ ((__format__ (__printf__, 2, 0)))
 int abii_vdprintf(int fd, const char* fmt, __gnuc_va_list arg)
@@ -762,7 +768,8 @@ int abii_vdprintf(int fd, const char* fmt, __gnuc_va_list arg)
     return real_vdprintf(fd, fmt, arg);
 }
 
-static int (*real_dprintf)(int, const char*, ...) = nullptr;
+static __attribute__ ((__format__ (__printf__, 2, 3)))
+int (*real_dprintf)(int, const char*, ...) = nullptr;
 
 extern "C" __attribute__ ((__format__ (__printf__, 2, 3)))
 int abii_dprintf(int fd, const char* fmt, ...)
@@ -784,7 +791,7 @@ int abii_dprintf(int fd, const char* fmt, ...)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real_dprintf), abii_bi_vargs, 1000));
 }
 
-static int (*real_fscanf)(FILE*, const char*, ...) = nullptr;
+static __nonnull((1)) __wur int (*real_fscanf)(FILE*, const char*, ...) = nullptr;
 
 extern "C" __nonnull((1)) __wur
 int abii_fscanf(FILE* stream, const char* format, ...)
@@ -847,7 +854,7 @@ extern "C" int abii_sscanf(const char* s, const char* format, ...) __THROW
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real_sscanf), abii_bi_vargs, 1000));
 }
 
-static int (*real___isoc23_fscanf)(FILE*, const char*, ...) = nullptr;
+static __nonnull((1)) __wur int (*real___isoc23_fscanf)(FILE*, const char*, ...) = nullptr;
 
 extern "C" __nonnull((1)) __wur
 int abii___isoc23_fscanf(FILE* stream, const char* format, ...)
@@ -870,9 +877,10 @@ int abii___isoc23_fscanf(FILE* stream, const char* format, ...)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc23_fscanf), abii_bi_vargs, 1000));
 }
 
-static int (*real___isoc23_scanf)(const char*, ...) = nullptr;
+static __wur int (*real___isoc23_scanf)(const char*, ...) = nullptr;
 
-extern "C" __wur int abii___isoc23_scanf(const char* format, ...)
+extern "C" __wur
+int abii___isoc23_scanf(const char* format, ...)
 {
     OVERRIDE_VARIADIC_PREFIX(__isoc23_scanf, format)
         pre_fmtd_str str = "__isoc23_scanf(__format, ...)";
@@ -890,7 +898,7 @@ extern "C" __wur int abii___isoc23_scanf(const char* format, ...)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc23_scanf), abii_bi_vargs, 1000));
 }
 
-static int (*real___isoc23_sscanf)(const char*, const char*, ...) __THROW = nullptr;
+static __nonnull((1)) __wur int (*real___isoc23_sscanf)(const char*, const char*, ...) __THROW = nullptr;
 
 extern "C" __nonnull((1)) __wur
 int abii___isoc23_sscanf(const char* s, const char* format, ...)
@@ -912,7 +920,7 @@ int abii___isoc23_sscanf(const char* s, const char* format, ...)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc23_sscanf), abii_bi_vargs, 1000));
 }
 
-static int (*real___isoc99_fscanf)(FILE*, const char*, ...) = nullptr;
+static __nonnull((1)) __wur int (*real___isoc99_fscanf)(FILE*, const char*, ...) = nullptr;
 
 extern "C" __nonnull((1)) __wur
 int abii___isoc99_fscanf(FILE* stream, const char* format, ...)
@@ -935,9 +943,10 @@ int abii___isoc99_fscanf(FILE* stream, const char* format, ...)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc99_fscanf), abii_bi_vargs, 1000));
 }
 
-static int (*real___isoc99_scanf)(const char*, ...) = nullptr;
+static __wur int (*real___isoc99_scanf)(const char*, ...) = nullptr;
 
-extern "C" __wur int abii___isoc99_scanf(const char* format, ...)
+extern "C" __wur
+int abii___isoc99_scanf(const char* format, ...)
 {
     OVERRIDE_VARIADIC_PREFIX(__isoc99_scanf, format)
         pre_fmtd_str str = "__isoc99_scanf(__format, ...)";
@@ -955,7 +964,7 @@ extern "C" __wur int abii___isoc99_scanf(const char* format, ...)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc99_scanf), abii_bi_vargs, 1000));
 }
 
-static int (*real___isoc99_sscanf)(const char*, const char*, ...) __THROW = nullptr;
+static __nonnull((1)) __wur int (*real___isoc99_sscanf)(const char*, const char*, ...) __THROW = nullptr;
 
 extern "C" __nonnull((1)) __wur
 int abii___isoc99_sscanf(const char* s, const char* format, ...)
@@ -977,7 +986,8 @@ int abii___isoc99_sscanf(const char* s, const char* format, ...)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real___isoc99_sscanf), abii_bi_vargs, 1000));
 }
 
-static int (*real_vfscanf)(FILE*, const char*, __gnuc_va_list) = nullptr;
+static __attribute__ ((__format__ (__scanf__, 2, 0))) __nonnull((1)) __wur
+int (*real_vfscanf)(FILE*, const char*, __gnuc_va_list) = nullptr;
 
 extern "C" __attribute__ ((__format__ (__scanf__, 2, 0))) __nonnull((1)) __wur
 int abii_vfscanf(FILE* s, const char* format, __gnuc_va_list arg)
@@ -1000,7 +1010,7 @@ int abii_vfscanf(FILE* s, const char* format, __gnuc_va_list arg)
     return real_vfscanf(s, format, arg);
 }
 
-static int (*real_vscanf)(const char*, __gnuc_va_list) = nullptr;
+static __attribute__ ((__format__ (__scanf__, 1, 0))) __wur int (*real_vscanf)(const char*, __gnuc_va_list) = nullptr;
 
 extern "C" __attribute__ ((__format__ (__scanf__, 1, 0))) __wur
 int abii_vscanf(const char* format, __gnuc_va_list arg)
@@ -1022,7 +1032,8 @@ int abii_vscanf(const char* format, __gnuc_va_list arg)
     return real_vscanf(format, arg);
 }
 
-static int (*real_vsscanf)(const char*, const char*, __gnuc_va_list) __THROW = nullptr;
+static __attribute__ ((__format__ (__scanf__, 2, 0)))
+int (*real_vsscanf)(const char*, const char*, __gnuc_va_list) __THROW = nullptr;
 
 extern "C" __attribute__ ((__format__ (__scanf__, 2, 0)))
 int abii_vsscanf(const char* s, const char* format, __gnuc_va_list arg) __THROW
@@ -1045,7 +1056,7 @@ int abii_vsscanf(const char* s, const char* format, __gnuc_va_list arg) __THROW
     return real_vsscanf(s, format, arg);
 }
 
-static int (*real_fgetc)(FILE*) = nullptr;
+static __nonnull((1)) int (*real_fgetc)(FILE*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_fgetc(FILE* stream)
@@ -1065,7 +1076,7 @@ int abii_fgetc(FILE* stream)
     return real_fgetc(stream);
 }
 
-static int (*real_getc)(FILE*) = nullptr;
+static __nonnull((1)) int (*real_getc)(FILE*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_getc(FILE* stream)
@@ -1100,7 +1111,7 @@ extern "C" int abii_getchar()
     return real_getchar();
 }
 
-static int (*real_getc_unlocked)(FILE*) = nullptr;
+static __nonnull((1)) int (*real_getc_unlocked)(FILE*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_getc_unlocked(FILE* stream)
@@ -1135,7 +1146,7 @@ extern "C" int abii_getchar_unlocked()
     return real_getchar_unlocked();
 }
 
-static int (*real_fgetc_unlocked)(FILE*) = nullptr;
+static __nonnull((1)) int (*real_fgetc_unlocked)(FILE*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_fgetc_unlocked(FILE* stream)
@@ -1155,7 +1166,7 @@ int abii_fgetc_unlocked(FILE* stream)
     return real_fgetc_unlocked(stream);
 }
 
-static int (*real_fputc)(int, FILE*) = nullptr;
+static __nonnull((2)) int (*real_fputc)(int, FILE*) = nullptr;
 
 extern "C" __nonnull((2))
 int abii_fputc(int c, FILE* stream)
@@ -1176,7 +1187,7 @@ int abii_fputc(int c, FILE* stream)
     return real_fputc(c, stream);
 }
 
-static int (*real_putc)(int, FILE*) = nullptr;
+static __nonnull((2)) int (*real_putc)(int, FILE*) = nullptr;
 
 extern "C" __nonnull((2))
 int abii_putc(int c, FILE* stream)
@@ -1216,7 +1227,7 @@ extern "C" int abii_putchar(int c)
     return real_putchar(c);
 }
 
-static int (*real_fputc_unlocked)(int, FILE*) = nullptr;
+static __nonnull((2)) int (*real_fputc_unlocked)(int, FILE*) = nullptr;
 
 extern "C" __nonnull((2))
 int abii_fputc_unlocked(int c, FILE* stream)
@@ -1237,7 +1248,7 @@ int abii_fputc_unlocked(int c, FILE* stream)
     return real_fputc_unlocked(c, stream);
 }
 
-static int (*real_putc_unlocked)(int, FILE*) = nullptr;
+static __nonnull((2)) int (*real_putc_unlocked)(int, FILE*) = nullptr;
 
 extern "C" __nonnull((2))
 int abii_putc_unlocked(int c, FILE* stream)
@@ -1277,7 +1288,7 @@ extern "C" int abii_putchar_unlocked(int c)
     return real_putchar_unlocked(c);
 }
 
-static int (*real_getw)(FILE*) = nullptr;
+static __nonnull((1)) int (*real_getw)(FILE*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_getw(FILE* stream)
@@ -1297,7 +1308,7 @@ int abii_getw(FILE* stream)
     return real_getw(stream);
 }
 
-static int (*real_putw)(int, FILE*) = nullptr;
+static __nonnull((2)) int (*real_putw)(int, FILE*) = nullptr;
 
 extern "C" __nonnull((2))
 int abii_putw(int w, FILE* stream)
@@ -1318,7 +1329,8 @@ int abii_putw(int w, FILE* stream)
     return real_putw(w, stream);
 }
 
-static char* (*real_fgets)(char*, int, FILE*) = nullptr;
+static __wur __fortified_attr_access(__write_only__, 1, 2) __nonnull((3))
+char* (*real_fgets)(char*, int, FILE*) = nullptr;
 
 extern "C" __wur __fortified_attr_access(__write_only__, 1, 2) __nonnull((3))
 char* abii_fgets(char* s, int n, FILE* stream)
@@ -1338,7 +1350,7 @@ char* abii_fgets(char* s, int n, FILE* stream)
     return real_fgets(s, n, stream);
 }
 
-static char* (*real_gets)(char*) = nullptr;
+static __wur char* (*real_gets)(char*) = nullptr;
 
 extern "C" __wur __attribute_deprecated__
 char* abii_gets(char* s)
@@ -1356,7 +1368,8 @@ char* abii_gets(char* s)
     return real_gets(s);
 }
 
-static char* (*real_fgets_unlocked)(char*, int, FILE*) = nullptr;
+static __wur __fortified_attr_access(__write_only__, 1, 2) __nonnull((3))
+char* (*real_fgets_unlocked)(char*, int, FILE*) = nullptr;
 
 extern "C" __wur __fortified_attr_access(__write_only__, 1, 2) __nonnull((3))
 char* abii_fgets_unlocked(char* s, int n, FILE* stream)
@@ -1376,7 +1389,7 @@ char* abii_fgets_unlocked(char* s, int n, FILE* stream)
     return real_fgets_unlocked(s, n, stream);
 }
 
-static __ssize_t (*real___getdelim)(char**, size_t*, int, FILE*) = nullptr;
+static __wur __nonnull((4)) __ssize_t (*real___getdelim)(char**, size_t*, int, FILE*) = nullptr;
 
 extern "C" __wur __nonnull((4))
 __ssize_t abii___getdelim(char** lineptr, size_t* n, int delimiter, FILE* stream)
@@ -1397,7 +1410,7 @@ __ssize_t abii___getdelim(char** lineptr, size_t* n, int delimiter, FILE* stream
     return real___getdelim(lineptr, n, delimiter, stream);
 }
 
-static __ssize_t (*real_getdelim)(char**, size_t*, int, FILE*) = nullptr;
+static __wur __nonnull((4)) __ssize_t (*real_getdelim)(char**, size_t*, int, FILE*) = nullptr;
 
 extern "C" __wur __nonnull((4))
 __ssize_t abii_getdelim(char** lineptr, size_t* n, int delimiter, FILE* stream)
@@ -1418,7 +1431,7 @@ __ssize_t abii_getdelim(char** lineptr, size_t* n, int delimiter, FILE* stream)
     return real_getdelim(lineptr, n, delimiter, stream);
 }
 
-static __ssize_t (*real_getline)(char**, size_t*, FILE*) = nullptr;
+static __wur __nonnull((3)) __ssize_t (*real_getline)(char**, size_t*, FILE*) = nullptr;
 
 extern "C" __wur __nonnull((3))
 __ssize_t abii_getline(char** lineptr, size_t* n, FILE* stream)
@@ -1438,7 +1451,7 @@ __ssize_t abii_getline(char** lineptr, size_t* n, FILE* stream)
     return real_getline(lineptr, n, stream);
 }
 
-static int (*real_fputs)(const char*, FILE*) = nullptr;
+static __nonnull((2)) int (*real_fputs)(const char*, FILE*) = nullptr;
 
 extern "C" __nonnull((2))
 int abii_fputs(const char* s, FILE* stream)
@@ -1478,7 +1491,7 @@ extern "C" int abii_puts(const char* s)
     return real_puts(s);
 }
 
-static int (*real_ungetc)(int, FILE*) = nullptr;
+static __nonnull((2)) int (*real_ungetc)(int, FILE*) = nullptr;
 
 extern "C" __nonnull((2))
 int abii_ungetc(int c, FILE* stream)
@@ -1499,7 +1512,7 @@ int abii_ungetc(int c, FILE* stream)
     return real_ungetc(c, stream);
 }
 
-static size_t (*real_fread)(void*, size_t, size_t, FILE*) = nullptr;
+static __wur __nonnull((4)) size_t (*real_fread)(void*, size_t, size_t, FILE*) = nullptr;
 
 extern "C" __wur __nonnull((4))
 size_t abii_fread(void* ptr, size_t size, size_t n, FILE* stream)
@@ -1520,7 +1533,7 @@ size_t abii_fread(void* ptr, size_t size, size_t n, FILE* stream)
     return real_fread(ptr, size, n, stream);
 }
 
-static size_t (*real_fwrite)(const void*, size_t, size_t, FILE*) = nullptr;
+static __nonnull((4)) size_t (*real_fwrite)(const void*, size_t, size_t, FILE*) = nullptr;
 
 extern "C" __nonnull((4))
 size_t abii_fwrite(const void* ptr, size_t size, size_t n, FILE* s)
@@ -1541,7 +1554,7 @@ size_t abii_fwrite(const void* ptr, size_t size, size_t n, FILE* s)
     return real_fwrite(ptr, size, n, s);
 }
 
-static int (*real_fputs_unlocked)(const char*, FILE*) = nullptr;
+static __nonnull((2)) int (*real_fputs_unlocked)(const char*, FILE*) = nullptr;
 
 extern "C" __nonnull((2))
 int abii_fputs_unlocked(const char* s, FILE* stream)
@@ -1562,7 +1575,7 @@ int abii_fputs_unlocked(const char* s, FILE* stream)
     return real_fputs_unlocked(s, stream);
 }
 
-static size_t (*real_fread_unlocked)(void*, size_t, size_t, FILE*) = nullptr;
+static __wur __nonnull((4)) size_t (*real_fread_unlocked)(void*, size_t, size_t, FILE*) = nullptr;
 
 extern "C" __wur __nonnull((4))
 size_t abii_fread_unlocked(void* ptr, size_t size, size_t n, FILE* stream)
@@ -1583,7 +1596,7 @@ size_t abii_fread_unlocked(void* ptr, size_t size, size_t n, FILE* stream)
     return real_fread_unlocked(ptr, size, n, stream);
 }
 
-static size_t (*real_fwrite_unlocked)(const void*, size_t, size_t, FILE*) = nullptr;
+static __nonnull((4)) size_t (*real_fwrite_unlocked)(const void*, size_t, size_t, FILE*) = nullptr;
 
 extern "C" __nonnull((4))
 size_t abii_fwrite_unlocked(const void* ptr, size_t size, size_t n, FILE* stream)
@@ -1604,7 +1617,7 @@ size_t abii_fwrite_unlocked(const void* ptr, size_t size, size_t n, FILE* stream
     return real_fwrite_unlocked(ptr, size, n, stream);
 }
 
-static int (*real_fseek)(FILE*, long int, int) = nullptr;
+static __nonnull((1)) int (*real_fseek)(FILE*, long int, int) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_fseek(FILE* stream, long int off, int whence)
@@ -1627,7 +1640,7 @@ int abii_fseek(FILE* stream, long int off, int whence)
     return real_fseek(stream, off, whence);
 }
 
-static long int (*real_ftell)(FILE*) = nullptr;
+static __wur __nonnull((1)) long int (*real_ftell)(FILE*) = nullptr;
 
 extern "C" __wur __nonnull((1))
 long int abii_ftell(FILE* stream)
@@ -1645,7 +1658,7 @@ long int abii_ftell(FILE* stream)
     return real_ftell(stream);
 }
 
-static void (*real_rewind)(FILE*) = nullptr;
+static __nonnull((1)) void (*real_rewind)(FILE*) = nullptr;
 
 extern "C" __nonnull((1))
 void abii_rewind(FILE* stream)
@@ -1661,7 +1674,7 @@ void abii_rewind(FILE* stream)
     return real_rewind(stream);
 }
 
-static int (*real_fseeko)(FILE*, __off_t, int) = nullptr;
+static __nonnull((1)) int (*real_fseeko)(FILE*, __off_t, int) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_fseeko(FILE* stream, __off_t off, int whence)
@@ -1684,7 +1697,7 @@ int abii_fseeko(FILE* stream, __off_t off, int whence)
     return real_fseeko(stream, off, whence);
 }
 
-static __off_t (*real_ftello)(FILE*) = nullptr;
+static __wur __nonnull((1)) __off_t (*real_ftello)(FILE*) = nullptr;
 
 extern "C" __wur __nonnull((1))
 long int abii_ftello(FILE* stream)
@@ -1702,7 +1715,7 @@ long int abii_ftello(FILE* stream)
     return real_ftello(stream);
 }
 
-static int (*real_fgetpos)(FILE*, fpos_t*) = nullptr;
+static __nonnull((1)) int (*real_fgetpos)(FILE*, fpos_t*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_fgetpos(FILE* stream, fpos_t* pos)
@@ -1721,7 +1734,7 @@ int abii_fgetpos(FILE* stream, fpos_t* pos)
     return real_fgetpos(stream, pos);
 }
 
-static int (*real_fsetpos)(FILE*, const fpos_t*) = nullptr;
+static __nonnull((1)) int (*real_fsetpos)(FILE*, const fpos_t*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_fsetpos(FILE* stream, const fpos_t* pos)
@@ -1740,7 +1753,7 @@ int abii_fsetpos(FILE* stream, const fpos_t* pos)
     return real_fsetpos(stream, pos);
 }
 
-static int (*real_fseeko64)(FILE*, __off64_t, int) = nullptr;
+static __nonnull((1)) int (*real_fseeko64)(FILE*, __off64_t, int) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_fseeko64(FILE* stream, __off64_t off, int whence)
@@ -1763,7 +1776,7 @@ int abii_fseeko64(FILE* stream, __off64_t off, int whence)
     return real_fseeko64(stream, off, whence);
 }
 
-static __off64_t (*real_ftello64)(FILE*) = nullptr;
+static __wur __nonnull((1)) __off64_t (*real_ftello64)(FILE*) = nullptr;
 
 extern "C" __wur __nonnull((1))
 __off64_t abii_ftello64(FILE* stream)
@@ -1781,7 +1794,7 @@ __off64_t abii_ftello64(FILE* stream)
     return real_ftello64(stream);
 }
 
-static int (*real_fgetpos64)(FILE*, fpos64_t*) = nullptr;
+static __nonnull((1)) int (*real_fgetpos64)(FILE*, fpos64_t*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_fgetpos64(FILE* stream, fpos64_t* pos)
@@ -1800,7 +1813,7 @@ int abii_fgetpos64(FILE* stream, fpos64_t* pos)
     return real_fgetpos64(stream, pos);
 }
 
-static int (*real_fsetpos64)(FILE*, const fpos64_t*) = nullptr;
+static __nonnull((1)) int (*real_fsetpos64)(FILE*, const fpos64_t*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_fsetpos64(FILE* stream, const fpos64_t* pos)
@@ -1819,7 +1832,7 @@ int abii_fsetpos64(FILE* stream, const fpos64_t* pos)
     return real_fsetpos64(stream, pos);
 }
 
-static void (*real_clearerr)(FILE*) __THROW = nullptr;
+static __nonnull((1)) void (*real_clearerr)(FILE*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 void abii_clearerr(FILE* stream) __THROW
@@ -1835,7 +1848,7 @@ void abii_clearerr(FILE* stream) __THROW
     return real_clearerr(stream);
 }
 
-static int (*real_feof)(FILE*) __THROW = nullptr;
+static __wur __nonnull((1)) int (*real_feof)(FILE*) __THROW = nullptr;
 
 extern "C" __wur __nonnull((1))
 int abii_feof(FILE* stream) __THROW
@@ -1853,7 +1866,7 @@ int abii_feof(FILE* stream) __THROW
     return real_feof(stream);
 }
 
-static int (*real_ferror)(FILE*) __THROW = nullptr;
+static __wur __nonnull((1)) int (*real_ferror)(FILE*) __THROW = nullptr;
 
 extern "C" __wur __nonnull((1))
 int abii_ferror(FILE* stream) __THROW
@@ -1871,7 +1884,7 @@ int abii_ferror(FILE* stream) __THROW
     return real_ferror(stream);
 }
 
-static void (*real_clearerr_unlocked)(FILE*) __THROW = nullptr;
+static __nonnull((1)) void (*real_clearerr_unlocked)(FILE*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 void abii_clearerr_unlocked(FILE* stream) __THROW
@@ -1887,7 +1900,7 @@ void abii_clearerr_unlocked(FILE* stream) __THROW
     return real_clearerr_unlocked(stream);
 }
 
-static int (*real_feof_unlocked)(FILE*) __THROW = nullptr;
+static __wur __nonnull((1)) int (*real_feof_unlocked)(FILE*) __THROW = nullptr;
 
 extern "C" __wur __nonnull((1))
 int abii_feof_unlocked(FILE* stream) __THROW
@@ -1905,7 +1918,7 @@ int abii_feof_unlocked(FILE* stream) __THROW
     return real_feof_unlocked(stream);
 }
 
-static int (*real_ferror_unlocked)(FILE*) __THROW = nullptr;
+static __wur __nonnull((1)) int (*real_ferror_unlocked)(FILE*) __THROW = nullptr;
 
 extern "C" __wur __nonnull((1))
 int abii_ferror_unlocked(FILE* stream) __THROW
@@ -1939,7 +1952,7 @@ void abii_perror(const char* s)
     return real_perror(s);
 }
 
-static int (*real_fileno)(FILE*) __THROW = nullptr;
+static __wur __nonnull((1)) int (*real_fileno)(FILE*) __THROW = nullptr;
 
 extern "C" __wur __nonnull((1))
 int abii_fileno(FILE* stream) __THROW
@@ -1957,7 +1970,7 @@ int abii_fileno(FILE* stream) __THROW
     return real_fileno(stream);
 }
 
-static int (*real_fileno_unlocked)(FILE*) __THROW = nullptr;
+static __wur __nonnull((1)) int (*real_fileno_unlocked)(FILE*) __THROW = nullptr;
 
 extern "C" __wur __nonnull((1))
 int abii_fileno_unlocked(FILE* stream) __THROW
@@ -1975,7 +1988,7 @@ int abii_fileno_unlocked(FILE* stream) __THROW
     return real_fileno_unlocked(stream);
 }
 
-static int (*real_pclose)(FILE*) = nullptr;
+static __nonnull((1)) int (*real_pclose)(FILE*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_pclose(FILE* stream)
@@ -1993,7 +2006,7 @@ int abii_pclose(FILE* stream)
     return real_pclose(stream);
 }
 
-static FILE* (*real_popen)(const char*, const char*) = nullptr;
+static __wur FILE* (*real_popen)(const char*, const char*) = nullptr;
 
 extern "C" __attribute_malloc__ __attr_dealloc(pclose, 1) __wur
 FILE* abii_popen(const char* command, const char* modes)
@@ -2012,7 +2025,7 @@ FILE* abii_popen(const char* command, const char* modes)
     return real_popen(command, modes);
 }
 
-static char* (*real_ctermid)(char*) __THROW = nullptr;
+static __attr_access((__write_only__, 1)) char* (*real_ctermid)(char*) __THROW = nullptr;
 
 extern "C" __attr_access((__write_only__, 1))
 char* abii_ctermid(char* s) __THROW
@@ -2030,7 +2043,7 @@ char* abii_ctermid(char* s) __THROW
     return real_ctermid(s);
 }
 
-static char* (*real_cuserid)(char*) = nullptr;
+static __attr_access((__write_only__, 1)) char* (*real_cuserid)(char*) = nullptr;
 
 extern "C" __attr_access((__write_only__, 1))
 char* abii_cuserid(char* s)
@@ -2048,7 +2061,8 @@ char* abii_cuserid(char* s)
     return real_cuserid(s);
 }
 
-static int (*real_obstack_printf)(obstack*, const char*, ...) __THROWNL = nullptr;
+static __attribute__ ((__format__ (__printf__, 2, 3)))
+int (*real_obstack_printf)(obstack*, const char*, ...) __THROWNL = nullptr;
 
 extern "C" __attribute__ ((__format__ (__printf__, 2, 3)))
 int abii_obstack_printf(obstack* obstack, const char* format, ...) __THROWNL
@@ -2068,7 +2082,8 @@ int abii_obstack_printf(obstack* obstack, const char* format, ...) __THROWNL
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real_obstack_printf), abii_bi_vargs, 1000));
 }
 
-static int (*real_obstack_vprintf)(obstack*, const char*, __gnuc_va_list) __THROWNL = nullptr;
+static __attribute__ ((__format__ (__printf__, 2, 0)))
+int (*real_obstack_vprintf)(obstack*, const char*, __gnuc_va_list) __THROWNL = nullptr;
 
 extern "C" __attribute__ ((__format__ (__printf__, 2, 0)))
 int abii_obstack_vprintf(obstack* obstack, const char* format, __gnuc_va_list args) __THROWNL
@@ -2089,7 +2104,7 @@ int abii_obstack_vprintf(obstack* obstack, const char* format, __gnuc_va_list ar
     return real_obstack_vprintf(obstack, format, args);
 }
 
-static void (*real_flockfile)(FILE*) __THROW = nullptr;
+static __nonnull((1)) void (*real_flockfile)(FILE*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 void abii_flockfile(FILE* stream) __THROW
@@ -2105,7 +2120,7 @@ void abii_flockfile(FILE* stream) __THROW
     return real_flockfile(stream);
 }
 
-static int (*real_ftrylockfile)(FILE*) __THROW = nullptr;
+static __wur __nonnull((1)) int (*real_ftrylockfile)(FILE*) __THROW = nullptr;
 
 extern "C" __wur __nonnull((1))
 int abii_ftrylockfile(FILE* stream) __THROW
@@ -2123,7 +2138,7 @@ int abii_ftrylockfile(FILE* stream) __THROW
     return real_ftrylockfile(stream);
 }
 
-static void (*real_funlockfile)(FILE*) __THROW = nullptr;
+static __nonnull((1)) void (*real_funlockfile)(FILE*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 void abii_funlockfile(FILE* stream) __THROW

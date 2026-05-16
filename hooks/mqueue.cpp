@@ -14,7 +14,7 @@
 
 namespace abii
 {
-static mqd_t (*real_mq_open)(const char*, int, ...) __THROW = nullptr;
+static __nonnull((1)) mqd_t (*real_mq_open)(const char*, int, ...) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 mqd_t abii_mq_open(const char* name, int oflag, ...) __THROW
@@ -58,7 +58,7 @@ extern "C" int abii_mq_close(mqd_t mqdes) __THROW
     return real_mq_close(mqdes);
 }
 
-static int (*real_mq_getattr)(mqd_t, mq_attr*) __THROW = nullptr;
+static __nonnull((2)) int (*real_mq_getattr)(mqd_t, mq_attr*) __THROW = nullptr;
 
 extern "C" __nonnull((2))
 int abii_mq_getattr(mqd_t mqdes, mq_attr* mqstat) __THROW
@@ -77,7 +77,7 @@ int abii_mq_getattr(mqd_t mqdes, mq_attr* mqstat) __THROW
     return real_mq_getattr(mqdes, mqstat);
 }
 
-static int (*real_mq_setattr)(mqd_t, const mq_attr*, mq_attr*) __THROW = nullptr;
+static __nonnull((2)) int (*real_mq_setattr)(mqd_t, const mq_attr*, mq_attr*) __THROW = nullptr;
 
 extern "C" __nonnull((2))
 int abii_mq_setattr(mqd_t mqdes, const mq_attr* mqstat, mq_attr* omqstat) __THROW
@@ -97,7 +97,7 @@ int abii_mq_setattr(mqd_t mqdes, const mq_attr* mqstat, mq_attr* omqstat) __THRO
     return real_mq_setattr(mqdes, mqstat, omqstat);
 }
 
-static int (*real_mq_unlink)(const char*) __THROW = nullptr;
+static __nonnull((1)) int (*real_mq_unlink)(const char*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_mq_unlink(const char* name) __THROW
@@ -133,7 +133,7 @@ extern "C" int abii_mq_notify(mqd_t mqdes, const sigevent* notification) __THROW
     return real_mq_notify(mqdes, notification);
 }
 
-static ssize_t (*real_mq_receive)(mqd_t, char*, size_t, unsigned int*) = nullptr;
+static __nonnull((2)) ssize_t (*real_mq_receive)(mqd_t, char*, size_t, unsigned int*) = nullptr;
 
 extern "C" __nonnull((2))
 ssize_t abii_mq_receive(mqd_t mqdes, char* msg_ptr, size_t msg_len, unsigned int* msg_prio)
@@ -158,7 +158,7 @@ ssize_t abii_mq_receive(mqd_t mqdes, char* msg_ptr, size_t msg_len, unsigned int
     return real_mq_receive(mqdes, msg_ptr, msg_len, msg_prio);
 }
 
-static int (*real_mq_send)(mqd_t, const char*, size_t, unsigned int) = nullptr;
+static __nonnull((2)) int (*real_mq_send)(mqd_t, const char*, size_t, unsigned int) = nullptr;
 
 extern "C" __nonnull((2))
 int abii_mq_send(mqd_t mqdes, const char* msg_ptr, size_t msg_len, unsigned int msg_prio)
@@ -183,7 +183,8 @@ int abii_mq_send(mqd_t mqdes, const char* msg_ptr, size_t msg_len, unsigned int 
     return real_mq_send(mqdes, msg_ptr, msg_len, msg_prio);
 }
 
-static ssize_t (*real_mq_timedreceive)(mqd_t, char*, size_t, unsigned int*, const timespec*) = nullptr;
+static __nonnull((2, 5))
+ssize_t (*real_mq_timedreceive)(mqd_t, char*, size_t, unsigned int*, const timespec*) = nullptr;
 
 extern "C" __nonnull((2, 5))
 ssize_t abii_mq_timedreceive(mqd_t mqdes, char* msg_ptr, size_t msg_len, unsigned int* msg_prio,
@@ -210,7 +211,7 @@ ssize_t abii_mq_timedreceive(mqd_t mqdes, char* msg_ptr, size_t msg_len, unsigne
     return real_mq_timedreceive(mqdes, msg_ptr, msg_len, msg_prio, abs_timeout);
 }
 
-static int (*real_mq_timedsend)(mqd_t, const char*, size_t, unsigned int, const timespec*) = nullptr;
+static __nonnull((2, 5)) int (*real_mq_timedsend)(mqd_t, const char*, size_t, unsigned int, const timespec*) = nullptr;
 
 extern "C" __nonnull((2, 5))
 int abii_mq_timedsend(mqd_t mqdes, const char* msg_ptr, size_t msg_len, unsigned int msg_prio,

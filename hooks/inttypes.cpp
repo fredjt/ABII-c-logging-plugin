@@ -8,7 +8,7 @@
 
 namespace abii
 {
-static intmax_t (*real_imaxabs)(intmax_t) __THROW = nullptr;
+static __attribute__ ((__const__)) intmax_t (*real_imaxabs)(intmax_t) __THROW = nullptr;
 
 extern "C" __attribute__ ((__const__))
 intmax_t abii_imaxabs(intmax_t n) __THROW
@@ -30,7 +30,7 @@ intmax_t abii_imaxabs(intmax_t n) __THROW
     return real_imaxabs(n);
 }
 
-static imaxdiv_t (*real_imaxdiv)(intmax_t, intmax_t) __THROW = nullptr;
+static __attribute__ ((__const__)) imaxdiv_t (*real_imaxdiv)(intmax_t, intmax_t) __THROW = nullptr;
 
 extern "C" __attribute__ ((__const__))
 imaxdiv_t abii_imaxdiv(intmax_t numer, intmax_t denom) __THROW

@@ -26,7 +26,7 @@ extern "C" void* abii_dlopen(const char* file, int mode) __THROWNL
     return real_dlopen(file, mode);
 }
 
-static int (*real_dlclose)(void*) __THROWNL = nullptr;
+static __nonnull((1)) int (*real_dlclose)(void*) __THROWNL = nullptr;
 
 extern "C" __nonnull((1))
 int abii_dlclose(void* handle) __THROWNL
@@ -44,7 +44,7 @@ int abii_dlclose(void* handle) __THROWNL
     return real_dlclose(handle);
 }
 
-static void* (*real_dlsym)(void*, const char*) __THROW = nullptr;
+static __nonnull((2)) void* (*real_dlsym)(void*, const char*) __THROW = nullptr;
 
 extern "C" __nonnull((2))
 void* abii_dlsym(void* handle, const char* name) __THROW
@@ -112,7 +112,7 @@ extern "C" void* abii_dlmopen(Lmid_t nsid, const char* file, int mode) __THROWNL
     return real_dlmopen(nsid, file, mode);
 }
 
-static void* (*real_dlvsym)(void*, const char*, const char*) __THROW = nullptr;
+static __nonnull((2, 3)) void* (*real_dlvsym)(void*, const char*, const char*) __THROW = nullptr;
 
 // TODO: This doesn't seem to always work
 extern "C" __nonnull((2, 3))
@@ -175,7 +175,7 @@ extern "C" char* abii_dlerror() __THROW
     return real_dlerror();
 }
 
-static int (*real_dladdr)(const void*, Dl_info*) __THROW = nullptr;
+static __nonnull((2)) int (*real_dladdr)(const void*, Dl_info*) __THROW = nullptr;
 
 extern "C" __nonnull((2))
 int abii_dladdr(const void* address, Dl_info* info) __THROW
@@ -194,7 +194,7 @@ int abii_dladdr(const void* address, Dl_info* info) __THROW
     return real_dladdr(address, info);
 }
 
-static int (*real_dladdr1)(const void*, Dl_info*, void**, int) __THROW = nullptr;
+static __nonnull((2)) int (*real_dladdr1)(const void*, Dl_info*, void**, int) __THROW = nullptr;
 
 extern "C" __nonnull((2))
 int abii_dladdr1(const void* address, Dl_info* info, void** extra_info, int flags) __THROW
@@ -230,7 +230,7 @@ int abii_dladdr1(const void* address, Dl_info* info, void** extra_info, int flag
     return real_dladdr1(address, info, extra_info, flags);
 }
 
-static int (*real_dlinfo)(void*, int, void*) __THROW = nullptr;
+static __nonnull((1, 3)) int (*real_dlinfo)(void*, int, void*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 3))
 int abii_dlinfo(void* handle, int request, void* arg) __THROW

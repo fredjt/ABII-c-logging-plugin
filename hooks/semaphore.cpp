@@ -13,7 +13,7 @@
 
 namespace abii
 {
-static int (*real_sem_init)(sem_t*, int, unsigned int) __THROW = nullptr;
+static __nonnull((1)) int (*real_sem_init)(sem_t*, int, unsigned int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sem_init(sem_t* sem, int pshared, unsigned int value) __THROW
@@ -33,7 +33,7 @@ int abii_sem_init(sem_t* sem, int pshared, unsigned int value) __THROW
     return real_sem_init(sem, pshared, value);
 }
 
-static int (*real_sem_destroy)(sem_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_sem_destroy)(sem_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sem_destroy(sem_t* sem) __THROW
@@ -51,7 +51,7 @@ int abii_sem_destroy(sem_t* sem) __THROW
     return real_sem_destroy(sem);
 }
 
-static sem_t* (*real_sem_open)(const char*, int, ...) __THROW = nullptr;
+static __nonnull((1)) sem_t* (*real_sem_open)(const char*, int, ...) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 sem_t* abii_sem_open(const char* name, int oflag, ...) __THROW
@@ -92,7 +92,7 @@ sem_t* abii_sem_open(const char* name, int oflag, ...) __THROW
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real_sem_open), pi_bi_vargs, 1000));
 }
 
-static int (*real_sem_close)(sem_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_sem_close)(sem_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sem_close(sem_t* sem) __THROW
@@ -110,7 +110,7 @@ int abii_sem_close(sem_t* sem) __THROW
     return real_sem_close(sem);
 }
 
-static int (*real_sem_unlink)(const char*) __THROW = nullptr;
+static __nonnull((1)) int (*real_sem_unlink)(const char*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sem_unlink(const char* name) __THROW
@@ -128,7 +128,7 @@ int abii_sem_unlink(const char* name) __THROW
     return real_sem_unlink(name);
 }
 
-static int (*real_sem_wait)(sem_t*) = nullptr;
+static __nonnull((1)) int (*real_sem_wait)(sem_t*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sem_wait(sem_t* sem)
@@ -146,7 +146,7 @@ int abii_sem_wait(sem_t* sem)
     return real_sem_wait(sem);
 }
 
-static int (*real_sem_timedwait)(sem_t*, const timespec*) = nullptr;
+static __nonnull((1, 2)) int (*real_sem_timedwait)(sem_t*, const timespec*) = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_sem_timedwait(sem_t* sem, const timespec* abstime)
@@ -165,7 +165,7 @@ int abii_sem_timedwait(sem_t* sem, const timespec* abstime)
     return real_sem_timedwait(sem, abstime);
 }
 
-static int (*real_sem_clockwait)(sem_t*, clockid_t, const timespec*) = nullptr;
+static __nonnull((1, 3)) int (*real_sem_clockwait)(sem_t*, clockid_t, const timespec*) = nullptr;
 
 extern "C" __nonnull((1, 3))
 int abii_sem_clockwait(sem_t* sem, clockid_t clock, const timespec* abstime)
@@ -189,7 +189,7 @@ int abii_sem_clockwait(sem_t* sem, clockid_t clock, const timespec* abstime)
     return real_sem_clockwait(sem, clock, abstime);
 }
 
-static int (*real_sem_trywait)(sem_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_sem_trywait)(sem_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sem_trywait(sem_t* sem) __THROWNL
@@ -207,7 +207,7 @@ int abii_sem_trywait(sem_t* sem) __THROWNL
     return real_sem_trywait(sem);
 }
 
-static int (*real_sem_post)(sem_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_sem_post)(sem_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_sem_post(sem_t* sem) __THROWNL
@@ -225,7 +225,7 @@ int abii_sem_post(sem_t* sem) __THROWNL
     return real_sem_post(sem);
 }
 
-static int (*real_sem_getvalue)(sem_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_sem_getvalue)(sem_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_sem_getvalue(sem_t* sem, int* sval) __THROW

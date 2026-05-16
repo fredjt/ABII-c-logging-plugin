@@ -116,7 +116,7 @@ extern "C" int abii_putspent(const spwd* p, FILE* stream)
     return real_putspent(p, stream);
 }
 
-static int (*real_getspent_r)(spwd*, char*, size_t, spwd**) = nullptr;
+static __attr_access((__write_only__, 2, 3)) int (*real_getspent_r)(spwd*, char*, size_t, spwd**) = nullptr;
 
 extern "C" __attr_access((__write_only__, 2, 3))
 int abii_getspent_r(spwd* result_buf, char* buffer, size_t buflen, spwd** result)
@@ -141,7 +141,8 @@ int abii_getspent_r(spwd* result_buf, char* buffer, size_t buflen, spwd** result
     return real_getspent_r(result_buf, buffer, buflen, result);
 }
 
-static int (*real_getspnam_r)(const char*, spwd*, char*, size_t, spwd**) = nullptr;
+static __attr_access((__write_only__, 3, 4))
+int (*real_getspnam_r)(const char*, spwd*, char*, size_t, spwd**) = nullptr;
 
 extern "C" __attr_access((__write_only__, 3, 4))
 int abii_getspnam_r(const char* name, spwd* result_buf, char* buffer, size_t buflen, spwd** result)
@@ -167,7 +168,8 @@ int abii_getspnam_r(const char* name, spwd* result_buf, char* buffer, size_t buf
     return real_getspnam_r(name, result_buf, buffer, buflen, result);
 }
 
-static int (*real_sgetspent_r)(const char*, spwd*, char*, size_t, spwd**) = nullptr;
+static __attr_access((__write_only__, 3, 4))
+int (*real_sgetspent_r)(const char*, spwd*, char*, size_t, spwd**) = nullptr;
 
 extern "C" __attr_access((__write_only__, 3, 4))
 int abii_sgetspent_r(const char* string, spwd* result_buf, char* buffer, size_t buflen, spwd** result)
@@ -193,7 +195,7 @@ int abii_sgetspent_r(const char* string, spwd* result_buf, char* buffer, size_t 
     return real_sgetspent_r(string, result_buf, buffer, buflen, result);
 }
 
-static int (*real_fgetspent_r)(FILE*, spwd*, char*, size_t, spwd**) = nullptr;
+static __attr_access((__write_only__, 3, 4)) int (*real_fgetspent_r)(FILE*, spwd*, char*, size_t, spwd**) = nullptr;
 
 extern "C" __attr_access((__write_only__, 3, 4))
 int abii_fgetspent_r(FILE* stream, spwd* result_buf, char* buffer, size_t buflen, spwd** result)

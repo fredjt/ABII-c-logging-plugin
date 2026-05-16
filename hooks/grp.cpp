@@ -124,7 +124,7 @@ extern "C" group* abii_getgrnam(const char* name)
     return real_getgrnam(name);
 }
 
-static int (*real_getgrent_r)(group*, char*, size_t, group**) = nullptr;
+static __attr_access((__write_only__, 2, 3)) int (*real_getgrent_r)(group*, char*, size_t, group**) = nullptr;
 
 extern "C" __attr_access((__write_only__, 2, 3))
 int abii_getgrent_r(group* resultbuf, char* buffer, size_t buflen, group** result)
@@ -152,7 +152,7 @@ int abii_getgrent_r(group* resultbuf, char* buffer, size_t buflen, group** resul
     return real_getgrent_r(resultbuf, buffer, buflen, result);
 }
 
-static int (*real_getgrgid_r)(__gid_t, group*, char*, size_t, group**) = nullptr;
+static __attr_access((__write_only__, 3, 4)) int (*real_getgrgid_r)(__gid_t, group*, char*, size_t, group**) = nullptr;
 
 extern "C" __attr_access((__write_only__, 3, 4))
 int abii_getgrgid_r(__gid_t gid, group* resultbuf, char* buffer, size_t buflen, group** result)
@@ -181,7 +181,8 @@ int abii_getgrgid_r(__gid_t gid, group* resultbuf, char* buffer, size_t buflen, 
     return real_getgrgid_r(gid, resultbuf, buffer, buflen, result);
 }
 
-static int (*real_getgrnam_r)(const char*, group*, char*, size_t, group**) = nullptr;
+static __attr_access((__write_only__, 3, 4))
+int (*real_getgrnam_r)(const char*, group*, char*, size_t, group**) = nullptr;
 
 extern "C" __attr_access((__write_only__, 3, 4))
 int abii_getgrnam_r(const char* name, group* resultbuf, char* buffer, size_t buflen, group** result)
@@ -210,7 +211,7 @@ int abii_getgrnam_r(const char* name, group* resultbuf, char* buffer, size_t buf
     return real_getgrnam_r(name, resultbuf, buffer, buflen, result);
 }
 
-static int (*real_fgetgrent_r)(FILE*, group*, char*, size_t, group**) = nullptr;
+static __attr_access((__write_only__, 3, 4)) int (*real_fgetgrent_r)(FILE*, group*, char*, size_t, group**) = nullptr;
 
 extern "C" __attr_access((__write_only__, 3, 4))
 int abii_fgetgrent_r(FILE* stream, group* resultbuf, char* buffer, size_t buflen, group** result)

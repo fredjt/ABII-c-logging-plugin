@@ -98,7 +98,8 @@ extern "C" void abii_argp_usage(const argp_state* state)
     return real_argp_usage(state);
 }
 
-static void (*real_argp_error)(const argp_state*, const char*, ...) = nullptr;
+static __attribute__ ((__format__ (__printf__, 2, 3)))
+void (*real_argp_error)(const argp_state*, const char*, ...) = nullptr;
 
 extern "C" __attribute__ ((__format__ (__printf__, 2, 3)))
 void abii_argp_error(const argp_state* state, const char* fmt, ...)
@@ -120,7 +121,8 @@ void abii_argp_error(const argp_state* state, const char* fmt, ...)
     __builtin_return(__builtin_apply(reinterpret_cast<void (*)(...)>(real_argp_error), abii_bi_vargs, 1000));
 }
 
-static void (*real_argp_failure)(const argp_state*, int, int, const char*, ...) = nullptr;
+static __attribute__ ((__format__ (__printf__, 4, 5)))
+void (*real_argp_failure)(const argp_state*, int, int, const char*, ...) = nullptr;
 
 extern "C" __attribute__ ((__format__ (__printf__, 4, 5)))
 void abii_argp_failure(const argp_state* state, int status, int errnum, const char* fmt, ...)

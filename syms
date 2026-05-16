@@ -687,7 +687,7 @@ ulckpwdf
 __sysv_signal
 sysv_signal
 signal
-ignal
+bsd_signal
 kill
 killpg
 raise
@@ -1046,7 +1046,6 @@ abii_reallocarray
 abii_reallocarray
 abii_valloc
 abii_posix_memalign
-real_aligned_alloc
 abii_aligned_alloc
 abii_abort
 abii_atexit
@@ -1072,10 +1071,8 @@ abii_mkostemp64
 abii_mkostemps
 abii_mkostemps64
 abii_system
-real_canonicalize_file_name
 abii_canonicalize_file_name
 abii_realpath
-real_bsearch
 abii_bsearch
 abii_qsort
 abii_qsort_r
@@ -1102,7 +1099,6 @@ abii_mblen
 abii_mbtowc
 abii_wctomb
 abii_mbstowcs
-real_wcstombs
 abii_wcstombs
 abii_rpmatch
 abii_getsubopt
@@ -1110,9 +1106,8 @@ abii_posix_openpt
 abii_grantpt
 abii_unlockpt
 abii_ptsname
-real_ptsname_r
 abii_ptsname_r
-getpt
+abii_getpt
 abii_getloadavg
 abii_ttyslot
 abii_call_once

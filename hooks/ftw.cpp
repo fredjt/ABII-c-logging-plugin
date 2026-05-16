@@ -6,7 +6,7 @@
 
 namespace abii
 {
-static int (*real_ftw)(const char*, __ftw_func_t, int) = nullptr;
+static __nonnull((1, 2)) int (*real_ftw)(const char*, __ftw_func_t, int) = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_ftw(const char* dir, __ftw_func_t func, int descriptors)
@@ -26,7 +26,7 @@ int abii_ftw(const char* dir, __ftw_func_t func, int descriptors)
     return real_ftw(dir, func, descriptors);
 }
 
-static int (*real_ftw64)(const char*, __ftw64_func_t, int) = nullptr;
+static __nonnull((1, 2)) int (*real_ftw64)(const char*, __ftw64_func_t, int) = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_ftw64(const char* dir, __ftw64_func_t func, int descriptors)
@@ -46,7 +46,7 @@ int abii_ftw64(const char* dir, __ftw64_func_t func, int descriptors)
     return real_ftw64(dir, func, descriptors);
 }
 
-static int (*real_nftw)(const char*, __nftw_func_t, int, int) = nullptr;
+static __nonnull((1, 2)) int (*real_nftw)(const char*, __nftw_func_t, int, int) = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_nftw(const char* dir, __nftw_func_t func, int descriptors, int flag)
@@ -70,7 +70,7 @@ int abii_nftw(const char* dir, __nftw_func_t func, int descriptors, int flag)
     return real_nftw(dir, func, descriptors, flag);
 }
 
-static int (*real_nftw64)(const char*, __nftw64_func_t, int, int) = nullptr;
+static __nonnull((1, 2)) int (*real_nftw64)(const char*, __nftw64_func_t, int, int) = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_nftw64(const char* dir, __nftw64_func_t func, int descriptors, int flag)

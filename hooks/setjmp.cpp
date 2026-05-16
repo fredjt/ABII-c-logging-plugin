@@ -61,7 +61,7 @@ extern "C" int abii__setjmp(__jmp_buf_tag env[1]) __THROWNL
     return real__setjmp(env);
 }
 
-static void (*real_longjmp)(__jmp_buf_tag [1], int) __THROWNL = nullptr;
+static __attribute__ ((__noreturn__)) void (*real_longjmp)(__jmp_buf_tag [1], int) __THROWNL = nullptr;
 
 extern "C" __attribute__ ((__noreturn__))
 void abii_longjmp(__jmp_buf_tag env[1], int val) __THROWNL
@@ -87,7 +87,7 @@ void abii_longjmp(__jmp_buf_tag env[1], int val) __THROWNL
     real_longjmp(env, val);
 }
 
-static void (*real__longjmp)(__jmp_buf_tag [1], int) __THROWNL = nullptr;
+static __attribute__ ((__noreturn__)) void (*real__longjmp)(__jmp_buf_tag [1], int) __THROWNL = nullptr;
 
 extern "C" __attribute__ ((__noreturn__))
 void abii__longjmp(__jmp_buf_tag env[1], int val) __THROWNL
@@ -113,7 +113,7 @@ void abii__longjmp(__jmp_buf_tag env[1], int val) __THROWNL
     real__longjmp(env, val);
 }
 
-static decltype(siglongjmp)* real_siglongjmp = nullptr;
+static __attribute__ ((__noreturn__)) void (*real_siglongjmp)(sigjmp_buf, int) __THROWNL = nullptr;
 
 extern "C" __attribute__ ((__noreturn__))
 void abii_siglongjmp(sigjmp_buf env, int val) __THROWNL

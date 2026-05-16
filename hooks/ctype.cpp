@@ -9,7 +9,7 @@
 
 namespace abii
 {
-static const unsigned short int** (*real___ctype_b_loc)() __THROW = nullptr;
+static __attribute__ ((__const__)) const unsigned short int** (*real___ctype_b_loc)() __THROW = nullptr;
 
 extern "C" __attribute__ ((__const__))
 const unsigned short int** abii___ctype_b_loc() __THROW
@@ -25,7 +25,7 @@ const unsigned short int** abii___ctype_b_loc() __THROW
     return real___ctype_b_loc();
 }
 
-static const __int32_t** (*real___ctype_tolower_loc)() __THROW = nullptr;
+static __attribute__ ((__const__)) const __int32_t** (*real___ctype_tolower_loc)() __THROW = nullptr;
 
 extern "C" __attribute__ ((__const__))
 const __int32_t** abii___ctype_tolower_loc() __THROW
@@ -43,7 +43,7 @@ const __int32_t** abii___ctype_tolower_loc() __THROW
     return real___ctype_tolower_loc();
 }
 
-static const __int32_t** (*real___ctype_toupper_loc)() __THROW = nullptr;
+static __attribute__ ((__const__)) const __int32_t** (*real___ctype_toupper_loc)() __THROW = nullptr;
 
 extern "C" __attribute__ ((__const__))
 const __int32_t** abii___ctype_toupper_loc() __THROW

@@ -8,7 +8,8 @@
 
 namespace abii
 {
-static void (*real___assert_fail)(const char*, const char*, unsigned int, const char*) __THROW = nullptr;
+static __attribute__ ((__noreturn__))
+void (*real___assert_fail)(const char*, const char*, unsigned int, const char*) __THROW = nullptr;
 
 extern "C" __attribute__ ((__noreturn__))
 void abii___assert_fail(const char* assertion, const char* file, unsigned int line, const char* function) __THROW
@@ -36,7 +37,8 @@ void abii___assert_fail(const char* assertion, const char* file, unsigned int li
     real___assert_fail(assertion, file, line, function);
 }
 
-static void (*real___assert_perror_fail)(int, const char*, unsigned int, const char*) __THROW = nullptr;
+static __attribute__ ((__noreturn__))
+void (*real___assert_perror_fail)(int, const char*, unsigned int, const char*) __THROW = nullptr;
 
 extern "C" __attribute__ ((__noreturn__))
 void abii___assert_perror_fail(int errnum, const char* file, unsigned int line, const char* function) __THROW
@@ -68,7 +70,7 @@ void abii___assert_perror_fail(int errnum, const char* file, unsigned int line, 
     real___assert_perror_fail(errnum, file, line, function);
 }
 
-static void (*real___assert)(const char*, const char*, int) __THROW = nullptr;
+static __attribute__ ((__noreturn__)) void (*real___assert)(const char*, const char*, int) __THROW = nullptr;
 
 extern "C" __attribute__ ((__noreturn__))
 void abii___assert(const char* assertion, const char* file, int line) __THROW

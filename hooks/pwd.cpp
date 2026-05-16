@@ -47,7 +47,7 @@ extern "C" passwd* abii_getpwent()
     return real_getpwent();
 }
 
-static passwd* (*real_fgetpwent)(FILE*) = nullptr;
+static __nonnull((1)) passwd* (*real_fgetpwent)(FILE*) = nullptr;
 
 extern "C" __nonnull((1))
 passwd* abii_fgetpwent(FILE* stream)
@@ -100,7 +100,7 @@ extern "C" passwd* abii_getpwuid(__uid_t uid)
     return real_getpwuid(uid);
 }
 
-static passwd* (*real_getpwnam)(const char*) = nullptr;
+static __nonnull((1)) passwd* (*real_getpwnam)(const char*) = nullptr;
 
 extern "C" __nonnull((1))
 passwd* abii_getpwnam(const char* name)
@@ -118,7 +118,8 @@ passwd* abii_getpwnam(const char* name)
     return real_getpwnam(name);
 }
 
-static int (*real_getpwent_r)(passwd*, char*, size_t, passwd**) = nullptr;
+static __nonnull((1, 2, 4)) __attr_access((__write_only__, 2, 3))
+int (*real_getpwent_r)(passwd*, char*, size_t, passwd**) = nullptr;
 
 extern "C" __nonnull((1, 2, 4)) __attr_access((__write_only__, 2, 3))
 int abii_getpwent_r(passwd* resultbuf, char* buffer, size_t buflen, passwd** result)
@@ -146,7 +147,8 @@ int abii_getpwent_r(passwd* resultbuf, char* buffer, size_t buflen, passwd** res
     return real_getpwent_r(resultbuf, buffer, buflen, result);
 }
 
-static int (*real_getpwuid_r)(__uid_t, passwd*, char*, size_t, passwd**) = nullptr;
+static __nonnull((2, 3, 5)) __attr_access((__write_only__, 3, 4))
+int (*real_getpwuid_r)(__uid_t, passwd*, char*, size_t, passwd**) = nullptr;
 
 extern "C" __nonnull((2, 3, 5)) __attr_access((__write_only__, 3, 4))
 int abii_getpwuid_r(__uid_t uid, passwd* resultbuf, char* buffer, size_t buflen, passwd** result)
@@ -175,7 +177,8 @@ int abii_getpwuid_r(__uid_t uid, passwd* resultbuf, char* buffer, size_t buflen,
     return real_getpwuid_r(uid, resultbuf, buffer, buflen, result);
 }
 
-static int (*real_getpwnam_r)(const char*, passwd*, char*, size_t, passwd**) = nullptr;
+static __nonnull((1, 2, 3, 5)) __attr_access((__write_only__, 3, 4))
+int (*real_getpwnam_r)(const char*, passwd*, char*, size_t, passwd**) = nullptr;
 
 extern "C" __nonnull((1, 2, 3, 5)) __attr_access((__write_only__, 3, 4))
 int abii_getpwnam_r(const char* name, passwd* resultbuf, char* buffer, size_t buflen, passwd** result)
@@ -204,7 +207,8 @@ int abii_getpwnam_r(const char* name, passwd* resultbuf, char* buffer, size_t bu
     return real_getpwnam_r(name, resultbuf, buffer, buflen, result);
 }
 
-static int (*real_fgetpwent_r)(FILE*, passwd*, char*, size_t, passwd**) = nullptr;
+static __nonnull((1, 2, 3, 5)) __attr_access((__write_only__, 3, 4))
+int (*real_fgetpwent_r)(FILE*, passwd*, char*, size_t, passwd**) = nullptr;
 
 extern "C" __nonnull((1, 2, 3, 5)) __attr_access((__write_only__, 3, 4))
 int abii_fgetpwent_r(FILE* stream, passwd* resultbuf, char* buffer, size_t buflen, passwd** result)

@@ -9,8 +9,9 @@
 
 namespace abii
 {
-static int (*real_posix_spawn)(pid_t*, const char*, const posix_spawn_file_actions_t*, const posix_spawnattr_t*,
-                               char* const[__restrict_arr], char* const[__restrict_arr]) = nullptr;
+static __nonnull((2, 5))
+int (*real_posix_spawn)(pid_t*, const char*, const posix_spawn_file_actions_t*, const posix_spawnattr_t*,
+                        char* const[__restrict_arr], char* const[__restrict_arr]) = nullptr;
 
 extern "C" __nonnull((2, 5))
 int abii_posix_spawn(pid_t* pid, const char* path, const posix_spawn_file_actions_t* file_actions,
@@ -34,8 +35,9 @@ int abii_posix_spawn(pid_t* pid, const char* path, const posix_spawn_file_action
     return real_posix_spawn(pid, path, file_actions, attrp, argv, envp);
 }
 
-static int (*real_posix_spawnp)(pid_t*, const char*, const posix_spawn_file_actions_t*, const posix_spawnattr_t*,
-                                char* const[], char* const[]) = nullptr;
+static __nonnull((2, 5))
+int (*real_posix_spawnp)(pid_t*, const char*, const posix_spawn_file_actions_t*, const posix_spawnattr_t*,
+                         char* const[], char* const[]) = nullptr;
 
 extern "C" __nonnull((2, 5))
 int abii_posix_spawnp(pid_t* pid, const char* file, const posix_spawn_file_actions_t* file_actions,
@@ -59,7 +61,7 @@ int abii_posix_spawnp(pid_t* pid, const char* file, const posix_spawn_file_actio
     return real_posix_spawnp(pid, file, file_actions, attrp, argv, envp);
 }
 
-static int (*real_posix_spawnattr_init)(posix_spawnattr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_posix_spawnattr_init)(posix_spawnattr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_posix_spawnattr_init(posix_spawnattr_t* attr) __THROW
@@ -77,7 +79,7 @@ int abii_posix_spawnattr_init(posix_spawnattr_t* attr) __THROW
     return real_posix_spawnattr_init(attr);
 }
 
-static int (*real_posix_spawnattr_destroy)(posix_spawnattr_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_posix_spawnattr_destroy)(posix_spawnattr_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_posix_spawnattr_destroy(posix_spawnattr_t* attr) __THROW
@@ -95,7 +97,8 @@ int abii_posix_spawnattr_destroy(posix_spawnattr_t* attr) __THROW
     return real_posix_spawnattr_destroy(attr);
 }
 
-static int (*real_posix_spawnattr_getsigdefault)(const posix_spawnattr_t*, sigset_t*) __THROW = nullptr;
+static __nonnull((1, 2))
+int (*real_posix_spawnattr_getsigdefault)(const posix_spawnattr_t*, sigset_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_posix_spawnattr_getsigdefault(const posix_spawnattr_t* attr, sigset_t* sigdefault) __THROW
@@ -114,7 +117,8 @@ int abii_posix_spawnattr_getsigdefault(const posix_spawnattr_t* attr, sigset_t* 
     return real_posix_spawnattr_getsigdefault(attr, sigdefault);
 }
 
-static int (*real_posix_spawnattr_setsigdefault)(posix_spawnattr_t*, const sigset_t*) __THROW = nullptr;
+static __nonnull((1, 2))
+int (*real_posix_spawnattr_setsigdefault)(posix_spawnattr_t*, const sigset_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_posix_spawnattr_setsigdefault(posix_spawnattr_t* attr, const sigset_t* sigdefault) __THROW
@@ -133,7 +137,7 @@ int abii_posix_spawnattr_setsigdefault(posix_spawnattr_t* attr, const sigset_t* 
     return real_posix_spawnattr_setsigdefault(attr, sigdefault);
 }
 
-static int (*real_posix_spawnattr_getsigmask)(const posix_spawnattr_t*, sigset_t*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_posix_spawnattr_getsigmask)(const posix_spawnattr_t*, sigset_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_posix_spawnattr_getsigmask(const posix_spawnattr_t* attr, sigset_t* sigmask) __THROW
@@ -152,7 +156,7 @@ int abii_posix_spawnattr_getsigmask(const posix_spawnattr_t* attr, sigset_t* sig
     return real_posix_spawnattr_getsigmask(attr, sigmask);
 }
 
-static int (*real_posix_spawnattr_setsigmask)(posix_spawnattr_t*, const sigset_t*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_posix_spawnattr_setsigmask)(posix_spawnattr_t*, const sigset_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_posix_spawnattr_setsigmask(posix_spawnattr_t* attr, const sigset_t* sigmask) __THROW
@@ -171,7 +175,7 @@ int abii_posix_spawnattr_setsigmask(posix_spawnattr_t* attr, const sigset_t* sig
     return real_posix_spawnattr_setsigmask(attr, sigmask);
 }
 
-static int (*real_posix_spawnattr_getflags)(const posix_spawnattr_t*, short int*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_posix_spawnattr_getflags)(const posix_spawnattr_t*, short int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_posix_spawnattr_getflags(const posix_spawnattr_t* attr, short int* flags) __THROW
@@ -193,7 +197,7 @@ int abii_posix_spawnattr_getflags(const posix_spawnattr_t* attr, short int* flag
     return real_posix_spawnattr_getflags(attr, flags);
 }
 
-static int (*real_posix_spawnattr_setflags)(posix_spawnattr_t*, short int) __THROW = nullptr;
+static __nonnull((1)) int (*real_posix_spawnattr_setflags)(posix_spawnattr_t*, short int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_posix_spawnattr_setflags(posix_spawnattr_t* attr, short int flags) __THROW
@@ -215,7 +219,7 @@ int abii_posix_spawnattr_setflags(posix_spawnattr_t* attr, short int flags) __TH
     return real_posix_spawnattr_setflags(attr, flags);
 }
 
-static int (*real_posix_spawnattr_getpgroup)(const posix_spawnattr_t*, pid_t*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_posix_spawnattr_getpgroup)(const posix_spawnattr_t*, pid_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_posix_spawnattr_getpgroup(const posix_spawnattr_t* attr, pid_t* pgroup) __THROW
@@ -234,7 +238,7 @@ int abii_posix_spawnattr_getpgroup(const posix_spawnattr_t* attr, pid_t* pgroup)
     return real_posix_spawnattr_getpgroup(attr, pgroup);
 }
 
-static int (*real_posix_spawnattr_setpgroup)(posix_spawnattr_t*, pid_t) __THROW = nullptr;
+static __nonnull((1)) int (*real_posix_spawnattr_setpgroup)(posix_spawnattr_t*, pid_t) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_posix_spawnattr_setpgroup(posix_spawnattr_t* attr, pid_t pgroup) __THROW
@@ -253,7 +257,7 @@ int abii_posix_spawnattr_setpgroup(posix_spawnattr_t* attr, pid_t pgroup) __THRO
     return real_posix_spawnattr_setpgroup(attr, pgroup);
 }
 
-static int (*real_posix_spawnattr_getschedpolicy)(const posix_spawnattr_t*, int*) __THROW = nullptr;
+static __nonnull((1, 2)) int (*real_posix_spawnattr_getschedpolicy)(const posix_spawnattr_t*, int*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_posix_spawnattr_getschedpolicy(const posix_spawnattr_t* attr, int* schedpolicy) __THROW
@@ -272,7 +276,7 @@ int abii_posix_spawnattr_getschedpolicy(const posix_spawnattr_t* attr, int* sche
     return real_posix_spawnattr_getschedpolicy(attr, schedpolicy);
 }
 
-static int (*real_posix_spawnattr_setschedpolicy)(posix_spawnattr_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_posix_spawnattr_setschedpolicy)(posix_spawnattr_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_posix_spawnattr_setschedpolicy(posix_spawnattr_t* attr, int schedpolicy) __THROW
@@ -291,7 +295,8 @@ int abii_posix_spawnattr_setschedpolicy(posix_spawnattr_t* attr, int schedpolicy
     return real_posix_spawnattr_setschedpolicy(attr, schedpolicy);
 }
 
-static int (*real_posix_spawnattr_getschedparam)(const posix_spawnattr_t*, sched_param*) __THROW = nullptr;
+static __nonnull((1, 2))
+int (*real_posix_spawnattr_getschedparam)(const posix_spawnattr_t*, sched_param*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_posix_spawnattr_getschedparam(const posix_spawnattr_t* attr, sched_param* schedparam) __THROW
@@ -310,7 +315,8 @@ int abii_posix_spawnattr_getschedparam(const posix_spawnattr_t* attr, sched_para
     return real_posix_spawnattr_getschedparam(attr, schedparam);
 }
 
-static int (*real_posix_spawnattr_setschedparam)(posix_spawnattr_t*, const sched_param*) __THROW = nullptr;
+static __nonnull((1, 2))
+int (*real_posix_spawnattr_setschedparam)(posix_spawnattr_t*, const sched_param*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_posix_spawnattr_setschedparam(posix_spawnattr_t* attr, const sched_param* schedparam) __THROW
@@ -329,7 +335,7 @@ int abii_posix_spawnattr_setschedparam(posix_spawnattr_t* attr, const sched_para
     return real_posix_spawnattr_setschedparam(attr, schedparam);
 }
 
-static int (*real_posix_spawn_file_actions_init)(posix_spawn_file_actions_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_posix_spawn_file_actions_init)(posix_spawn_file_actions_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_posix_spawn_file_actions_init(posix_spawn_file_actions_t* file_actions) __THROW
@@ -347,7 +353,7 @@ int abii_posix_spawn_file_actions_init(posix_spawn_file_actions_t* file_actions)
     return real_posix_spawn_file_actions_init(file_actions);
 }
 
-static int (*real_posix_spawn_file_actions_destroy)(posix_spawn_file_actions_t*) __THROW = nullptr;
+static __nonnull((1)) int (*real_posix_spawn_file_actions_destroy)(posix_spawn_file_actions_t*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_posix_spawn_file_actions_destroy(posix_spawn_file_actions_t* file_actions) __THROW
@@ -365,8 +371,9 @@ int abii_posix_spawn_file_actions_destroy(posix_spawn_file_actions_t* file_actio
     return real_posix_spawn_file_actions_destroy(file_actions);
 }
 
-static int (*real_posix_spawn_file_actions_addopen)(posix_spawn_file_actions_t*, int, const char*, int,
-                                                    mode_t) __THROW = nullptr;
+static __nonnull((1, 3))
+int (*real_posix_spawn_file_actions_addopen)(posix_spawn_file_actions_t*, int, const char*, int, mode_t) __THROW =
+    nullptr;
 
 extern "C" __nonnull((1, 3))
 int abii_posix_spawn_file_actions_addopen(posix_spawn_file_actions_t* file_actions, int fd, const char* path, int oflag,
@@ -395,7 +402,7 @@ int abii_posix_spawn_file_actions_addopen(posix_spawn_file_actions_t* file_actio
     return real_posix_spawn_file_actions_addopen(file_actions, fd, path, oflag, mode);
 }
 
-static int (*real_posix_spawn_file_actions_addclose)(posix_spawn_file_actions_t*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_posix_spawn_file_actions_addclose)(posix_spawn_file_actions_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_posix_spawn_file_actions_addclose(posix_spawn_file_actions_t* file_actions, int fd) __THROW
@@ -414,7 +421,8 @@ int abii_posix_spawn_file_actions_addclose(posix_spawn_file_actions_t* file_acti
     return real_posix_spawn_file_actions_addclose(file_actions, fd);
 }
 
-static int (*real_posix_spawn_file_actions_adddup2)(posix_spawn_file_actions_t*, int, int) __THROW = nullptr;
+static __nonnull((1))
+int (*real_posix_spawn_file_actions_adddup2)(posix_spawn_file_actions_t*, int, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_posix_spawn_file_actions_adddup2(posix_spawn_file_actions_t* file_actions, int fd, int newfd) __THROW
@@ -434,8 +442,8 @@ int abii_posix_spawn_file_actions_adddup2(posix_spawn_file_actions_t* file_actio
     return real_posix_spawn_file_actions_adddup2(file_actions, fd, newfd);
 }
 
-static int (*real_posix_spawn_file_actions_addchdir_np)(posix_spawn_file_actions_t*, const char*) __THROW =
-    nullptr;
+static __nonnull((1, 2))
+int (*real_posix_spawn_file_actions_addchdir_np)(posix_spawn_file_actions_t*, const char*) __THROW = nullptr;
 
 extern "C" __nonnull((1, 2))
 int abii_posix_spawn_file_actions_addchdir_np(posix_spawn_file_actions_t* actions, const char* path) __THROW
@@ -454,7 +462,8 @@ int abii_posix_spawn_file_actions_addchdir_np(posix_spawn_file_actions_t* action
     return real_posix_spawn_file_actions_addchdir_np(actions, path);
 }
 
-static int (*real_posix_spawn_file_actions_addfchdir_np)(posix_spawn_file_actions_t*, int) __THROW = nullptr;
+static __nonnull((1))
+int (*real_posix_spawn_file_actions_addfchdir_np)(posix_spawn_file_actions_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_posix_spawn_file_actions_addfchdir_np(posix_spawn_file_actions_t* actions, int fd) __THROW
@@ -473,7 +482,8 @@ int abii_posix_spawn_file_actions_addfchdir_np(posix_spawn_file_actions_t* actio
     return real_posix_spawn_file_actions_addfchdir_np(actions, fd);
 }
 
-static int (*real_posix_spawn_file_actions_addclosefrom_np)(posix_spawn_file_actions_t*, int) __THROW = nullptr;
+static __nonnull((1))
+int (*real_posix_spawn_file_actions_addclosefrom_np)(posix_spawn_file_actions_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_posix_spawn_file_actions_addclosefrom_np(posix_spawn_file_actions_t* actions, int from) __THROW
@@ -492,7 +502,8 @@ int abii_posix_spawn_file_actions_addclosefrom_np(posix_spawn_file_actions_t* ac
     return real_posix_spawn_file_actions_addclosefrom_np(actions, from);
 }
 
-static int (*real_posix_spawn_file_actions_addtcsetpgrp_np)(posix_spawn_file_actions_t*, int) __THROW = nullptr;
+static __nonnull((1))
+int (*real_posix_spawn_file_actions_addtcsetpgrp_np)(posix_spawn_file_actions_t*, int) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_posix_spawn_file_actions_addtcsetpgrp_np(posix_spawn_file_actions_t* actions, int tcfd) __THROW

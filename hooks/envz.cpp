@@ -8,7 +8,7 @@
 
 namespace abii
 {
-static char* (*real_envz_entry)(const char*, size_t, const char*) __THROW = nullptr;
+static __attribute_pure__ char* (*real_envz_entry)(const char*, size_t, const char*) __THROW = nullptr;
 
 extern "C" __attribute_pure__
 char* abii_envz_entry(const char* envz, size_t envz_len, const char* name) __THROW
@@ -28,7 +28,7 @@ char* abii_envz_entry(const char* envz, size_t envz_len, const char* name) __THR
     return real_envz_entry(envz, envz_len, name);
 }
 
-static char* (*real_envz_get)(const char*, size_t, const char*) __THROW = nullptr;
+static __attribute_pure__ char* (*real_envz_get)(const char*, size_t, const char*) __THROW = nullptr;
 
 extern "C" __attribute_pure__
 char* abii_envz_get(const char* envz, size_t envz_len, const char* name) __THROW

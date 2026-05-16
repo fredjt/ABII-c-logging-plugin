@@ -10,7 +10,7 @@
 
 namespace abii
 {
-static void (*real_aio_init)(const aioinit*) __THROW = nullptr;
+static __nonnull((1)) void (*real_aio_init)(const aioinit*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 void abii_aio_init(const aioinit* init) __THROW
@@ -26,7 +26,7 @@ void abii_aio_init(const aioinit* init) __THROW
     return real_aio_init(init);
 }
 
-static int (*real_aio_read)(aiocb*) __THROW = nullptr;
+static __nonnull((1)) int (*real_aio_read)(aiocb*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_aio_read(aiocb* aiocbp) __THROW
@@ -44,7 +44,7 @@ int abii_aio_read(aiocb* aiocbp) __THROW
     return real_aio_read(aiocbp);
 }
 
-static int (*real_aio_write)(aiocb*) __THROW = nullptr;
+static __nonnull((1)) int (*real_aio_write)(aiocb*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_aio_write(aiocb* aiocbp) __THROW
@@ -86,7 +86,7 @@ extern "C" int abii_lio_listio(int mode, aiocb* const list[__restrict_arr], int 
     return real_lio_listio(mode, list, nent, sig);
 }
 
-static int (*real_aio_error)(const aiocb*) __THROW = nullptr;
+static __nonnull((1)) int (*real_aio_error)(const aiocb*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_aio_error(const aiocb* aiocbp) __THROW
@@ -106,7 +106,7 @@ int abii_aio_error(const aiocb* aiocbp) __THROW
     return real_aio_error(aiocbp);
 }
 
-static __ssize_t (*real_aio_return)(aiocb*) __THROW = nullptr;
+static __nonnull((1)) __ssize_t (*real_aio_return)(aiocb*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 __ssize_t abii_aio_return(aiocb* aiocbp) __THROW
@@ -142,7 +142,7 @@ extern "C" int abii_aio_cancel(int fildes, aiocb* aiocbp) __THROW
     return real_aio_cancel(fildes, aiocbp);
 }
 
-static int (*real_aio_suspend)(const aiocb* const[], int, const timespec*) = nullptr;
+static __nonnull((1)) int (*real_aio_suspend)(const aiocb* const[], int, const timespec*) = nullptr;
 
 extern "C" __nonnull((1))
 int abii_aio_suspend(const aiocb* const list[], int nent, const timespec* timeout)
@@ -165,7 +165,7 @@ int abii_aio_suspend(const aiocb* const list[], int nent, const timespec* timeou
     return real_aio_suspend(list, nent, timeout);
 }
 
-static int (*real_aio_fsync)(int, aiocb*) __THROW = nullptr;
+static __nonnull((2)) int (*real_aio_fsync)(int, aiocb*) __THROW = nullptr;
 
 extern "C" __nonnull((2))
 int abii_aio_fsync(int operation, aiocb* aiocbp) __THROW
@@ -184,7 +184,7 @@ int abii_aio_fsync(int operation, aiocb* aiocbp) __THROW
     return real_aio_fsync(operation, aiocbp);
 }
 
-static int (*real_aio_read64)(aiocb64*) __THROW = nullptr;
+static __nonnull((1)) int (*real_aio_read64)(aiocb64*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_aio_read64(aiocb64* aiocbp) __THROW
@@ -202,7 +202,7 @@ int abii_aio_read64(aiocb64* aiocbp) __THROW
     return real_aio_read64(aiocbp);
 }
 
-static int (*real_aio_write64)(aiocb64*) __THROW = nullptr;
+static __nonnull((1)) int (*real_aio_write64)(aiocb64*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_aio_write64(aiocb64* aiocbp) __THROW
@@ -220,7 +220,7 @@ int abii_aio_write64(aiocb64* aiocbp) __THROW
     return real_aio_write64(aiocbp);
 }
 
-static int (*real_lio_listio64)(int, aiocb64* const[__restrict_arr], int, sigevent*) __THROW = nullptr;
+static __nonnull((2)) int (*real_lio_listio64)(int, aiocb64* const[__restrict_arr], int, sigevent*) __THROW = nullptr;
 
 extern "C" __nonnull((2))
 int abii_lio_listio64(int mode, aiocb64* const list[__restrict_arr], int nent, sigevent* sig) __THROW
@@ -245,7 +245,7 @@ int abii_lio_listio64(int mode, aiocb64* const list[__restrict_arr], int nent, s
     return real_lio_listio64(mode, list, nent, sig);
 }
 
-static int (*real_aio_error64)(const aiocb64*) __THROW = nullptr;
+static __nonnull((1)) int (*real_aio_error64)(const aiocb64*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_aio_error64(const aiocb64* aiocbp) __THROW
@@ -263,7 +263,7 @@ int abii_aio_error64(const aiocb64* aiocbp) __THROW
     return real_aio_error64(aiocbp);
 }
 
-static __ssize_t (*real_aio_return64)(aiocb64*) __THROW = nullptr;
+static __nonnull((1)) __ssize_t (*real_aio_return64)(aiocb64*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 __ssize_t abii_aio_return64(aiocb64* aiocbp) __THROW
@@ -299,7 +299,7 @@ extern "C" int abii_aio_cancel64(int fildes, aiocb64* aiocbp) __THROW
     return real_aio_cancel64(fildes, aiocbp);
 }
 
-static int (*real_aio_suspend64)(const aiocb64* const[], int, const timespec*) __THROW = nullptr;
+static __nonnull((1)) int (*real_aio_suspend64)(const aiocb64* const[], int, const timespec*) __THROW = nullptr;
 
 extern "C" __nonnull((1))
 int abii_aio_suspend64(const aiocb64* const list[], int nent, const timespec* timeout) __THROW
@@ -322,7 +322,7 @@ int abii_aio_suspend64(const aiocb64* const list[], int nent, const timespec* ti
     return real_aio_suspend64(list, nent, timeout);
 }
 
-static int (*real_aio_fsync64)(int, aiocb64*) __THROW = nullptr;
+static __nonnull((2)) int (*real_aio_fsync64)(int, aiocb64*) __THROW = nullptr;
 
 extern "C" __nonnull((2))
 int abii_aio_fsync64(int operation, aiocb64* aiocbp) __THROW

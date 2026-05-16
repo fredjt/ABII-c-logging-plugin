@@ -6,7 +6,7 @@
 
 namespace abii
 {
-static unsigned int (*real_stdc_leading_zeros_uc)(unsigned char) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_leading_zeros_uc)(unsigned char) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_leading_zeros_uc(unsigned char x) __THROW
@@ -24,7 +24,7 @@ unsigned int abii_stdc_leading_zeros_uc(unsigned char x) __THROW
     return real_stdc_leading_zeros_uc(x);
 }
 
-static unsigned int (*real_stdc_leading_zeros_us)(unsigned short) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_leading_zeros_us)(unsigned short) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_leading_zeros_us(unsigned short x) __THROW
@@ -42,7 +42,7 @@ unsigned int abii_stdc_leading_zeros_us(unsigned short x) __THROW
     return real_stdc_leading_zeros_us(x);
 }
 
-static unsigned int (*real_stdc_leading_zeros_ui)(unsigned int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_leading_zeros_ui)(unsigned int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_leading_zeros_ui(unsigned int x) __THROW
@@ -60,7 +60,7 @@ unsigned int abii_stdc_leading_zeros_ui(unsigned int x) __THROW
     return real_stdc_leading_zeros_ui(x);
 }
 
-static unsigned int (*real_stdc_leading_zeros_ul)(unsigned long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_leading_zeros_ul)(unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_leading_zeros_ul(unsigned long int x) __THROW
@@ -78,7 +78,7 @@ unsigned int abii_stdc_leading_zeros_ul(unsigned long int x) __THROW
     return real_stdc_leading_zeros_ul(x);
 }
 
-static unsigned int (*real_stdc_leading_zeros_ull)(unsigned long long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_leading_zeros_ull)(unsigned long long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_leading_zeros_ull(unsigned long long int x) __THROW
@@ -96,7 +96,7 @@ unsigned int abii_stdc_leading_zeros_ull(unsigned long long int x) __THROW
     return real_stdc_leading_zeros_ull(x);
 }
 
-static unsigned int (*real_stdc_leading_ones_uc)(unsigned char) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_leading_ones_uc)(unsigned char) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_leading_ones_uc(unsigned char x) __THROW
@@ -114,7 +114,7 @@ unsigned int abii_stdc_leading_ones_uc(unsigned char x) __THROW
     return real_stdc_leading_ones_uc(x);
 }
 
-static unsigned int (*real_stdc_leading_ones_us)(unsigned short) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_leading_ones_us)(unsigned short) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_leading_ones_us(unsigned short x) __THROW
@@ -132,7 +132,7 @@ unsigned int abii_stdc_leading_ones_us(unsigned short x) __THROW
     return real_stdc_leading_ones_us(x);
 }
 
-static unsigned int (*real_stdc_leading_ones_ui)(unsigned int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_leading_ones_ui)(unsigned int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_leading_ones_ui(unsigned int x) __THROW
@@ -150,7 +150,7 @@ unsigned int abii_stdc_leading_ones_ui(unsigned int x) __THROW
     return real_stdc_leading_ones_ui(x);
 }
 
-static unsigned int (*real_stdc_leading_ones_ul)(unsigned long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_leading_ones_ul)(unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_leading_ones_ul(unsigned long int x) __THROW
@@ -168,7 +168,7 @@ unsigned int abii_stdc_leading_ones_ul(unsigned long int x) __THROW
     return real_stdc_leading_ones_ul(x);
 }
 
-static unsigned int (*real_stdc_leading_ones_ull)(unsigned long long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_leading_ones_ull)(unsigned long long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_leading_ones_ull(unsigned long long int x) __THROW
@@ -186,7 +186,7 @@ unsigned int abii_stdc_leading_ones_ull(unsigned long long int x) __THROW
     return real_stdc_leading_ones_ull(x);
 }
 
-static unsigned int (*real_stdc_trailing_zeros_uc)(unsigned char) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_trailing_zeros_uc)(unsigned char) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_trailing_zeros_uc(unsigned char x) __THROW
@@ -204,7 +204,7 @@ unsigned int abii_stdc_trailing_zeros_uc(unsigned char x) __THROW
     return real_stdc_trailing_zeros_uc(x);
 }
 
-static unsigned int (*real_stdc_trailing_zeros_us)(unsigned short) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_trailing_zeros_us)(unsigned short) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_trailing_zeros_us(unsigned short x) __THROW
@@ -222,7 +222,7 @@ unsigned int abii_stdc_trailing_zeros_us(unsigned short x) __THROW
     return real_stdc_trailing_zeros_us(x);
 }
 
-static unsigned int (*real_stdc_trailing_zeros_ui)(unsigned int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_trailing_zeros_ui)(unsigned int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_trailing_zeros_ui(unsigned int x) __THROW
@@ -240,7 +240,7 @@ unsigned int abii_stdc_trailing_zeros_ui(unsigned int x) __THROW
     return real_stdc_trailing_zeros_ui(x);
 }
 
-static unsigned int (*real_stdc_trailing_zeros_ul)(unsigned long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_trailing_zeros_ul)(unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_trailing_zeros_ul(unsigned long int x) __THROW
@@ -258,7 +258,7 @@ unsigned int abii_stdc_trailing_zeros_ul(unsigned long int x) __THROW
     return real_stdc_trailing_zeros_ul(x);
 }
 
-static unsigned int (*real_stdc_trailing_zeros_ull)(unsigned long long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_trailing_zeros_ull)(unsigned long long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_trailing_zeros_ull(unsigned long long int x) __THROW
@@ -276,7 +276,7 @@ unsigned int abii_stdc_trailing_zeros_ull(unsigned long long int x) __THROW
     return real_stdc_trailing_zeros_ull(x);
 }
 
-static unsigned int (*real_stdc_trailing_ones_uc)(unsigned char) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_trailing_ones_uc)(unsigned char) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_trailing_ones_uc(unsigned char x) __THROW
@@ -294,7 +294,7 @@ unsigned int abii_stdc_trailing_ones_uc(unsigned char x) __THROW
     return real_stdc_trailing_ones_uc(x);
 }
 
-static unsigned int (*real_stdc_trailing_ones_us)(unsigned short) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_trailing_ones_us)(unsigned short) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_trailing_ones_us(unsigned short x) __THROW
@@ -312,7 +312,7 @@ unsigned int abii_stdc_trailing_ones_us(unsigned short x) __THROW
     return real_stdc_trailing_ones_us(x);
 }
 
-static unsigned int (*real_stdc_trailing_ones_ui)(unsigned int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_trailing_ones_ui)(unsigned int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_trailing_ones_ui(unsigned int x) __THROW
@@ -330,7 +330,7 @@ unsigned int abii_stdc_trailing_ones_ui(unsigned int x) __THROW
     return real_stdc_trailing_ones_ui(x);
 }
 
-static unsigned int (*real_stdc_trailing_ones_ul)(unsigned long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_trailing_ones_ul)(unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_trailing_ones_ul(unsigned long int x) __THROW
@@ -348,7 +348,7 @@ unsigned int abii_stdc_trailing_ones_ul(unsigned long int x) __THROW
     return real_stdc_trailing_ones_ul(x);
 }
 
-static unsigned int (*real_stdc_trailing_ones_ull)(unsigned long long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_trailing_ones_ull)(unsigned long long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_trailing_ones_ull(unsigned long long int x) __THROW
@@ -366,7 +366,7 @@ unsigned int abii_stdc_trailing_ones_ull(unsigned long long int x) __THROW
     return real_stdc_trailing_ones_ull(x);
 }
 
-static unsigned int (*real_stdc_first_leading_zero_uc)(unsigned char) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_leading_zero_uc)(unsigned char) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_leading_zero_uc(unsigned char x) __THROW
@@ -385,7 +385,7 @@ unsigned int abii_stdc_first_leading_zero_uc(unsigned char x) __THROW
 }
 
 #undef stdc_first_leading_zero_us
-static unsigned int (*real_stdc_first_leading_zero_us)(unsigned short) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_leading_zero_us)(unsigned short) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_leading_zero_us(unsigned short x) __THROW
@@ -403,7 +403,7 @@ unsigned int abii_stdc_first_leading_zero_us(unsigned short x) __THROW
     return real_stdc_first_leading_zero_us(x);
 }
 
-static unsigned int (*real_stdc_first_leading_zero_ui)(unsigned int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_leading_zero_ui)(unsigned int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_leading_zero_ui(unsigned int x) __THROW
@@ -421,7 +421,7 @@ unsigned int abii_stdc_first_leading_zero_ui(unsigned int x) __THROW
     return real_stdc_first_leading_zero_ui(x);
 }
 
-static unsigned int (*real_stdc_first_leading_zero_ul)(unsigned long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_leading_zero_ul)(unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_leading_zero_ul(unsigned long int x) __THROW
@@ -439,7 +439,7 @@ unsigned int abii_stdc_first_leading_zero_ul(unsigned long int x) __THROW
     return real_stdc_first_leading_zero_ul(x);
 }
 
-static unsigned int (*real_stdc_first_leading_zero_ull)(unsigned long long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_leading_zero_ull)(unsigned long long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_leading_zero_ull(unsigned long long int x) __THROW
@@ -457,7 +457,7 @@ unsigned int abii_stdc_first_leading_zero_ull(unsigned long long int x) __THROW
     return real_stdc_first_leading_zero_ull(x);
 }
 
-static unsigned int (*real_stdc_first_leading_one_uc)(unsigned char) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_leading_one_uc)(unsigned char) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_leading_one_uc(unsigned char x) __THROW
@@ -475,7 +475,7 @@ unsigned int abii_stdc_first_leading_one_uc(unsigned char x) __THROW
     return real_stdc_first_leading_one_uc(x);
 }
 
-static unsigned int (*real_stdc_first_leading_one_us)(unsigned short) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_leading_one_us)(unsigned short) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_leading_one_us(unsigned short x) __THROW
@@ -494,7 +494,7 @@ unsigned int abii_stdc_first_leading_one_us(unsigned short x) __THROW
 }
 
 #undef stdc_first_leading_one_ui
-static unsigned int (*real_stdc_first_leading_one_ui)(unsigned int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_leading_one_ui)(unsigned int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_leading_one_ui(unsigned int x) __THROW
@@ -512,7 +512,7 @@ unsigned int abii_stdc_first_leading_one_ui(unsigned int x) __THROW
     return real_stdc_first_leading_one_ui(x);
 }
 
-static unsigned int (*real_stdc_first_leading_one_ul)(unsigned long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_leading_one_ul)(unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_leading_one_ul(unsigned long int x) __THROW
@@ -530,7 +530,7 @@ unsigned int abii_stdc_first_leading_one_ul(unsigned long int x) __THROW
     return real_stdc_first_leading_one_ul(x);
 }
 
-static unsigned int (*real_stdc_first_leading_one_ull)(unsigned long long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_leading_one_ull)(unsigned long long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_leading_one_ull(unsigned long long int x) __THROW
@@ -549,7 +549,7 @@ unsigned int abii_stdc_first_leading_one_ull(unsigned long long int x) __THROW
 }
 
 #undef stdc_first_trailing_zero_uc
-static unsigned int (*real_stdc_first_trailing_zero_uc)(unsigned char) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_trailing_zero_uc)(unsigned char) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_trailing_zero_uc(unsigned char x) __THROW
@@ -567,7 +567,7 @@ unsigned int abii_stdc_first_trailing_zero_uc(unsigned char x) __THROW
     return real_stdc_first_trailing_zero_uc(x);
 }
 
-static unsigned int (*real_stdc_first_trailing_zero_us)(unsigned short) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_trailing_zero_us)(unsigned short) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_trailing_zero_us(unsigned short x) __THROW
@@ -585,7 +585,7 @@ unsigned int abii_stdc_first_trailing_zero_us(unsigned short x) __THROW
     return real_stdc_first_trailing_zero_us(x);
 }
 
-static unsigned int (*real_stdc_first_trailing_zero_ui)(unsigned int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_trailing_zero_ui)(unsigned int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_trailing_zero_ui(unsigned int x) __THROW
@@ -603,7 +603,7 @@ unsigned int abii_stdc_first_trailing_zero_ui(unsigned int x) __THROW
     return real_stdc_first_trailing_zero_ui(x);
 }
 
-static unsigned int (*real_stdc_first_trailing_zero_ul)(unsigned long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_trailing_zero_ul)(unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_trailing_zero_ul(unsigned long int x) __THROW
@@ -621,7 +621,7 @@ unsigned int abii_stdc_first_trailing_zero_ul(unsigned long int x) __THROW
     return real_stdc_first_trailing_zero_ul(x);
 }
 
-static unsigned int (*real_stdc_first_trailing_zero_ull)(unsigned long long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_trailing_zero_ull)(unsigned long long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_trailing_zero_ull(unsigned long long int x) __THROW
@@ -640,7 +640,7 @@ unsigned int abii_stdc_first_trailing_zero_ull(unsigned long long int x) __THROW
 }
 
 #undef stdc_first_trailing_one_uc
-static unsigned int (*real_stdc_first_trailing_one_uc)(unsigned char) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_trailing_one_uc)(unsigned char) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_trailing_one_uc(unsigned char x) __THROW
@@ -658,7 +658,7 @@ unsigned int abii_stdc_first_trailing_one_uc(unsigned char x) __THROW
     return real_stdc_first_trailing_one_uc(x);
 }
 
-static unsigned int (*real_stdc_first_trailing_one_us)(unsigned short) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_trailing_one_us)(unsigned short) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_trailing_one_us(unsigned short x) __THROW
@@ -676,7 +676,7 @@ unsigned int abii_stdc_first_trailing_one_us(unsigned short x) __THROW
     return real_stdc_first_trailing_one_us(x);
 }
 
-static unsigned int (*real_stdc_first_trailing_one_ui)(unsigned int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_trailing_one_ui)(unsigned int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_trailing_one_ui(unsigned int x) __THROW
@@ -694,7 +694,7 @@ unsigned int abii_stdc_first_trailing_one_ui(unsigned int x) __THROW
     return real_stdc_first_trailing_one_ui(x);
 }
 
-static unsigned int (*real_stdc_first_trailing_one_ul)(unsigned long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_trailing_one_ul)(unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_trailing_one_ul(unsigned long int x) __THROW
@@ -712,7 +712,7 @@ unsigned int abii_stdc_first_trailing_one_ul(unsigned long int x) __THROW
     return real_stdc_first_trailing_one_ul(x);
 }
 
-static unsigned int (*real_stdc_first_trailing_one_ull)(unsigned long long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_first_trailing_one_ull)(unsigned long long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_first_trailing_one_ull(unsigned long long int x) __THROW
@@ -730,7 +730,7 @@ unsigned int abii_stdc_first_trailing_one_ull(unsigned long long int x) __THROW
     return real_stdc_first_trailing_one_ull(x);
 }
 
-static unsigned int (*real_stdc_count_zeros_uc)(unsigned char) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_count_zeros_uc)(unsigned char) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_count_zeros_uc(unsigned char x) __THROW
@@ -748,7 +748,7 @@ unsigned int abii_stdc_count_zeros_uc(unsigned char x) __THROW
     return real_stdc_count_zeros_uc(x);
 }
 
-static unsigned int (*real_stdc_count_zeros_us)(unsigned short) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_count_zeros_us)(unsigned short) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_count_zeros_us(unsigned short x) __THROW
@@ -766,7 +766,7 @@ unsigned int abii_stdc_count_zeros_us(unsigned short x) __THROW
     return real_stdc_count_zeros_us(x);
 }
 
-static unsigned int (*real_stdc_count_zeros_ui)(unsigned int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_count_zeros_ui)(unsigned int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_count_zeros_ui(unsigned int x) __THROW
@@ -784,7 +784,7 @@ unsigned int abii_stdc_count_zeros_ui(unsigned int x) __THROW
     return real_stdc_count_zeros_ui(x);
 }
 
-static unsigned int (*real_stdc_count_zeros_ul)(unsigned long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_count_zeros_ul)(unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_count_zeros_ul(unsigned long int x) __THROW
@@ -802,7 +802,7 @@ unsigned int abii_stdc_count_zeros_ul(unsigned long int x) __THROW
     return real_stdc_count_zeros_ul(x);
 }
 
-static unsigned int (*real_stdc_count_zeros_ull)(unsigned long long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_count_zeros_ull)(unsigned long long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_count_zeros_ull(unsigned long long int x) __THROW
@@ -820,7 +820,7 @@ unsigned int abii_stdc_count_zeros_ull(unsigned long long int x) __THROW
     return real_stdc_count_zeros_ull(x);
 }
 
-static unsigned int (*real_stdc_count_ones_uc)(unsigned char) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_count_ones_uc)(unsigned char) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_count_ones_uc(unsigned char x) __THROW
@@ -838,7 +838,7 @@ unsigned int abii_stdc_count_ones_uc(unsigned char x) __THROW
     return real_stdc_count_ones_uc(x);
 }
 
-static unsigned int (*real_stdc_count_ones_us)(unsigned short) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_count_ones_us)(unsigned short) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_count_ones_us(unsigned short x) __THROW
@@ -856,7 +856,7 @@ unsigned int abii_stdc_count_ones_us(unsigned short x) __THROW
     return real_stdc_count_ones_us(x);
 }
 
-static unsigned int (*real_stdc_count_ones_ui)(unsigned int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_count_ones_ui)(unsigned int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_count_ones_ui(unsigned int x) __THROW
@@ -874,7 +874,7 @@ unsigned int abii_stdc_count_ones_ui(unsigned int x) __THROW
     return real_stdc_count_ones_ui(x);
 }
 
-static unsigned int (*real_stdc_count_ones_ul)(unsigned long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_count_ones_ul)(unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_count_ones_ul(unsigned long int x) __THROW
@@ -892,7 +892,7 @@ unsigned int abii_stdc_count_ones_ul(unsigned long int x) __THROW
     return real_stdc_count_ones_ul(x);
 }
 
-static unsigned int (*real_stdc_count_ones_ull)(unsigned long long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_count_ones_ull)(unsigned long long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_count_ones_ull(unsigned long long int x) __THROW
@@ -910,7 +910,7 @@ unsigned int abii_stdc_count_ones_ull(unsigned long long int x) __THROW
     return real_stdc_count_ones_ull(x);
 }
 
-static bool (*real_stdc_has_single_bit_uc)(unsigned char) __THROW = nullptr;
+static __attribute_const__ bool (*real_stdc_has_single_bit_uc)(unsigned char) __THROW = nullptr;
 
 extern "C" __attribute_const__
 bool abii_stdc_has_single_bit_uc(unsigned char x) __THROW
@@ -928,7 +928,7 @@ bool abii_stdc_has_single_bit_uc(unsigned char x) __THROW
     return real_stdc_has_single_bit_uc(x);
 }
 
-static bool (*real_stdc_has_single_bit_us)(unsigned short) __THROW = nullptr;
+static __attribute_const__ bool (*real_stdc_has_single_bit_us)(unsigned short) __THROW = nullptr;
 
 extern "C" __attribute_const__
 bool abii_stdc_has_single_bit_us(unsigned short x) __THROW
@@ -946,7 +946,7 @@ bool abii_stdc_has_single_bit_us(unsigned short x) __THROW
     return real_stdc_has_single_bit_us(x);
 }
 
-static bool (*real_stdc_has_single_bit_ui)(unsigned int) __THROW = nullptr;
+static __attribute_const__ bool (*real_stdc_has_single_bit_ui)(unsigned int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 bool abii_stdc_has_single_bit_ui(unsigned int x) __THROW
@@ -964,7 +964,7 @@ bool abii_stdc_has_single_bit_ui(unsigned int x) __THROW
     return real_stdc_has_single_bit_ui(x);
 }
 
-static bool (*real_stdc_has_single_bit_ul)(unsigned long int) __THROW = nullptr;
+static __attribute_const__ bool (*real_stdc_has_single_bit_ul)(unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 bool abii_stdc_has_single_bit_ul(unsigned long int x) __THROW
@@ -982,7 +982,7 @@ bool abii_stdc_has_single_bit_ul(unsigned long int x) __THROW
     return real_stdc_has_single_bit_ul(x);
 }
 
-static bool (*real_stdc_has_single_bit_ull)(unsigned long long int) __THROW = nullptr;
+static __attribute_const__ bool (*real_stdc_has_single_bit_ull)(unsigned long long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 bool abii_stdc_has_single_bit_ull(unsigned long long int x) __THROW
@@ -1000,7 +1000,7 @@ bool abii_stdc_has_single_bit_ull(unsigned long long int x) __THROW
     return real_stdc_has_single_bit_ull(x);
 }
 
-static unsigned int (*real_stdc_bit_width_uc)(unsigned char) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_bit_width_uc)(unsigned char) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_bit_width_uc(unsigned char x) __THROW
@@ -1018,7 +1018,7 @@ unsigned int abii_stdc_bit_width_uc(unsigned char x) __THROW
     return real_stdc_bit_width_uc(x);
 }
 
-static unsigned int (*real_stdc_bit_width_us)(unsigned short) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_bit_width_us)(unsigned short) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_bit_width_us(unsigned short x) __THROW
@@ -1036,7 +1036,7 @@ unsigned int abii_stdc_bit_width_us(unsigned short x) __THROW
     return real_stdc_bit_width_us(x);
 }
 
-static unsigned int (*real_stdc_bit_width_ui)(unsigned int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_bit_width_ui)(unsigned int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_bit_width_ui(unsigned int x) __THROW
@@ -1054,7 +1054,7 @@ unsigned int abii_stdc_bit_width_ui(unsigned int x) __THROW
     return real_stdc_bit_width_ui(x);
 }
 
-static unsigned int (*real_stdc_bit_width_ul)(unsigned long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_bit_width_ul)(unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_bit_width_ul(unsigned long int x) __THROW
@@ -1072,7 +1072,7 @@ unsigned int abii_stdc_bit_width_ul(unsigned long int x) __THROW
     return real_stdc_bit_width_ul(x);
 }
 
-static unsigned int (*real_stdc_bit_width_ull)(unsigned long long int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_bit_width_ull)(unsigned long long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_bit_width_ull(unsigned long long int x) __THROW
@@ -1090,7 +1090,7 @@ unsigned int abii_stdc_bit_width_ull(unsigned long long int x) __THROW
     return real_stdc_bit_width_ull(x);
 }
 
-static unsigned char (*real_stdc_bit_floor_uc)(unsigned char) __THROW = nullptr;
+static __attribute_const__ unsigned char (*real_stdc_bit_floor_uc)(unsigned char) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned char abii_stdc_bit_floor_uc(unsigned char x) __THROW
@@ -1108,7 +1108,7 @@ unsigned char abii_stdc_bit_floor_uc(unsigned char x) __THROW
     return real_stdc_bit_floor_uc(x);
 }
 
-static unsigned short (*real_stdc_bit_floor_us)(unsigned short) __THROW = nullptr;
+static __attribute_const__ unsigned short (*real_stdc_bit_floor_us)(unsigned short) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned short abii_stdc_bit_floor_us(unsigned short x) __THROW
@@ -1126,7 +1126,7 @@ unsigned short abii_stdc_bit_floor_us(unsigned short x) __THROW
     return real_stdc_bit_floor_us(x);
 }
 
-static unsigned int (*real_stdc_bit_floor_ui)(unsigned int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_bit_floor_ui)(unsigned int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_bit_floor_ui(unsigned int x) __THROW
@@ -1144,7 +1144,7 @@ unsigned int abii_stdc_bit_floor_ui(unsigned int x) __THROW
     return real_stdc_bit_floor_ui(x);
 }
 
-static unsigned long int (*real_stdc_bit_floor_ul)(unsigned long int) __THROW = nullptr;
+static __attribute_const__ unsigned long int (*real_stdc_bit_floor_ul)(unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned long int abii_stdc_bit_floor_ul(unsigned long int x) __THROW
@@ -1162,7 +1162,7 @@ unsigned long int abii_stdc_bit_floor_ul(unsigned long int x) __THROW
     return real_stdc_bit_floor_ul(x);
 }
 
-static unsigned long long int (*real_stdc_bit_floor_ull)(unsigned long long int) __THROW = nullptr;
+static __attribute_const__ unsigned long long int (*real_stdc_bit_floor_ull)(unsigned long long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned long long int abii_stdc_bit_floor_ull(unsigned long long int x) __THROW
@@ -1180,7 +1180,7 @@ unsigned long long int abii_stdc_bit_floor_ull(unsigned long long int x) __THROW
     return real_stdc_bit_floor_ull(x);
 }
 
-static unsigned char (*real_stdc_bit_ceil_uc)(unsigned char) __THROW = nullptr;
+static __attribute_const__ unsigned char (*real_stdc_bit_ceil_uc)(unsigned char) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned char abii_stdc_bit_ceil_uc(unsigned char x) __THROW
@@ -1198,7 +1198,7 @@ unsigned char abii_stdc_bit_ceil_uc(unsigned char x) __THROW
     return real_stdc_bit_ceil_uc(x);
 }
 
-static unsigned short (*real_stdc_bit_ceil_us)(unsigned short) __THROW = nullptr;
+static __attribute_const__ unsigned short (*real_stdc_bit_ceil_us)(unsigned short) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned short abii_stdc_bit_ceil_us(unsigned short x) __THROW
@@ -1216,7 +1216,7 @@ unsigned short abii_stdc_bit_ceil_us(unsigned short x) __THROW
     return real_stdc_bit_ceil_us(x);
 }
 
-static unsigned int (*real_stdc_bit_ceil_ui)(unsigned int) __THROW = nullptr;
+static __attribute_const__ unsigned int (*real_stdc_bit_ceil_ui)(unsigned int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned int abii_stdc_bit_ceil_ui(unsigned int x) __THROW
@@ -1234,7 +1234,7 @@ unsigned int abii_stdc_bit_ceil_ui(unsigned int x) __THROW
     return real_stdc_bit_ceil_ui(x);
 }
 
-static unsigned long int (*real_stdc_bit_ceil_ul)(unsigned long int) __THROW = nullptr;
+static __attribute_const__ unsigned long int (*real_stdc_bit_ceil_ul)(unsigned long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned long int abii_stdc_bit_ceil_ul(unsigned long int x) __THROW
@@ -1252,7 +1252,7 @@ unsigned long int abii_stdc_bit_ceil_ul(unsigned long int x) __THROW
     return real_stdc_bit_ceil_ul(x);
 }
 
-static unsigned long long int (*real_stdc_bit_ceil_ull)(unsigned long long int) __THROW = nullptr;
+static __attribute_const__ unsigned long long int (*real_stdc_bit_ceil_ull)(unsigned long long int) __THROW = nullptr;
 
 extern "C" __attribute_const__
 unsigned long long int abii_stdc_bit_ceil_ull(unsigned long long int x) __THROW
