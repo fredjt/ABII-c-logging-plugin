@@ -26,6 +26,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: update glibc
+      run: sudo apt-get update && sudo apt-get upgrade -y
+
     - name: ABII
       run: curl -s https://api.github.com/repos/fredjt/ABII/releases/latest
             | grep "browser_download_url"
