@@ -20,7 +20,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.c_lflag, "c_lflag", &os));
     abii_args->push_arg(new ArgPrinter(obj.c_line, "c_line", &os));
     abii_args->push_arg(new ArgPrinter(obj.c_cc, "c_cc", &os));
+    abii_args->push_arg(new ArgPrinter(obj.__ispeed, "__ispeed", &os));
     abii_args->push_arg(new ArgPrinter(obj.c_ispeed, "c_ispeed", &os));
+    abii_args->push_arg(new ArgPrinter(obj.c_ispeed, "__ospeed", &os));
     abii_args->push_arg(new ArgPrinter(obj.c_ospeed, "c_ospeed", &os, RECURSE));
     OVERRIDE_STREAM_SUFFIX
 }

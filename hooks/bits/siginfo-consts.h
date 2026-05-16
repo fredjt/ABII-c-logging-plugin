@@ -73,7 +73,8 @@ const defines_map siginfo_consts_trap_code = {
     {2, "TRAP_TRACE"},
     {3, "TRAP_BRANCH"},
     {4, "TRAP_HWBKPT"},
-    {5, "TRAP_UNK"}
+    {5, "TRAP_UNK"},
+    {6, "TRAP_PERF"}
 };
 
 const defines_map siginfo_consts_cld_code = {
@@ -92,6 +93,11 @@ const defines_map siginfo_consts_poll_code = {
     {4, "POLL_ERR"},
     {5, "POLL_PRI"},
     {6, "POLL_HUP"}
+};
+
+const defines_map siginfo_consts_sys = {
+    {1, "SYS_SECCOMP"},
+    {2, "SYS_USER_DISPATCH"}
 };
 
 template <typename T>
@@ -182,6 +188,18 @@ template <typename T>
 std::string print_siginfo_consts_enum_si_poll(const T v)
 {
     return print_enum_entry(v, siginfo_consts_code, siginfo_consts_poll_code);
+}
+
+template <typename T>
+std::string print_siginfo_consts_sys_code(const T v)
+{
+    return print_enum_entry(v, siginfo_consts_sys);
+}
+
+template <typename T>
+std::string print_siginfo_consts_enum_si_sys(const T v)
+{
+    return print_enum_entry(v, siginfo_consts_code, siginfo_consts_sys);
 }
 }
 

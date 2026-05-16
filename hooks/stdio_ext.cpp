@@ -8,9 +8,9 @@
 
 namespace abii
 {
-static size_t (*real___fbufsize)(FILE*) __THROW = nullptr;
+static __nonnull((1)) size_t (*real___fbufsize)(FILE*) __THROW = nullptr;
 
-extern "C" size_t abii___fbufsize(FILE* fp) __THROW
+extern "C" __nonnull((1)) size_t abii___fbufsize(FILE* fp) __THROW
 {
     OVERRIDE_PREFIX(__fbufsize)
         pre_fmtd_str pi_str = "__fbufsize(__fp)";
@@ -27,9 +27,9 @@ extern "C" size_t abii___fbufsize(FILE* fp) __THROW
     return real___fbufsize(fp);
 }
 
-static int (*real___freading)(FILE*) __THROW = nullptr;
+static __nonnull((1)) int (*real___freading)(FILE*) __THROW = nullptr;
 
-extern "C" int abii___freading(FILE* fp) __THROW
+extern "C" __nonnull((1)) int abii___freading(FILE* fp) __THROW
 {
     OVERRIDE_PREFIX(__freading)
         pre_fmtd_str pi_str = "__freading(__fp)";
@@ -44,9 +44,9 @@ extern "C" int abii___freading(FILE* fp) __THROW
     return real___freading(fp);
 }
 
-static int (*real___fwriting)(FILE*) __THROW = nullptr;
+static __nonnull((1)) int (*real___fwriting)(FILE*) __THROW = nullptr;
 
-extern "C" int abii___fwriting(FILE* fp) __THROW
+extern "C" __nonnull((1)) int abii___fwriting(FILE* fp) __THROW
 {
     OVERRIDE_PREFIX(__fwriting)
         pre_fmtd_str pi_str = "__fwriting(__fp)";
@@ -61,9 +61,9 @@ extern "C" int abii___fwriting(FILE* fp) __THROW
     return real___fwriting(fp);
 }
 
-static int (*real___freadable)(FILE*) __THROW = nullptr;
+static __nonnull((1)) int (*real___freadable)(FILE*) __THROW = nullptr;
 
-extern "C" int abii___freadable(FILE* fp) __THROW
+extern "C" __nonnull((1)) int abii___freadable(FILE* fp) __THROW
 {
     OVERRIDE_PREFIX(__freadable)
         pre_fmtd_str pi_str = "__freadable(__fp)";
@@ -78,9 +78,9 @@ extern "C" int abii___freadable(FILE* fp) __THROW
     return real___freadable(fp);
 }
 
-static int (*real___fwritable)(FILE*) __THROW = nullptr;
+static __nonnull((1)) int (*real___fwritable)(FILE*) __THROW = nullptr;
 
-extern "C" int abii___fwritable(FILE* fp) __THROW
+extern "C" __nonnull((1)) int abii___fwritable(FILE* fp) __THROW
 {
     OVERRIDE_PREFIX(__fwritable)
         pre_fmtd_str pi_str = "__fwritable(__fp)";
@@ -95,9 +95,9 @@ extern "C" int abii___fwritable(FILE* fp) __THROW
     return real___fwritable(fp);
 }
 
-static int (*real___flbf)(FILE*) __THROW = nullptr;
+static __nonnull((1)) int (*real___flbf)(FILE*) __THROW = nullptr;
 
-extern "C" int abii___flbf(FILE* fp) __THROW
+extern "C" __nonnull((1)) int abii___flbf(FILE* fp) __THROW
 {
     OVERRIDE_PREFIX(__flbf)
         pre_fmtd_str pi_str = "__flbf(__fp)";
@@ -112,9 +112,9 @@ extern "C" int abii___flbf(FILE* fp) __THROW
     return real___flbf(fp);
 }
 
-static void (*real___fpurge)(FILE*) __THROW = nullptr;
+static __nonnull((1)) void (*real___fpurge)(FILE*) __THROW = nullptr;
 
-extern "C" void abii___fpurge(FILE* fp) __THROW
+extern "C" __nonnull((1)) void abii___fpurge(FILE* fp) __THROW
 {
     OVERRIDE_PREFIX(__fpurge)
         pre_fmtd_str pi_str = "__fpurge(__fp)";
@@ -127,9 +127,9 @@ extern "C" void abii___fpurge(FILE* fp) __THROW
     return real___fpurge(fp);
 }
 
-static size_t (*real___fpending)(FILE*) __THROW = nullptr;
+static __nonnull((1)) size_t (*real___fpending)(FILE*) __THROW = nullptr;
 
-extern "C" size_t abii___fpending(FILE* fp) __THROW
+extern "C" __nonnull((1)) size_t abii___fpending(FILE* fp) __THROW
 {
     OVERRIDE_PREFIX(__fpending)
         pre_fmtd_str pi_str = "__fpending(__fp)";
@@ -159,9 +159,9 @@ extern "C" void abii__flushlbf()
     return real__flushlbf();
 }
 
-static int (*real___fsetlocking)(FILE*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real___fsetlocking)(FILE*, int) __THROW = nullptr;
 
-extern "C" int abii___fsetlocking(FILE* fp, int type) __THROW
+extern "C" __nonnull((1)) int abii___fsetlocking(FILE* fp, int type) __THROW
 {
     OVERRIDE_PREFIX(__fsetlocking)
         pre_fmtd_str pi_str = "__fsetlocking(__fp, __type)";

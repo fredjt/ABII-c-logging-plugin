@@ -5,6 +5,8 @@
 #include "dirent.h"
 #include "bits/dirent.h"
 
+#include "bits/fcntl-linux.h"
+
 namespace abii
 {
 static __nonnull((1)) int (*real_closedir)(DIR*) = nullptr;
@@ -277,12 +279,12 @@ int abii_scandirat(int dfd, const char* dir, dirent*** namelist, int (*selector)
         pre_fmtd_str str = "scandirat(__dfd, __dir, __namelist, __selector, __cmp)";
         abii_args->push_func(new ArgPrinter(str));
 
-        abii_args->push_arg(new ArgPrinter(dfd, "__dfd"));
-        abii_args->push_arg(new ArgPrinter(dir, "__dir"));
-
-        auto printer = new ArgPrinter(namelist, "__namelist");
+        auto printer = new ArgPrinter(dfd, "__dfd");
+        printer->set_enum_printer(print_fcntl_linux_fd_pidfs_root, dfd);
         abii_args->push_arg(printer);
 
+        abii_args->push_arg(new ArgPrinter(dir, "__dir"));
+        abii_args->push_arg(new ArgPrinter(namelist, "__namelist"));
         abii_args->push_arg(new ArgPrinter(selector, "__selector"));
         abii_args->push_arg(new ArgPrinter(cmp, "__cmp"));
 
@@ -308,12 +310,12 @@ int abii_scandirat64(int dfd, const char* dir, dirent64*** namelist, int (*selec
         pre_fmtd_str str = "scandirat64(__dfd, __dir, __namelist, __selector, __cmp)";
         abii_args->push_func(new ArgPrinter(str));
 
-        abii_args->push_arg(new ArgPrinter(dfd, "__dfd"));
-        abii_args->push_arg(new ArgPrinter(dir, "__dir"));
-
-        auto printer = new ArgPrinter(namelist, "__namelist");
+        auto printer = new ArgPrinter(dfd, "__dfd");
+        printer->set_enum_printer(print_fcntl_linux_fd_pidfs_root, dfd);
         abii_args->push_arg(printer);
 
+        abii_args->push_arg(new ArgPrinter(dir, "__dir"));
+        abii_args->push_arg(new ArgPrinter(namelist, "__namelist"));
         abii_args->push_arg(new ArgPrinter(selector, "__selector"));
         abii_args->push_arg(new ArgPrinter(cmp, "__cmp"));
 

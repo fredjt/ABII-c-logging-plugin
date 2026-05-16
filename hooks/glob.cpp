@@ -84,9 +84,9 @@ extern "C" void abii_globfree64(glob64_t* pglob) __THROW
     return real_globfree64(pglob);
 }
 
-static int (*real_glob_pattern_p)(const char*, int) __THROW = nullptr;
+static __nonnull((1)) int (*real_glob_pattern_p)(const char*, int) __THROW = nullptr;
 
-extern "C" int abii_glob_pattern_p(const char* pattern, int quote) __THROW
+extern "C" __nonnull((1)) int abii_glob_pattern_p(const char* pattern, int quote) __THROW
 {
     OVERRIDE_PREFIX(glob_pattern_p)
         pre_fmtd_str str = "glob_pattern_p(__pattern, __quote)";

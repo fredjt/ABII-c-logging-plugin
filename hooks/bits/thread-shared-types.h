@@ -37,7 +37,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.__g_size, "__g_size", &os));
     abii_args->push_arg(new ArgPrinter(obj.__g1_orig_size, "__g1_orig_size", &os));
     abii_args->push_arg(new ArgPrinter(obj.__wrefs, "__wrefs", &os));
-    abii_args->push_arg(new ArgPrinter(obj.__g_signals, "__g_signals", &os, RECURSE));
+    abii_args->push_arg(new ArgPrinter(obj.__g_signals, "__g_signals", &os));
+    abii_args->push_arg(new ArgPrinter(obj.__unused_initialized_1, "__unused_initialized_1", &os));
+    abii_args->push_arg(new ArgPrinter(obj.__unused_initialized_2, "__unused_initialized_2", &os, RECURSE));
     OVERRIDE_STREAM_SUFFIX
 }
 

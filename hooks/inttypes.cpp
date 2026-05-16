@@ -30,6 +30,28 @@ intmax_t abii_imaxabs(intmax_t n) __THROW
     return real_imaxabs(n);
 }
 
+static __attribute__ ((__const__)) uintmax_t (*real_umaxabs)(intmax_t) __THROW = nullptr;
+
+extern "C" __attribute__ ((__const__))
+uintmax_t abii_umaxabs(intmax_t n) __THROW
+{
+    OVERRIDE_PREFIX(umaxabs)
+        pre_fmtd_str str = "umaxabs(__n)";
+        abii_args->push_func(new ArgPrinter(str));
+
+        auto printer = new ArgPrinter(n, "__n");
+        printer->set_enum_printer(print_stdint_intmax, n);
+        abii_args->push_arg(printer);
+
+        auto abii_ret = real_umaxabs(n);
+
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_stdint_uintmax, abii_ret);
+        abii_args->push_return(printer1);
+    OVERRIDE_SUFFIX(umaxabs, abii_ret)
+    return real_umaxabs(n);
+}
+
 static __attribute__ ((__const__)) imaxdiv_t (*real_imaxdiv)(intmax_t, intmax_t) __THROW = nullptr;
 
 extern "C" __attribute__ ((__const__))

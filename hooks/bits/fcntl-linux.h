@@ -99,6 +99,10 @@ const defines_map fcntl_linux_fd_cloexec = {
     {1, "FD_CLOEXEC"}
 };
 
+const defines_map fcntl_linux_fd_pidfs_root = {
+    {-10002, "FD_PIDFS_ROOT"}
+};
+
 const defines_map fcntl_linux_l_type = {
     {0, "F_RDLCK"},
     {1, "F_WRLCK"},
@@ -192,6 +196,12 @@ template <typename T>
 std::string print_fcntl_linux_fd_cloexec(const T v)
 {
     return print_or_enum_entries(v, fcntl_linux_fd_cloexec);
+}
+
+template <typename T>
+std::string print_fcntl_linux_fd_pidfs_root(const T v)
+{
+    return print_or_enum_entries(v, fcntl_linux_fd_pidfs_root);
 }
 
 template <typename T>

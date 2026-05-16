@@ -61,8 +61,11 @@ const defines_map stdio_printf_nan_len_max = {
 
 const defines_map stdio_rename_flags = {
     {(1 << 0), "RENAME_NOREPLACE"},
+    {0x0001, "AT_RENAME_NOREPLACE"},
     {(1 << 1), "RENAME_EXCHANGE"},
-    {(1 << 2), "RENAME_WHITEOUT"}
+    {0x0002, "AT_RENAME_EXCHANGE"},
+    {(1 << 2), "RENAME_WHITEOUT"},
+    {0x0004, "AT_RENAME_WHITEOUT"}
 };
 
 template <typename T>

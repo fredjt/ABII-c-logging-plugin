@@ -255,6 +255,7 @@ freeifaddrs
 
 // inttypes.h
 imaxabs
+umaxabs
 imaxdiv
 strtoimax
 strtoumax
@@ -553,6 +554,7 @@ pthread_key_delete
 pthread_getspecific
 pthread_setspecific
 pthread_getcpuclockid
+pthread_gettid_np
 pthread_atfork
 
 // pty.h

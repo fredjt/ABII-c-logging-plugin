@@ -39,6 +39,10 @@ const defines_map dlfcn_rtld_di = {
     {11, "RTLD_DI_MAX"}
 };
 
+const defines_map dlfcn_dlfo_flag_sframe = {
+    {1ULL, "DLFO_FLAG_SFRAME"}
+};
+
 template <typename T>
 std::string print_dlfcn_lm_id(const T v)
 {
@@ -61,6 +65,12 @@ template <typename T>
 std::string print_dlfcn_rtld_di(const T v)
 {
     return print_enum_entry(v, dlfcn_rtld_di);
+}
+
+template <typename T>
+std::string print_dlfcn_dlfo_flag_sframe(const T v)
+{
+    return print_or_enum_entries(v, dlfcn_dlfo_flag_sframe);
 }
 }
 
@@ -103,14 +113,14 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-template <typename T>
-constexpr bool has_dlfo_reserved_v = requires(T t) { t.__dlfo_reserved; };
-
 template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, dl_find_object>
 std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
-    abii_args->push_arg(new ArgPrinter(obj.dlfo_flags, "dlfo_flags", &os));
+    auto printer = new ArgPrinter(obj.dlfo_flags, "dlfo_flags", &os);
+    printer->set_enum_printer(print_dlfcn_dlfo_flag_sframe, obj.dlfo_flags);
+    abii_args->push_arg(printer);
+
     abii_args->push_arg(new ArgPrinter(obj.dlfo_map_start, "dlfo_map_start", &os));
     abii_args->push_arg(new ArgPrinter(obj.dlfo_map_end, "dlfo_map_end", &os));
     abii_args->push_arg(new ArgPrinter(obj.dlfo_link_map, "dlfo_link_map", &os));
@@ -125,12 +135,11 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.dlfo_eh_count, "dlfo_eh_count", &os));
     abii_args->push_arg(new ArgPrinter(obj.__dlfo_eh_count_pad, "__dlfo_eh_count_pad", &os));
 #endif
-
-    if constexpr (has_dlfo_reserved_v<dl_find_object>)
-        abii_args->push_arg(new ArgPrinter(obj.__dlfo_reserved, "__dlfo_reserved", &os, RECURSE));
-    else
-        abii_args->push_arg(new ArgPrinter(obj.__dflo_reserved, "__dlfo_reserved", &os, RECURSE));
-
+    abii_args->push_arg(new ArgPrinter(obj.dlfo_sframe, "dlfo_sframe", &os));
+#if __WORDSIZE == 32
+    abii_args->push_arg(new ArgPrinter(obj.__dlfo_sframe_pad, "__dlfo_sframe_pad", &os));
+#endif
+    abii_args->push_arg(new ArgPrinter(obj.__dlfo_reserved, "__dlfo_reserved", &os, RECURSE));
     OVERRIDE_STREAM_SUFFIX
 }
 #endif //ABII_C_LOGGING_PLUGIN_DLFCN_H

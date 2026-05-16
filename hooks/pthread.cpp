@@ -2651,6 +2651,25 @@ int abii_pthread_getcpuclockid(pthread_t thread_id, __clockid_t* clock_id) __THR
     return real_pthread_getcpuclockid(thread_id, clock_id);
 }
 
+static pid_t (*real_pthread_gettid_np)(pthread_t) = nullptr;
+
+extern "C" pid_t abii_pthread_gettid_np(pthread_t thread_id)
+{
+    OVERRIDE_PREFIX(pthread_gettid_np)
+        pre_fmtd_str pi_str = "pthread_gettid_np(__thread_id)";
+        abii_args->push_func(new ArgPrinter(pi_str));
+
+        abii_args->push_arg(new ArgPrinter(thread_id, "__thread_id"));
+
+        auto abii_ret = real_pthread_gettid_np(thread_id);
+
+        auto printer1 = new ArgPrinter(abii_ret, "return");
+        printer1->set_enum_printer(print_error_enum_entry, abii_ret);
+        abii_args->push_return(printer1);
+    OVERRIDE_SUFFIX(pthread_gettid_np, abii_ret)
+    return real_pthread_gettid_np(thread_id);
+}
+
 static int (*real_pthread_atfork)(void (*)(), void (*)(), void (*)()) __THROW = nullptr;
 
 extern "C" int abii_pthread_atfork(void (*prepare)(), void (*parent)(), void (*child)()) __THROW

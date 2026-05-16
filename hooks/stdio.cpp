@@ -7,6 +7,7 @@
 #include "custom_printers.h"
 #include "obstack.h"
 #include "stdint.h"
+#include "bits/fcntl-linux.h"
 #include "bits/types/cookie_io_functions_t.h"
 #include "bits/types/__fpos64_t.h"
 #include "bits/types/__fpos_t.h"
@@ -56,9 +57,16 @@ extern "C" int abii_renameat(int oldfd, const char* old, int newfd, const char* 
         pre_fmtd_str pi_str = "renameat(__oldfd, __old, __newfd, __new)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        abii_args->push_arg(new ArgPrinter(oldfd, "__oldfd"));
+        auto printer = new ArgPrinter(oldfd, "__oldfd");
+        printer->set_enum_printer(print_fcntl_linux_fd_pidfs_root, oldfd);
+        abii_args->push_arg(printer);
+
         abii_args->push_arg(new ArgPrinter(old, "__old"));
-        abii_args->push_arg(new ArgPrinter(newfd, "__newfd"));
+
+        auto printer1 = new ArgPrinter(newfd, "__newfd");
+        printer1->set_enum_printer(print_fcntl_linux_fd_pidfs_root, newfd);
+        abii_args->push_arg(printer1);
+
         abii_args->push_arg(new ArgPrinter(_new, "__new"));
 
         auto abii_ret = real_renameat(oldfd, old, newfd, _new);
@@ -76,14 +84,21 @@ extern "C" int abii_renameat2(int oldfd, const char* old, int newfd, const char*
         pre_fmtd_str pi_str = "renameat2(__oldfd, __old, __newfd, __new)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        abii_args->push_arg(new ArgPrinter(oldfd, "__oldfd"));
+        auto printer = new ArgPrinter(oldfd, "__oldfd");
+        printer->set_enum_printer(print_fcntl_linux_fd_pidfs_root, oldfd);
+        abii_args->push_arg(printer);
+
         abii_args->push_arg(new ArgPrinter(old, "__old"));
-        abii_args->push_arg(new ArgPrinter(newfd, "__newfd"));
+
+        auto printer1 = new ArgPrinter(newfd, "__newfd");
+        printer1->set_enum_printer(print_fcntl_linux_fd_pidfs_root, newfd);
+        abii_args->push_arg(printer1);
+
         abii_args->push_arg(new ArgPrinter(_new, "__new"));
 
-        auto printer = new ArgPrinter(_new, "__flags");
-        printer->set_enum_printer(print_stdio_rename_flags, flags);
-        abii_args->push_arg(printer);
+        auto printer2 = new ArgPrinter(_new, "__flags");
+        printer2->set_enum_printer(print_stdio_rename_flags, flags);
+        abii_args->push_arg(printer2);
 
         auto abii_ret = real_renameat2(oldfd, old, newfd, _new, flags);
 

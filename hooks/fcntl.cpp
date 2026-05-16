@@ -333,12 +333,15 @@ int abii_openat(int fd, const char* file, int oflag, ...)
         pre_fmtd_str str = "openat(__fd, __file, __oflag, ...)";
         abii_args->push_func(new ArgPrinter(str));
 
-        abii_args->push_arg(new ArgPrinter(fd, "__fd"));
+        auto printer = new ArgPrinter(fd, "__fd");
+        printer->set_enum_printer(print_fcntl_linux_fd_pidfs_root, fd);
+        abii_args->push_arg(printer);
+
         abii_args->push_arg(new ArgPrinter(file, "__file"));
 
-        auto printer = new ArgPrinter(oflag, "__oflag");
-        printer->set_enum_printer(print_fcntl_linux_oflag, oflag);
-        abii_args->push_arg(printer);
+        auto printer1 = new ArgPrinter(oflag, "__oflag");
+        printer1->set_enum_printer(print_fcntl_linux_oflag, oflag);
+        abii_args->push_arg(printer1);
 
         va_list vargs;
         va_start(vargs, oflag);
@@ -347,9 +350,9 @@ int abii_openat(int fd, const char* file, int oflag, ...)
         {
             auto arg = va_arg(vargs, mode_t);
 
-            auto printer1 = new ArgPrinter(arg, "...");
-            printer1->set_enum_printer(print_fcntl_protection, arg);
-            abii_args->push_arg(printer1);
+            auto printer2 = new ArgPrinter(arg, "...");
+            printer2->set_enum_printer(print_fcntl_protection, arg);
+            abii_args->push_arg(printer2);
 
             abii_ret = real_openat(fd, file, oflag, arg);
         }
@@ -371,12 +374,15 @@ int abii_openat64(int fd, const char* file, int oflag, ...)
         pre_fmtd_str str = "openat64(__fd, __file, __oflag, ...)";
         abii_args->push_func(new ArgPrinter(str));
 
-        abii_args->push_arg(new ArgPrinter(fd, "__fd"));
+        auto printer = new ArgPrinter(fd, "__fd");
+        printer->set_enum_printer(print_fcntl_linux_fd_pidfs_root, fd);
+        abii_args->push_arg(printer);
+
         abii_args->push_arg(new ArgPrinter(file, "__file"));
 
-        auto printer = new ArgPrinter(oflag, "__oflag");
-        printer->set_enum_printer(print_fcntl_linux_oflag, oflag);
-        abii_args->push_arg(printer);
+        auto printer1 = new ArgPrinter(oflag, "__oflag");
+        printer1->set_enum_printer(print_fcntl_linux_oflag, oflag);
+        abii_args->push_arg(printer1);
 
         va_list vargs;
         va_start(vargs, oflag);
@@ -385,9 +391,9 @@ int abii_openat64(int fd, const char* file, int oflag, ...)
         {
             auto arg = va_arg(vargs, mode_t);
 
-            auto printer1 = new ArgPrinter(arg, "...");
-            printer1->set_enum_printer(print_fcntl_protection, arg);
-            abii_args->push_arg(printer1);
+            auto printer2 = new ArgPrinter(arg, "...");
+            printer2->set_enum_printer(print_fcntl_protection, arg);
+            abii_args->push_arg(printer2);
 
             abii_ret = real_openat64(fd, file, oflag, arg);
         }
@@ -444,9 +450,9 @@ int abii_creat64(const char* file, mode_t mode)
     return real_creat64(file, mode);
 }
 
-static int (*real_lockf)(int, int, off_t) = nullptr;
+static __wur int (*real_lockf)(int, int, off_t) = nullptr;
 
-extern "C" int abii_lockf(int fd, int cmd, off_t len)
+extern "C" __wur int abii_lockf(int fd, int cmd, off_t len)
 {
     OVERRIDE_PREFIX(lockf)
         pre_fmtd_str str = "lockf(__fd, __cmd, __len)";
@@ -467,9 +473,9 @@ extern "C" int abii_lockf(int fd, int cmd, off_t len)
     return real_lockf(fd, cmd, len);
 }
 
-static int (*real_lockf64)(int, int, off64_t) = nullptr;
+static __wur int (*real_lockf64)(int, int, off64_t) = nullptr;
 
-extern "C" int abii_lockf64(int fd, int cmd, off_t len)
+extern "C" __wur int abii_lockf64(int fd, int cmd, off_t len)
 {
     OVERRIDE_PREFIX(lockf64)
         pre_fmtd_str str = "lockf64(__fd, __cmd, __len)";

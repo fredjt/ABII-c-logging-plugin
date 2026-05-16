@@ -51,6 +51,9 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     case SIGPOLL:
         printer2->set_enum_printer(print_siginfo_consts_enum_si_poll, obj.si_code);
         break;
+    case SIGSYS:
+        printer2->set_enum_printer(print_siginfo_consts_enum_si_sys, obj.si_code);
+        break;
     default:
         printer2->set_enum_printer(print_siginfo_consts_code, obj.si_code);
     }
