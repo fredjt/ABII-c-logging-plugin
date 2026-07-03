@@ -1187,3 +1187,23 @@ strcasecmp
 strncasecmp
 strcasecmp_l
 strncasecmp_l
+
+// termios.h
+cfgetospeed
+cfgetispeed
+cfsetospeed
+cfsetispeed
+cfsetspeed
+cfgetobaud
+cfgetibaud
+cfsetobaud
+cfsetibaud
+cfsetbaud
+tcgetattr
+tcsetattr
+cfmakeraw
+tcsendbreak
+tcdrain
+tcflush
+tcflow
+tcgetsid
