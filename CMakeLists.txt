@@ -144,6 +144,7 @@ add_library(c-logger SHARED
             hooks/sysexits.h
             hooks/tar.h
             hooks/termios.cpp hooks/termios.h
+            hooks/thread_db.cpp hooks/thread_db.h
             custom_enum_printers.h
             custom_printers.h
             )
