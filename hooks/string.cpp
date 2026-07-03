@@ -12,7 +12,8 @@ namespace abii
 // TODO: This appears to be called by dlsym, causing infinite recursion
 static __nonnull((1, 2)) void* (*real_memcpy)(void*, const void*, size_t) __THROW = nullptr;
 
-extern "C" __nonnull((1, 2)) void* abii_memcpy(void* dest, const void* src, size_t n) __THROW
+extern "C" __nonnull((1, 2))
+void* abii_memcpy(void* dest, const void* src, size_t n) __THROW
 {
     OVERRIDE_PREFIX(memcpy)
         pre_fmtd_str pi_str = "memcpy(__dest, __src, __n)";
@@ -37,7 +38,8 @@ extern "C" __nonnull((1, 2)) void* abii_memcpy(void* dest, const void* src, size
 
 static __nonnull((1, 2)) void* (*real_memmove)(void*, const void*, size_t) __THROW = nullptr;
 
-extern "C" __nonnull((1, 2)) void* abii_memmove(void* dest, const void* src, size_t n) __THROW
+extern "C" __nonnull((1, 2))
+void* abii_memmove(void* dest, const void* src, size_t n) __THROW
 {
     OVERRIDE_PREFIX(memmove)
         pre_fmtd_str pi_str = "memmove(__dest, __src, __n)";
@@ -90,7 +92,8 @@ void* abii_memccpy(void* dest, const void* src, int c, size_t n) __THROW
 
 static __nonnull((1)) void* (*real_memset)(void*, int, size_t) __THROW = nullptr;
 
-extern "C" __nonnull((1)) void* abii_memset(void* s, int c, size_t n) __THROW
+extern "C" __nonnull((1))
+void* abii_memset(void* s, int c, size_t n) __THROW
 {
     OVERRIDE_PREFIX(memset)
         pre_fmtd_str pi_str = "memset(__s, __c, __n)";
