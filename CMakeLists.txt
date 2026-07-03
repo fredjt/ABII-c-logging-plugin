@@ -20,6 +20,7 @@ add_compile_options("-fPIC")
 
 add_library(c-logger SHARED
             hooks/arpa/nameser_compat.h
+            hooks/asm/unistd_64.h
             hooks/asm-generic/errno.h
             hooks/asm-generic/errno-base.h
             hooks/bits/types/__fpos64_t.h
