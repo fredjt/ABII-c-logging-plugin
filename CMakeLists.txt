@@ -59,6 +59,7 @@ add_library(c-logger SHARED
             hooks/bits/struct_mutex.h
             hooks/bits/struct_rwlock.h
             hooks/bits/struct_stat.h
+            hooks/bits/termios-baud.h
             hooks/bits/termios-struct.h
             hooks/bits/thread-shared-types.h
             hooks/bits/time.h
