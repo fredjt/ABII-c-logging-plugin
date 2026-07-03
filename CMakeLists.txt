@@ -71,6 +71,7 @@ add_library(c-logger SHARED
             hooks/bits/thread-shared-types.h
             hooks/bits/time.h
             hooks/linux/audit.h
+            hooks/linux/tty.h
             hooks/netinet/in.h
             hooks/aio.cpp hooks/aio.h
             hooks/aliases.cpp hooks/aliases.h
