@@ -74,6 +74,7 @@ add_library(c-logger SHARED
             hooks/linux/audit.h
             hooks/linux/tty.h
             hooks/netinet/in.h
+            hooks/sys/user.h
             hooks/aio.cpp hooks/aio.h
             hooks/aliases.cpp hooks/aliases.h
             hooks/alloca.cpp
