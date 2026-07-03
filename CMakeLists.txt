@@ -61,6 +61,7 @@ add_library(c-logger SHARED
             hooks/bits/struct_stat.h
             hooks/bits/termios.h
             hooks/bits/termios-baud.h
+            hooks/bits/termios-c_cc.h
             hooks/bits/termios-struct.h
             hooks/bits/termios-tcflow.h
             hooks/bits/thread-shared-types.h
