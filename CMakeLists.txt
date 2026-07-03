@@ -128,8 +128,10 @@ add_library(c-logger SHARED
             hooks/stdio.cpp hooks/stdio.h
             hooks/stdio_ext.cpp hooks/stdio_ext.h
             hooks/stdlib.cpp hooks/stdlib.h
+            hooks/string.cpp
             custom_enum_printers.h
-            custom_printers.h)
+            custom_printers.h
+            )
 
 target_link_libraries(c-logger PUBLIC abii::libabii)
 
