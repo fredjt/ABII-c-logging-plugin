@@ -65,6 +65,7 @@ add_library(c-logger SHARED
             hooks/bits/termios-c_cflag.h
             hooks/bits/termios-c_iflag.h
             hooks/bits/termios-c_lflag.h
+            hooks/bits/termios-c_oflag.h
             hooks/bits/termios-struct.h
             hooks/bits/termios-tcflow.h
             hooks/bits/thread-shared-types.h
