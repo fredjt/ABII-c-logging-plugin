@@ -9,7 +9,7 @@
 
 namespace abii
 {
-const defines_map<unsigned> tty_line_discipline = {
+const defines_map tty_line_discipline = {
     {0, "N_TTY"},
     {1, "N_SLIP"},
     {2, "N_MOUSE"},
