@@ -9,7 +9,7 @@
 
 namespace abii
 {
-const defines_map<unsigned> termios_baud_rate = {
+const defines_map<unsigned> termios_baud_baud_rate = {
     {0U, "B0"},
     {50U, "B50"},
     {75U, "B75"},
@@ -58,9 +58,9 @@ const defines_map<unsigned> termios_baud_rate = {
 };
 
 template <typename T>
-std::string print_termios_baud_rate(const T v)
+std::string print_termios_baud_baud_rate(const T v)
 {
-    return print_enum_entry(v, termios_baud_rate);
+    return print_enum_entry(v, termios_baud_baud_rate);
 }
 }
 
