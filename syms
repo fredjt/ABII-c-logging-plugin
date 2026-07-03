@@ -1173,3 +1173,17 @@ strverscmp
 strfry
 memfrob
 basename
+
+// strings.h
+bcmp
+bcopy
+bzero
+index
+rindex
+ffs
+ffsl
+ffsll
+strcasecmp
+strncasecmp
+strcasecmp_l
+strncasecmp_l
