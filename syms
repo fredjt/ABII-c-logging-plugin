@@ -1335,3 +1335,6 @@ getcontext
 setcontext
 swapcontext
 makecontext
+
+// ulimit.h
+ulimit

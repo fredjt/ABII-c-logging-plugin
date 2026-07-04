@@ -158,6 +158,8 @@ add_library(c-logger SHARED
             hooks/ucontext.cpp
             custom_enum_printers.h
             custom_printers.h
+            hooks/ulimit.cpp
+            hooks/ulimit.h
             )
 
 target_link_libraries(c-logger PUBLIC abii::libabii)
