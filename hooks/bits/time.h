@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 3/7/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_TIME_H
-#define ABII_C_LOGGING_PLUGIN_TIME_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_TIME_H
+#define ABII_C_LOGGING_PLUGIN_BITS_TIME_H
 
 #include <abii/libabii.h>
 
@@ -23,11 +23,21 @@ const defines_map time_clock = {
     {11, "CLOCK_TAI"}
 };
 
+const defines_map time_timer_abstime = {
+    {1, "TIMER_ABSTIME"}
+};
+
 template <typename T>
 std::string print_time_clock(const T v)
 {
     return print_enum_entry(v, time_clock);
 }
+
+template <typename T>
+std::string print_time_timer_abstime(const T v)
+{
+    return print_or_enum_entries(v, time_timer_abstime);
+}
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_TIME_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_TIME_H
