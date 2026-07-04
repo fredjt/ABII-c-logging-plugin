@@ -1,3 +1,6 @@
+// bits/time.h
+clock_adjtime
+
 // aio.h
 aio_init
 aio_read
