@@ -95,6 +95,7 @@ void abii_err(int status, const char* format, ...)
         abii_args->print_args();
         va_end(abii_vargs);
         abii_stream << std::endl;
+        delete abii_args;
 
         __builtin_apply(reinterpret_cast<void (*)(...)>(real_err), abii_bi_vargs, 1000);
     }
@@ -126,6 +127,7 @@ void abii_verr(int status, const char* format, __gnuc_va_list gnuc_va_list)
         va_copy(abii_vargs, gnuc_va_list);
         abii_args->print_args();
         abii_stream << std::endl;
+        delete abii_args;
 
         real_vwarnx(format, gnuc_va_list);
     }
@@ -154,6 +156,7 @@ void abii_errx(int status, const char* format, ...)
         abii_args->print_args();
         va_end(abii_vargs);
         abii_stream << std::endl;
+        delete abii_args;
 
         __builtin_apply(reinterpret_cast<void (*)(...)>(real_errx), abii_bi_vargs, 1000);
     }
@@ -184,6 +187,7 @@ void abii_verrx(int status, const char* format, __gnuc_va_list gnuc_va_list)
         va_copy(abii_vargs, gnuc_va_list);
         abii_args->print_args();
         abii_stream << std::endl;
+        delete abii_args;
 
         real_vwarnx(format, gnuc_va_list);
     }

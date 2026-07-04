@@ -75,6 +75,7 @@ void abii_longjmp(__jmp_buf_tag env[1], int val) __THROWNL
 
         abii_args->print_args();
         abii_stream << std::endl;
+        delete abii_args;
 
         real_longjmp(env, val);
     }
@@ -101,6 +102,7 @@ void abii__longjmp(__jmp_buf_tag env[1], int val) __THROWNL
 
         abii_args->print_args();
         abii_stream << std::endl;
+        delete abii_args;
 
         real__longjmp(env, val);
     }
@@ -127,6 +129,7 @@ void abii_siglongjmp(sigjmp_buf env, int val) __THROWNL
 
         abii_args->print_args();
         abii_stream << std::endl;
+        delete abii_args;
 
         real_siglongjmp(env, val);
     }

@@ -25,6 +25,7 @@ void abii___assert_fail(const char* assertion, const char* file, unsigned int li
 
         abii_args->print_args();
         abii_stream << std::endl;
+        delete abii_args;
 
         real___assert_fail(assertion, file, line, function);
     }
@@ -57,6 +58,7 @@ void abii___assert_perror_fail(int errnum, const char* file, unsigned int line, 
 
         abii_args->print_args();
         abii_stream << std::endl;
+        delete abii_args;
 
         real___assert_perror_fail(errnum, file, line, function);
     }
@@ -85,6 +87,7 @@ void abii___assert(const char* assertion, const char* file, int line) __THROW
 
         abii_args->print_args();
         abii_stream << std::endl;
+        delete abii_args;
 
         real___assert(assertion, file, line);
     }
