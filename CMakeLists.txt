@@ -74,6 +74,7 @@ add_library(c-logger SHARED
             hooks/bits/termios-tcflow.h
             hooks/bits/thread-shared-types.h
             hooks/bits/time.h
+            hooks/bits/timex.h
             hooks/linux/audit.h
             hooks/linux/tty.h
             hooks/netinet/in.h
