@@ -3005,22 +3005,6 @@ extern "C" int abii_ttyslot() __THROW
     return real_ttyslot();
 }
 
-static void (*real_call_once)(once_flag*, void (*)()) = nullptr;
-
-extern "C" void abii_call_once(once_flag* flag, void (*func)())
-{
-    OVERRIDE_PREFIX(call_once)
-        pre_fmtd_str pi_str = "call_once(__flag, __func)";
-        abii_args->push_func(new ArgPrinter(pi_str));
-
-        abii_args->push_arg(new ArgPrinter(flag, "__flag"));
-        abii_args->push_arg(new ArgPrinter(func, "__func"));
-
-        real_call_once(flag, func);
-    OVERRIDE_SUFFIX(call_once,)
-    return real_call_once(flag, func);
-}
-
 static size_t (*real_memalignment)(const void*) = nullptr;
 
 extern "C" size_t abii_memalignment(const void* p)
