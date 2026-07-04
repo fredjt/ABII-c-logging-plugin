@@ -1329,3 +1329,9 @@ mbrtoc16
 c16rtomb
 mbrtoc32
 c32rtomb
+
+// ucontext.h
+getcontext
+setcontext
+swapcontext
+makecontext

@@ -155,6 +155,7 @@ add_library(c-logger SHARED
             hooks/time.cpp hooks/time.h
             hooks/ttyent.cpp hooks/ttyent.h
             hooks/uchar.cpp
+            hooks/ucontext.cpp
             custom_enum_printers.h
             custom_printers.h
             )
