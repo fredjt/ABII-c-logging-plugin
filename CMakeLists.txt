@@ -150,6 +150,7 @@ add_library(c-logger SHARED
             hooks/termios.cpp hooks/termios.h
             hooks/thread_db.cpp hooks/thread_db.h
             hooks/threads.cpp hooks/threads.h
+            hooks/time.cpp hooks/time.h
             custom_enum_printers.h
             custom_printers.h
             )
