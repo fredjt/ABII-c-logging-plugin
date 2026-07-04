@@ -5,8 +5,6 @@
 #ifndef ABII_C_LOGGING_PLUGIN_SIGINFO_CONSTS_H
 #define ABII_C_LOGGING_PLUGIN_SIGINFO_CONSTS_H
 
-#include <bits/siginfo-consts.h>
-
 namespace abii
 {
 const defines_map siginfo_consts_code = {
