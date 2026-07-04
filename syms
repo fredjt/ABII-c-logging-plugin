@@ -1321,3 +1321,11 @@ getttyent
 getttynam
 setttyent
 endttyent
+
+// uchar.h
+mbrtoc8
+c8rtomb
+mbrtoc16
+c16rtomb
+mbrtoc32
+c32rtomb
