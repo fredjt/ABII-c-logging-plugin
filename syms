@@ -1315,3 +1315,9 @@ timespec_get
 timespec_getres
 getdate
 getdate_r
+
+// ttyent.h
+getttyent
+getttynam
+setttyent
+endttyent
