@@ -7,7 +7,6 @@
 
 #include <abii/libabii.h>
 
-#include "siginfo-consts.h"
 #include "types/struct_timeval.h"
 
 namespace abii
