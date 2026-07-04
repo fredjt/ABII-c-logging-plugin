@@ -20,6 +20,7 @@ add_compile_options("-fPIC")
 
 add_library(c-logger SHARED
             hooks/arpa/nameser_compat.h
+            hooks/asm/ucontext.h
             hooks/asm/unistd_64.h
             hooks/asm-generic/errno.h
             hooks/asm-generic/errno-base.h
@@ -78,6 +79,7 @@ add_library(c-logger SHARED
             hooks/linux/audit.h
             hooks/linux/tty.h
             hooks/netinet/in.h
+            hooks/sys/ucontext.h
             hooks/sys/user.h
             hooks/aio.cpp hooks/aio.h
             hooks/aliases.cpp hooks/aliases.h
