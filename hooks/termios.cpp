@@ -4,8 +4,6 @@
 
 #include "termios.h"
 
-#include <abii/libabii.h>
-
 #include "custom_enum_printers.h"
 #include "bits/termios-struct.h"
 #include "bits/termios-tcflow.h"
