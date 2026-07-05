@@ -773,7 +773,7 @@ void* abii_mempcpy(void* dest, const void* src, size_t n) __THROW
     return real_mempcpy(dest, src, n);
 }
 
-// TODO: This appears to be called by dlsym, causing infinite recursion
+// TODO: This appears to be called by C++ stream operators, causing infinite recursion on process exit
 static __attribute_pure__ __nonnull((1)) size_t (*real_strlen)(const char*) __THROW = nullptr;
 
 extern "C" __attribute_pure__ __nonnull((1))
