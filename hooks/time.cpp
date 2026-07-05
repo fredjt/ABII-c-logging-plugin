@@ -366,8 +366,8 @@ static int (*real_dysize)(int) __THROW = nullptr;
 extern "C" __attribute__ ((__const__))
 int abii_dysize(int year) __THROW
 {
-    OVERRIDE_PREFIX(timelocal)
-        pre_fmtd_str pi_str = "timelocal(__year)";
+    OVERRIDE_PREFIX(dysize)
+        pre_fmtd_str pi_str = "dysize(__year)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
         abii_args->push_arg(new ArgPrinter(year, "__year"));
@@ -375,7 +375,7 @@ int abii_dysize(int year) __THROW
         auto abii_ret = real_dysize(year);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
-    OVERRIDE_SUFFIX(timelocal, abii_ret)
+    OVERRIDE_SUFFIX(dysize, abii_ret)
     return real_dysize(year);
 }
 
