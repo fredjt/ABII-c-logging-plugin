@@ -830,7 +830,8 @@ int abii_fscanf(FILE* stream, const char* format, ...)
 
 static int (*real_scanf)(const char*, ...) = nullptr;
 
-extern "C" int abii_scanf(const char* format, ...) __wur
+extern "C" __wur
+int abii_scanf(const char* format, ...)
 {
     OVERRIDE_VARIADIC_PREFIX(scanf, format)
         pre_fmtd_str str = "scanf(__format, ...)";
