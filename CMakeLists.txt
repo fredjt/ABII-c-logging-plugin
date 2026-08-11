@@ -5,7 +5,12 @@ project(ABII-c-logging-plugin LANGUAGES CXX VERSION 0.5.0)
 set(CMAKE_CXX_STANDARD 20)
 
 if (BIT32)
-	list(PREPEND CMAKE_PREFIX_PATH "/usr/lib32/cmake/abii")
+	list(PREPEND CMAKE_PREFIX_PATH
+	     "/usr/lib32/cmake/abii"
+	     "/usr/local/lib32/cmake/abii"
+	     "/usr/lib/i386-linux-gnu/cmake/abii"
+	     "/usr/local/lib/i386-linux-gnu/cmake/abii"
+	     )
 endif ()
 find_package(abii REQUIRED)
 
@@ -156,10 +161,9 @@ add_library(c-logger SHARED
             hooks/ttyent.cpp hooks/ttyent.h
             hooks/uchar.cpp
             hooks/ucontext.cpp
+            hooks/ulimit.cpp hooks/ulimit.h
             custom_enum_printers.h
             custom_printers.h
-            hooks/ulimit.cpp
-            hooks/ulimit.h
             )
 
 target_link_libraries(c-logger PUBLIC abii::libabii)
