@@ -2195,7 +2195,8 @@ int abii_mkostemps64(char* _template, int suffixlen, int flags)
 
 static int (*real_system)(const char*) = nullptr;
 
-extern "C" int abii_system(const char* command) __wur
+extern "C" __wur
+int abii_system(const char* command)
 {
     OVERRIDE_PREFIX(system)
         pre_fmtd_str pi_str = "system(__command)";
