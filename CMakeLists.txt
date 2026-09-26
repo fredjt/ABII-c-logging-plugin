@@ -170,6 +170,7 @@ add_library(c-logger SHARED
             hooks/utime.cpp hooks/utime.h
             hooks/utmp.cpp hooks/utmp.h
             hooks/utmpx.cpp hooks/utmpx.h
+            hooks/values.h
             custom_enum_printers.h
             custom_printers.h
             )
