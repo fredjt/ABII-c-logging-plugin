@@ -48,6 +48,7 @@ add_library(c-logger SHARED
             hooks/bits/types/struct_timeval.h
             hooks/bits/types/struct_tm.h
             hooks/bits/atomic_wide_counter.h
+            hooks/bits/confname.h
             hooks/bits/cpu-set.h
             hooks/bits/dirent.h
             hooks/bits/fcntl.h
