@@ -8,7 +8,7 @@
 #include <abii/libabii.h>
 
 #include "fcntl-linux.h"
-#include "hooks/stdio.h"
+#include "hooks/unistd.h"
 
 using namespace abii;
 
@@ -22,7 +22,7 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(printer);
 
     auto printer1 = new ArgPrinter(obj.l_whence, "l_whence", &os);
-    printer1->set_enum_printer(print_stdio_seek_whence, obj.l_whence);
+    printer1->set_enum_printer(print_unistd_seek_whence, obj.l_whence);
     abii_args->push_arg(printer1);
 
     abii_args->push_arg(new ArgPrinter(obj.l_start, "l_start", &os));

@@ -673,6 +673,47 @@ inline std::string print_variadic_args_mq_open(const char* /*fmt*/, va_list varg
     }
     CUSTOM_PRINT_SUFFIX
 }
+
+inline std::string print_variadic_args_execle(const char* /*fmt*/, va_list vargs, size_t /*size*/)
+{
+    CUSTOM_PRINT_PREFIX
+    auto last_varg = reinterpret_cast<const char*>(UINTPTR_MAX);
+    for (auto varg = va_arg(vargs, const char*); last_varg != nullptr; varg = va_arg(vargs, const char*))
+    {
+        std::stringstream ss1;
+        ss1 << "[" << n++ << "]";
+        args->push_arg(new ArgPrinter(varg, ss1.str(), &ss));
+        last_varg = varg;
+    }
+    FUNCTION_ARGS_FMT(char* const*)
+    CUSTOM_PRINT_SUFFIX
+}
+
+inline std::string print_variadic_args_execl(const char* /*fmt*/, va_list vargs, size_t /*size*/)
+{
+    CUSTOM_PRINT_PREFIX
+    for (auto varg = va_arg(vargs, const char*); varg != nullptr; varg = va_arg(vargs, const char*))
+    {
+        std::stringstream ss1;
+        ss1 << "[" << n++ << "]";
+        args->push_arg(new ArgPrinter(varg, ss1.str(), &ss));
+    }
+    FUNCTION_ARGS_FMT(char* const*)
+    CUSTOM_PRINT_SUFFIX
+}
+
+inline std::string print_variadic_args_syscall(const char* /*fmt*/, va_list vargs, size_t /*size*/)
+{
+    CUSTOM_PRINT_PREFIX
+    for (auto i = 0; i < 6; ++i)
+    {
+        auto varg = va_arg(vargs, long int);
+        std::stringstream ss1;
+        ss1 << "[" << i << "]";
+        args->push_arg(new ArgPrinter(varg, ss1.str(), &ss));
+    }
+    CUSTOM_PRINT_SUFFIX
+}
 }
 
 #endif //CUSTOM_PRINTERS_H

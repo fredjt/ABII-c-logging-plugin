@@ -4,10 +4,10 @@
 
 #include "stdio.h"
 
+#include "custom_enum_printers.h"
 #include "custom_printers.h"
 #include "obstack.h"
 #include "stdint.h"
-#include "bits/fcntl-linux.h"
 #include "bits/types/cookie_io_functions_t.h"
 #include "bits/types/__fpos64_t.h"
 #include "bits/types/__fpos_t.h"
@@ -58,13 +58,13 @@ extern "C" int abii_renameat(int oldfd, const char* old, int newfd, const char* 
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(oldfd, "__oldfd");
-        printer->set_enum_printer(print_fcntl_linux_fd_pidfs_root, oldfd);
+        printer->set_enum_printer(print_fd_enum_entry, oldfd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(old, "__old"));
 
         auto printer1 = new ArgPrinter(newfd, "__newfd");
-        printer1->set_enum_printer(print_fcntl_linux_fd_pidfs_root, newfd);
+        printer1->set_enum_printer(print_fd_enum_entry, newfd);
         abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(_new, "__new"));
@@ -85,13 +85,13 @@ extern "C" int abii_renameat2(int oldfd, const char* old, int newfd, const char*
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(oldfd, "__oldfd");
-        printer->set_enum_printer(print_fcntl_linux_fd_pidfs_root, oldfd);
+        printer->set_enum_printer(print_fd_enum_entry, oldfd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(old, "__old"));
 
         auto printer1 = new ArgPrinter(newfd, "__newfd");
-        printer1->set_enum_printer(print_fcntl_linux_fd_pidfs_root, newfd);
+        printer1->set_enum_printer(print_fd_enum_entry, newfd);
         abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(_new, "__new"));
@@ -1646,7 +1646,7 @@ int abii_fseek(FILE* stream, long int off, int whence)
         abii_args->push_arg(new ArgPrinter(off, "__off"));
 
         auto printer = new ArgPrinter(whence, "__whence");
-        printer->set_enum_printer(print_stdio_seek_whence, whence);
+        printer->set_enum_printer(print_unistd_seek_whence, whence);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_fseek(stream, off, whence);
@@ -1703,7 +1703,7 @@ int abii_fseeko(FILE* stream, __off_t off, int whence)
         abii_args->push_arg(new ArgPrinter(off, "__off"));
 
         auto printer = new ArgPrinter(whence, "__whence");
-        printer->set_enum_printer(print_stdio_seek_whence, whence);
+        printer->set_enum_printer(print_unistd_seek_whence, whence);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_fseeko(stream, off, whence);
@@ -1782,7 +1782,7 @@ int abii_fseeko64(FILE* stream, __off64_t off, int whence)
         abii_args->push_arg(new ArgPrinter(off, "__off"));
 
         auto printer = new ArgPrinter(whence, "__whence");
-        printer->set_enum_printer(print_stdio_seek_whence, whence);
+        printer->set_enum_printer(print_unistd_seek_whence, whence);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_fseeko64(stream, off, whence);

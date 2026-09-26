@@ -7,9 +7,12 @@
 
 #include <string>
 
+#include "hooks/fcntl.h"
 #include "hooks/termios.h"
+#include "hooks/unistd.h"
 #include "hooks/asm-generic/errno-base.h"
 #include "hooks/asm-generic/errno.h"
+#include "hooks/bits/fcntl-linux.h"
 #include "hooks/bits/signum-arch.h"
 #include "hooks/bits/signum-generic.h"
 #include "hooks/bits/termios-baud.h"
@@ -17,6 +20,12 @@
 
 namespace abii
 {
+template <typename T>
+std::string print_fd_enum_entry(const T v)
+{
+    return print_enum_entry(v, fcntl_linux_fd_pidfs_root, fcntl_at_fdcwd, unistd_fileno);
+}
+
 template <typename T>
 std::string print_error_enum_entry(const T v)
 {

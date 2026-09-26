@@ -51,32 +51,31 @@ const defines_map fcntl_seek = {
     {2, "SEEK_END"}
 };
 
+const defines_map fcntl_at_fdcwd = {
+    {-100, "AT_FDCWD"}
+};
+
 const defines_map fcntl_unlinkat = {
-    {-100, "AT_FDCWD"},
-    {0x100, "AT_SYMLINK_NOFOLLOW"},
-    {0x200, "AT_REMOVEDIR"},
-    {0x400, "AT_SYMLINK_FOLLOW"},
-    {0x800, "AT_NO_AUTOMOUNT"},
-    {0x1000, "AT_EMPTY_PATH"},
-    {0x6000, "AT_STATX_SYNC_TYPE"},
-    {0x0000, "AT_STATX_SYNC_AS_STAT"},
-    {0x2000, "AT_STATX_FORCE_SYNC"},
-    {0x4000, "AT_STATX_DONT_SYNC"},
-    {0x8000, "AT_RECURSIVE"}
+    {0x200, "AT_REMOVEDIR"}
 };
 
 const defines_map fcntl_faccessat = {
-    {-100, "AT_FDCWD"},
     {0x100, "AT_SYMLINK_NOFOLLOW"},
     {0x200, "AT_EACCESS"},
     {0x400, "AT_SYMLINK_FOLLOW"},
     {0x800, "AT_NO_AUTOMOUNT"},
     {0x1000, "AT_EMPTY_PATH"},
-    {0x6000, "AT_STATX_SYNC_TYPE"},
-    {0x0000, "AT_STATX_SYNC_AS_STAT"},
-    {0x2000, "AT_STATX_FORCE_SYNC"},
-    {0x4000, "AT_STATX_DONT_SYNC"},
     {0x8000, "AT_RECURSIVE"}
+};
+
+const defines_map fcntl_execveat = {
+    {0x100, "AT_SYMLINK_NOFOLLOW"},
+    {0x1000, "AT_EMPTY_PATH"}
+};
+
+const defines_map fcntl_linkat = {
+    {0x100, "AT_SYMLINK_FOLLOW"},
+    {0x1000, "AT_EMPTY_PATH"}
 };
 
 const defines_map fcntl_lockf_cmd = {
@@ -111,6 +110,12 @@ std::string print_fcntl_seek(const T v)
 }
 
 template <typename T>
+std::string print_fcntl_at_fdcwd(const T v)
+{
+    return print_enum_entry(v, fcntl_at_fdcwd);
+}
+
+template <typename T>
 std::string print_fcntl_unlinkat(const T v)
 {
     return print_or_enum_entries(v, fcntl_unlinkat);
@@ -120,6 +125,18 @@ template <typename T>
 std::string print_fcntl_faccessat(const T v)
 {
     return print_or_enum_entries(v, fcntl_faccessat);
+}
+
+template <typename T>
+std::string print_fcntl_execveat(const T v)
+{
+    return print_or_enum_entries(v, fcntl_execveat);
+}
+
+template <typename T>
+std::string print_fcntl_linkat(const T v)
+{
+    return print_or_enum_entries(v, fcntl_linkat);
 }
 
 template <typename T>

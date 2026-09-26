@@ -4,6 +4,8 @@
 
 #include "sgtty.h"
 
+#include "custom_enum_printers.h"
+
 namespace abii
 {
 static int (*real_gtty)(int, sgttyb*) __THROW = nullptr;
@@ -14,7 +16,10 @@ extern "C" int abii_gtty(int fd, sgttyb* params) __THROW
         pre_fmtd_str pi_str = "gtty(__fd, __params)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        abii_args->push_arg(new ArgPrinter(fd, "__fd"));
+        auto printer = new ArgPrinter(fd, "__fd");
+        printer->set_enum_printer(print_fd_enum_entry, fd);
+        abii_args->push_arg(printer);
+
         abii_args->push_arg(new ArgPrinter(params, "__params"));
 
         auto abii_ret = real_gtty(fd, params);
@@ -32,7 +37,10 @@ extern "C" int abii_stty(int fd, const sgttyb* params) __THROW
         pre_fmtd_str pi_str = "stty(__fd, __params)";
         abii_args->push_func(new ArgPrinter(pi_str));
 
-        abii_args->push_arg(new ArgPrinter(fd, "__fd"));
+        auto printer = new ArgPrinter(fd, "__fd");
+        printer->set_enum_printer(print_fd_enum_entry, fd);
+        abii_args->push_arg(printer);
+
         abii_args->push_arg(new ArgPrinter(params, "__params"));
 
         auto abii_ret = real_stty(fd, params);

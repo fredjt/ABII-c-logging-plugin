@@ -164,6 +164,7 @@ add_library(c-logger SHARED
             hooks/uchar.cpp
             hooks/ucontext.cpp
             hooks/ulimit.cpp hooks/ulimit.h
+            hooks/unistd.cpp hooks/unistd.h
             custom_enum_printers.h
             custom_printers.h
             )

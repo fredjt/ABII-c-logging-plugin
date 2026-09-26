@@ -5,7 +5,7 @@
 #include "dirent.h"
 #include "bits/dirent.h"
 
-#include "bits/fcntl-linux.h"
+#include "custom_enum_printers.h"
 
 namespace abii
 {
@@ -54,7 +54,9 @@ DIR* abii_fdopendir(int fd)
         pre_fmtd_str str = "fdopendir(__fd)";
         abii_args->push_func(new ArgPrinter(str));
 
-        abii_args->push_arg(new ArgPrinter(fd, "__fd"));
+        auto printer = new ArgPrinter(fd, "__fd");
+        printer->set_enum_printer(print_fd_enum_entry, fd);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_fdopendir(fd);
 
@@ -280,7 +282,7 @@ int abii_scandirat(int dfd, const char* dir, dirent*** namelist, int (*selector)
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(dfd, "__dfd");
-        printer->set_enum_printer(print_fcntl_linux_fd_pidfs_root, dfd);
+        printer->set_enum_printer(print_fd_enum_entry, dfd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(dir, "__dir"));
@@ -311,7 +313,7 @@ int abii_scandirat64(int dfd, const char* dir, dirent64*** namelist, int (*selec
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(dfd, "__dfd");
-        printer->set_enum_printer(print_fcntl_linux_fd_pidfs_root, dfd);
+        printer->set_enum_printer(print_fd_enum_entry, dfd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(dir, "__dir"));
@@ -377,17 +379,19 @@ __ssize_t abii_getdirentries(int fd, char* buf, size_t nbytes, __off_t* basep) _
         pre_fmtd_str str = "getdirentries(__fd, __buf, __nbytes, __basep)";
         abii_args->push_func(new ArgPrinter(str));
 
-        abii_args->push_arg(new ArgPrinter(fd, "__fd"));
-
-        auto printer = new ArgPrinter(buf, "__buf");
+        auto printer = new ArgPrinter(fd, "__fd");
+        printer->set_enum_printer(print_fd_enum_entry, fd);
         abii_args->push_arg(printer);
+
+        auto printer1 = new ArgPrinter(buf, "__buf");
+        abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(nbytes, "__nbytes"));
         abii_args->push_arg(new ArgPrinter(basep, "__basep"));
 
         auto abii_ret = real_getdirentries(fd, buf, nbytes, basep);
 
-        printer->set_len(abii_ret);
+        printer1->set_len(abii_ret);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(getdirentries, abii_ret)
@@ -403,17 +407,19 @@ __ssize_t abii_getdirentries64(int fd, char* buf, size_t nbytes, __off64_t* base
         pre_fmtd_str str = "getdirentries64(__fd, __buf, __nbytes, __basep)";
         abii_args->push_func(new ArgPrinter(str));
 
-        abii_args->push_arg(new ArgPrinter(fd, "__fd"));
-
-        auto printer = new ArgPrinter(buf, "__buf");
+        auto printer = new ArgPrinter(fd, "__fd");
+        printer->set_enum_printer(print_fd_enum_entry, fd);
         abii_args->push_arg(printer);
+
+        auto printer1 = new ArgPrinter(buf, "__buf");
+        abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(nbytes, "__nbytes"));
         abii_args->push_arg(new ArgPrinter(basep, "__basep"));
 
         auto abii_ret = real_getdirentries64(fd, buf, nbytes, basep);
 
-        printer->set_len(abii_ret);
+        printer1->set_len(abii_ret);
 
         abii_args->push_return(new ArgPrinter(abii_ret, "return"));
     OVERRIDE_SUFFIX(getdirentries64, abii_ret)

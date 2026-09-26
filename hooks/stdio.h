@@ -23,14 +23,6 @@ const defines_map stdio_eof = {
     {(-1), "EOF"}
 };
 
-const defines_map stdio_seek_whence = {
-    {0, "SEEK_SET"},
-    {1, "SEEK_CUR"},
-    {2, "SEEK_END"},
-    {3, "SEEK_DATA"},
-    {4, "SEEK_HOLE"}
-};
-
 const defines_map<const char*> stdio_p_tmpdir = {
     {"/tmp", "P_tmpdir"}
 };
@@ -84,12 +76,6 @@ template <typename T>
 std::string print_stdio_eof(const T v)
 {
     return print_enum_entry(v, stdio_eof);
-}
-
-template <typename T>
-std::string print_stdio_seek_whence(const T v)
-{
-    return print_enum_entry(v, stdio_seek_whence);
 }
 
 template <typename T>
