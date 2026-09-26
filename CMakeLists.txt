@@ -82,6 +82,7 @@ add_library(c-logger SHARED
             hooks/bits/time.cpp hooks/bits/time.h
             hooks/bits/timex.h
             hooks/linux/audit.h
+            hooks/linux/close_range.h
             hooks/linux/tty.h
             hooks/netinet/in.h
             hooks/sys/ucontext.h
