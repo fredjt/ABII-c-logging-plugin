@@ -1,4 +1,4 @@
-FROM ubuntu:26.10
+FROM ubuntu:26.04
 
 RUN dpkg --add-architecture i386
 RUN apt-get update && apt-get install -y \
