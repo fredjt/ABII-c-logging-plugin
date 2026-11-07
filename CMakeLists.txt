@@ -4,6 +4,8 @@ project(ABII-c-logging-plugin LANGUAGES CXX VERSION 0.5.0)
 
 set(CMAKE_CXX_STANDARD 20)
 
+option(BIT32 "build 32-bit plugin")
+
 if (BIT32)
 	list(PREPEND CMAKE_PREFIX_PATH
 	     "/usr/lib32/cmake/abii"
@@ -13,6 +15,8 @@ if (BIT32)
 	     )
 endif ()
 find_package(abii REQUIRED)
+
+include(cmake/glibcSource.cmake)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
