@@ -14,7 +14,7 @@ const defines_map wchar_minmax = {
     {0x7fffffff, "WCHAR_MAX"}
 };
 
-const defines_map wchar_weof = {
+const defines_map<wint_t> wchar_weof = {
     {0xffffffffu, "WEOF"}
 };
 
