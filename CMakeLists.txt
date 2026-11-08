@@ -177,6 +177,7 @@ add_library(c-logger SHARED
             hooks/values.h
             hooks/wchar.cpp hooks/wchar.h
             hooks/wctype.cpp hooks/wctype.h
+            hooks/wordexp.cpp hooks/wordexp.h
             custom_enum_printers.h
             custom_printers.h
             )
