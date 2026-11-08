@@ -106,6 +106,7 @@ add_library(c-logger SHARED
             hooks/dirent.cpp hooks/dirent.h
             hooks/dlfcn.cpp hooks/dlfcn.h
             hooks/elf.h
+            hooks/endian.h
             hooks/envz.cpp
             hooks/err.cpp
             hooks/errno.cpp
