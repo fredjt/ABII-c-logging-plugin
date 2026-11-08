@@ -123,6 +123,7 @@ add_library(c-logger SHARED
             hooks/grp.cpp hooks/grp.h
             hooks/gshadow.cpp hooks/gshadow.h
             hooks/iconv.cpp
+            hooks/ieee754.h
             hooks/ifaddrs.cpp hooks/ifaddrs.h
             hooks/inttypes.cpp hooks/inttypes.h
             hooks/langinfo.cpp hooks/langinfo.h
