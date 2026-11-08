@@ -101,6 +101,7 @@ add_library(c-logger SHARED
             hooks/argp.cpp hooks/argp.h
             hooks/argz.cpp
             hooks/assert.cpp
+            hooks/cpio.h
             hooks/ctype.cpp hooks/ctype.h
             hooks/dirent.cpp hooks/dirent.h
             hooks/dlfcn.cpp hooks/dlfcn.h
