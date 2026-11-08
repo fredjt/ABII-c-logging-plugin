@@ -28,6 +28,7 @@ endif ()
 add_compile_options("-fPIC")
 
 add_library(c-logger SHARED
+            hooks/arpa/ftp.h
             hooks/arpa/nameser_compat.h
             hooks/asm/ucontext.h
             hooks/asm/unistd_64.h
