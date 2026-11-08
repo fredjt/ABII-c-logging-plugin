@@ -10,7 +10,7 @@
 
 namespace abii
 {
-const defines_map<wint_t> wordexp_wrde_flags = {
+const defines_map wordexp_wrde_flags = {
     {1 << 0, "WRDE_DOOFFS"},
     {1 << 1, "WRDE_APPEND"},
     {1 << 2, "WRDE_NOCMD"},
@@ -20,7 +20,7 @@ const defines_map<wint_t> wordexp_wrde_flags = {
     {1 << 0 | 1 << 1 | 1 << 2 | 1 << 3 | 1 << 4 | 1 << 5, "__WRDE_FLAGS"}
 };
 
-const defines_map<wint_t> wordexp_wrde_ret = {
+const defines_map wordexp_wrde_ret = {
     {-1, "WRDE_NOSYS"},
     {1, "WRDE_NOSPACE"},
     {2, "WRDE_BADCHAR"},
