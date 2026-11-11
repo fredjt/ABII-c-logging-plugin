@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 7/14/24.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_PTHREADTYPES_H
-#define ABII_C_LOGGING_PLUGIN_PTHREADTYPES_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_PTHREADTYPES_H
+#define ABII_C_LOGGING_PLUGIN_BITS_PTHREADTYPES_H
 
 #include <bits/pthreadtypes.h>
 
@@ -43,4 +43,4 @@ inline bool operator==(const pthread_cond_t& lhs, const pthread_cond_t& rhs)
     return std::memcmp(&lhs, &rhs, sizeof(pthread_cond_t)) == 0;
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_PTHREADTYPES_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_PTHREADTYPES_H

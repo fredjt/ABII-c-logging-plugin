@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 5/24/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_AUDIT_H
-#define ABII_C_LOGGING_PLUGIN_AUDIT_H
+#ifndef ABII_C_LOGGING_PLUGIN_LINUX_AUDIT_H
+#define ABII_C_LOGGING_PLUGIN_LINUX_AUDIT_H
 
 #include <linux/audit.h>
 
@@ -72,4 +72,4 @@ std::string print_audit_arch(const T v)
 }
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_AUDIT_H
+#endif //ABII_C_LOGGING_PLUGIN_LINUX_AUDIT_H

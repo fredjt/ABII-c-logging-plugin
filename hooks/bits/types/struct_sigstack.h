@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 5/26/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_STRUCT_SIGSTACK_H
-#define ABII_C_LOGGING_PLUGIN_STRUCT_SIGSTACK_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_TYPES_STRUCT_SIGSTACK_H
+#define ABII_C_LOGGING_PLUGIN_BITS_TYPES_STRUCT_SIGSTACK_H
 
 #include <abii/libabii.h>
 #include <bits/types/struct_sigstack.h>
@@ -19,4 +19,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_STRUCT_SIGSTACK_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_TYPES_STRUCT_SIGSTACK_H

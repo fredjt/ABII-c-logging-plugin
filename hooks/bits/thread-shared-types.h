@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 3/7/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_THREAD_SHARED_TYPES_H
-#define ABII_C_LOGGING_PLUGIN_THREAD_SHARED_TYPES_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_THREAD_SHARED_TYPES_H
+#define ABII_C_LOGGING_PLUGIN_BITS_THREAD_SHARED_TYPES_H
 
 #include <bits/thread-shared-types.h>
 
@@ -51,4 +51,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_THREAD_SHARED_TYPES_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_THREAD_SHARED_TYPES_H

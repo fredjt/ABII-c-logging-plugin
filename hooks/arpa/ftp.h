@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 11/8/26.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_FTP_H
-#define ABII_C_LOGGING_PLUGIN_FTP_H
+#ifndef ABII_C_LOGGING_PLUGIN_ARPA_FTP_H
+#define ABII_C_LOGGING_PLUGIN_ARPA_FTP_H
 
 #include <abii/libabii.h>
 #include <arpa/ftp.h>
@@ -109,4 +109,4 @@ std::string print_arpa_ftp_blk_bytecount(const T v)
 }
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_FTP_H
+#endif //ABII_C_LOGGING_PLUGIN_ARPA_FTP_H

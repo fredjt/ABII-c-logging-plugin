@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 2/6/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_SCHED_H
-#define ABII_C_LOGGING_PLUGIN_SCHED_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_SCHED_H
+#define ABII_C_LOGGING_PLUGIN_BITS_SCHED_H
 
 #include <abii/libabii.h>
 #include <bits/sched.h>
@@ -27,4 +27,4 @@ std::string print_sched_algorithm(const T v)
 }
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_SCHED_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_SCHED_H

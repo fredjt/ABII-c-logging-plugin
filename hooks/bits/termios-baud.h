@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 7/3/26.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_TERMIOS_BAUD_H
-#define ABII_C_LOGGING_PLUGIN_TERMIOS_BAUD_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_TERMIOS_BAUD_H
+#define ABII_C_LOGGING_PLUGIN_BITS_TERMIOS_BAUD_H
 
 #include <abii/libabii.h>
 
@@ -64,4 +64,4 @@ std::string print_termios_baud_baud_rate(const T v)
 }
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_TERMIOS_BAUD_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_TERMIOS_BAUD_H

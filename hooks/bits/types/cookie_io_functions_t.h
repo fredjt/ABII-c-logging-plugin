@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 6/15/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_COOKIE_IO_FUNCTIONS_T_H
-#define ABII_C_LOGGING_PLUGIN_COOKIE_IO_FUNCTIONS_T_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_TYPES_COOKIE_IO_FUNCTIONS_T_H
+#define ABII_C_LOGGING_PLUGIN_BITS_TYPES_COOKIE_IO_FUNCTIONS_T_H
 
 #include <abii/libabii.h>
 #include <bits/types/cookie_io_functions_t.h>
@@ -21,4 +21,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_COOKIE_IO_FUNCTIONS_T_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_TYPES_COOKIE_IO_FUNCTIONS_T_H

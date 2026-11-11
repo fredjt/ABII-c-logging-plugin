@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 2/6/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_STRUCT_SCHED_PARAM_H
-#define ABII_C_LOGGING_PLUGIN_STRUCT_SCHED_PARAM_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_TYPES_STRUCT_SCHED_PARAM_H
+#define ABII_C_LOGGING_PLUGIN_BITS_TYPES_STRUCT_SCHED_PARAM_H
 
 #include <abii/libabii.h>
 #include <bits/types/struct_sched_param.h>
@@ -18,4 +18,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_STRUCT_SCHED_PARAM_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_TYPES_STRUCT_SCHED_PARAM_H

@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 7/23/24.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_ERRNO_H
-#define ABII_C_LOGGING_PLUGIN_ERRNO_H
+#ifndef ABII_C_LOGGING_PLUGIN_ASM_GENERIC_ERRNO_H
+#define ABII_C_LOGGING_PLUGIN_ASM_GENERIC_ERRNO_H
 
 #include <abii/libabii.h>
 
@@ -118,4 +118,4 @@ std::string print_errno_error(const T v)
 }
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_ERRNO_H
+#endif //ABII_C_LOGGING_PLUGIN_ASM_GENERIC_ERRNO_H

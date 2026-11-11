@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 3/10/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_IOCTL_TYPES_H
-#define ABII_C_LOGGING_PLUGIN_IOCTL_TYPES_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_IOCTL_TYPES_H
+#define ABII_C_LOGGING_PLUGIN_BITS_IOCTL_TYPES_H
 
 #include <abii/libabii.h>
 #include <sys/ioctl.h>
@@ -21,4 +21,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_IOCTL_TYPES_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_IOCTL_TYPES_H

@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 5/23/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_SIGNUM_GENERIC_H
-#define ABII_C_LOGGING_PLUGIN_SIGNUM_GENERIC_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_SIGNUM_GENERIC_H
+#define ABII_C_LOGGING_PLUGIN_BITS_SIGNUM_GENERIC_H
 
 #include <bits/signum-generic.h>
 
@@ -34,4 +34,4 @@ std::string print_signum_generic_signal(const T v)
 }
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_SIGNUM_GENERIC_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_SIGNUM_GENERIC_H

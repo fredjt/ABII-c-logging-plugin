@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 7/4/26.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_STRUCT_TIMEVAL_H
-#define ABII_C_LOGGING_PLUGIN_STRUCT_TIMEVAL_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_TYPES_STRUCT_TIMEVAL_H
+#define ABII_C_LOGGING_PLUGIN_BITS_TYPES_STRUCT_TIMEVAL_H
 
 #include <abii/libabii.h>
 
@@ -18,4 +18,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_STRUCT_TIMEVAL_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_TYPES_STRUCT_TIMEVAL_H

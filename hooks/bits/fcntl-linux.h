@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 8/17/24.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_FCNTL_LINUX_H
-#define ABII_C_LOGGING_PLUGIN_FCNTL_LINUX_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_FCNTL_LINUX_H
+#define ABII_C_LOGGING_PLUGIN_BITS_FCNTL_LINUX_H
 
 namespace abii
 {
@@ -263,4 +263,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
 }
 #endif
 
-#endif //ABII_C_LOGGING_PLUGIN_FCNTL_LINUX_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_FCNTL_LINUX_H

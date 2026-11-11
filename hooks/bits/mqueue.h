@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 10/6/24.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_MQUEUE_H
-#define ABII_C_LOGGING_PLUGIN_MQUEUE_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_MQUEUE_H
+#define ABII_C_LOGGING_PLUGIN_BITS_MQUEUE_H
 
 #include <mqueue.h>
 #include <abii/libabii.h>
@@ -22,4 +22,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_MQUEUE_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_MQUEUE_H

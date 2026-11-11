@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 4/17/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_RES_STATE_H
-#define ABII_C_LOGGING_PLUGIN_RES_STATE_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_TYPES_RES_STATE_H
+#define ABII_C_LOGGING_PLUGIN_BITS_TYPES_RES_STATE_H
 
 #include <abii/libabii.h>
 #include <bits/types/res_state.h>
@@ -91,4 +91,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_RES_STATE_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_TYPES_RES_STATE_H

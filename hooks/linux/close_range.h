@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 9/26/26.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_CLOSE_RANGE_H
-#define ABII_C_LOGGING_PLUGIN_CLOSE_RANGE_H
+#ifndef ABII_C_LOGGING_PLUGIN_LINUX_CLOSE_RANGE_H
+#define ABII_C_LOGGING_PLUGIN_LINUX_CLOSE_RANGE_H
 
 #include <abii/libabii.h>
 
@@ -21,4 +21,4 @@ std::string print_close_range_close_range(const T v)
 }
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_CLOSE_RANGE_H
+#endif //ABII_C_LOGGING_PLUGIN_LINUX_CLOSE_RANGE_H

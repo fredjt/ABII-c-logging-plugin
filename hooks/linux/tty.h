@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 7/3/26.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_TTY_H
-#define ABII_C_LOGGING_PLUGIN_TTY_H
+#ifndef ABII_C_LOGGING_PLUGIN_LINUX_TTY_H
+#define ABII_C_LOGGING_PLUGIN_LINUX_TTY_H
 
 #include <abii/libabii.h>
 
@@ -51,4 +51,4 @@ std::string print_tty_line_discipline(const T v)
 }
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_TTY_H
+#endif //ABII_C_LOGGING_PLUGIN_LINUX_TTY_H

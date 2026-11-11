@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 8/26/26.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_CONFNAME_H
-#define ABII_C_LOGGING_PLUGIN_CONFNAME_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_CONFNAME_H
+#define ABII_C_LOGGING_PLUGIN_BITS_CONFNAME_H
 
 #include <abii/libabii.h>
 
@@ -343,4 +343,4 @@ std::string print_bits_confname__cs_(const T v)
 }
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_CONFNAME_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_CONFNAME_H

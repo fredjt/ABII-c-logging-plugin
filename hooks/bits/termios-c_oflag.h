@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 7/3/26.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_TERMIOS_C_OFLAG_H
-#define ABII_C_LOGGING_PLUGIN_TERMIOS_C_OFLAG_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_TERMIOS_C_OFLAG_H
+#define ABII_C_LOGGING_PLUGIN_BITS_TERMIOS_C_OFLAG_H
 
 #include <abii/libabii.h>
 
@@ -50,4 +50,4 @@ std::string print_termios_c_oflag_flags(const T v)
 }
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_TERMIOS_C_OFLAG_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_TERMIOS_C_OFLAG_H

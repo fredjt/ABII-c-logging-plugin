@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 7/4/26.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_STRUCT_TM_H
-#define ABII_C_LOGGING_PLUGIN_STRUCT_TM_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_TYPES_STRUCT_TM_H
+#define ABII_C_LOGGING_PLUGIN_BITS_TYPES_STRUCT_TM_H
 
 #include <abii/libabii.h>
 
@@ -27,4 +27,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_STRUCT_TM_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_TYPES_STRUCT_TM_H

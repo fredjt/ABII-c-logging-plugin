@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 3/9/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_ATOMIC_WIDE_COUNTER_H
-#define ABII_C_LOGGING_PLUGIN_ATOMIC_WIDE_COUNTER_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_ATOMIC_WIDE_COUNTER_H
+#define ABII_C_LOGGING_PLUGIN_BITS_ATOMIC_WIDE_COUNTER_H
 
 #include <bits/atomic_wide_counter.h>
 
@@ -27,4 +27,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_ATOMIC_WIDE_COUNTER_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_ATOMIC_WIDE_COUNTER_H

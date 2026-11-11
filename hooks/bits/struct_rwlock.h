@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 3/8/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_STRUCT_RWLOCK_H
-#define ABII_C_LOGGING_PLUGIN_STRUCT_RWLOCK_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_STRUCT_RWLOCK_H
+#define ABII_C_LOGGING_PLUGIN_BITS_STRUCT_RWLOCK_H
 
 #include <bits/struct_rwlock.h>
 
@@ -41,4 +41,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_STRUCT_RWLOCK_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_STRUCT_RWLOCK_H

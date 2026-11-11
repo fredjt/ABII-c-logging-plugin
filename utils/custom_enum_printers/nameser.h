@@ -13,19 +13,19 @@
 namespace abii
 {
 template <typename T>
-std::string print_nameser_section_enum_entry(const T v)
+std::string print_nameser_section(const T v)
 {
     return print_enum_entry(v, arpa_nameser___ns_sect, nameser_compat_section);
 }
 
 template <typename T>
-std::string print_nameser_opcode_enum_entry(const T v)
+std::string print_nameser_opcode(const T v)
 {
     return print_enum_entry(v, arpa_nameser___ns_opcode, nameser_compat_opcode);
 }
 
 template <typename T>
-std::string print_nameser_rcode_enum_entry(const T v)
+std::string print_nameser_rcode(const T v)
 {
     return print_enum_entry(v, arpa_nameser___ns_rcode, nameser_compat_rcode);
 }

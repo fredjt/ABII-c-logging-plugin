@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 7/3/26.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_USER_H
-#define ABII_C_LOGGING_PLUGIN_USER_H
+#ifndef ABII_C_LOGGING_PLUGIN_SYS_USER_H
+#define ABII_C_LOGGING_PLUGIN_SYS_USER_H
 
 #include <abii/libabii.h>
 #include <sys/user.h>
@@ -196,4 +196,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_USER_H
+#endif //ABII_C_LOGGING_PLUGIN_SYS_USER_H

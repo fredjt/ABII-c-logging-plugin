@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 5/23/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_STRUCT___JMP_BUF_TAG_H
-#define ABII_C_LOGGING_PLUGIN_STRUCT___JMP_BUF_TAG_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_TYPES_STRUCT___JMP_BUF_TAG_H
+#define ABII_C_LOGGING_PLUGIN_BITS_TYPES_STRUCT___JMP_BUF_TAG_H
 
 #include <bits/types/struct___jmp_buf_tag.h>
 
@@ -21,4 +21,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_STRUCT___JMP_BUF_TAG_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_TYPES_STRUCT___JMP_BUF_TAG_H

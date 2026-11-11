@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 3/4/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_CPU_SET_H
-#define ABII_C_LOGGING_PLUGIN_CPU_SET_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_CPU_SET_H
+#define ABII_C_LOGGING_PLUGIN_BITS_CPU_SET_H
 
 #include <abii/libabii.h>
 #include <bits/cpu-set.h>
@@ -18,4 +18,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_CPU_SET_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_CPU_SET_H

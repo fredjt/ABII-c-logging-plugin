@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 9/18/24.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_STRUCT_STAT_H
-#define ABII_C_LOGGING_PLUGIN_STRUCT_STAT_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_STRUCT_STAT_H
+#define ABII_C_LOGGING_PLUGIN_BITS_STRUCT_STAT_H
 
 #include <bits/struct_stat.h>
 
@@ -120,4 +120,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_STRUCT_STAT_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_STRUCT_STAT_H

@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 5/23/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_SIGINFO_CONSTS_H
-#define ABII_C_LOGGING_PLUGIN_SIGINFO_CONSTS_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_SIGINFO_CONSTS_H
+#define ABII_C_LOGGING_PLUGIN_BITS_SIGINFO_CONSTS_H
 
 namespace abii
 {
@@ -201,4 +201,4 @@ std::string print_siginfo_consts_enum_si_sys(const T v)
 }
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_SIGINFO_CONSTS_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_SIGINFO_CONSTS_H

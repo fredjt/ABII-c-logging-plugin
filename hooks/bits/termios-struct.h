@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 3/10/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_TERMIOS_STRUCT_H
-#define ABII_C_LOGGING_PLUGIN_TERMIOS_STRUCT_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_TERMIOS_STRUCT_H
+#define ABII_C_LOGGING_PLUGIN_BITS_TERMIOS_STRUCT_H
 
 #include <termios.h>
 #include <abii/libabii.h>
@@ -64,4 +64,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_TERMIOS_STRUCT_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_TERMIOS_STRUCT_H

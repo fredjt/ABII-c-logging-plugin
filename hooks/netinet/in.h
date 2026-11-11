@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 12/23/24.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_IN_H
-#define ABII_C_LOGGING_PLUGIN_IN_H
+#ifndef ABII_C_LOGGING_PLUGIN_NETINET_IN_H
+#define ABII_C_LOGGING_PLUGIN_NETINET_IN_H
 
 #include <abii/libabii.h>
 #include <netinet/in.h>
@@ -103,4 +103,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
 }
 #endif
 
-#endif //ABII_C_LOGGING_PLUGIN_IN_H
+#endif //ABII_C_LOGGING_PLUGIN_NETINET_IN_H

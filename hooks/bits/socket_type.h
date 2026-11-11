@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 12/23/24.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_SOCKET_TYPE_H
-#define ABII_C_LOGGING_PLUGIN_SOCKET_TYPE_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_SOCKET_TYPE_H
+#define ABII_C_LOGGING_PLUGIN_BITS_SOCKET_TYPE_H
 
 #include <abii/libabii.h>
 
@@ -37,4 +37,4 @@ std::string print_socket_type_flag(const T v)
 }
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_SOCKET_TYPE_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_SOCKET_TYPE_H

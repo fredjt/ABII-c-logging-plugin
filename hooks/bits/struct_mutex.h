@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 3/7/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_STRUCT_MUTEX_H
-#define ABII_C_LOGGING_PLUGIN_STRUCT_MUTEX_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_STRUCT_MUTEX_H
+#define ABII_C_LOGGING_PLUGIN_BITS_STRUCT_MUTEX_H
 
 #include <bits/struct_mutex.h>
 
@@ -48,4 +48,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
 }
 #endif
 
-#endif //ABII_C_LOGGING_PLUGIN_STRUCT_MUTEX_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_STRUCT_MUTEX_H

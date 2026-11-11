@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 7/23/24.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN___LOCALE_T_H
-#define ABII_C_LOGGING_PLUGIN___LOCALE_T_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_TYPES___LOCALE_T_H
+#define ABII_C_LOGGING_PLUGIN_BITS_TYPES___LOCALE_T_H
 
 #include <abii/libabii.h>
 #include <bits/types/__locale_t.h>
@@ -22,4 +22,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN___LOCALE_T_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_TYPES___LOCALE_T_H

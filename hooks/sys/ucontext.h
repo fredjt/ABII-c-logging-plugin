@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 7/4/26.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_UCONTEXT_H
-#define ABII_C_LOGGING_PLUGIN_UCONTEXT_H
+#ifndef ABII_C_LOGGING_PLUGIN_SYS_UCONTEXT_H
+#define ABII_C_LOGGING_PLUGIN_SYS_UCONTEXT_H
 
 #include <ucontext.h>
 #include <abii/libabii.h>
@@ -178,4 +178,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_UCONTEXT_H
+#endif //ABII_C_LOGGING_PLUGIN_SYS_UCONTEXT_H

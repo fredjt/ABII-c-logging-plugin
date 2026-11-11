@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 5/26/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_SS_FLAGS_H
-#define ABII_C_LOGGING_PLUGIN_SS_FLAGS_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_SS_FLAGS_H
+#define ABII_C_LOGGING_PLUGIN_BITS_SS_FLAGS_H
 
 #include <bits/ss_flags.h>
 
@@ -21,4 +21,4 @@ std::string print_ss_flags_flag(const T v)
 }
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_SS_FLAGS_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_SS_FLAGS_H

@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 5/25/25.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_SIGCONTEXT_H
-#define ABII_C_LOGGING_PLUGIN_SIGCONTEXT_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_SIGCONTEXT_H
+#define ABII_C_LOGGING_PLUGIN_BITS_SIGCONTEXT_H
 
 #include <abii/libabii.h>
 #include <bits/sigcontext.h>
@@ -163,4 +163,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
 }
 #endif
 
-#endif //ABII_C_LOGGING_PLUGIN_SIGCONTEXT_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_SIGCONTEXT_H

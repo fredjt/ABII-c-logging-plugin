@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 9/28/24.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_SOCKET_H
-#define ABII_C_LOGGING_PLUGIN_SOCKET_H
+#ifndef ABII_C_LOGGING_PLUGIN_BITS_SOCKET_H
+#define ABII_C_LOGGING_PLUGIN_BITS_SOCKET_H
 
 #include <bits/socket.h>
 
@@ -142,4 +142,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_SOCKET_H
+#endif //ABII_C_LOGGING_PLUGIN_BITS_SOCKET_H

@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 7/3/26.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_UNISTD_64_H
-#define ABII_C_LOGGING_PLUGIN_UNISTD_64_H
+#ifndef ABII_C_LOGGING_PLUGIN_ASM_UNISTD_64_H
+#define ABII_C_LOGGING_PLUGIN_ASM_UNISTD_64_H
 
 #include <abii/libabii.h>
 
@@ -401,4 +401,4 @@ std::string print_unistd_64_syscall_no(const T v)
 }
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_UNISTD_64_H
+#endif //ABII_C_LOGGING_PLUGIN_ASM_UNISTD_64_H
