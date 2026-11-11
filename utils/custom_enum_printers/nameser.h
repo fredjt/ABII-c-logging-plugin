@@ -29,6 +29,24 @@ std::string print_nameser_rcode(const T v)
 {
     return print_enum_entry(v, arpa_nameser___ns_rcode, nameser_compat_rcode);
 }
+
+template <typename T>
+std::string print_nameser_update_operation(const T v)
+{
+    return print_enum_entry(v, arpa_nameser___ns_update_operation, nameser_compat_update_operation);
+}
+
+template <typename T>
+std::string print_nameser_type(const T v)
+{
+    return print_enum_entry(v, arpa_nameser___ns_type, nameser_compat_type);
+}
+
+template <typename T>
+std::string print_nameser_class(const T v)
+{
+    return print_enum_entry(v, arpa_nameser___ns_class, nameser_compat_class);
+}
 }
 
 #endif //ABII_C_LOGGING_PLUGIN_UTILS_CUSTOM_ENUM_PRINTERS_NAMESER_H

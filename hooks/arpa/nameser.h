@@ -438,7 +438,15 @@ std::string print_arpa_nameser_ns_opt_nsid(const T v)
 }
 }
 
+#include "utils/custom_enum_printers/nameser.h"
+
 using namespace abii;
+
+template <typename T>
+std::string print_nameser_type(T v);
+
+template <typename T>
+std::string print_nameser_class(T v);
 
 template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, __ns_msg>
 std::ostream& operator<<(std::ostream& os, T&& obj)
@@ -476,11 +484,11 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.name, "name", &os));
 
     auto printer = new ArgPrinter(obj.type, "type", &os);
-    printer->set_enum_printer(print_arpa_nameser___ns_type, obj.type);
+    printer->set_enum_printer(print_nameser_type, obj.type);
     abii_args->push_arg(printer);
 
     auto printer1 = new ArgPrinter(obj.rr_class, "rr_class", &os);
-    printer1->set_enum_printer(print_arpa_nameser___ns_class, obj.rr_class);
+    printer1->set_enum_printer(print_nameser_class, obj.rr_class);
     abii_args->push_arg(printer1);
 
     abii_args->push_arg(new ArgPrinter(obj.ttl, "ttl", &os));
