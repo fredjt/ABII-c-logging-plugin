@@ -30,6 +30,7 @@ add_compile_options("-fPIC")
 add_library(c-logger SHARED
             hooks/arpa/ftp.h
             hooks/arpa/inet.cpp
+            hooks/arpa/nameser.cpp hooks/arpa/nameser.h
             hooks/arpa/nameser_compat.h
             hooks/asm/ucontext.h
             hooks/asm/unistd_64.h
