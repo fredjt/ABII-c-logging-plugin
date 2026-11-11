@@ -70,7 +70,7 @@ void abii_backtrace_symbols_fd(void* const * array, int size, int fd) __THROW
         abii_args->push_arg(new ArgPrinter(size, "__size"));
 
         auto printer1 = new ArgPrinter(fd, "__fd");
-        printer1->set_enum_printer(print_fd_enum_entry, fd);
+        printer1->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer1);
 
         real_backtrace_symbols_fd(array, size, fd);

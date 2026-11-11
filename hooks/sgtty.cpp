@@ -17,7 +17,7 @@ extern "C" int abii_gtty(int fd, sgttyb* params) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(params, "__params"));
@@ -38,7 +38,7 @@ extern "C" int abii_stty(int fd, const sgttyb* params) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(params, "__params"));

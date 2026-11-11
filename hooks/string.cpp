@@ -802,7 +802,7 @@ extern "C" char* abii_strerror(int errnum) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(errnum, "__errnum");
-        printer->set_enum_printer(print_error_enum_entry, errnum);
+        printer->set_enum_printer(print_error, errnum);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_strerror(errnum);
@@ -822,7 +822,7 @@ char* abii_strerror_r(int errnum, char* buf, size_t buflen) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(errnum, "__errnum");
-        printer->set_enum_printer(print_error_enum_entry, errnum);
+        printer->set_enum_printer(print_error, errnum);
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(buf, "__buf");
@@ -847,7 +847,7 @@ extern "C" const char* abii_strerrordesc_np(int err) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(err, "__err");
-        printer->set_enum_printer(print_error_enum_entry, err);
+        printer->set_enum_printer(print_error, err);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_strerrordesc_np(err);
@@ -866,7 +866,7 @@ extern "C" const char* abii_strerrorname_np(int err) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(err, "__err");
-        printer->set_enum_printer(print_error_enum_entry, err);
+        printer->set_enum_printer(print_error, err);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_strerrorname_np(err);
@@ -885,7 +885,7 @@ extern "C" char* abii_strerror_l(int errnum, locale_t l) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(errnum, "__errnum");
-        printer->set_enum_printer(print_error_enum_entry, errnum);
+        printer->set_enum_printer(print_error, errnum);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(l, "__l"));
@@ -945,7 +945,7 @@ extern "C" char* abii_strsignal(int sig) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_strsignal(sig);
@@ -964,7 +964,7 @@ extern "C" const char* abii_sigabbrev_np(int sig) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_sigabbrev_np(sig);
@@ -983,7 +983,7 @@ extern "C" const char* abii_sigdescr_np(int sig) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_sigdescr_np(sig);

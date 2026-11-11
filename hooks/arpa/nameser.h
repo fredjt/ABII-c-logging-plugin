@@ -2,8 +2,8 @@
 // Created by Trent Tanchin on 11/8/26.
 //
 
-#ifndef ABII_C_LOGGING_PLUGIN_NAMESER_H
-#define ABII_C_LOGGING_PLUGIN_NAMESER_H
+#ifndef ABII_C_LOGGING_PLUGIN_ARPA_NAMESER_H
+#define ABII_C_LOGGING_PLUGIN_ARPA_NAMESER_H
 
 #include <abii/libabii.h>
 #include <arpa/nameser.h>
@@ -522,4 +522,4 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     OVERRIDE_STREAM_SUFFIX
 }
 
-#endif //ABII_C_LOGGING_PLUGIN_NAMESER_H
+#endif //ABII_C_LOGGING_PLUGIN_ARPA_NAMESER_H

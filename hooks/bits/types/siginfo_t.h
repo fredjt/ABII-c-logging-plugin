@@ -22,11 +22,11 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
 {
     OVERRIDE_STREAM_PREFIX
     auto printer = new ArgPrinter(obj.si_signo, "si_signo", &os);
-    printer->set_enum_printer(print_signum_enum_entry, obj.si_signo);
+    printer->set_enum_printer(print_signum, obj.si_signo);
     abii_args->push_arg(printer);
 
     auto printer1 = new ArgPrinter(obj.si_errno, "si_errno", &os);
-    printer1->set_enum_printer(print_error_enum_entry, obj.si_errno);
+    printer1->set_enum_printer(print_error, obj.si_errno);
 
     auto printer2 = new ArgPrinter(obj.si_code, "si_code", &os);
     switch (obj.si_signo)
@@ -132,7 +132,7 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(new ArgPrinter(obj.si_uid, "si_uid", &os));
 
     auto printer = new ArgPrinter(obj.si_status, "si_status", &os);
-    printer->set_enum_printer(print_signum_enum_entry, obj.si_status);
+    printer->set_enum_printer(print_signum, obj.si_status);
     abii_args->push_arg(printer);
 
     abii_args->push_arg(new ArgPrinter(obj.si_utime, "si_utime", &os));

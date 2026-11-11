@@ -47,19 +47,19 @@ std::ostream& operator<<(std::ostream& os, T&& obj)
     abii_args->push_arg(printer5);
 
     auto printer6 = new ArgPrinter(obj.__ispeed, "__ispeed", &os);
-    printer6->set_enum_printer(print_baud_rate_enum_entry, obj.__ispeed);
+    printer6->set_enum_printer(print_baud_rate, obj.__ispeed);
     abii_args->push_arg(printer6);
 
     auto printer7 = new ArgPrinter(obj.c_ispeed, "c_ispeed", &os);
-    printer7->set_enum_printer(print_baud_rate_enum_entry, obj.c_ispeed);
+    printer7->set_enum_printer(print_baud_rate, obj.c_ispeed);
     abii_args->push_arg(printer7);
 
     auto printer8 = new ArgPrinter(obj.__ospeed, "__ospeed", &os);
-    printer8->set_enum_printer(print_baud_rate_enum_entry, obj.__ospeed);
+    printer8->set_enum_printer(print_baud_rate, obj.__ospeed);
     abii_args->push_arg(printer8);
 
     auto printer9 = new ArgPrinter(obj.c_ospeed, "c_ospeed", &os, RECURSE);
-    printer9->set_enum_printer(print_baud_rate_enum_entry, obj.c_ospeed);
+    printer9->set_enum_printer(print_baud_rate, obj.c_ospeed);
     abii_args->push_arg(printer9);
     OVERRIDE_STREAM_SUFFIX
 }

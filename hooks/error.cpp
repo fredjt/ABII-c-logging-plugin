@@ -22,7 +22,7 @@ void abii_error(int status, int errnum, const char* format, ...)
         abii_args->push_arg(new ArgPrinter(status, "__status"));
 
         auto printer = new ArgPrinter(errnum, "__errnum");
-        printer->set_enum_printer(print_error_enum_entry, errnum);
+        printer->set_enum_printer(print_error, errnum);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(format, "__format"));
@@ -54,7 +54,7 @@ void abii_error_at_line(int status, int errnum, const char* fname, unsigned int 
         abii_args->push_arg(new ArgPrinter(status, "__status"));
 
         auto printer = new ArgPrinter(errnum, "__errnum");
-        printer->set_enum_printer(print_error_enum_entry, errnum);
+        printer->set_enum_printer(print_error, errnum);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(fname, "__fname"));

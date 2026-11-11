@@ -55,7 +55,7 @@ extern "C" int abii_cfsetospeed(termios* termios_p, speed_t speed) __THROW
         abii_args->push_arg(new ArgPrinter(termios_p, "__termios_p"));
 
         auto printer = new ArgPrinter(speed, "__speed");
-        printer->set_enum_printer(print_baud_rate_enum_entry, speed);
+        printer->set_enum_printer(print_baud_rate, speed);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_cfsetospeed(termios_p, speed);
@@ -76,7 +76,7 @@ extern "C" int abii_cfsetispeed(termios* termios_p, speed_t speed) __THROW
         abii_args->push_arg(new ArgPrinter(termios_p, "__termios_p"));
 
         auto printer = new ArgPrinter(speed, "__speed");
-        printer->set_enum_printer(print_baud_rate_enum_entry, speed);
+        printer->set_enum_printer(print_baud_rate, speed);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_cfsetispeed(termios_p, speed);
@@ -97,7 +97,7 @@ extern "C" int abii_cfsetspeed(termios* termios_p, speed_t speed) __THROW
         abii_args->push_arg(new ArgPrinter(termios_p, "__termios_p"));
 
         auto printer = new ArgPrinter(speed, "__speed");
-        printer->set_enum_printer(print_baud_rate_enum_entry, speed);
+        printer->set_enum_printer(print_baud_rate, speed);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_cfsetspeed(termios_p, speed);
@@ -120,7 +120,7 @@ extern "C" baud_t abii_cfgetobaud(const termios* termios_p) __THROW
         auto abii_ret = real_cfgetobaud(termios_p);
 
         auto printer = new ArgPrinter(abii_ret, "return");
-        printer->set_enum_printer(print_baud_rate_enum_entry, abii_ret);
+        printer->set_enum_printer(print_baud_rate, abii_ret);
         abii_args->push_return(printer);
     OVERRIDE_SUFFIX(cfgetobaud, abii_ret)
     return real_cfgetobaud(termios_p);
@@ -139,7 +139,7 @@ extern "C" baud_t abii_cfgetibaud(const termios* termios_p) __THROW
         auto abii_ret = real_cfgetibaud(termios_p);
 
         auto printer = new ArgPrinter(abii_ret, "return");
-        printer->set_enum_printer(print_baud_rate_enum_entry, abii_ret);
+        printer->set_enum_printer(print_baud_rate, abii_ret);
         abii_args->push_return(printer);
     OVERRIDE_SUFFIX(cfgetibaud, abii_ret)
     return real_cfgetibaud(termios_p);
@@ -156,7 +156,7 @@ extern "C" int abii_cfsetobaud(termios* termios_p, baud_t baud) __THROW
         abii_args->push_arg(new ArgPrinter(termios_p, "__termios_p"));
 
         auto printer = new ArgPrinter(baud, "__baud");
-        printer->set_enum_printer(print_baud_rate_enum_entry, baud);
+        printer->set_enum_printer(print_baud_rate, baud);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_cfsetobaud(termios_p, baud);
@@ -177,7 +177,7 @@ extern "C" int abii_cfsetibaud(termios* termios_p, baud_t baud) __THROW
         abii_args->push_arg(new ArgPrinter(termios_p, "__termios_p"));
 
         auto printer = new ArgPrinter(baud, "__baud");
-        printer->set_enum_printer(print_baud_rate_enum_entry, baud);
+        printer->set_enum_printer(print_baud_rate, baud);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_cfsetibaud(termios_p, baud);
@@ -198,7 +198,7 @@ extern "C" int abii_cfsetbaud(termios* termios_p, baud_t baud) __THROW
         abii_args->push_arg(new ArgPrinter(termios_p, "__termios_p"));
 
         auto printer = new ArgPrinter(baud, "__baud");
-        printer->set_enum_printer(print_baud_rate_enum_entry, baud);
+        printer->set_enum_printer(print_baud_rate, baud);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_cfsetbaud(termios_p, baud);
@@ -217,7 +217,7 @@ extern "C" int abii_tcgetattr(int fd, termios* termios_p) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(termios_p, "__termios_p"));
@@ -238,7 +238,7 @@ extern "C" int abii_tcsetattr(int fd, int optional_actions, const termios* termi
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(optional_actions, "__optional_actions");
@@ -278,7 +278,7 @@ extern "C" int auto_tcsendbreak(int fd, int duration) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(duration, "__duration"));
@@ -299,7 +299,7 @@ extern "C" int abii_tcdrain(int fd)
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_tcdrain(fd);
@@ -318,7 +318,7 @@ extern "C" int abii_tcflush(int fd, int queue_selector) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(queue_selector, "__queue_selector");
@@ -341,7 +341,7 @@ extern "C" int abii_tcflow(int fd, int action) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(action, "__action");
@@ -364,7 +364,7 @@ extern "C" __pid_t abii_tcgetsid(int fd) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_tcgetsid(fd);

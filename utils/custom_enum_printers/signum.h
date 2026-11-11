@@ -13,7 +13,7 @@
 namespace abii
 {
 template <typename T>
-std::string print_signum_enum_entry(const T v)
+std::string print_signum(const T v)
 {
     return print_enum_entry(v, signum_arch_signal, signum_generic_signal);
 }

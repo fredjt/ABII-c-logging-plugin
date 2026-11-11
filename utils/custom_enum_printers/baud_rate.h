@@ -14,7 +14,7 @@
 namespace abii
 {
 template <typename T>
-std::string print_baud_rate_enum_entry(const T v)
+std::string print_baud_rate(const T v)
 {
     return print_enum_entry(v, termios_baud_rate, termios_baud_baud_rate, termios_baud_max);
 }

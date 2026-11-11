@@ -55,7 +55,7 @@ DIR* abii_fdopendir(int fd)
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_fdopendir(fd);
@@ -282,7 +282,7 @@ int abii_scandirat(int dfd, const char* dir, dirent*** namelist, int (*selector)
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(dfd, "__dfd");
-        printer->set_enum_printer(print_fd_enum_entry, dfd);
+        printer->set_enum_printer(print_fd, dfd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(dir, "__dir"));
@@ -313,7 +313,7 @@ int abii_scandirat64(int dfd, const char* dir, dirent64*** namelist, int (*selec
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(dfd, "__dfd");
-        printer->set_enum_printer(print_fd_enum_entry, dfd);
+        printer->set_enum_printer(print_fd, dfd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(dir, "__dir"));
@@ -380,7 +380,7 @@ __ssize_t abii_getdirentries(int fd, char* buf, size_t nbytes, __off_t* basep) _
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(buf, "__buf");
@@ -408,7 +408,7 @@ __ssize_t abii_getdirentries64(int fd, char* buf, size_t nbytes, __off64_t* base
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(buf, "__buf");

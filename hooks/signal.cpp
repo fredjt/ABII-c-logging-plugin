@@ -24,7 +24,7 @@ extern "C" __sighandler_t abii___sysv_signal(int sig, __sighandler_t handler) __
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(handler, "__handler"));
@@ -45,7 +45,7 @@ extern "C" __sighandler_t abii_sysv_signal(int sig, __sighandler_t handler) __TH
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(handler, "__handler"));
@@ -66,7 +66,7 @@ extern "C" __sighandler_t abii_signal(int sig, __sighandler_t handler) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(handler, "__handler"));
@@ -87,7 +87,7 @@ extern "C" __sighandler_t abii_bsd_signal(int sig, __sighandler_t handler) __THR
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(handler, "__handler"));
@@ -110,7 +110,7 @@ extern "C" int abii_kill(__pid_t pid, int sig) __THROW
         abii_args->push_arg(new ArgPrinter(pid, "__pid"));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_kill(pid, sig);
@@ -131,7 +131,7 @@ extern "C" int abii_killpg(__pid_t pgrp, int sig) __THROW
         abii_args->push_arg(new ArgPrinter(pgrp, "__pgrp"));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_killpg(pgrp, sig);
@@ -150,7 +150,7 @@ extern "C" int abii_raise(int sig) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_raise(sig);
@@ -169,7 +169,7 @@ extern "C" __sighandler_t abii_ssignal(int sig, __sighandler_t handler) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(handler, "__handler"));
@@ -190,7 +190,7 @@ extern "C" int abii_gsignal(int sig) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_gsignal(sig);
@@ -209,7 +209,7 @@ extern "C" void abii_psignal(int sig, const char* s)
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(s, "__s"));
@@ -245,7 +245,7 @@ int abii___xpg_sigpause(int sig)
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         auto abii_ret = real___xpg_sigpause(sig);
@@ -265,7 +265,7 @@ int abii_sigpause(int sig)
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_sigpause(sig);
@@ -285,7 +285,7 @@ int abii___sigpause(int sig_or_mask, int is_sig)
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig_or_mask, "__sig_or_mask");
-        printer->set_enum_printer(print_signum_enum_entry, sig_or_mask);
+        printer->set_enum_printer(print_signum, sig_or_mask);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(is_sig, "__is_sig"));
@@ -397,7 +397,7 @@ int abii_sigaddset(sigset_t* set, int signo) __THROW
         abii_args->push_arg(new ArgPrinter(set, "__set"));
 
         auto printer = new ArgPrinter(signo, "__signo");
-        printer->set_enum_printer(print_signum_enum_entry, signo);
+        printer->set_enum_printer(print_signum, signo);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_sigaddset(set, signo);
@@ -419,7 +419,7 @@ int abii_sigdelset(sigset_t* set, int signo) __THROW
         abii_args->push_arg(new ArgPrinter(set, "__set"));
 
         auto printer = new ArgPrinter(signo, "__signo");
-        printer->set_enum_printer(print_signum_enum_entry, signo);
+        printer->set_enum_printer(print_signum, signo);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_sigdelset(set, signo);
@@ -441,7 +441,7 @@ int abii_sigismember(const sigset_t* set, int signo) __THROW
         abii_args->push_arg(new ArgPrinter(set, "__set"));
 
         auto printer = new ArgPrinter(signo, "__signo");
-        printer->set_enum_printer(print_signum_enum_entry, signo);
+        printer->set_enum_printer(print_signum, signo);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_sigismember(set, signo);
@@ -558,7 +558,7 @@ extern "C" int abii_sigaction(int sig, const struct sigaction* act, struct sigac
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(act, "__act"));
@@ -601,7 +601,7 @@ int abii_sigwait(const sigset_t* set, int* sig)
         abii_args->push_arg(new ArgPrinter(set, "__set"));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer_with_depth(print_signum_enum_entry, *sig, 1);
+        printer->set_enum_printer_with_depth(print_signum, *sig, 1);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_sigwait(set, sig);
@@ -696,7 +696,7 @@ int abii_siginterrupt(int sig, int interrupt) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(interrupt, "__interrupt"));
@@ -755,7 +755,7 @@ int abii_sighold(int sig) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_sighold(sig);
@@ -775,7 +775,7 @@ int abii_sigrelse(int sig) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_sigrelse(sig);
@@ -795,7 +795,7 @@ int abii_sigignore(int sig) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_sigignore(sig);
@@ -815,7 +815,7 @@ __sighandler_t abii_sigset(int sig, __sighandler_t disp) __THROW
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(sig, "__sig");
-        printer->set_enum_printer(print_signum_enum_entry, sig);
+        printer->set_enum_printer(print_signum, sig);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(disp, "__disp"));

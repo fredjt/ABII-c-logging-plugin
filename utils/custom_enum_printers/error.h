@@ -13,7 +13,7 @@
 namespace abii
 {
 template <typename T>
-std::string print_error_enum_entry(const T v)
+std::string print_error(const T v)
 {
     return print_enum_entry(v, errno_error, errno_base_error);
 }

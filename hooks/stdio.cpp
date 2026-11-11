@@ -58,13 +58,13 @@ extern "C" int abii_renameat(int oldfd, const char* old, int newfd, const char* 
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(oldfd, "__oldfd");
-        printer->set_enum_printer(print_fd_enum_entry, oldfd);
+        printer->set_enum_printer(print_fd, oldfd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(old, "__old"));
 
         auto printer1 = new ArgPrinter(newfd, "__newfd");
-        printer1->set_enum_printer(print_fd_enum_entry, newfd);
+        printer1->set_enum_printer(print_fd, newfd);
         abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(_new, "__new"));
@@ -85,13 +85,13 @@ extern "C" int abii_renameat2(int oldfd, const char* old, int newfd, const char*
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(oldfd, "__oldfd");
-        printer->set_enum_printer(print_fd_enum_entry, oldfd);
+        printer->set_enum_printer(print_fd, oldfd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(old, "__old"));
 
         auto printer1 = new ArgPrinter(newfd, "__newfd");
-        printer1->set_enum_printer(print_fd_enum_entry, newfd);
+        printer1->set_enum_printer(print_fd, newfd);
         abii_args->push_arg(printer1);
 
         abii_args->push_arg(new ArgPrinter(_new, "__new"));

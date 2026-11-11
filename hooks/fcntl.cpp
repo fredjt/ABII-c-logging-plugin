@@ -26,7 +26,7 @@ extern "C" int abii_fcntl(int fd, int cmd, ...)
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(cmd, "__cmd");
@@ -59,7 +59,7 @@ extern "C" int abii_fcntl(int fd, int cmd, ...)
                     printer2->set_enum_printer(print_fcntl_linux_oflag, arg);
                     break;
                 case F_SETSIG:
-                    printer2->set_enum_printer(print_signum_enum_entry, arg);
+                    printer2->set_enum_printer(print_signum, arg);
                     break;
                 case F_ADD_SEALS:
                     printer2->set_enum_printer(print_fcntl_linux_seal, arg);
@@ -123,7 +123,7 @@ extern "C" int abii_fcntl(int fd, int cmd, ...)
             printer2->set_enum_printer(print_fcntl_linux_oflag, abii_ret);
             break;
         case F_GETSIG:
-            printer2->set_enum_printer(print_signum_enum_entry, abii_ret);
+            printer2->set_enum_printer(print_signum, abii_ret);
             break;
         case F_GET_SEALS:
             printer2->set_enum_printer(print_fcntl_linux_seal, abii_ret);
@@ -145,7 +145,7 @@ extern "C" int abii_fcntl64(int fd, int cmd, ...)
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(cmd, "__cmd");
@@ -178,7 +178,7 @@ extern "C" int abii_fcntl64(int fd, int cmd, ...)
                     printer2->set_enum_printer(print_fcntl_linux_oflag, arg);
                     break;
                 case F_SETSIG:
-                    printer2->set_enum_printer(print_signum_enum_entry, arg);
+                    printer2->set_enum_printer(print_signum, arg);
                     break;
                 case F_ADD_SEALS:
                     printer2->set_enum_printer(print_fcntl_linux_seal, arg);
@@ -242,7 +242,7 @@ extern "C" int abii_fcntl64(int fd, int cmd, ...)
             printer2->set_enum_printer(print_fcntl_linux_oflag, abii_ret);
             break;
         case F_GETSIG:
-            printer2->set_enum_printer(print_signum_enum_entry, abii_ret);
+            printer2->set_enum_printer(print_signum, abii_ret);
             break;
         case F_GET_SEALS:
             printer2->set_enum_printer(print_fcntl_linux_seal, abii_ret);
@@ -288,7 +288,7 @@ int abii_open(const char* file, int oflag, ...)
         va_end(vargs);
 
         auto printer2 = new ArgPrinter(abii_ret, "return");
-        printer2->set_enum_printer(print_fd_enum_entry, abii_ret);
+        printer2->set_enum_printer(print_fd, abii_ret);
         abii_args->push_return(printer2);
     OVERRIDE_SUFFIX(open, abii_ret)
     return real_open(file, oflag);
@@ -327,7 +327,7 @@ int abii_open64(const char* file, int oflag, ...)
         va_end(vargs);
 
         auto printer2 = new ArgPrinter(abii_ret, "return");
-        printer2->set_enum_printer(print_fd_enum_entry, abii_ret);
+        printer2->set_enum_printer(print_fd, abii_ret);
         abii_args->push_return(printer2);
     OVERRIDE_SUFFIX(open64, abii_ret)
     return real_open64(file, oflag);
@@ -343,7 +343,7 @@ int abii_openat(int fd, const char* file, int oflag, ...)
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(file, "__file"));
@@ -370,7 +370,7 @@ int abii_openat(int fd, const char* file, int oflag, ...)
         va_end(vargs);
 
         auto printer2 = new ArgPrinter(abii_ret, "return");
-        printer2->set_enum_printer(print_fd_enum_entry, abii_ret);
+        printer2->set_enum_printer(print_fd, abii_ret);
         abii_args->push_return(printer2);
     OVERRIDE_SUFFIX(openat, abii_ret)
     return real_openat(fd, file, oflag);
@@ -386,7 +386,7 @@ int abii_openat64(int fd, const char* file, int oflag, ...)
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(file, "__file"));
@@ -413,7 +413,7 @@ int abii_openat64(int fd, const char* file, int oflag, ...)
         va_end(vargs);
 
         auto printer2 = new ArgPrinter(abii_ret, "return");
-        printer2->set_enum_printer(print_fd_enum_entry, abii_ret);
+        printer2->set_enum_printer(print_fd, abii_ret);
         abii_args->push_return(printer2);
     OVERRIDE_SUFFIX(openat64, abii_ret)
     return real_openat64(fd, file, oflag);
@@ -437,7 +437,7 @@ int abii_creat(const char* file, mode_t mode)
         auto abii_ret = real_creat(file, mode);
 
         auto printer1 = new ArgPrinter(abii_ret, "return");
-        printer1->set_enum_printer(print_fd_enum_entry, abii_ret);
+        printer1->set_enum_printer(print_fd, abii_ret);
         abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(creat, abii_ret)
     return real_creat(file, mode);
@@ -461,7 +461,7 @@ int abii_creat64(const char* file, mode_t mode)
         auto abii_ret = real_creat64(file, mode);
 
         auto printer1 = new ArgPrinter(abii_ret, "return");
-        printer1->set_enum_printer(print_fd_enum_entry, abii_ret);
+        printer1->set_enum_printer(print_fd, abii_ret);
         abii_args->push_return(printer1);
     OVERRIDE_SUFFIX(creat64, abii_ret)
     return real_creat64(file, mode);
@@ -476,7 +476,7 @@ extern "C" __wur int abii_lockf(int fd, int cmd, off_t len)
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(cmd, "__cmd");
@@ -501,7 +501,7 @@ extern "C" __wur int abii_lockf64(int fd, int cmd, off_t len)
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(cmd, "__cmd");
@@ -526,7 +526,7 @@ extern "C" int abii_posix_fadvise(int fd, off_t offset, off_t len, int advise) _
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(offset, "__offset"));
@@ -552,7 +552,7 @@ extern "C" int abii_posix_fadvise64(int fd, off_t offset, off_t len, int advise)
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(offset, "__offset"));
@@ -578,7 +578,7 @@ extern "C" int abii_posix_fallocate(int fd, off_t offset, off_t len)
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(offset, "__offset"));
@@ -600,7 +600,7 @@ extern "C" int abii_posix_fallocate64(int fd, off_t offset, off_t len)
         abii_args->push_func(new ArgPrinter(str));
 
         auto printer = new ArgPrinter(fd, "__fd");
-        printer->set_enum_printer(print_fd_enum_entry, fd);
+        printer->set_enum_printer(print_fd, fd);
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(offset, "__offset"));

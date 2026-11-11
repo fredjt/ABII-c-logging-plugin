@@ -100,7 +100,7 @@ int abii_aio_error(const aiocb* aiocbp) __THROW
         auto abii_ret = real_aio_error(aiocbp);
 
         auto printer = new ArgPrinter(abii_ret, "return");
-        printer->set_enum_printer(print_error_enum_entry, abii_ret);
+        printer->set_enum_printer(print_error, abii_ret);
         abii_args->push_return(printer);
     OVERRIDE_SUFFIX(aio_error, abii_ret)
     return real_aio_error(aiocbp);
