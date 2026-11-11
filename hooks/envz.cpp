@@ -4,7 +4,7 @@
 
 #include <abii/libabii.h>
 
-#include "custom_enum_printers.h"
+#include "utils/custom_enum_printers/error.h"
 
 namespace abii
 {

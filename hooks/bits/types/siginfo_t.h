@@ -9,10 +9,11 @@
 #include <abii/libabii.h>
 #include <bits/types/siginfo_t.h>
 
-#include "custom_enum_printers.h"
 #include "__sigval_t.h"
 #include "hooks/bits/siginfo-consts.h"
 #include "hooks/linux/audit.h"
+#include "utils/custom_enum_printers/error.h"
+#include "utils/custom_enum_printers/signum.h"
 
 using namespace abii;
 

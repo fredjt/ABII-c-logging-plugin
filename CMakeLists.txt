@@ -184,8 +184,12 @@ add_library(c-logger SHARED
             hooks/wchar.cpp hooks/wchar.h
             hooks/wctype.cpp hooks/wctype.h
             hooks/wordexp.cpp hooks/wordexp.h
-            custom_enum_printers.h
             custom_printers.h
+            utils/custom_enum_printers/baud_rate.h
+            utils/custom_enum_printers/error.h
+            utils/custom_enum_printers/fd.h
+            utils/custom_enum_printers/nameser.h
+            utils/custom_enum_printers/signum.h
             )
 
 target_link_libraries(c-logger PUBLIC abii::libabii)

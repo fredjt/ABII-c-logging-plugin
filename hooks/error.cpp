@@ -2,9 +2,10 @@
 // Created by Trent Tanchin on 8/17/24.
 //
 
+#include "utils/custom_enum_printers/error.h"
+
 #include <abii/libabii.h>
 
-#include "custom_enum_printers.h"
 #include "custom_printers.h"
 
 namespace abii

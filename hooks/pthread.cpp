@@ -4,7 +4,6 @@
 
 #include "pthread.h"
 
-#include "custom_enum_printers.h"
 #include "bits/cpu-set.h"
 #include "bits/pthreadtypes.h"
 #include "bits/sched.h"
@@ -13,6 +12,7 @@
 #include "bits/types/struct_timespec.h"
 #include "bits/types/struct___jmp_buf_tag.h"
 #include "bits/types/__sigset_t.h"
+#include "utils/custom_enum_printers/error.h"
 
 namespace abii
 {

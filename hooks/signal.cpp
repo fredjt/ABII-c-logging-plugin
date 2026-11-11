@@ -4,14 +4,14 @@
 
 #include <abii/libabii.h>
 
-#include "custom_enum_printers.h"
-#include "bits/sigaction.h"
-#include "bits/sigcontext.h"
-#include "bits/types/siginfo_t.h"
-#include "bits/types/stack_t.h"
-#include "bits/types/struct_sigstack.h"
-#include "bits/types/struct_timespec.h"
-#include "bits/types/__sigset_t.h"
+#include "hooks/bits/types/siginfo_t.h"
+#include "hooks/bits/types/stack_t.h"
+#include "hooks/bits/types/struct_sigstack.h"
+#include "hooks/bits/types/struct_timespec.h"
+#include "hooks/bits/types/__sigset_t.h"
+#include "hooks/bits/sigaction.h"
+#include "hooks/bits/sigcontext.h"
+#include "utils/custom_enum_printers/signum.h"
 
 namespace abii
 {

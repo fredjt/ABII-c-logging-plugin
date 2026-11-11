@@ -5,8 +5,9 @@
 #include "fcntl.h"
 #include "bits/fcntl.h"
 
-#include "custom_enum_printers.h"
 #include "stdint.h"
+#include "utils/custom_enum_printers/fd.h"
+#include "utils/custom_enum_printers/signum.h"
 
 namespace abii
 {
