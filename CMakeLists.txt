@@ -194,6 +194,7 @@ add_library(c-logger SHARED
             utils/custom_enum_printers/fd.h
             utils/custom_enum_printers/nameser.h
             utils/custom_enum_printers/signum.h
+            hooks/bits/endian.h
             )
 
 target_link_libraries(c-logger PUBLIC abii::libabii)
