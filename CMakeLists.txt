@@ -68,6 +68,7 @@ add_library(c-logger SHARED
             hooks/bits/errno.h
             hooks/bits/eventfd.h
             hooks/bits/fcntl.h
+            hooks/bits/fcntl2.cpp
             hooks/bits/fcntl-linux.h
             hooks/bits/ioctl-types.h
             hooks/bits/mqueue.h
