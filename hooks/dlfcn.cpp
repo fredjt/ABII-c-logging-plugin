@@ -3,6 +3,7 @@
 //
 
 #include "dlfcn.h"
+#include "bits/dlfcn.h"
 
 #include "link.h"
 
@@ -17,7 +18,10 @@ extern "C" void* abii_dlopen(const char* file, int mode) __THROWNL
         abii_args->push_func(new ArgPrinter(str));
 
         abii_args->push_arg(new ArgPrinter(file, "__file"));
-        abii_args->push_arg(new ArgPrinter(mode, "__mode"));
+
+        auto printer = new ArgPrinter(mode, "__mode");
+        printer->set_enum_printer(print_bits_dlfcn_rtld, mode);
+        abii_args->push_arg(printer);
 
         auto abii_ret = real_dlopen(file, mode);
 
@@ -103,7 +107,10 @@ extern "C" void* abii_dlmopen(Lmid_t nsid, const char* file, int mode) __THROWNL
         abii_args->push_arg(printer);
 
         abii_args->push_arg(new ArgPrinter(file, "__file"));
-        abii_args->push_arg(new ArgPrinter(mode, "__mode"));
+
+        auto printer1 = new ArgPrinter(mode, "__mode");
+        printer1->set_enum_printer(print_bits_dlfcn_rtld, mode);
+        abii_args->push_arg(printer1);
 
         auto abii_ret = real_dlmopen(nsid, file, mode);
 
