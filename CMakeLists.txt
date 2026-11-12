@@ -62,6 +62,8 @@ add_library(c-logger SHARED
             hooks/bits/dirent_ext.cpp
             hooks/bits/dlfcn.cpp hooks/bits/dlfcn.h
             hooks/bits/elfclass.h
+            hooks/bits/endian.h
+            hooks/bits/endianness.h
             hooks/bits/fcntl.h
             hooks/bits/fcntl-linux.h
             hooks/bits/ioctl-types.h
@@ -194,7 +196,6 @@ add_library(c-logger SHARED
             utils/custom_enum_printers/fd.h
             utils/custom_enum_printers/nameser.h
             utils/custom_enum_printers/signum.h
-            hooks/bits/endian.h
             )
 
 target_link_libraries(c-logger PUBLIC abii::libabii)
