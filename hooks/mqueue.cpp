@@ -26,7 +26,7 @@ mqd_t abii_mq_open(const char* name, int oflag, ...) __THROW
         abii_args->push_arg(new ArgPrinter(name, "__name"));
 
         auto printer = new ArgPrinter(oflag, "__oflag");
-        printer->set_enum_printer(print_fcntl_linux_oflag, oflag);
+        printer->set_enum_printer(print_bits_fcntl_linux_oflag, oflag);
         abii_args->push_arg(printer);
 
         const char* format = nullptr;

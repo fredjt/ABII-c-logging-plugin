@@ -16,7 +16,7 @@ namespace abii
 template <typename T>
 std::string print_fd(const T v)
 {
-    return print_enum_entry(v, fcntl_linux_fd_pidfs_root, fcntl_at_fdcwd, unistd_fileno);
+    return print_enum_entry(v, bits_fcntl_linux_fd_pidfs_root, fcntl_at_fdcwd, unistd_fileno);
 }
 }
 

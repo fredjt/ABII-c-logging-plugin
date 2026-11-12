@@ -2115,7 +2115,7 @@ int abii_mkostemp(char* _template, int flags)
         abii_args->push_arg(new ArgPrinter(_template, "__template"));
 
         auto printer = new ArgPrinter(flags);
-        printer->set_enum_printer(print_fcntl_linux_oflag, flags);
+        printer->set_enum_printer(print_bits_fcntl_linux_oflag, flags);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_mkostemp(_template, flags);
@@ -2137,7 +2137,7 @@ int abii_mkostemp64(char* _template, int flags)
         abii_args->push_arg(new ArgPrinter(_template, "__template"));
 
         auto printer = new ArgPrinter(flags);
-        printer->set_enum_printer(print_fcntl_linux_oflag, flags);
+        printer->set_enum_printer(print_bits_fcntl_linux_oflag, flags);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_mkostemp64(_template, flags);
@@ -2160,7 +2160,7 @@ int abii_mkostemps(char* _template, int suffixlen, int flags)
         abii_args->push_arg(new ArgPrinter(_template, "__suffixlen"));
 
         auto printer = new ArgPrinter(flags);
-        printer->set_enum_printer(print_fcntl_linux_oflag, flags);
+        printer->set_enum_printer(print_bits_fcntl_linux_oflag, flags);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_mkostemps(_template, suffixlen, flags);
@@ -2183,7 +2183,7 @@ int abii_mkostemps64(char* _template, int suffixlen, int flags)
         abii_args->push_arg(new ArgPrinter(_template, "__suffixlen"));
 
         auto printer = new ArgPrinter(flags);
-        printer->set_enum_printer(print_fcntl_linux_oflag, flags);
+        printer->set_enum_printer(print_bits_fcntl_linux_oflag, flags);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_mkostemps64(_template, suffixlen, flags);
@@ -2867,7 +2867,7 @@ int abii_posix_openpt(int oflag)
         abii_args->push_func(new ArgPrinter(pi_str));
 
         auto printer = new ArgPrinter(oflag, "__oflag");
-        printer->set_enum_printer(print_fcntl_linux_oflag, oflag);
+        printer->set_enum_printer(print_bits_fcntl_linux_oflag, oflag);
         abii_args->push_arg(printer);
 
         auto abii_ret = real_posix_openpt(oflag);

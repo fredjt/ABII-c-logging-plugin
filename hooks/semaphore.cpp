@@ -63,7 +63,7 @@ sem_t* abii_sem_open(const char* name, int oflag, ...) __THROW
         abii_args->push_arg(new ArgPrinter(name, "__name"));
 
         auto printer = new ArgPrinter(oflag, "__oflag");
-        printer->set_enum_printer(print_fcntl_linux_oflag, oflag);
+        printer->set_enum_printer(print_bits_fcntl_linux_oflag, oflag);
         abii_args->push_arg(printer);
 
         sem_t* abii_ret = nullptr;
@@ -75,7 +75,7 @@ sem_t* abii_sem_open(const char* name, int oflag, ...) __THROW
             auto value = va_arg(vargs, unsigned int);
 
             auto printer1 = new ArgPrinter(mode, "__mode");
-            printer1->set_enum_printer(print_fcntl_linux_oflag, mode);
+            printer1->set_enum_printer(print_bits_fcntl_linux_oflag, mode);
             abii_args->push_arg(printer1);
 
             abii_args->push_arg(new ArgPrinter(value, "__value"));

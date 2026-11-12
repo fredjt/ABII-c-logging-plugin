@@ -21,7 +21,7 @@ int abii___open_2(const char* path, int oflag)
         abii_args->push_arg(new ArgPrinter(path, "__path"));
 
         auto printer = new ArgPrinter(oflag, "__oflag");
-        printer->set_enum_printer(print_fcntl_linux_oflag, oflag);
+        printer->set_enum_printer(print_bits_fcntl_linux_oflag, oflag);
         abii_args->push_arg(printer);
 
         auto abii_ret = real___open_2(path, oflag);
@@ -43,7 +43,7 @@ int abii___open64_2(const char* path, int oflag)
         abii_args->push_arg(new ArgPrinter(path, "__path"));
 
         auto printer = new ArgPrinter(oflag, "__oflag");
-        printer->set_enum_printer(print_fcntl_linux_oflag, oflag);
+        printer->set_enum_printer(print_bits_fcntl_linux_oflag, oflag);
         abii_args->push_arg(printer);
 
         auto abii_ret = real___open64_2(path, oflag);
@@ -69,7 +69,7 @@ int abii___openat_2(int fd, const char* path, int oflag)
         abii_args->push_arg(new ArgPrinter(path, "__path"));
 
         auto printer1 = new ArgPrinter(oflag, "__oflag");
-        printer1->set_enum_printer(print_fcntl_linux_oflag, oflag);
+        printer1->set_enum_printer(print_bits_fcntl_linux_oflag, oflag);
         abii_args->push_arg(printer1);
 
         auto abii_ret = real___openat_2(fd, path, oflag);
@@ -95,7 +95,7 @@ int abii___openat64_2(int fd, const char* path, int oflag)
         abii_args->push_arg(new ArgPrinter(path, "__path"));
 
         auto printer1 = new ArgPrinter(oflag, "__oflag");
-        printer1->set_enum_printer(print_fcntl_linux_oflag, oflag);
+        printer1->set_enum_printer(print_bits_fcntl_linux_oflag, oflag);
         abii_args->push_arg(printer1);
 
         auto abii_ret = real___openat64_2(fd, path, oflag);

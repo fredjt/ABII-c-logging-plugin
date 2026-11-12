@@ -9,6 +9,7 @@
 #include "bits/confname.h"
 #include "linux/close_range.h"
 #include "utils/custom_enum_printers/error.h"
+#include "utils/custom_enum_printers/execveat_flags.h"
 #include "utils/custom_enum_printers/fd.h"
 
 namespace abii
@@ -99,7 +100,7 @@ int abii_execveat(int fd, const char* path, char* const argv[], char* const envp
         abii_args->push_arg(new ArgPrinter(envp, "__envp"));
 
         auto printer1 = new ArgPrinter(flags, "__flags");
-        printer1->set_enum_printer(print_fcntl_execveat, flags);
+        printer1->set_enum_printer(print_execveat_flags, flags);
         abii_args->push_arg(printer1);
 
         auto abii_ret = real_execveat(fd, path, argv, envp, flags);
@@ -428,7 +429,7 @@ int abii_pipe2(int pipedes[2], int flags) __THROW
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(pipedes, "__flags");
-        printer1->set_enum_printer(print_fcntl_linux_oflag, flags);
+        printer1->set_enum_printer(print_bits_fcntl_linux_oflag, flags);
         abii_args->push_arg(printer1);
 
         auto abii_ret = real_pipe2(pipedes, flags);
@@ -766,7 +767,7 @@ extern "C" int abii_dup3(int fd, int fd2, int flags) __THROW
         abii_args->push_arg(printer1);
 
         auto printer2 = new ArgPrinter(flags, "__flags");
-        printer2->set_enum_printer(print_fcntl_linux_oflag, flags);
+        printer2->set_enum_printer(print_bits_fcntl_linux_oflag, flags);
         abii_args->push_arg(printer2);
 
         auto abii_ret = real_dup3(fd, fd2, flags);

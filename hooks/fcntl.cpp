@@ -5,19 +5,13 @@
 #include "fcntl.h"
 #include "bits/fcntl.h"
 
-#include "stdint.h"
+#include "utils/custom_enum_printers/fcntl_rw_hint.h"
 #include "utils/custom_enum_printers/fd.h"
 #include "utils/custom_enum_printers/flock_cmd.h"
 #include "utils/custom_enum_printers/signum.h"
 
 namespace abii
 {
-template <typename T>
-static std::string print_fcntl_rw_hint(const T v)
-{
-    return print_enum_entry(v, fcntl_linux_rw_hint, stdint_uint64);
-}
-
 static int (*real_fcntl)(int, int, ...) = nullptr;
 
 extern "C" int abii_fcntl(int fd, int cmd, ...)
@@ -54,19 +48,19 @@ extern "C" int abii_fcntl(int fd, int cmd, ...)
                 switch (cmd)
                 {
                 case F_SETFD:
-                    printer2->set_enum_printer(print_fcntl_linux_fd_cloexec, arg);
+                    printer2->set_enum_printer(print_bits_fcntl_linux_fd_cloexec, arg);
                     break;
                 case F_SETFL:
-                    printer2->set_enum_printer(print_fcntl_linux_oflag, arg);
+                    printer2->set_enum_printer(print_bits_fcntl_linux_oflag, arg);
                     break;
                 case F_SETSIG:
                     printer2->set_enum_printer(print_signum, arg);
                     break;
                 case F_ADD_SEALS:
-                    printer2->set_enum_printer(print_fcntl_linux_seal, arg);
+                    printer2->set_enum_printer(print_bits_fcntl_linux_seal, arg);
                     break;
                 case F_NOTIFY:
-                    printer2->set_enum_printer(print_fcntl_linux_dir_notification, arg);
+                    printer2->set_enum_printer(print_bits_fcntl_linux_dir_notification, arg);
                     break;
                 default:
                     break;
@@ -117,17 +111,17 @@ extern "C" int abii_fcntl(int fd, int cmd, ...)
         {
         case F_GETFD:
             {
-                printer2->set_enum_printer(print_fcntl_linux_fd_cloexec, abii_ret);
+                printer2->set_enum_printer(print_bits_fcntl_linux_fd_cloexec, abii_ret);
                 break;
             }
         case F_GETFL:
-            printer2->set_enum_printer(print_fcntl_linux_oflag, abii_ret);
+            printer2->set_enum_printer(print_bits_fcntl_linux_oflag, abii_ret);
             break;
         case F_GETSIG:
             printer2->set_enum_printer(print_signum, abii_ret);
             break;
         case F_GET_SEALS:
-            printer2->set_enum_printer(print_fcntl_linux_seal, abii_ret);
+            printer2->set_enum_printer(print_bits_fcntl_linux_seal, abii_ret);
             break;
         default:
             break;
@@ -173,19 +167,19 @@ extern "C" int abii_fcntl64(int fd, int cmd, ...)
                 switch (cmd)
                 {
                 case F_SETFD:
-                    printer2->set_enum_printer(print_fcntl_linux_fd_cloexec, arg);
+                    printer2->set_enum_printer(print_bits_fcntl_linux_fd_cloexec, arg);
                     break;
                 case F_SETFL:
-                    printer2->set_enum_printer(print_fcntl_linux_oflag, arg);
+                    printer2->set_enum_printer(print_bits_fcntl_linux_oflag, arg);
                     break;
                 case F_SETSIG:
                     printer2->set_enum_printer(print_signum, arg);
                     break;
                 case F_ADD_SEALS:
-                    printer2->set_enum_printer(print_fcntl_linux_seal, arg);
+                    printer2->set_enum_printer(print_bits_fcntl_linux_seal, arg);
                     break;
                 case F_NOTIFY:
-                    printer2->set_enum_printer(print_fcntl_linux_dir_notification, arg);
+                    printer2->set_enum_printer(print_bits_fcntl_linux_dir_notification, arg);
                     break;
                 default:
                     break;
@@ -236,17 +230,17 @@ extern "C" int abii_fcntl64(int fd, int cmd, ...)
         {
         case F_GETFD:
             {
-                printer2->set_enum_printer(print_fcntl_linux_fd_cloexec, abii_ret);
+                printer2->set_enum_printer(print_bits_fcntl_linux_fd_cloexec, abii_ret);
                 break;
             }
         case F_GETFL:
-            printer2->set_enum_printer(print_fcntl_linux_oflag, abii_ret);
+            printer2->set_enum_printer(print_bits_fcntl_linux_oflag, abii_ret);
             break;
         case F_GETSIG:
             printer2->set_enum_printer(print_signum, abii_ret);
             break;
         case F_GET_SEALS:
-            printer2->set_enum_printer(print_fcntl_linux_seal, abii_ret);
+            printer2->set_enum_printer(print_bits_fcntl_linux_seal, abii_ret);
             break;
         default:
             break;
@@ -268,7 +262,7 @@ int abii_open(const char* file, int oflag, ...)
         abii_args->push_arg(new ArgPrinter(file, "__file"));
 
         auto printer = new ArgPrinter(oflag, "__oflag");
-        printer->set_enum_printer(print_fcntl_linux_oflag, oflag);
+        printer->set_enum_printer(print_bits_fcntl_linux_oflag, oflag);
         abii_args->push_arg(printer);
 
         va_list vargs;
@@ -307,7 +301,7 @@ int abii_open64(const char* file, int oflag, ...)
         abii_args->push_arg(new ArgPrinter(file, "__file"));
 
         auto printer = new ArgPrinter(oflag, "__oflag");
-        printer->set_enum_printer(print_fcntl_linux_oflag, oflag);
+        printer->set_enum_printer(print_bits_fcntl_linux_oflag, oflag);
         abii_args->push_arg(printer);
 
         va_list vargs;
@@ -350,7 +344,7 @@ int abii_openat(int fd, const char* file, int oflag, ...)
         abii_args->push_arg(new ArgPrinter(file, "__file"));
 
         auto printer1 = new ArgPrinter(oflag, "__oflag");
-        printer1->set_enum_printer(print_fcntl_linux_oflag, oflag);
+        printer1->set_enum_printer(print_bits_fcntl_linux_oflag, oflag);
         abii_args->push_arg(printer1);
 
         va_list vargs;
@@ -393,7 +387,7 @@ int abii_openat64(int fd, const char* file, int oflag, ...)
         abii_args->push_arg(new ArgPrinter(file, "__file"));
 
         auto printer1 = new ArgPrinter(oflag, "__oflag");
-        printer1->set_enum_printer(print_fcntl_linux_oflag, oflag);
+        printer1->set_enum_printer(print_bits_fcntl_linux_oflag, oflag);
         abii_args->push_arg(printer1);
 
         va_list vargs;
@@ -534,7 +528,7 @@ extern "C" int abii_posix_fadvise(int fd, off_t offset, off_t len, int advise) _
         abii_args->push_arg(new ArgPrinter(len, "__len"));
 
         auto printer1 = new ArgPrinter(advise, "__advise");
-        printer1->set_enum_printer(print_fcntl_linux_fadvise, advise);
+        printer1->set_enum_printer(print_bits_fcntl_linux_fadvise, advise);
         abii_args->push_arg(printer1);
 
         auto abii_ret = real_posix_fadvise(fd, offset, len, advise);
@@ -560,7 +554,7 @@ extern "C" int abii_posix_fadvise64(int fd, off_t offset, off_t len, int advise)
         abii_args->push_arg(new ArgPrinter(len, "__len"));
 
         auto printer1 = new ArgPrinter(advise, "__advise");
-        printer1->set_enum_printer(print_fcntl_linux_fadvise, advise);
+        printer1->set_enum_printer(print_bits_fcntl_linux_fadvise, advise);
         abii_args->push_arg(printer1);
 
         auto abii_ret = real_posix_fadvise64(fd, offset, len, advise);

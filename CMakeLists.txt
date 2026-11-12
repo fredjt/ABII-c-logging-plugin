@@ -70,7 +70,7 @@ add_library(c-logger SHARED
             hooks/bits/eventfd.h
             hooks/bits/fcntl.h
             hooks/bits/fcntl2.cpp
-            hooks/bits/fcntl-linux.h
+            hooks/bits/fcntl-linux.cpp hooks/bits/fcntl-linux.h
             hooks/bits/ioctl-types.h
             hooks/bits/mqueue.h
             hooks/bits/netdb.h
@@ -200,6 +200,8 @@ add_library(c-logger SHARED
             custom_printers.h
             utils/custom_enum_printers/baud_rate.h
             utils/custom_enum_printers/error.h
+            utils/custom_enum_printers/execveat_flags.h
+            utils/custom_enum_printers/fcntl_rw_hint.h
             utils/custom_enum_printers/fd.h
             utils/custom_enum_printers/flock_cmd.h
             utils/custom_enum_printers/nameser.h

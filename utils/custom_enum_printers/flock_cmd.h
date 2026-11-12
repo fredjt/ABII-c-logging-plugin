@@ -15,7 +15,7 @@ namespace abii
 template <typename T>
 std::string print_flock_cmd(const T v)
 {
-    return print_enum_entry(v, bits_fcntl_flock, fcntl_linux_cmd);
+    return print_enum_entry(v, bits_fcntl_flock, bits_fcntl_linux_cmd);
 }
 }
 

@@ -388,7 +388,7 @@ int abii_posix_spawn_file_actions_addopen(posix_spawn_file_actions_t* file_actio
         abii_args->push_arg(new ArgPrinter(path, "__path"));
 
         auto printer = new ArgPrinter(oflag, "__oflag");
-        printer->set_enum_printer(print_fcntl_linux_oflag, oflag);
+        printer->set_enum_printer(print_bits_fcntl_linux_oflag, oflag);
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(mode, "__mode");
