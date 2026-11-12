@@ -9,7 +9,7 @@
 
 namespace abii
 {
-const defines_map bit_confname__pc_ = {
+const defines_map bits_confname__pc_ = {
     {0, "_PC_LINK_MAX"},
     {1, "_PC_MAX_CANON"},
     {2, "_PC_MAX_INPUT"},
@@ -33,7 +33,7 @@ const defines_map bit_confname__pc_ = {
     {20, "_PC_2_SYMLINKS"}
 };
 
-const defines_map bit_confname__sc_ = {
+const defines_map bits_confname__sc_ = {
     {0, "_SC_ARG_MAX"},
     {1, "_SC_CHILD_MAX"},
     {2, "_SC_CLK_TCK"},
@@ -254,7 +254,7 @@ const defines_map bit_confname__sc_ = {
     {250, "_SC_SIGSTKSZ"}
 };
 
-const defines_map bit_confname__cs_ = {
+const defines_map bits_confname__cs_ = {
     {0, "_CS_PATH"},
     {1, "_CS_V6_WIDTH_RESTRICTED_ENVS"},
     {1, "_CS_POSIX_V6_WIDTH_RESTRICTED_ENVS"},
@@ -327,19 +327,19 @@ const defines_map bit_confname__cs_ = {
 template <typename T>
 std::string print_bits_confname__pc_(const T v)
 {
-    return print_enum_entry(v, bit_confname__pc_);
+    return print_enum_entry(v, bits_confname__pc_);
 }
 
 template <typename T>
 std::string print_bits_confname__sc_(const T v)
 {
-    return print_enum_entry(v, bit_confname__sc_);
+    return print_enum_entry(v, bits_confname__sc_);
 }
 
 template <typename T>
 std::string print_bits_confname__cs_(const T v)
 {
-    return print_enum_entry(v, bit_confname__cs_);
+    return print_enum_entry(v, bits_confname__cs_);
 }
 }
 
