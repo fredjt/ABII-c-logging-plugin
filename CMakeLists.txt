@@ -32,6 +32,7 @@ add_library(c-logger SHARED
             hooks/arpa/inet.cpp
             hooks/arpa/nameser.cpp hooks/arpa/nameser.h
             hooks/arpa/nameser_compat.h
+            hooks/arpa/telnet.h
             hooks/asm/ucontext.h
             hooks/asm/unistd_64.h
             hooks/asm-generic/errno.h
