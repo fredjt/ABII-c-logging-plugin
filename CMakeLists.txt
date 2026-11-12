@@ -49,6 +49,7 @@ add_library(c-logger SHARED
             hooks/bits/types/siginfo_t.h
             hooks/bits/types/stack_t.h
             hooks/bits/types/struct___jmp_buf_tag.h
+            hooks/bits/types/struct_iovec.h
             hooks/bits/types/struct_itimerspec.h
             hooks/bits/types/struct_sched_param.h
             hooks/bits/types/struct_sigstack.h
