@@ -7,6 +7,7 @@
 
 #include "stdint.h"
 #include "utils/custom_enum_printers/fd.h"
+#include "utils/custom_enum_printers/flock_cmd.h"
 #include "utils/custom_enum_printers/signum.h"
 
 namespace abii
@@ -30,7 +31,7 @@ extern "C" int abii_fcntl(int fd, int cmd, ...)
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(cmd, "__cmd");
-        printer1->set_enum_printer(print_fcntl_linux_cmd, cmd);
+        printer1->set_enum_printer(print_flock_cmd, cmd);
         abii_args->push_arg(printer1);
 
         va_list vargs;
@@ -149,7 +150,7 @@ extern "C" int abii_fcntl64(int fd, int cmd, ...)
         abii_args->push_arg(printer);
 
         auto printer1 = new ArgPrinter(cmd, "__cmd");
-        printer1->set_enum_printer(print_fcntl_linux_cmd, cmd);
+        printer1->set_enum_printer(print_flock_cmd, cmd);
         abii_args->push_arg(printer1);
 
         va_list vargs;

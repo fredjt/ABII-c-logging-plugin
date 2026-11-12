@@ -198,6 +198,7 @@ add_library(c-logger SHARED
             utils/custom_enum_printers/baud_rate.h
             utils/custom_enum_printers/error.h
             utils/custom_enum_printers/fd.h
+            utils/custom_enum_printers/flock_cmd.h
             utils/custom_enum_printers/nameser.h
             utils/custom_enum_printers/signum.h
             )

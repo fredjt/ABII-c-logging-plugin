@@ -10,6 +10,21 @@
 #include "fcntl-linux.h"
 #include "hooks/unistd.h"
 
+namespace abii
+{
+const defines_map bits_fcntl_flock = {
+    {F_GETLK64, "F_GETLK64"},
+    {F_SETLK64, "F_SETLK64"},
+    {F_SETLKW64, "F_SETLKW64"}
+};
+
+template <typename T>
+std::string print_bits_fcntl_flock(const T v)
+{
+    return print_enum_entry(v, bits_fcntl_flock);
+}
+}
+
 using namespace abii;
 
 template <typename T> requires std::is_same_v<std::remove_cvref_t<T>, flock>
