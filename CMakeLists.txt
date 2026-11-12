@@ -59,6 +59,7 @@ add_library(c-logger SHARED
             hooks/bits/confname.h
             hooks/bits/cpu-set.cpp hooks/bits/cpu-set.h
             hooks/bits/dirent.h
+            hooks/bits/dirent_ext.cpp
             hooks/bits/fcntl.h
             hooks/bits/fcntl-linux.h
             hooks/bits/ioctl-types.h
