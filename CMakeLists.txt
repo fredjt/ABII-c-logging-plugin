@@ -64,6 +64,7 @@ add_library(c-logger SHARED
             hooks/bits/elfclass.h
             hooks/bits/endian.h
             hooks/bits/endianness.h
+            hooks/bits/epoll.h
             hooks/bits/fcntl.h
             hooks/bits/fcntl-linux.h
             hooks/bits/ioctl-types.h
