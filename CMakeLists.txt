@@ -105,6 +105,7 @@ add_library(c-logger SHARED
             hooks/linux/audit.h
             hooks/linux/close_range.h
             hooks/linux/falloc.h
+            hooks/linux/openat2.h
             hooks/linux/tty.h
             hooks/netinet/in.h
             hooks/sys/ucontext.h
