@@ -79,6 +79,7 @@ add_library(c-logger SHARED
             hooks/bits/inet-fortified-decl.cpp
             hooks/bits/inotify.h
             hooks/bits/ioctl-types.h
+            hooks/ipc.h
             hooks/bits/mqueue.h
             hooks/bits/netdb.h
             hooks/bits/pthreadtypes.h
