@@ -75,6 +75,7 @@ add_library(c-logger SHARED
             hooks/bits/getopt_core.cpp
             hooks/bits/getopt_ext.cpp hooks/bits/getopt_ext.h
             hooks/bits/getopt_posix.cpp
+            hooks/bits/inet-fortified-decl.cpp
             hooks/bits/ioctl-types.h
             hooks/bits/mqueue.h
             hooks/bits/netdb.h
