@@ -6,7 +6,7 @@
 
 namespace abii
 {
-static __nonnull((2, 3)) int (*real_getopt)(int, char* const *, const char*) = nullptr;
+static __nonnull((2, 3)) int (*real_getopt)(int, char* const *, const char*) __THROW = nullptr;
 
 extern "C" __nonnull((2, 3))
 int abii_getopt(int argc, char* const * argv, const char* shortopts) __THROW
