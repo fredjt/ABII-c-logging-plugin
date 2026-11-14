@@ -71,6 +71,7 @@ add_library(c-logger SHARED
             hooks/bits/fcntl.h
             hooks/bits/fcntl2.cpp
             hooks/bits/fcntl-linux.cpp hooks/bits/fcntl-linux.h
+            hooks/bits/fenv.h
             hooks/bits/ioctl-types.h
             hooks/bits/mqueue.h
             hooks/bits/netdb.h
