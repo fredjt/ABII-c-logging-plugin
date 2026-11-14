@@ -208,6 +208,8 @@ add_library(c-logger SHARED
             utils/custom_enum_printers/flock_cmd.h
             utils/custom_enum_printers/nameser.h
             utils/custom_enum_printers/signum.h
+            hooks/bits/getopt_ext.cpp
+            hooks/bits/getopt_ext.h
             )
 
 target_link_libraries(c-logger PUBLIC abii::libabii)
