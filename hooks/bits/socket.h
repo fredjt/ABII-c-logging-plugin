@@ -5,7 +5,7 @@
 #ifndef ABII_C_LOGGING_PLUGIN_BITS_SOCKET_H
 #define ABII_C_LOGGING_PLUGIN_BITS_SOCKET_H
 
-#include <bits/socket.h>
+#include <sys/socket.h>
 
 namespace abii
 {
