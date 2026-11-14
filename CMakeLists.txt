@@ -73,6 +73,8 @@ add_library(c-logger SHARED
             hooks/bits/fcntl-linux.cpp hooks/bits/fcntl-linux.h
             hooks/bits/fenv.h
             hooks/bits/getopt_core.cpp
+            hooks/bits/getopt_ext.cpp hooks/bits/getopt_ext.h
+            hooks/bits/getopt_posix.cpp
             hooks/bits/ioctl-types.h
             hooks/bits/mqueue.h
             hooks/bits/netdb.h
@@ -208,8 +210,6 @@ add_library(c-logger SHARED
             utils/custom_enum_printers/flock_cmd.h
             utils/custom_enum_printers/nameser.h
             utils/custom_enum_printers/signum.h
-            hooks/bits/getopt_ext.cpp
-            hooks/bits/getopt_ext.h
             )
 
 target_link_libraries(c-logger PUBLIC abii::libabii)
